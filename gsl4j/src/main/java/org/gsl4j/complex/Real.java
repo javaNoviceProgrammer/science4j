@@ -2,9 +2,9 @@ package org.gsl4j.complex;
 
 import java.io.Serializable;
 
-import org.gsl4j.OperatorOverloading;
+import org.gsl4j.MathEntity;
 
-public class Real implements Serializable, OperatorOverloading<Real> {
+public class Real implements Serializable, MathEntity<Real> {
 
 	private static final long serialVersionUID = 1L;
 	public static double EPSILON = 1e-10 ;

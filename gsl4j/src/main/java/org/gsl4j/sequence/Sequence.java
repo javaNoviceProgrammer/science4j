@@ -3,7 +3,7 @@ package org.gsl4j.sequence;
 import java.io.Serializable;
 import java.util.Arrays;
 
-import org.gsl4j.OperatorOverloading;
+import org.gsl4j.MathEntity;
 import org.gsl4j.util.MathUtils;
 
 /**
@@ -13,7 +13,7 @@ import org.gsl4j.util.MathUtils;
  *
  */
 @FunctionalInterface
-public interface Sequence extends Serializable, OperatorOverloading<Sequence> {
+public interface Sequence extends Serializable, MathEntity<Sequence> {
 
 	/**
 	 * evaluates a sequence at a given index

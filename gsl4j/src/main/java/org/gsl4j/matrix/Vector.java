@@ -1,9 +1,9 @@
 package org.gsl4j.matrix;
 
-import org.gsl4j.OperatorOverloading;
+import org.gsl4j.MathEntity;
 import org.gsl4j.util.NativeLibraryLoader;
 
-public class Vector implements OperatorOverloading<Vector> {
+public class Vector implements MathEntity<Vector> {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
