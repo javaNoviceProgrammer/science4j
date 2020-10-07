@@ -37,7 +37,7 @@ public class NativeLibraryLoader {
 		try {
 			copyToLocation("/usr/local/lib", "libgsl.25.dylib");
 			copyToLocation("/usr/local/lib", "libgslcblas.0.dylib");
-			NativeUtils.loadLibraryFromJar("/libgsl4jc.dylib");
+			NativeUtils.loadLibraryFromJar("/libgsl4j_c.dylib");
 		} catch (IOException e) {
 			System.err.println("Could not load GSL4j dynamic library");
 		}
