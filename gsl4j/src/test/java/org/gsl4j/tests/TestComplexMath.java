@@ -4,6 +4,7 @@ import java.util.Arrays;
 import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
+import org.gsl4j.util.NativeLibraryLoader;
 
 class TestComplexMath {
 
@@ -74,6 +75,7 @@ class TestComplexMath {
 	}
 
 	public static void main(String[] args) {
+		NativeLibraryLoader.showInfo = true ;
 		test1() ;
 		test2() ;
 		test3() ;

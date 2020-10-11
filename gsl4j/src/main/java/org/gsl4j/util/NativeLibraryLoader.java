@@ -62,9 +62,10 @@ public class NativeLibraryLoader {
 
 	private static void copyToLocation(String path, String libName) {
 		// mac: /usr/local/lib
+		// linux: /usr/local/lib
 		File temp = new File(path, libName);
 		if (!temp.exists()) {
-			try (InputStream is = NativeUtils.class.getResourceAsStream("/"+libName)) {
+			try (InputStream is = NativeUtils.class.getResourceAsStream("/gsl_lib/"+libName)) {
 				Files.copy(is, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
 			} catch (IOException e) {
 				e.printStackTrace();
