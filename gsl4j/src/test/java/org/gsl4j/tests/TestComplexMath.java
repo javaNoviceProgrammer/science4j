@@ -4,9 +4,14 @@ import java.util.Arrays;
 import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
-import org.gsl4j.util.NativeLibraryLoader;
+
 
 class TestComplexMath {
+
+	static {
+		Complex.setDisplayAccuracy(5);
+	}
+
 
 	private static void test1() {
 		Complex z1 = Complex.ofRect(1.1, 2.2) ;
@@ -66,16 +71,16 @@ class TestComplexMath {
 		System.out.println(result);
 	}
 
-	public static void test7() {
+	private static void test7() {
+
 		ComplexBuilder cb = new ComplexBuilder() ;
-		cb.add(2.1, -3.5) ;
-		System.out.println(cb);
-		cb.multiply(Complex.j.multiply(-1.0)) ;
-		System.out.println(cb);
+		cb.add(1.1, 2.2).multiply(Complex.j) ;
+		System.out.println("Complex builder = " + cb);
+		Complex u = Complex.ofArray(ComplexMath.tanh(cb.re(), cb.im())) ;
+		System.out.println("tanh(cb) = " + u);
 	}
 
 	public static void main(String[] args) {
-		NativeLibraryLoader.showInfo = true ;
 		test1() ;
 		test2() ;
 		test3() ;

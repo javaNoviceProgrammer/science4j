@@ -6,7 +6,8 @@ import static org.gsl4j.complex.Complex.* ;
 
 public class ComplexPolynomial {
 
-	public static final ComplexPolynomial Xc = new ComplexPolynomial(new Complex[] {0.0, 1.0}) ;
+	public static final ComplexPolynomial Xc =
+			new ComplexPolynomial(new Complex[] {0.0, 1.0}) ;
 
 	Complex[] coef; // coefficients (length = degree + 1)
 	int deg; // degree of polynomial (0 for the zero polynomial)
@@ -50,7 +51,7 @@ public class ComplexPolynomial {
 	// return the degree of this polynomial (0 for the zero polynomial)
 	public int degree() {
 		for (int i = coef.length - 1; i >= 0; i--)
-			if (!coef[i].equals(0+j*0))
+			if (!coef[i].equals(ZERO))
 				return i;
 		return 0;
 	}
@@ -76,7 +77,7 @@ public class ComplexPolynomial {
     }
 
     private String format(Complex c) {
-    	return "(" + c + ")" ;
+    		return "(" + c + ")" ;
     }
 
     // return c = a + b
