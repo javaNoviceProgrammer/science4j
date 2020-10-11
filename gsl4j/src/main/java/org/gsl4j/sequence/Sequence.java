@@ -2,9 +2,9 @@ package org.gsl4j.sequence;
 
 import java.io.Serializable;
 import java.util.Arrays;
-
 import org.gsl4j.AlgebraicEntity;
 import org.gsl4j.util.MathUtils;
+
 
 /**
  * interface representing a real-valued sequence
@@ -95,7 +95,7 @@ public interface Sequence extends Serializable, AlgebraicEntity<Sequence> {
 		Sequence seq1 = n -> 0.5*(n+2)*(n+2)*evaluate(n+2) ;
 		Sequence seq2 = n -> -(n+1)*(n+1)*evaluate(n+1) ;
 		Sequence seq3 = n -> 0.5*n*n*evaluate(n) ;
-		return seq1+seq2+seq3 ;
+		return n -> seq1.evaluate(n) + seq2.evaluate(n) + seq3.evaluate(n) ;
 	}
 
 	/**
@@ -107,7 +107,8 @@ public interface Sequence extends Serializable, AlgebraicEntity<Sequence> {
 		Sequence seq2 = n -> -3.0*(n+2)*(n+2)*(n+2)*evaluate(n+2) ;
 		Sequence seq3 = n -> 3.0*(n+1)*(n+1)*(n+1)*evaluate(n+1) ;
 		Sequence seq4 = n -> -n*n*n*evaluate(n) ;
-		return (seq1+seq2+seq3+seq4)/6.0 ;
+		return n -> (seq1.evaluate(n) + seq2.evaluate(n) + seq3.evaluate(n) +
+				seq4.evaluate(n))/6.0 ;
 	}
 
 	/**
@@ -120,7 +121,8 @@ public interface Sequence extends Serializable, AlgebraicEntity<Sequence> {
 		Sequence seq3 = n -> 6.0*(n+2)*(n+2)*(n+2)*(n+2)*evaluate(n+2) ;
 		Sequence seq4 = n -> -4.0*(n+1)*(n+1)*(n+1)*(n+1)*evaluate(n+1) ;
 		Sequence seq5 = n -> n*n*n*n*evaluate(n) ;
-		return (seq1+seq2+seq3+seq4+seq5)/24.0 ;
+		return n -> (seq1.evaluate(n) + seq2.evaluate(n) + seq3.evaluate(n) +
+				seq4.evaluate(n) + seq5.evaluate(n))/24.0 ;
 	}
 
 	//*************** operations ***********
