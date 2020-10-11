@@ -14,7 +14,7 @@ import org.gsl4j.util.StringUtils;
  * @author Meisam
  *
  */
-public class Complex implements Serializable, AlgebraicEntity<Complex> {
+public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
@@ -24,8 +24,8 @@ public class Complex implements Serializable, AlgebraicEntity<Complex> {
 
 	public static final Complex ZERO = new Complex(0.0, 0.0) ;
 	public static final Complex j = new Complex(0.0, 1.0) ;
-	private static int DISPLAY_ACCURACY = 4 ;
-	private static double epsilon = 1e-10 ;
+	static int DISPLAY_ACCURACY = 4 ;
+	static double epsilon = 1e-10 ;
 
 	private double re ;
 	private double im ;
@@ -233,7 +233,7 @@ public class Complex implements Serializable, AlgebraicEntity<Complex> {
 		}
 	}
 
-	//*********** support for operator overloading *************
+	//*********** support for algebraic operations *************
 
 	public static Complex valueOf(double v) {
 		return ofRect(v, 0.0) ;

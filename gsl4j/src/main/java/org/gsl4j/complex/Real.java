@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.gsl4j.AlgebraicEntity;
 
-public class Real implements Serializable, AlgebraicEntity<Real> {
+public final class Real implements Serializable, AlgebraicEntity<Real> {
 
 	private static final long serialVersionUID = 1L;
 	public static double EPSILON = 1e-10 ;
@@ -147,11 +147,6 @@ public class Real implements Serializable, AlgebraicEntity<Real> {
 	@Override
 	public Real negate() {
 		return new Real(-x) ;
-	}
-
-	public static void main(String[] args) {
-		Real r = 1.1 ;
-		System.out.println(r);
 	}
 
 }

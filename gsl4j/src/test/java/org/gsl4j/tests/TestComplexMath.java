@@ -2,8 +2,8 @@ package org.gsl4j.tests;
 
 import java.util.Arrays;
 import org.gsl4j.complex.Complex;
+import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
-import static org.gsl4j.complex.Complex.j ;
 
 class TestComplexMath {
 
@@ -65,13 +65,12 @@ class TestComplexMath {
 		System.out.println(result);
 	}
 
-	private static void test7() {
-		Complex z = 1.0+2.0*j ;
-		System.out.println("z = " + z);
-		Complex w = -3.0/j ;
-		System.out.println("w = " + w);
-		System.out.println("z/w = " + z/w);
-		System.out.println("z*w = " + z*w);
+	public static void test7() {
+		ComplexBuilder cb = new ComplexBuilder() ;
+		cb.add(2.1, -3.5) ;
+		System.out.println(cb);
+		cb.multiply(Complex.j.multiply(-1.0)) ;
+		System.out.println(cb);
 	}
 
 	public static void main(String[] args) {
