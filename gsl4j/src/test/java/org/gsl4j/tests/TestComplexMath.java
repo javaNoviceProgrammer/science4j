@@ -72,7 +72,6 @@ class TestComplexMath {
 	}
 
 	private static void test7() {
-
 		ComplexBuilder cb = new ComplexBuilder() ;
 		cb.add(1.1, 2.2).multiply(Complex.j) ;
 		System.out.println("Complex builder = " + cb);
