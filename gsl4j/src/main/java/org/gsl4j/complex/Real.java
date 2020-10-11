@@ -2,9 +2,9 @@ package org.gsl4j.complex;
 
 import java.io.Serializable;
 
-import org.gsl4j.MathEntity;
+import org.gsl4j.AlgebraicEntity;
 
-public class Real implements Serializable, MathEntity<Real> {
+public class Real implements Serializable, AlgebraicEntity<Real> {
 
 	private static final long serialVersionUID = 1L;
 	public static double EPSILON = 1e-10 ;

@@ -7,7 +7,7 @@ package org.gsl4j;
  *
  * @param <T> Class subject to operator overloading
  */
-public interface MathEntity<T> {
+public interface AlgebraicEntity<T> {
 
 	// addition
 	T add(double v) ; // this + v

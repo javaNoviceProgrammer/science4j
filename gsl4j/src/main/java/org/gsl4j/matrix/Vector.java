@@ -1,9 +1,9 @@
 package org.gsl4j.matrix;
 
-import org.gsl4j.MathEntity;
+import org.gsl4j.AlgebraicEntity;
 import org.gsl4j.util.NativeLibraryLoader;
 
-public class Vector implements MathEntity<Vector> {
+public class Vector implements AlgebraicEntity<Vector> {
 
 	static {
 		NativeLibraryLoader.loadLibraries();

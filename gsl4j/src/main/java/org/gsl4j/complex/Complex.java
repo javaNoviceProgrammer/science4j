@@ -1,7 +1,7 @@
 package org.gsl4j.complex;
 
 import java.io.Serializable;
-import org.gsl4j.MathEntity;
+import org.gsl4j.AlgebraicEntity;
 import org.gsl4j.util.NativeLibraryLoader;
 import org.gsl4j.util.StringUtils;
 
@@ -14,7 +14,7 @@ import org.gsl4j.util.StringUtils;
  * @author Meisam
  *
  */
-public class Complex implements Serializable, MathEntity<Complex> {
+public class Complex implements Serializable, AlgebraicEntity<Complex> {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
