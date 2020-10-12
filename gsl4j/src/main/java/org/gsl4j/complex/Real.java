@@ -3,6 +3,7 @@ package org.gsl4j.complex;
 import java.io.Serializable;
 
 import org.gsl4j.AlgebraicEntity;
+import org.gsl4j.MathConstants;
 
 public final class Real implements Serializable, AlgebraicEntity<Real> {
 
@@ -43,6 +44,27 @@ public final class Real implements Serializable, AlgebraicEntity<Real> {
 	public String toString() {
 		return String.valueOf(x) ;
 	}
+
+	//************ Finite or Infinite **************
+
+	public boolean isInf() {
+		return MathConstants.isInf(x) ;
+	}
+
+	public boolean isPositiveInf() {
+		return MathConstants.isPositiveInf(x) ;
+	}
+
+	public boolean isNegativeInf() {
+		return MathConstants.isNegativeInf(x) ;
+	}
+
+	public boolean isFinite() {
+		return MathConstants.isFinite(x) ;
+	}
+
+
+	//********** Algebraic Operations *****************
 
 	public static Real valueOf(double v) {
 		return new Real(v) ;
@@ -98,50 +120,42 @@ public final class Real implements Serializable, AlgebraicEntity<Real> {
 
 	@Override
 	public Real multiply(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(x*v) ;
 	}
 
 	@Override
 	public Real multiplyRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(v*x) ;
 	}
 
 	@Override
 	public Real multiply(Real v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(this.x*v.x) ;
 	}
 
 	@Override
 	public Real multiplyRev(Real v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(v.x * this.x) ;
 	}
 
 	@Override
 	public Real divide(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(x/v) ;
 	}
 
 	@Override
 	public Real divideRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(v/x) ;
 	}
 
 	@Override
 	public Real divide(Real v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(this.x/v.x) ;
 	}
 
 	@Override
 	public Real divideRev(Real v) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Real(v.x/this.x) ;
 	}
 
 	@Override
