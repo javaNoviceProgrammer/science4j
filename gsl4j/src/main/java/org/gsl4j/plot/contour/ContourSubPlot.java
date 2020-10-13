@@ -16,7 +16,7 @@ public class ContourSubPlot {
 	List<ContourPlot> contourPlotSeries ;
 	Map<ContourPlot, int[]> subplotIndex ;
 	// parameters
-	String tightLayout ;
+	boolean tightLayout ;
 	static int id = 0 ;
 
 	public ContourSubPlot() {
@@ -109,7 +109,7 @@ public class ContourSubPlot {
 			// print each subplot
 			series.pythonCode(fo);
 		}
-		if(tightLayout != null)
+		if(tightLayout)
 			fo.println("plt.tight_layout()");
 	}
 

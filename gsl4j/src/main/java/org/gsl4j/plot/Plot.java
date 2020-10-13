@@ -264,7 +264,6 @@ public class Plot {
 				// plot
 				fo.println(xyseries.toString());
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -298,7 +297,6 @@ public class Plot {
 				// contour plot
 				fo.println(contourSeries.toString());
 			} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
