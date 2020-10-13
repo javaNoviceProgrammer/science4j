@@ -6,3 +6,6 @@ This is a java implementation of the popular GNU Scientific Library (GSL) wihch 
 
 ## gsl4j_c
 This is the C/C++ binding of gsl4j
+
+## pyplot4j
+A simple wrapper for matplotlib.pyplot library. Installation of python, numpy, and matplotlib is required.
