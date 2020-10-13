@@ -10,9 +10,32 @@ package org.gsl4j;
 public interface AlgebraicEntity<T> {
 
 	// addition
+	/**
+	 * Addition of a double number to the algebraic entity: this + v
+	 * @param v double value
+	 * @return type T
+	 */
 	T add(double v) ; // this + v
+
+	/**
+	 * Reverse addition of a double number to the algebraic entity: v + this
+	 * @param v double value
+	 * @return type T
+	 */
 	T addRev(double v) ; // v + this
+
+	/**
+	 * Addition of a type T (algebraic entity) to the algebraic entity: this + v
+	 * @param v double value
+	 * @return type T
+	 */
 	T add(T v) ; // this + v
+
+	/**
+	 * Reverse addition of a type T (algebraic entity) to the algebraic entity: v + this
+	 * @param v double value
+	 * @return type T
+	 */
 	T addRev(T v) ; // v + this
 
 	// subtraction

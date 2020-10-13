@@ -4,6 +4,7 @@ import java.util.Arrays;
 import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
+import static org.gsl4j.complex.ComplexMath.* ;
 
 
 class TestComplexMath {
@@ -71,11 +72,13 @@ class TestComplexMath {
 		System.out.println(result);
 	}
 
+
+
 	private static void test7() {
 		ComplexBuilder cb = new ComplexBuilder() ;
 		cb.add(1.1, 2.2).multiply(Complex.j) ;
 		System.out.println("Complex builder = " + cb);
-		Complex u = Complex.ofArray(ComplexMath.tanh(cb.re(), cb.im())) ;
+		Complex u = Complex.ofArray(tanh(cb.re(), cb.im())) ;
 		System.out.println("tanh(cb) = " + u);
 	}
 

@@ -198,6 +198,14 @@ public class ComplexBuilder implements Serializable {
 		return this ;
 	}
 
+	public ComplexBuilder divide(double re, double im) {
+		double mag = re*re+im*im ;
+		double real = (this.re*re+this.im*im)/mag ;
+		double imag = (-this.re*im+this.im*re)/mag ;
+		this.re = real ; this.im = imag ;
+		return this ;
+	}
+
 	public ComplexBuilder divide(Complex v) {
 		double mag = v.re()*v.re()+v.im()*v.im() ;
 		double real = (re*v.re()+im*v.im())/mag ;

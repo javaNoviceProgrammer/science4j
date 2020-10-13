@@ -3,7 +3,8 @@ package org.gsl4j;
 import org.gsl4j.util.NativeLibraryLoader;
 
 /**
- * The library ensures that the standard BSD mathematical constants are defined. For reference, this class has a list of the constants.
+ * The library ensures that the standard BSD mathematical constants are defined.
+ * For reference, this class has a list of the constants.
  *
  * @author Meisam
  *

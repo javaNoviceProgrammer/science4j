@@ -12,7 +12,7 @@ import org.gsl4j.util.StringUtils;
  * below allow complex numbers to be manipulated in a portable way.
  *
  * @author Meisam
- *
+ * @since 1.0
  */
 public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 

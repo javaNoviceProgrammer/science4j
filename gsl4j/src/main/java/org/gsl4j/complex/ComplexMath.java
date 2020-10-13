@@ -10,7 +10,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  * “Common Lisp, The Language (Second Edition)” and the HP-28/48 series of calculators.
  *
  * @author Meisam
- *
+ * @since 1.0
  */
 public class ComplexMath {
 
