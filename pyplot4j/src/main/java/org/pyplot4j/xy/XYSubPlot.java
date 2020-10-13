@@ -17,7 +17,7 @@ public class XYSubPlot {
 	List<XYPlot> xyplotSeries ;
 	Map<XYPlot, int[]> subplotIndex ;
 	// parameters
-	String tightLayout ;
+	boolean tightLayout ;
 	static int id = 0 ;
 
 	public XYSubPlot() {
@@ -110,7 +110,7 @@ public class XYSubPlot {
 			// print each subplot
 			series.pythonCode(fo);
 		}
-		if(tightLayout != null)
+		if(tightLayout)
 			fo.println("plt.tight_layout()");
 	}
 
