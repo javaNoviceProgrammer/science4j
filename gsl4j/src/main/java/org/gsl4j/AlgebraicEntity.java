@@ -4,8 +4,8 @@ package org.gsl4j;
  * Interface for defining a math entity with algebraic operations
  *
  * @author Meisam
- *
- * @param <T> Class subject to operator overloading
+ * @since 1.0
+ * @param <T> Class subject to algebraic operations
  */
 public interface AlgebraicEntity<T> {
 

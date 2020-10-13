@@ -24,7 +24,7 @@ public class ComplexMath {
 
 	// Properties of complex numbers
 	/**
-	 * This function returns the argument of the complex number z, \arg(z), where -\pi < \arg(z) <= \pi.
+	 * This function returns the argument of the complex number z, \arg(z), where -\pi {@literal <} \arg(z) {@literal <}= \pi.
 	 * @param re
 	 * @param im
 	 * @return
