@@ -41,19 +41,19 @@ public class FileOutput implements AutoCloseable {
 	}
 
 	public FileOutput(File var1, char var2) {
-		this.filename = var1;
+		this.filename = var1.toString();
 		this.app = var2;
 		this.setFilenames(var1.getAbsolutePath(), var2);
 	}
 
 	public FileOutput(File var1, String var2) {
-		this.filename = var1;
+		this.filename = var1.toString();
 		this.app = var2.charAt(0);
 		this.setFilenames(var1.getAbsolutePath(), this.app);
 	}
 
 	public FileOutput(File var1) {
-		this.filename = var1;
+		this.filename = var1.toString();
 		this.app = 'w';
 		this.setFilenames(var1.getAbsolutePath(), this.app);
 	}
