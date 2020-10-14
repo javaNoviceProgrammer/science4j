@@ -22,9 +22,25 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 
 	private static final long serialVersionUID = -5423139577060070132L;
 
+	/**
+	 * ZERO = 0.0+j0.0: represents the origin of the complex plane
+	 */
 	public static final Complex ZERO = new Complex(0.0, 0.0) ;
+
+	/**
+	 * j = 0.0+j1.0: represents the imaginary number
+	 */
 	public static final Complex j = new Complex(0.0, 1.0) ;
+
+	/**
+	 * DISPLAY_ACCURACY: decimal accuracy when calling {@code toString()} method.
+	 */
 	static int DISPLAY_ACCURACY = 4 ;
+
+	/**
+	 * epsilon: accuracy for comparing complex numbers when calling {@code equals()}
+	 * method.
+	 */
 	static double epsilon = 1e-10 ;
 
 	private double re ;
@@ -74,12 +90,18 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	 * This function returns the complex number z = r \exp(i \theta) = r (\cos(\theta) + i \sin(\theta)) from the polar representation (r, theta).
 	 * @param r : magnitude of the complex number |z|
 	 * @param phiRad : phase (arg) of the complex number arg(z)
-	 * @return
+	 * @return {@code Complex} : a new complex number
 	 */
 	public static Complex ofPolar(double r, double phiRad) {
 		return new Complex(r*Math.cos(phiRad), r*Math.sin(phiRad)) ;
 	}
 
+	/**
+	 * This function returns the complex number z = r \exp(i \theta) = r (\cos(\theta) + i \sin(\theta)) from the polar representation (r, theta).
+	 * @param r : magnitude of the complex number |z|
+	 * @param phiDegree : phase (arg) of the complex number arg(z)
+	 * @return {@code Complex} : a new complex number
+	 */
 	public static Complex ofPolarDegree(double r, double phiDegree) {
 		return ofPolar(r, Math.toRadians(phiDegree)) ;
 	}
@@ -124,6 +146,11 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		return im ;
 	}
 
+	/**
+	 * This function sets the accuracy of comparing two {@code Complex} numbers
+	 * when calling {@code equals()} method.
+	 * @param tolerance : tolerance of comparison. Default value is 1e-10.
+	 */
 	public void setComplexTolerance(double tolerance) {
 		epsilon = tolerance ;
 	}
@@ -198,6 +225,13 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		return true;
 	}
 
+	/**
+	 * A method for parsing {@code Complex} object from a String. The format must
+	 * include "i" or "j" and be like "a + j b" or "a - j b".
+	 *
+	 * @param st : String representation of a complex number
+	 * @return {@code Complex} : a new complex object
+	 */
 	public static Complex parseComplex(String st) {
 		boolean hasJ = st.contains("j");
 		boolean hasI = st.contains("i");
@@ -235,6 +269,12 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 
 	//*********** support for algebraic operations *************
 
+	/**
+	 * Static factory method for creating a complex number from a double primitive.
+	 * See also {@link #of(double)}
+	 * @param v
+	 * @return
+	 */
 	public static Complex valueOf(double v) {
 		return ofRect(v, 0.0) ;
 	}
