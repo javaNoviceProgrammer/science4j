@@ -16,6 +16,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  * themselves for the values of the constants used in the library.
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class PhysicalConstants {
