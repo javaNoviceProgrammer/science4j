@@ -297,10 +297,14 @@ public final class Complex implements Serializable, ComplexNumber {
 	 * Static factory method for creating a complex number from a double primitive.
 	 * See also {@link #of(double)}
 	 * @param v
-	 * @return
+	 * @return a Complex number
 	 */
 	public static Complex valueOf(double v) {
 		return ofRect(v, 0.0) ;
+	}
+
+	public static Complex valueOf(ComplexNumber v) {
+		return ofRect(v.re(), v.im()) ;
 	}
 
 	/*----- addition ------*/
