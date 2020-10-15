@@ -299,6 +299,14 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		return ofRect(v.re+this.re, v.im+this.im) ;
 	}
 
+	public Complex add(double re, double im) {
+		return ofRect(this.re + re, this.im + im) ;
+	}
+
+	public Complex addRev(double re, double im) {
+		return ofRect(this.re + re, this.im + im) ;
+	}
+
 	@Override
 	public Complex subtract(double v) {
 		return ofRect(re-v, im) ;
@@ -317,6 +325,14 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	@Override
 	public Complex subtractRev(Complex v) {
 		return ofRect(v.re-this.re, v.im-this.im) ;
+	}
+
+	public Complex subtract(double re, double im) {
+		return ofRect(this.re - re, this.im - im) ;
+	}
+
+	public Complex subtractRev(double re, double im) {
+		return ofRect(re - this.re, im - this.im) ;
 	}
 
 	@Override
