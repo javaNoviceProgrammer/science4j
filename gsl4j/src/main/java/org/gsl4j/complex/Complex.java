@@ -279,6 +279,8 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		return ofRect(v, 0.0) ;
 	}
 
+	/*----- addition ------*/
+
 	@Override
 	public Complex add(double v) {
 		return ofRect(re+v, im) ;
@@ -306,6 +308,8 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	public Complex addRev(double re, double im) {
 		return ofRect(this.re + re, this.im + im) ;
 	}
+
+	/*----- subtraction ------*/
 
 	@Override
 	public Complex subtract(double v) {
@@ -335,6 +339,8 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		return ofRect(re - this.re, im - this.im) ;
 	}
 
+	/*----- multiplication ------*/
+
 	@Override
 	public Complex multiply(double v) {
 		return ofRect(v*re, v*im) ;
@@ -355,6 +361,16 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		return ofArray(ComplexMath.mul(v.re, v.im, re, im)) ;
 	}
 
+	public Complex multiply(double re, double im) {
+		return ofArray(ComplexMath.mul(this.re, this.im, re, im)) ;
+	}
+
+	public Complex multiplyRev(double re, double im) {
+		return ofArray(ComplexMath.mul(this.re, this.im, re, im)) ;
+	}
+
+	/*----- division ------*/
+
 	@Override
 	public Complex divide(double v) {
 		return ofRect(re/v, im/v) ;
@@ -374,6 +390,16 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	public Complex divideRev(Complex v) {
 		return ofArray(ComplexMath.div(v.re, v.im, this.re, this.im)) ;
 	}
+
+	public Complex divide(double re, double im) {
+		return ofArray(ComplexMath.div(this.re, this.im, re, im)) ;
+	}
+
+	public Complex divideRev(double re, double im) {
+		return ofArray(ComplexMath.div(re, im, this.re, this.im)) ;
+	}
+
+	/*----- negation ------*/
 
 	@Override
 	public Complex negate() {
