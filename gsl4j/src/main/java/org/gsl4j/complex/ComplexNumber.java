@@ -28,9 +28,15 @@ public interface ComplexNumber extends AlgebraicEntity<ComplexNumber> {
 	double im() ;
 
 	/**
+	 * Requesting an appropriate builder (real or complex) for the number.
+	 * @return a builder : {@link ComplexBuilder} or {@link RealBuilder}
+	 */
+	ComplexNumber getBuilder() ;
+
+	/**
 	 * A functional interface for applying any of {@link ComplexMath} methods.
 	 * @param func
-	 * @return
+	 * @return complex number : result of applying the function
 	 */
 	ComplexNumber apply(BiFunction<Double, Double, double[]> func) ;
 

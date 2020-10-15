@@ -140,6 +140,7 @@ public final class Complex implements Serializable, ComplexNumber {
 	 * Real part of z: Re(z)
 	 * @return real part of a complex number.
 	 */
+	@Override
 	public double re() {
 		return re ;
 	}
@@ -148,6 +149,7 @@ public final class Complex implements Serializable, ComplexNumber {
 	 * Imaginary part of z: Im(z)
 	 * @return imaginary part of a complex number.
 	 */
+	@Override
 	public double im() {
 		return im ;
 	}
@@ -159,6 +161,10 @@ public final class Complex implements Serializable, ComplexNumber {
 	 */
 	public void setComplexTolerance(double tolerance) {
 		epsilon = tolerance ;
+	}
+
+	public ComplexBuilder getBuilder() {
+		return new ComplexBuilder(this) ;
 	}
 
 	public double abs() {
@@ -275,10 +281,12 @@ public final class Complex implements Serializable, ComplexNumber {
 
 	//*********** support for complex math functions *************
 
+	@Override
 	public Complex apply(BiFunction<Double, Double, double[]> func) {
 		return ofArray(func.apply(this.re, this.im)) ;
 	}
 
+	@Override
 	public Complex apply(Function<ComplexNumber, ComplexNumber> func) {
 		return of(func.apply(this)) ;
 	}

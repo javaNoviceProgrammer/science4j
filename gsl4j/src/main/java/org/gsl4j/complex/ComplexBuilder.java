@@ -2,6 +2,7 @@ package org.gsl4j.complex;
 
 import java.io.Serializable;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * This class represents mutable complex numbers.
@@ -11,7 +12,7 @@ import java.util.function.BiFunction;
  * @since 1.0
  *
  */
-public class ComplexBuilder implements Serializable {
+public class ComplexBuilder implements Serializable, ComplexNumber {
 
 	private static final long serialVersionUID = 1L;
 
@@ -62,6 +63,7 @@ public class ComplexBuilder implements Serializable {
 	 * Real part of z: Re(z)
 	 * @return real part of a complex number.
 	 */
+	@Override
 	public double re() {
 		return re ;
 	}
@@ -70,8 +72,13 @@ public class ComplexBuilder implements Serializable {
 	 * Imaginary part of z: Im(z)
 	 * @return imaginary part of a complex number.
 	 */
+	@Override
 	public double im() {
 		return im ;
+	}
+
+	public ComplexBuilder getBuilder() {
+		return this ;
 	}
 
 	public Complex toComplex() {
@@ -104,12 +111,30 @@ public class ComplexBuilder implements Serializable {
 		return stReal + "+" + "j" + stImag;
 	}
 
+	/**
+	 * This method resets the state of the complex builder to
+	 * its initial state (0.0,0.0).
+	 */
+	public void reset() {
+		re = 0.0 ;
+		im = 0.0 ;
+	}
+
 	//*********** support for complex math functions *************
 
+	@Override
 	public ComplexBuilder apply(BiFunction<Double, Double, double[]> func) {
 		double[] result = func.apply(this.re, this.im) ;
 		this.re = result[0] ;
 		this.im = result[1] ;
+		return this ;
+	}
+
+	@Override
+	public ComplexNumber apply(Function<ComplexNumber, ComplexNumber> func) {
+		ComplexNumber z = func.apply(this) ;
+		this.re = z.re() ;
+		this.im = z.im() ;
 		return this ;
 	}
 
@@ -121,35 +146,41 @@ public class ComplexBuilder implements Serializable {
 
 	/*----- addition ------*/
 
+	@Override
 	public ComplexBuilder add(double v) {
 		re += v ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder addRev(double v) {
 		re += v ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder add(double re, double im) {
 		this.re += re ;
 		this.im += im ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder addRev(double re, double im) {
 		this.re += re ;
 		this.im += im ;
 		return this ;
 	}
 
-	public ComplexBuilder add(Complex v) {
+	@Override
+	public ComplexBuilder add(ComplexNumber v) {
 		re += v.re() ;
 		im += v.im() ;
 		return this ;
 	}
 
-	public ComplexBuilder addRev(Complex v) {
+	@Override
+	public ComplexBuilder addRev(ComplexNumber v) {
 		re += v.re() ;
 		im += v.im() ;
 		return this ;
@@ -157,23 +188,41 @@ public class ComplexBuilder implements Serializable {
 
 	/*----- subtraction ------*/
 
+	@Override
 	public ComplexBuilder subtract(double v) {
 		re = re - v ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder subtractRev(double v) {
 		re = v - re ;
 		return this ;
 	}
 
-	public ComplexBuilder subtract(Complex v) {
+	@Override
+	public ComplexBuilder subtract(double re, double im) {
+		this.re -= re ;
+		this.im -= im ;
+		return this ;
+	}
+
+	@Override
+	public ComplexBuilder subtractRev(double re, double im) {
+		this.re = re - this.re ;
+		this.im = im - this.im ;
+		return this ;
+	}
+
+	@Override
+	public ComplexBuilder subtract(ComplexNumber v) {
 		re = re - v.re() ;
 		im = im - v.im() ;
 		return this ;
 	}
 
-	public ComplexBuilder subtractRev(Complex v) {
+	@Override
+	public ComplexBuilder subtractRev(ComplexNumber v) {
 		re = v.re() - re ;
 		im = v.im() - im ;
 		return this ;
@@ -181,16 +230,19 @@ public class ComplexBuilder implements Serializable {
 
 	/*----- multiplication ------*/
 
+	@Override
 	public ComplexBuilder multiply(double v) {
 		re *= v ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder multiplyRev(double v) {
 		re *= v ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder multiply(double re, double im) {
 		double real = this.re * re - this.im * im ;
 		double imag = this.re * im + this.im * re ;
@@ -199,13 +251,15 @@ public class ComplexBuilder implements Serializable {
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder multiplyRev(double re, double im) {
 		this.re = this.re * re - this.im * im ;
 		this.im = this.re * im + this.im * re ;
 		return this ;
 	}
 
-	public ComplexBuilder multiply(Complex v) {
+	@Override
+	public ComplexBuilder multiply(ComplexNumber v) {
 		double real = re * v.re() - im * v.im() ;
 		double imag = re * v.im() + im * v.re() ;
 		this.re = real;
@@ -213,7 +267,8 @@ public class ComplexBuilder implements Serializable {
 		return this ;
 	}
 
-	public ComplexBuilder multiplyRev(Complex v) {
+	@Override
+	public ComplexBuilder multiplyRev(ComplexNumber v) {
 		double real = re * v.re() - im * v.im() ;
 		double imag = re * v.im() + im * v.re() ;
 		this.re = real ;
@@ -223,12 +278,14 @@ public class ComplexBuilder implements Serializable {
 
 	/*----- division ------*/
 
+	@Override
 	public ComplexBuilder divide(double v) {
 		re = re/v ;
 		im = im/v ;
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder divideRev(double v) {
 		double mag = re*re+im*im ;
 		re = v/mag * re ;
@@ -236,27 +293,43 @@ public class ComplexBuilder implements Serializable {
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder divide(double re, double im) {
 		double mag = re*re+im*im ;
 		double real = (this.re*re+this.im*im)/mag ;
 		double imag = (-this.re*im+this.im*re)/mag ;
-		this.re = real ; this.im = imag ;
+		this.re = real ;
+		this.im = imag ;
 		return this ;
 	}
 
-	public ComplexBuilder divide(Complex v) {
+	@Override
+	public ComplexBuilder divideRev(double re, double im) {
+		double mag = this.re*this.re + this.im*this.im ;
+		double real = (this.re*re+this.im*im)/mag ;
+		double imag = (this.re*im-this.im*re)/mag ;
+		this.re = real ;
+		this.im = imag ;
+		return this ;
+	}
+
+	@Override
+	public ComplexBuilder divide(ComplexNumber v) {
 		double mag = v.re()*v.re()+v.im()*v.im() ;
 		double real = (re*v.re()+im*v.im())/mag ;
 		double imag = (-re*v.im()+im*v.re())/mag ;
-		re = real ; im = imag ;
+		re = real ;
+		im = imag ;
 		return this ;
 	}
 
-	public ComplexBuilder divideRev(Complex v) {
+	@Override
+	public ComplexBuilder divideRev(ComplexNumber v) {
 		double mag = re*re+im*im ;
 		double real = (re*v.re()+im*v.im())/mag ;
 		double imag = (re*v.im()-im*v.re())/mag ;
-		re = real ; im = imag ;
+		re = real ;
+		im = imag ;
 		return this ;
 	}
 

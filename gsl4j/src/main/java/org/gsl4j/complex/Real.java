@@ -70,6 +70,11 @@ public final class Real implements Serializable, ComplexNumber {
 		return 0.0 ;
 	}
 
+	@Override
+	public RealBuilder getBuilder() {
+		return new RealBuilder(this) ;
+	}
+
 	//************ Finite or Infinite **************
 
 	public boolean isInf() {
@@ -87,6 +92,8 @@ public final class Real implements Serializable, ComplexNumber {
 	public boolean isFinite() {
 		return MathConstants.isFinite(x) ;
 	}
+
+	//*********** support for complex math functions *************
 
 	@Override
 	public ComplexNumber apply(BiFunction<Double, Double, double[]> func) {
