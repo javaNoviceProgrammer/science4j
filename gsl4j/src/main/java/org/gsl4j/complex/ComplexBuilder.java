@@ -144,6 +144,10 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		return new ComplexBuilder(v, 0.0) ;
 	}
 
+	public static ComplexBuilder valueOf(ComplexNumber v) {
+		return new ComplexBuilder(v.re(), v.im()) ;
+	}
+
 	/*----- addition ------*/
 
 	@Override

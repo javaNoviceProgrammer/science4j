@@ -239,6 +239,14 @@ public final class Real implements Serializable, ComplexNumber {
 		return Complex.ofRect(x*re, x*im) ;
 	}
 
+	public ComplexBuilder multiply(ComplexBuilder v) {
+		return new ComplexBuilder(x, 0.0).multiply(v) ;
+	}
+
+	public ComplexBuilder multiplyRev(ComplexBuilder v) {
+		return new ComplexBuilder(x, 0.0).multiplyRev(v) ;
+	}
+
 	/*----- division ------*/
 
 	@Override

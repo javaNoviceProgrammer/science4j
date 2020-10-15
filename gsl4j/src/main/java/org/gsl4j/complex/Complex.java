@@ -335,6 +335,16 @@ public final class Complex implements Serializable, ComplexNumber {
 		return ofRect(this.re + re, this.im + im) ;
 	}
 
+
+	public ComplexBuilder add(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).add(v) ;
+	}
+
+
+	public ComplexBuilder addRev(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).addRev(v) ;
+	}
+
 	/*----- subtraction ------*/
 
 	@Override
@@ -397,6 +407,22 @@ public final class Complex implements Serializable, ComplexNumber {
 	@Override
 	public Complex multiplyRev(double re, double im) {
 		return ofArray(ComplexMath.mul(this.re, this.im, re, im)) ;
+	}
+
+	public ComplexBuilder multiply(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).multiply(v) ;
+	}
+
+	public ComplexBuilder multiplyRev(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).multiplyRev(v) ;
+	}
+
+	public ComplexBuilder multiply(RealBuilder v) {
+		return new ComplexBuilder(re, im).multiply(v) ;
+	}
+
+	public ComplexBuilder multiplyRev(RealBuilder v) {
+		return new ComplexBuilder(re, im).multiplyRev(v) ;
 	}
 
 	/*----- division ------*/

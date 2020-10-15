@@ -62,12 +62,12 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	//*********** support for complex math functions *************
 
 	@Override
-	public ComplexNumber apply(BiFunction<Double, Double, double[]> func) {
+	public ComplexBuilder apply(BiFunction<Double, Double, double[]> func) {
 		return new ComplexBuilder(x, 0.0).apply(func) ;
 	}
 
 	@Override
-	public ComplexNumber apply(Function<ComplexNumber, ComplexNumber> func) {
+	public ComplexBuilder apply(Function<ComplexNumber, ComplexNumber> func) {
 		return new ComplexBuilder(x, 0.0).apply(func) ;
 	}
 
@@ -78,6 +78,9 @@ public class RealBuilder implements Serializable, ComplexNumber {
 
 	//*********** support for algebraic operations *************
 
+	public static RealBuilder valueOf(double v) {
+		return new RealBuilder(v) ;
+	}
 
 	/*----- addition ------*/
 
@@ -163,7 +166,7 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	}
 
 	@Override
-	public ComplexNumber subtractRev(ComplexNumber v) {
+	public ComplexBuilder subtractRev(ComplexNumber v) {
 		return new ComplexBuilder(x, 0.0).subtractRev(v) ;
 	}
 
@@ -241,17 +244,17 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	}
 
 	@Override
-	public ComplexNumber divideRev(double re, double im) {
+	public ComplexBuilder divideRev(double re, double im) {
 		return new ComplexBuilder(x, 0.0).divideRev(re, im) ;
 	}
 
 	@Override
-	public ComplexNumber divide(ComplexNumber v) {
+	public ComplexBuilder divide(ComplexNumber v) {
 		return new ComplexBuilder(x, 0.0).divide(v) ;
 	}
 
 	@Override
-	public ComplexNumber divideRev(ComplexNumber v) {
+	public ComplexBuilder divideRev(ComplexNumber v) {
 		return new ComplexBuilder(x, 0.0).divideRev(v) ;
 	}
 
