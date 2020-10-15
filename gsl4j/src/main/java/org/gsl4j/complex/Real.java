@@ -159,6 +159,14 @@ public final class Real implements Serializable, ComplexNumber {
 		return Complex.ofRect(v.re()+x, v.im()) ;
 	}
 
+	public RealBuilder add(RealBuilder v) {
+		return v.add(x) ;
+	}
+
+	public RealBuilder addRev(RealBuilder v) {
+		return v.addRev(x) ;
+	}
+
 	/*----- subtraction ------*/
 
 	@Override

@@ -335,14 +335,20 @@ public final class Complex implements Serializable, ComplexNumber {
 		return ofRect(this.re + re, this.im + im) ;
 	}
 
-
 	public ComplexBuilder add(ComplexBuilder v) {
-		return new ComplexBuilder(re, im).add(v) ;
+		return v.add(this) ;
 	}
 
-
 	public ComplexBuilder addRev(ComplexBuilder v) {
-		return new ComplexBuilder(re, im).addRev(v) ;
+		return v.addRev(this) ;
+	}
+
+	public ComplexBuilder add(RealBuilder v) {
+		return v.add(this) ;
+	}
+
+	public ComplexBuilder addRev(RealBuilder v) {
+		return v.addRev(this) ;
 	}
 
 	/*----- subtraction ------*/
@@ -375,6 +381,22 @@ public final class Complex implements Serializable, ComplexNumber {
 	@Override
 	public Complex subtractRev(double re, double im) {
 		return ofRect(re - this.re, im - this.im) ;
+	}
+
+	public ComplexBuilder subtract(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).subtract(v) ;
+	}
+
+	public ComplexBuilder subtractRev(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).subtractRev(v) ;
+	}
+
+	public ComplexBuilder subtract(RealBuilder v) {
+		return new ComplexBuilder(re, im).subtract(v) ;
+	}
+
+	public ComplexBuilder subtractRev(RealBuilder v) {
+		return new ComplexBuilder(re, im).subtractRev(v) ;
 	}
 
 	/*----- multiplication ------*/
@@ -455,6 +477,22 @@ public final class Complex implements Serializable, ComplexNumber {
 	@Override
 	public Complex divideRev(double re, double im) {
 		return ofArray(ComplexMath.div(re, im, this.re, this.im)) ;
+	}
+
+	public ComplexBuilder divide(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).divide(v) ;
+	}
+
+	public ComplexBuilder divideRev(ComplexBuilder v) {
+		return new ComplexBuilder(re, im).divideRev(v) ;
+	}
+
+	public ComplexBuilder divide(RealBuilder v) {
+		return new ComplexBuilder(re, im).divide(v) ;
+	}
+
+	public ComplexBuilder divideRev(RealBuilder v) {
+		return new ComplexBuilder(re, im).divideRev(v) ;
 	}
 
 	/*----- negation ------*/
