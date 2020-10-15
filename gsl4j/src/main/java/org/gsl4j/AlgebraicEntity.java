@@ -9,7 +9,8 @@ package org.gsl4j;
  */
 public interface AlgebraicEntity<T> {
 
-	// addition
+	/*-------- addition ----------*/
+
 	/**
 	 * Addition of a double number to the algebraic entity: this + v
 	 * @param v double value
@@ -38,25 +39,29 @@ public interface AlgebraicEntity<T> {
 	 */
 	T addRev(T v) ; // v + this
 
-	// subtraction
+	/*-------- subtraction ----------*/
+
 	T subtract(double v) ; // this - v
 	T subtractRev(double v) ; // v - this
 	T subtract(T v) ;
 	T subtractRev(T v) ;
 
-	// multiplication
+	/*-------- multiplication ----------*/
+
 	T multiply(double v) ;
 	T multiplyRev(double v) ;
 	T multiply(T v) ;
 	T multiplyRev(T v) ;
 
-	// division
+	/*-------- division ----------*/
+
 	T divide(double v) ;
 	T divideRev(double v) ;
 	T divide(T v) ;
 	T divideRev(T v) ;
 
-	// negate
+	/*-------- negation ----------*/
+
 	T negate() ;
 
 }

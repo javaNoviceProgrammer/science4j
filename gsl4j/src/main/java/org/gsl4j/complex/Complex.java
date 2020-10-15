@@ -1,7 +1,9 @@
 package org.gsl4j.complex;
 
 import java.io.Serializable;
-import org.gsl4j.AlgebraicEntity;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 import org.gsl4j.util.NativeLibraryLoader;
 import org.gsl4j.util.StringUtils;
 
@@ -14,7 +16,7 @@ import org.gsl4j.util.StringUtils;
  * @author Meisam
  * @since 1.0
  */
-public final class Complex implements Serializable, AlgebraicEntity<Complex> {
+public final class Complex implements Serializable, ComplexNumber {
 
 	static {
 		NativeLibraryLoader.loadLibraries();
@@ -65,6 +67,10 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	 */
 	public static Complex of(Complex z) {
 		return ofRect(z.re, z.im) ;
+	}
+
+	public static Complex of(ComplexNumber z) {
+		return ofRect(z.re(), z.im()) ;
 	}
 
 	/**
@@ -267,6 +273,16 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 		}
 	}
 
+	//*********** support for complex math functions *************
+
+	public Complex apply(BiFunction<Double, Double, double[]> func) {
+		return ofArray(func.apply(this.re, this.im)) ;
+	}
+
+	public Complex apply(Function<ComplexNumber, ComplexNumber> func) {
+		return of(func.apply(this)) ;
+	}
+
 	//*********** support for algebraic operations *************
 
 	/**
@@ -292,19 +308,21 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	}
 
 	@Override
-	public Complex add(Complex v) {
-		return ofRect(this.re+v.re, this.im+v.im) ;
+	public Complex add(ComplexNumber v) {
+		return ofRect(this.re + v.re(), this.im + v.im()) ;
 	}
 
 	@Override
-	public Complex addRev(Complex v) {
-		return ofRect(v.re+this.re, v.im+this.im) ;
+	public Complex addRev(ComplexNumber v) {
+		return ofRect(v.re() + this.re, v.im() + this.im) ;
 	}
 
+	@Override
 	public Complex add(double re, double im) {
 		return ofRect(this.re + re, this.im + im) ;
 	}
 
+	@Override
 	public Complex addRev(double re, double im) {
 		return ofRect(this.re + re, this.im + im) ;
 	}
@@ -322,19 +340,21 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	}
 
 	@Override
-	public Complex subtract(Complex v) {
-		return ofRect(this.re-v.re, this.im-v.im) ;
+	public Complex subtract(ComplexNumber v) {
+		return ofRect(this.re - v.re(), this.im - v.im()) ;
 	}
 
 	@Override
-	public Complex subtractRev(Complex v) {
-		return ofRect(v.re-this.re, v.im-this.im) ;
+	public Complex subtractRev(ComplexNumber v) {
+		return ofRect(v.re() - this.re, v.im() - this.im) ;
 	}
 
+	@Override
 	public Complex subtract(double re, double im) {
 		return ofRect(this.re - re, this.im - im) ;
 	}
 
+	@Override
 	public Complex subtractRev(double re, double im) {
 		return ofRect(re - this.re, im - this.im) ;
 	}
@@ -352,19 +372,21 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	}
 
 	@Override
-	public Complex multiply(Complex v) {
-		return ofArray(ComplexMath.mul(re, im, v.re, v.im)) ;
+	public Complex multiply(ComplexNumber v) {
+		return ofArray(ComplexMath.mul(re, im, v.re(), v.im())) ;
 	}
 
 	@Override
-	public Complex multiplyRev(Complex v) {
-		return ofArray(ComplexMath.mul(v.re, v.im, re, im)) ;
+	public Complex multiplyRev(ComplexNumber v) {
+		return ofArray(ComplexMath.mul(v.re(), v.im(), re, im)) ;
 	}
 
+	@Override
 	public Complex multiply(double re, double im) {
 		return ofArray(ComplexMath.mul(this.re, this.im, re, im)) ;
 	}
 
+	@Override
 	public Complex multiplyRev(double re, double im) {
 		return ofArray(ComplexMath.mul(this.re, this.im, re, im)) ;
 	}
@@ -382,19 +404,21 @@ public final class Complex implements Serializable, AlgebraicEntity<Complex> {
 	}
 
 	@Override
-	public Complex divide(Complex v) {
-		return ofArray(ComplexMath.div(this.re, this.im, v.re, v.im)) ;
+	public Complex divide(ComplexNumber v) {
+		return ofArray(ComplexMath.div(this.re, this.im, v.re(), v.im())) ;
 	}
 
 	@Override
-	public Complex divideRev(Complex v) {
-		return ofArray(ComplexMath.div(v.re, v.im, this.re, this.im)) ;
+	public Complex divideRev(ComplexNumber v) {
+		return ofArray(ComplexMath.div(v.re(), v.im(), this.re, this.im)) ;
 	}
 
+	@Override
 	public Complex divide(double re, double im) {
 		return ofArray(ComplexMath.div(this.re, this.im, re, im)) ;
 	}
 
+	@Override
 	public Complex divideRev(double re, double im) {
 		return ofArray(ComplexMath.div(re, im, this.re, this.im)) ;
 	}

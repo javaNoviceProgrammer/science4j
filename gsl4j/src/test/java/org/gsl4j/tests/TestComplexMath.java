@@ -4,6 +4,9 @@ import java.util.Arrays;
 import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
+import org.gsl4j.complex.ComplexNumber;
+import org.gsl4j.complex.Real;
+
 import static org.gsl4j.complex.ComplexMath.* ;
 
 
@@ -82,14 +85,39 @@ class TestComplexMath {
 		System.out.println("tanh(cb) = " + u);
 	}
 
+	private static void test8() {
+		ComplexBuilder cb = new ComplexBuilder() ;
+		cb.add(1.1, 2.2).multiply(0.0, 1.0) ;
+		System.out.println("Complex builder = " + cb);
+		Complex u = Complex.ofArray(tanh(cb.re(), cb.im())) ;
+		System.out.println("tanh(cb) = " + u);
+		System.out.println("tanh(cb) = " + cb.toComplex().apply(ComplexMath::tanh));
+		System.out.println("tanh(cb) = " + cb.apply(ComplexMath::tanh));
+//		System.out.println("tanh(cb) = " + cb.apply((re,im) -> tanh(re,im)));
+	}
+
+	private static void test9() {
+		ComplexNumber z1 = Complex.ofRect(1.1, -2.5) ;
+		System.out.println(z1);
+		ComplexNumber a1 = Real.of(5.3) ;
+		System.out.println(a1);
+		ComplexNumber sum = z1.add(a1) ;
+		System.out.println("sum = " + sum);
+		System.out.println("tanh(sum) = " + sum.apply(ComplexMath::tanh));
+		System.out.println("sum*sum = " + sum.apply(z -> z.multiply(z)));
+		System.out.println("a1*a1 = " + a1.apply(z -> z.multiply(z)));
+	}
+
 	public static void main(String[] args) {
-		test1() ;
-		test2() ;
-		test3() ;
-		test4() ;
-		test5() ;
-		test6() ;
-		test7() ;
+//		test1() ;
+//		test2() ;
+//		test3() ;
+//		test4() ;
+//		test5() ;
+//		test6() ;
+//		test7() ;
+//		test8() ;
+		test9() ;
 	}
 
 }
