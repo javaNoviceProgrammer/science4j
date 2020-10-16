@@ -126,6 +126,22 @@ public class RealBuilder implements Serializable, ComplexNumber {
 		return new ComplexBuilder(x, 0.0).add(v) ;
 	}
 
+	public RealBuilder add(RealBuilder v) {
+		return v.add(x) ;
+	}
+
+	public RealBuilder addRev(RealBuilder v) {
+		return v.addRev(x) ;
+	}
+
+	public ComplexBuilder add(ComplexBuilder v) {
+		return v.add(x) ;
+	}
+
+	public ComplexBuilder addRev(ComplexBuilder v) {
+		return v.addRev(x) ;
+	}
+
 	/*----- subtraction ------*/
 
 	@Override
@@ -168,6 +184,22 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	@Override
 	public ComplexBuilder subtractRev(ComplexNumber v) {
 		return new ComplexBuilder(x, 0.0).subtractRev(v) ;
+	}
+
+	public RealBuilder subtract(RealBuilder v) {
+		return v.subtract(x) ;
+	}
+
+	public RealBuilder subtractRev(RealBuilder v) {
+		return v.subtractRev(x) ;
+	}
+
+	public ComplexBuilder subtract(ComplexBuilder v) {
+		return v.subtract(x) ;
+	}
+
+	public ComplexBuilder subtractRev(ComplexBuilder v) {
+		return v.subtractRev(x) ;
 	}
 
 	/*----- multiplication ------*/
@@ -214,6 +246,23 @@ public class RealBuilder implements Serializable, ComplexNumber {
 		return new ComplexBuilder(x, 0.0).multiply(v) ;
 	}
 
+	public RealBuilder multiply(RealBuilder v) {
+		return v.multiply(x) ;
+	}
+
+	public RealBuilder multiplyRev(RealBuilder v) {
+		return v.multiplyRev(x) ;
+	}
+
+	public ComplexBuilder multiply(ComplexBuilder v) {
+		return v.multiply(x) ;
+	}
+
+	public ComplexBuilder multiplyRev(ComplexBuilder v) {
+		return v.multiplyRev(x) ;
+	}
+
+
 	/*----- division ------*/
 
 	@Override
@@ -256,6 +305,22 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	@Override
 	public ComplexBuilder divideRev(ComplexNumber v) {
 		return new ComplexBuilder(x, 0.0).divideRev(v) ;
+	}
+
+	public RealBuilder divide(RealBuilder v) {
+		return v.divide(x) ;
+	}
+
+	public RealBuilder divideRev(RealBuilder v) {
+		return v.divideRev(x) ;
+	}
+
+	public ComplexBuilder divide(ComplexBuilder v) {
+		return v.divide(x) ;
+	}
+
+	public ComplexBuilder divideRev(ComplexBuilder v) {
+		return v.divideRev(x) ;
 	}
 
 	/*----- negation ------*/

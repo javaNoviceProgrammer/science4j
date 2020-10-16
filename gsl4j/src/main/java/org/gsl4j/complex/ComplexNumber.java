@@ -35,21 +35,50 @@ public interface ComplexNumber extends AlgebraicEntity<ComplexNumber> {
 
 	/**
 	 * A functional interface for applying any of {@link ComplexMath} methods.
-	 * @param func
+	 * @param func : a function to apply to a pair of (re,im) numbers.
 	 * @return complex number : result of applying the function
 	 */
 	ComplexNumber apply(BiFunction<Double, Double, double[]> func) ;
 
+	/**
+	 * An arbitrary function interface for applying to a complex number.
+	 * @param func : a function to apply to a {@link ComplexNumber}.
+	 * @return {@link ComplexNumber} : result of function evaluation.
+	 */
 	ComplexNumber apply(Function<ComplexNumber, ComplexNumber> func) ;
 
 	//*********** support for algebraic operations *************
 
 	/*----- addition ------*/
 
+	/**
+	 * Addition of a double number to a complex number.
+	 * @param v : real double number
+	 * @return {@link ComplexNumber}
+	 */
 	ComplexNumber add(double v) ;
+
+	/**
+	 * Reverse addition of a double number to a complex number.
+	 * @param v : real double number
+	 * @return {@link ComplexNumber}
+	 */
 	ComplexNumber addRev(double v) ;
 
+	/**
+	 * Addition of a complex number in (re,im) format to a complex number.
+	 * @param re : real part
+	 * @param im : imaginary part
+	 * @return {@link ComplexNumber}
+	 */
 	ComplexNumber add(double re, double im) ;
+
+	/**
+	 * Reverse addition of a complex number in (re,im) format to a complex number.
+	 * @param re : real part
+	 * @param im : imaginary part
+	 * @return {@link ComplexNumber}
+	 */
 	ComplexNumber addRev(double re, double im) ;
 
 	ComplexNumber add(ComplexNumber v) ;

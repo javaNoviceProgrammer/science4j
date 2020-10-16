@@ -13,7 +13,7 @@ public class TestComplex {
 		RealBuilder r3 = r2.getBuilder() - 3.0 ;
 		System.out.println(r3);
 		System.out.println(r3.getClass());
-		r3 = r3 * 3.1 - 1.0 ;
+		r3 = r3 + 3.1 - 1.0 ;
 		System.out.println(r3);
 	}
 
