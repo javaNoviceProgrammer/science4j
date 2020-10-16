@@ -237,12 +237,14 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	@Override
 	public ComplexBuilder multiply(double v) {
 		re *= v ;
+		im *= v ;
 		return this ;
 	}
 
 	@Override
 	public ComplexBuilder multiplyRev(double v) {
 		re *= v ;
+		im *= v ;
 		return this ;
 	}
 

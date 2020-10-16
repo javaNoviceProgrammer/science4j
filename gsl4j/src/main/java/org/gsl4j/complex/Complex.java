@@ -24,6 +24,9 @@ public final class Complex implements Serializable, ComplexNumber {
 
 	private static final long serialVersionUID = -5423139577060070132L;
 
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	/**
 	 * ZERO = 0.0+j0.0: represents the origin of the complex plane
 	 */
@@ -51,12 +54,20 @@ public final class Complex implements Serializable, ComplexNumber {
 	private Complex(double re, double im) {
 		this.re = re ;
 		this.im = im ;
+		if(debug) {
+			count++ ;
+			System.out.println("Complex count = " + count);
+		}
 	}
 
 	// copy constructor
 	private Complex(Complex z) {
 		this.re = z.re ;
 		this.im = z.im ;
+		if(debug) {
+			count++ ;
+			System.out.println("Complex count = " + count);
+		}
 	}
 
 	/**

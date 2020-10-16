@@ -21,10 +21,17 @@ public final class Real implements Serializable, ComplexNumber {
 	private static final long serialVersionUID = 1L;
 	public static double EPSILON = 1e-10 ;
 
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	double x ;
 
 	public Real(double v) {
 		this.x = v ;
+		if(debug) {
+			count++ ;
+			System.out.println("Real count = " + count);
+		}
 	}
 
 	public static Real of(double v) {

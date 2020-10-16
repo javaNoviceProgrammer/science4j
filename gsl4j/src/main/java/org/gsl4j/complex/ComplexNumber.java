@@ -7,7 +7,7 @@ import org.gsl4j.AlgebraicEntity;
 
 /**
  * This is the base interface for defining a complex number.
- * It provides two methods "re()" and "im()" and algebraic operations.
+ * It provides two methods "re()" and "im()" and support for algebraic operations.
  *
  * @author Meisam
  * @since 1.0
