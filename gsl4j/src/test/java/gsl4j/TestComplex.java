@@ -85,6 +85,7 @@ public class TestComplex {
 		System.out.println(ComplexMath.log(w3));
 		System.out.println(ComplexMath.sin(w3));
 		System.out.println(ComplexMath.arcsin(w3));
+		System.out.println(ComplexMath.arctan(w3));
 	}
 
 	public static void main(String[] args) {

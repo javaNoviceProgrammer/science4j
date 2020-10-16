@@ -548,29 +548,103 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] arcsec(double re, double im) ;
+
+	public static ComplexNumber arcsec(ComplexNumber z) {
+		return z.apply((re,im) -> arcsec(re, im)) ;
+	}
+
 	public static native double[] arcsecReal(double x) ;
+
 	public static native double[] arccsc(double re, double im) ;
+
+	public static ComplexNumber arccsc(ComplexNumber z) {
+		return z.apply((re,im) -> arccsc(re, im)) ;
+	}
+
 	public static native double[] arccscReal(double x) ;
+
 	public static native double[] arccot(double re, double im) ;
+
+	public static ComplexNumber arccot(ComplexNumber z) {
+		return z.apply((re,im) -> arccot(re, im)) ;
+	}
 
 	// Complex Hyperbolic Functions
 	public static native double[] sinh(double re, double im) ;
+
+	public static ComplexNumber sinh(ComplexNumber z) {
+		return z.apply((re,im) -> sinh(re, im)) ;
+	}
+
 	public static native double[] cosh(double re, double im) ;
+
+	public static ComplexNumber cosh(ComplexNumber z) {
+		return z.apply((re,im) -> cosh(re, im)) ;
+	}
+
 	public static native double[] tanh(double re, double im) ;
+
+	public static ComplexNumber tanh(ComplexNumber z) {
+		return z.apply((re,im) -> tanh(re, im)) ;
+	}
+
 	public static native double[] sech(double re, double im) ;
+
+	public static ComplexNumber sech(ComplexNumber z) {
+		return z.apply((re,im) -> sech(re, im)) ;
+	}
+
 	public static native double[] csch(double re, double im) ;
+
+	public static ComplexNumber csch(ComplexNumber z) {
+		return z.apply((re,im) -> csch(re, im)) ;
+	}
+
 	public static native double[] coth(double re, double im) ;
+
+	public static ComplexNumber coth(ComplexNumber z) {
+		return z.apply((re,im) -> coth(re, im)) ;
+	}
 
 	// Inverse Complex Hyperbolic Functions
 	public static native double[] arcsinh(double re, double im) ;
+
+	public static ComplexNumber arcsinh(ComplexNumber z) {
+		return z.apply((re,im) -> arcsinh(re, im)) ;
+	}
+
 	public static native double[] arccosh(double re, double im) ;
+
+	public static ComplexNumber arccosh(ComplexNumber z) {
+		return z.apply((re,im) -> arccosh(re, im)) ;
+	}
+
 	public static native double[] arccoshReal(double x) ;
+
 	public static native double[] arctanh(double re, double im) ;
+
+	public static ComplexNumber arctanh(ComplexNumber z) {
+		return z.apply((re,im) -> arctanh(re, im)) ;
+	}
+
 	public static native double[] arctanhReal(double x) ;
+
 	public static native double[] arcsech(double re, double im) ;
+
+	public static ComplexNumber arcsech(ComplexNumber z) {
+		return z.apply((re,im) -> arcsech(re, im)) ;
+	}
+
 	public static native double[] arccsch(double re, double im) ;
+
+	public static ComplexNumber arccsch(ComplexNumber z) {
+		return z.apply((re,im) -> arccsch(re, im)) ;
+	}
+
 	public static native double[] arccoth(double re, double im) ;
 
-
+	public static ComplexNumber arccoth(ComplexNumber z) {
+		return z.apply((re,im) -> arccoth(re, im)) ;
+	}
 
 }

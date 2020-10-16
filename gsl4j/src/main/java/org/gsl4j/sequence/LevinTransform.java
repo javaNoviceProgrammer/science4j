@@ -26,6 +26,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  * estimate.
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class LevinTransform {

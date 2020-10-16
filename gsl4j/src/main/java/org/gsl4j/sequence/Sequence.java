@@ -7,9 +7,10 @@ import org.gsl4j.util.MathUtils;
 
 
 /**
- * interface representing a real-valued sequence
+ * Interface representing a real-valued sequence
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 @FunctionalInterface
