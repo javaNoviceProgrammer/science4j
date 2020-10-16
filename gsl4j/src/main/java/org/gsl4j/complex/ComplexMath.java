@@ -4,13 +4,20 @@ import org.gsl4j.util.NativeLibraryLoader;
 
 
 /**
- * The functions described in this class provide support for complex numbers. The algorithms take care to avoid unnecessary intermediate underflows and overflows, allowing the functions to be evaluated over as much of the complex plane as possible.
+ * The functions described in this class provide support for complex numbers.
+ * The algorithms take care to avoid unnecessary intermediate underflows and
+ * overflows, allowing the functions to be evaluated over as much of the complex
+ * plane as possible.
+ *
  * For multiple-valued functions the branch cuts have been chosen
- * to follow the conventions of Abramowitz and Stegun. The functions return principal values which are the same as those in GNU Calc, which in turn are the same as those in
- * “Common Lisp, The Language (Second Edition)” and the HP-28/48 series of calculators.
+ * to follow the conventions of Abramowitz and Stegun. The functions return principal
+ * values which are the same as those in GNU Calc, which in turn are the same as
+ * those in “Common Lisp, The Language (Second Edition)” and the HP-28/48 series of
+ * calculators.
  *
  * @author Meisam
  * @since 1.0
+ *
  */
 public class ComplexMath {
 
@@ -24,103 +31,131 @@ public class ComplexMath {
 
 	// Properties of complex numbers
 	/**
-	 * This function returns the argument of the complex number z, \arg(z), where -\pi {@literal <} \arg(z) {@literal <}= \pi.
-	 * @param re
-	 * @param im
-	 * @return
+	 * This function returns the argument of the complex number z, \arg(z),
+	 * where -\pi {@literal <} \arg(z) {@literal <}= \pi.
+	 * @param re : real part of complex number
+	 * @param im : imaginary part of complex number
+	 * @return double value : arg angle of complex number.
 	 */
 	public static native double arg(double re, double im) ;
 
 	/**
+	 * Same as {@link #arg(double, double)}, but takes a {@link ComplexNumber} ;
+	 * @param z : a complex number
+	 * @return double value : arg angle of complex number.
+	 */
+	public static double arg(ComplexNumber z) {
+		return arg(z.re(), z.im()) ;
+	}
+
+	/**
 	 * This function returns the magnitude of the complex number z, |z|.
-	 * @param re
-	 * @param im
-	 * @return
+	 * @param re : real part of complex number
+	 * @param im : imaginary part of complex number
+	 * @return double value : magnitude of complex number.
 	 */
 	public static native double abs(double re, double im) ;
 
+	public static double abs(ComplexNumber z) {
+		return abs(z.re(), z.im()) ;
+	}
+
 	/**
 	 * This function returns the squared magnitude of the complex number z, |z|^2.
-	 * @param re
-	 * @param im
-	 * @return
+	 * @param re : real part of complex number
+	 * @param im : imaginary part of complex number
+	 * @return double value : magnitude squared of complex number.
 	 */
 	public static native double abs2(double re, double im) ;
 
+	public static double abs2(ComplexNumber z) {
+		return abs2(z.re(), z.im()) ;
+	}
+
 	/**
-	 * This function returns the natural logarithm of the magnitude of the complex number z, \log|z|. It allows an accurate evaluation of \log|z| when |z| is close to one. The direct evaluation of log(gsl_complex_abs(z)) would lead to a loss of precision in this case.
-	 * @param re
-	 * @param im
-	 * @return
+	 * This function returns the natural logarithm of the magnitude of the
+	 * complex number z, \log|z|. It allows an accurate evaluation of \log|z|
+	 * when |z| is close to one. The direct evaluation of log(gsl_complex_abs(z))
+	 * would lead to a loss of precision in this case.
+	 * @param re : real part of complex number
+	 * @param im : imaginary part of complex number
+	 * @return double value : logabs() of complex number.
 	 */
 	public static native double logabs(double re, double im) ;
+
+	public static double logabs(ComplexNumber z) {
+		return logabs(z.re(), z.im()) ;
+	}
 
 	// Complex arithmetic operators
 
 	/**
-	 * This function returns the sum of the complex numbers a and b, z=a+b.
-	 * @param re1
-	 * @param im1
-	 * @param re2
-	 * @param im2
-	 * @return
+	 * This function returns the sum of the complex numbers z1 and z2: z1+z2
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param re2 : real part of z2
+	 * @param im2 : imaginary part of z2
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] add(double re1, double im1, double re2, double im2) ;
 
 	/**
-	 * This function returns the difference of the complex numbers a and b, z=a-b.
-	 * @param re1
-	 * @param im1
-	 * @param re2
-	 * @param im2
-	 * @return
+	 * This function returns the difference of the complex numbers z1 and z2: z1-z2.
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param re2 : real part of z2
+	 * @param im2 : imaginary part of z2
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] sub(double re1, double im1, double re2, double im2) ;
 
 	/**
-	 * This function returns the product of the complex numbers a and b, z=a*b.
-	 * @param re1
-	 * @param im1
-	 * @param re2
-	 * @param im2
-	 * @return
+	 * This function returns the product of the complex numbers z1 and z2: z1*z2.
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param re2 : real part of z2
+	 * @param im2 : imaginary part of z2
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] mul(double re1, double im1, double re2, double im2) ;
 
 	/**
-	 * This function returns the quotient of the complex numbers a and b, z=a/b.
-	 * @param re1
-	 * @param im1
-	 * @param re2
-	 * @param im2
-	 * @return
+	 * This function returns the quotient of the complex numbers z1 and z2: z1/z2.
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param re2 : real part of z2
+	 * @param im2 : imaginary part of z2
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] div(double re1, double im1, double re2, double im2) ;
 
 	/**
-	 * This function returns the sum of the complex number a and the real number x, z=a+x.
-	 * @param re1
-	 * @param im1
-	 * @param x
-	 * @return
+	 * This function returns the sum of the complex number z1 and the real
+	 * number x: z1+x.
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param x : a real number
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] addReal(double re1, double im1, double x) ;
 
 	/**
-	 * This function returns the difference of the complex number a and the real number x, z=a-x.
-	 * @param re1
-	 * @param im1
-	 * @param x
-	 * @return
+	 * This function returns the difference of the complex number z1 and
+	 * the real number x: z1-x.
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param x : a real number
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] subReal(double re1, double im1, double x) ;
 
 	/**
-	 * This function returns the product of the complex number a and the real number x, z=ax.
-	 * @param re1
-	 * @param im1
-	 * @param x
-	 * @return
+	 * This function returns the product of the complex number z1 and the real
+	 * number x: z1*x.
+	 * @param re1 : real part of z1
+	 * @param im1 : imaginary part of z1
+	 * @param x : a real number
+	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] mulReal(double re1, double im1, double x) ;
 
