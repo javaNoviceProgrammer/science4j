@@ -42,6 +42,11 @@ public class RealBuilder implements Serializable, ComplexNumber {
 		return 0.0 ;
 	}
 
+	@Override
+	public ComplexNumber conjugate() {
+		return this ;
+	}
+
 	public RealBuilder getBuilder() {
 		return this ;
 	}

@@ -99,6 +99,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] add(double re1, double im1, double re2, double im2) ;
 
+	public static ComplexNumber add(ComplexNumber z1, ComplexNumber z2) {
+		return z1.add(z2) ;
+	}
+
 	/**
 	 * This function returns the difference of the complex numbers z1 and z2: z1-z2.
 	 * @param re1 : real part of z1
@@ -108,6 +112,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] sub(double re1, double im1, double re2, double im2) ;
+
+	public static ComplexNumber sub(ComplexNumber z1, ComplexNumber z2) {
+		return z1.subtract(z2) ;
+	}
 
 	/**
 	 * This function returns the product of the complex numbers z1 and z2: z1*z2.
@@ -119,6 +127,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] mul(double re1, double im1, double re2, double im2) ;
 
+	public static ComplexNumber mul(ComplexNumber z1, ComplexNumber z2) {
+		return z1.multiply(z2) ;
+	}
+
 	/**
 	 * This function returns the quotient of the complex numbers z1 and z2: z1/z2.
 	 * @param re1 : real part of z1
@@ -128,6 +140,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] div(double re1, double im1, double re2, double im2) ;
+
+	public static ComplexNumber div(ComplexNumber z1, ComplexNumber z2) {
+		return z1.divide(z2) ;
+	}
 
 	/**
 	 * This function returns the sum of the complex number z1 and the real
@@ -139,6 +155,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] addReal(double re1, double im1, double x) ;
 
+	public static ComplexNumber addReal(ComplexNumber z1, double x) {
+		return z1.add(x, 0.0) ;
+	}
+
 	/**
 	 * This function returns the difference of the complex number z1 and
 	 * the real number x: z1-x
@@ -148,6 +168,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] subReal(double re1, double im1, double x) ;
+
+	public static ComplexNumber subReal(ComplexNumber z1, double x) {
+		return z1.subtract(x, 0.0) ;
+	}
 
 	/**
 	 * This function returns the product of the complex number z1 and the real
@@ -159,6 +183,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] mulReal(double re1, double im1, double x) ;
 
+	public static ComplexNumber mulReal(ComplexNumber z1, double x) {
+		return z1.multiply(x, 0.0) ;
+	}
+
 	/**
 	 * This function returns the quotient of the complex number z1 and the real
 	 * number x: z1/x
@@ -168,6 +196,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] divReal(double re1, double im1, double x) ;
+
+	public static ComplexNumber divReal(ComplexNumber z1, double x) {
+		return z1.divide(x, 0.0) ;
+	}
 
 	/**
 	 * This function returns the sum of the complex number z1 and the
@@ -179,6 +211,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] addImag(double re1, double im1, double y) ;
 
+	public static ComplexNumber addImag(ComplexNumber z1, double y) {
+		return z1.add(0.0, y) ;
+	}
+
 	/**
 	 * This function returns the difference of the complex number z1
 	 * and the imaginary number iy: z1-iy.
@@ -188,6 +224,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] subImag(double re1, double im1, double y) ;
+
+	public static ComplexNumber subImag(ComplexNumber z1, double y) {
+		return z1.subtract(0.0, y) ;
+	}
 
 	/**
 	 * This function returns the product of the complex number z1 and the
@@ -199,6 +239,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] mulImag(double re1, double im1, double y) ;
 
+	public static ComplexNumber mulImag(ComplexNumber z1, double y) {
+		return z1.multiply(0.0, y) ;
+	}
+
 	/**
 	 * This function returns the quotient of the complex number z1 and
 	 * the imaginary number iy: z1/(iy).
@@ -209,6 +253,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] divImag(double re1, double im1, double y) ;
 
+	public static ComplexNumber divImag(ComplexNumber z1, double y) {
+		return z1.divide(0.0, y) ;
+	}
+
 	/**
 	 * This function returns the complex conjugate of the complex
 	 * number z: z* = x - i y.
@@ -217,6 +265,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] conjugate(double re, double im) ;
+
+	public static ComplexNumber conjugate(ComplexNumber z) {
+		return z.conjugate() ;
+	}
 
 	/**
 	 * This function returns the inverse, or reciprocal, of the complex
@@ -227,6 +279,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] inverse(double re, double im) ;
 
+	public static ComplexNumber inverse(ComplexNumber z) {
+		return z.apply((re,im) -> inverse(re, im)) ;
+	}
+
 	/**
 	 * This function returns the negative of the complex
 	 * number z: -z = (-x) + i(-y).
@@ -235,6 +291,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] negative(double re, double im) ;
+
+	public static ComplexNumber negative(ComplexNumber z) {
+		return z.negate() ;
+	}
 
 	// Elementary Complex Functions
 	/**
@@ -247,6 +307,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] sqrt(double re, double im) ;
 
+	public static ComplexNumber sqrt(ComplexNumber z) {
+		return z.apply((re,im) -> sqrt(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex square root of the real number x,
 	 * where x may be negative.
@@ -254,6 +318,7 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] sqrtReal(double x) ;
+
 
 	/**
 	 * The function returns the complex number z1 raised to the complex power z2, z1^z2.
@@ -280,6 +345,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] powReal(double re, double im, double x) ;
 
+	public static ComplexNumber powReal(ComplexNumber z, double x) {
+		return z.apply((re,im) -> powReal(re, im, x)) ;
+	}
+
 	/**
 	 * This function returns the complex exponential of the complex number z, \exp(z).
 	 * @param re : real part of z
@@ -287,6 +356,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] exp(double re, double im) ;
+
+	public static ComplexNumber exp(ComplexNumber z) {
+		return z.apply((re,im) -> exp(re, im)) ;
+	}
 
 	/**
 	 * This function returns the complex natural logarithm (base e) of the complex
@@ -297,6 +370,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] log(double re, double im) ;
 
+	public static ComplexNumber log(ComplexNumber z) {
+		return z.apply((re,im) -> log(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex base-10 logarithm of the complex
 	 * number z, \log_{10} (z).
@@ -305,6 +382,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] log10(double re, double im) ;
+
+	public static ComplexNumber log10(ComplexNumber z) {
+		return z.apply((re,im) -> log10(re, im)) ;
+	}
 
 	/**
 	 * This function returns the complex base-b logarithm of the complex
@@ -331,6 +412,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] sin(double re, double im) ;
 
+	public static ComplexNumber sin(ComplexNumber z) {
+		return z.apply((re,im) -> sin(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex cosine of the complex number z, \cos(z) = (\exp(iz) + \exp(-iz))/2.
 	 * @param re : real part of z
@@ -338,6 +423,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] cos(double re, double im) ;
+
+	public static ComplexNumber cos(ComplexNumber z) {
+		return z.apply((re,im) -> cos(re, im)) ;
+	}
 
 	/**
 	 * This function returns the complex tangent of the complex number z, \tan(z) = \sin(z)/\cos(z).
@@ -347,6 +436,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] tan(double re, double im) ;
 
+	public static ComplexNumber tan(ComplexNumber z) {
+		return z.apply((re,im) -> tan(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex secant of the complex number z, \sec(z) = 1/\cos(z).
 	 * @param re : real part of z
@@ -354,6 +447,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] sec(double re, double im) ;
+
+	public static ComplexNumber sec(ComplexNumber z) {
+		return z.apply((re,im) -> sec(re, im)) ;
+	}
 
 	/**
 	 * This function returns the complex cosecant of the complex number z, \csc(z) = 1/\sin(z).
@@ -363,6 +460,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] csc(double re, double im) ;
 
+	public static ComplexNumber csc(ComplexNumber z) {
+		return z.apply((re,im) -> csc(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex cotangent of the complex number z, \cot(z) = 1/\tan(z).
 	 * @param re : real part of z
@@ -370,6 +471,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] cot(double re, double im) ;
+
+	public static ComplexNumber cot(ComplexNumber z) {
+		return z.apply((re,im) -> cot(re, im)) ;
+	}
 
 	// Inverse Complex Trigonometric Functions
 	/**
@@ -381,6 +486,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] arcsin(double re, double im) ;
 
+	public static ComplexNumber arcsin(ComplexNumber z) {
+		return z.apply((re,im) -> arcsin(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex arcsine of the real number z, \arcsin(z).
 	 * For z between -1 and 1, the function returns a real value in the range [-\pi/2,\pi/2].
@@ -389,6 +498,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] arcsinReal(double x) ;
+
+	public static ComplexNumber arcsin(double x) {
+		return Complex.ofArray(arcsinReal(x)) ;
+	}
 
 	/**
 	 * This function returns the complex arccosine of the complex number z, \arccos(z).
@@ -399,6 +512,10 @@ public final class ComplexMath {
 	 */
 	public static native double[] arccos(double re, double im) ;
 
+	public static ComplexNumber arccos(ComplexNumber z) {
+		return z.apply((re,im) -> arccos(re, im)) ;
+	}
+
 	/**
 	 * This function returns the complex arccosine of the real number z, \arccos(z).
 	 * For z between -1 and 1, the function returns a real value in the range [0,\pi]. For z less than -1 the result has a real part of \pi and a negative imaginary part. For z greater than 1 the result is purely imaginary and positive.
@@ -406,6 +523,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] arccosReal(double x) ;
+
+	public static ComplexNumber arccos(double x) {
+		return Complex.ofArray(arccosReal(x)) ;
+	}
 
 	/**
 	 * This function returns the complex arctangent of the complex number z, \arctan(z).
@@ -415,6 +536,10 @@ public final class ComplexMath {
 	 * @return {@code double[]} : an array of (re, im) pair
 	 */
 	public static native double[] arctan(double re, double im) ;
+
+	public static ComplexNumber arctan(ComplexNumber z) {
+		return z.apply((re,im) -> arctan(re, im)) ;
+	}
 
 	/**
 	 * This function returns the complex arcsecant of the complex number z, \arcsec(z) = \arccos(1/z).

@@ -62,10 +62,36 @@ public class TestComplex {
 		System.out.println(logw2.getClass());
 	}
 
+	public static void test4() {
+		Complex.debug = true ;
+		Complex.setDisplayAccuracy(6);
+		ComplexNumber w1 = Real.of(-1.1) ;
+		System.out.println("w1 = " + w1);
+		System.out.println(w1.getClass());
+		ComplexNumber w2 = ComplexMath.inverse(w1.getBuilder()) ;
+		System.out.println("w2 = " + w2);
+		System.out.println(w2.getClass());
+		System.out.println(w1.conjugate());
+		System.out.println(w1.conjugate()==w1);
+		System.out.println(ComplexMath.conjugate(w2));
+		System.out.println(w2);
+		System.out.println(ComplexMath.inverse(w2));
+		System.out.println(w2);
+		ComplexNumber w3 = ComplexMath.sqrt(w1) ;
+		System.out.println(w3);
+		System.out.println(w3.getClass());
+		System.out.println(ComplexMath.powReal(w3, 2));
+		System.out.println(ComplexMath.exp(w3));
+		System.out.println(ComplexMath.log(w3));
+		System.out.println(ComplexMath.sin(w3));
+		System.out.println(ComplexMath.arcsin(w3));
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
-		test3() ;
+//		test3() ;
+		test4() ;
 	}
 
 }

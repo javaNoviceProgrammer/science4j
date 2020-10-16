@@ -77,6 +77,12 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		return im ;
 	}
 
+	@Override
+	public ComplexNumber conjugate() {
+		im *= -1.0 ;
+		return this ;
+	}
+
 	public ComplexBuilder getBuilder() {
 		return this ;
 	}

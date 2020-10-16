@@ -48,8 +48,8 @@ public final class Complex implements Serializable, ComplexNumber {
 	 */
 	static double epsilon = 1e-10 ;
 
-	private double re ;
-	private double im ;
+	private final double re ;
+	private final double im ;
 
 	private Complex(double re, double im) {
 		this.re = re ;
@@ -163,6 +163,11 @@ public final class Complex implements Serializable, ComplexNumber {
 	@Override
 	public double im() {
 		return im ;
+	}
+
+	@Override
+	public ComplexNumber conjugate() {
+		return ofRect(re, -im) ;
 	}
 
 	/**

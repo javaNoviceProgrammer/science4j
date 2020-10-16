@@ -28,6 +28,12 @@ public interface ComplexNumber extends AlgebraicEntity<ComplexNumber> {
 	double im() ;
 
 	/**
+	 * Conjugation of a complex number
+	 * @return the conjugated complex number (z=x-jy)
+	 */
+	ComplexNumber conjugate() ;
+
+	/**
 	 * Requesting an appropriate builder (real or complex) for the number.
 	 * @return a builder : {@link ComplexBuilder} or {@link RealBuilder}
 	 */

@@ -24,7 +24,7 @@ public final class Real implements Serializable, ComplexNumber {
 	public static boolean debug = false ;
 	public static long count = 0 ;
 
-	double x ;
+	final double x ;
 
 	public Real(double v) {
 		this.x = v ;
@@ -75,6 +75,11 @@ public final class Real implements Serializable, ComplexNumber {
 	@Override
 	public double im() {
 		return 0.0 ;
+	}
+
+	@Override
+	public ComplexNumber conjugate() {
+		return this ;
 	}
 
 	@Override
