@@ -42,19 +42,19 @@ public class FileOutput implements AutoCloseable {
 	}
 
 	public FileOutput(File var1, char var2) {
-		this.filename = var1;
+		this.filename = var1.toString();
 		this.app = var2;
 		this.setFilenames(var1.getAbsolutePath(), var2);
 	}
 
 	public FileOutput(File var1, String var2) {
-		this.filename = var1;
+		this.filename = var1.toString();
 		this.app = var2.charAt(0);
 		this.setFilenames(var1.getAbsolutePath(), this.app);
 	}
 
 	public FileOutput(File var1) {
-		this.filename = var1;
+		this.filename = var1.toString();
 		this.app = 'w';
 		this.setFilenames(var1.getAbsolutePath(), this.app);
 	}
@@ -2352,7 +2352,7 @@ public class FileOutput implements AutoCloseable {
 			if (var5.exists()) {
 				var2 = deleteFile(var1);
 				if (!var2) {
-					System.out.println("Class FileInput: method renameFile failed to delete the file " + var1);
+					System.out.println("Class FileOutput: method renameFile failed to delete the file " + var1);
 					return 2;
 				}
 			}
@@ -2360,7 +2360,7 @@ public class FileOutput implements AutoCloseable {
 			var2 = var4.renameTo(var5);
 			if (!var2) {
 				System.out.println(
-						"Class FileInput: method renameFile failed to rename the file " + var0 + " to " + var1);
+						"Class FileOutput: method renameFile failed to rename the file " + var0 + " to " + var1);
 				return 3;
 			} else {
 				return var3;

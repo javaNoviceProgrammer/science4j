@@ -8,6 +8,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  * <br>The functions described in this section are declared in the header files {@code gsl_interp.h} and {@code gsl_spline.h}.
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class Interpolation1D {
@@ -57,9 +58,9 @@ public class Interpolation1D {
 
 	/**
 	 * Given a set of data points (x_1, y_1) ... (x_n, y_n) the routines described in this section compute a continuous interpolating function y(x) such that y(x_i) = y_i. The interpolation is piecewise smooth, and its behavior at the end-points is determined by the type of interpolation used.
-	 * @param x
-	 * @param y
-	 * @param type
+	 * @param x : {@code double[]} array of x values
+	 * @param y : {@code double[]} array of y=f(x) values
+	 * @param type : {@code int} value for type of interpolation
 	 */
 	public Interpolation1D(double[] x, double[] y, int type) {
 		this.x = x ;
@@ -72,48 +73,63 @@ public class Interpolation1D {
 
 	/**
 	 * This function returns the name of the interpolation type used by interp
-	 * @return
+	 * @return name of the employed interpolation method
 	 */
 	public native String name() ;
 
 	/**
 	 * These functions return the minimum number of points required by the interpolation object interp or interpolation type T. For example, Akima spline interpolation requires a minimum of 5 points.
-	 * @return
+	 * @return minimum required number of points
 	 */
 	public native int minSize() ;
 
 	/**
 	 * These functions return the interpolated value of y for a given point x, using the interpolation object interp, data arrays xa and ya and the accelerator acc. When x is outside the range of xa, the error code GSL_EDOM is returned with a value of GSL_NAN for y.
-	 * @param x
-	 * @return
+	 * @param x : point at which the data is interpolated
+	 * @return interpolation of data at x: f(x)
 	 */
 	public native double eval(double x) ;
 
+	/**
+	 * Interpolates f(x) an array of data points
+	 * @param x : {@code double[]} array of points to be interpolated
+	 * @return {@code double[]} array of interpolated values f(x)
+	 */
 	public native double[] eval(double[] x) ;
 
 	/**
 	 * These functions return the derivative d of an interpolated function for a given point x, using the interpolation object interp, data arrays xa and ya and the accelerator acc.
-	 * @param x
-	 * @return
+	 * @param x : point at which derivative is interpolated
+	 * @return interpolation of derivative at x: f'(x)
 	 */
 	public native double deriv(double x) ;
 
+	/**
+	 * Interpolates derivative f'(x) an array of data points
+	 * @param x : {@code double[]} array of points to be interpolated
+	 * @return {@code double[]} array of interpolated derivatives: f'(x)
+	 */
 	public native double[] deriv(double[] x) ;
 
 	/**
 	 * These functions return the second derivative d2 of an interpolated function for a given point x, using the interpolation object interp, data arrays xa and ya and the accelerator acc.
-	 * @param x
-	 * @return
+	 * @param x : point at which the second derivative is interpolated
+	 * @return the interpolation of second derivative at x: f''(x)
 	 */
 	public native double deriv2(double x) ;
 
+	/**
+	 * Returns the second derivative d2 of an interpolated function for an array.
+	 * @param x : {@code double[]} array at which the second derivative is interpolated
+	 * @return {@code double[]} : the interpolation of second derivative at x: f''(x)
+	 */
 	public native double[] deriv2(double[] x) ;
 
 	/**
 	 * These functions return the numerical integral result of an interpolated function over the range [a, b], using the interpolation object interp, data arrays xa and ya and the accelerator acc.
-	 * @param a
-	 * @param b
-	 * @return
+	 * @param a : start of the integration interval
+	 * @param b : end of the integration interval
+	 * @return {@code double} : the numerical integration value
 	 */
 	public native double integrate(double a, double b) ;
 
