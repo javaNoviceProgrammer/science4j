@@ -5,6 +5,7 @@ import org.gsl4j.complex.RealBuilder;
 import static org.gsl4j.complex.Complex.* ;
 
 import org.gsl4j.complex.Complex;
+import org.gsl4j.complex.ComplexMath;
 import org.gsl4j.complex.ComplexNumber;
 
 
@@ -47,9 +48,24 @@ public class TestComplex {
 		System.out.println(c1);
 	}
 
+	public static void test3() {
+		Complex.debug = true ;
+		Complex.setDisplayAccuracy(6);
+		ComplexNumber w1 = 1.0+j ;
+		System.out.println(w1);
+		System.out.println(w1.getClass());
+		ComplexNumber w2 = ComplexMath.pow(w1, j) ;
+		System.out.println(w2);
+		System.out.println(w2.getClass());
+		ComplexNumber logw2 = ComplexMath.logb(w2, j) ;
+		System.out.println(logw2);
+		System.out.println(logw2.getClass());
+	}
+
 	public static void main(String[] args) {
-		test1() ;
-		test2() ;
+//		test1() ;
+//		test2() ;
+		test3() ;
 	}
 
 }
