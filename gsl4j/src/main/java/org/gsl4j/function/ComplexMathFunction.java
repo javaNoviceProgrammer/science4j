@@ -1,6 +1,6 @@
 package org.gsl4j.function;
 
-import org.gsl4j.complex.Complex;
+import org.gsl4j.complex.ComplexNumber;
 
 /**
  * Represents a Complex-valued single-variable function f(z=x+jy).
@@ -13,10 +13,10 @@ import org.gsl4j.complex.Complex;
 public interface ComplexMathFunction {
 
 	/**
-	 * This method returns the {@link Complex} value of the function.
+	 * This method returns the {@link ComplexNumber} value of the function.
 	 *
-	 * @param z : {@link Complex} point at which the function is evaluated.
-	 * @return {@link Complex} : the complex value of the function
+	 * @param z : {@link ComplexNumber} point at which the function is evaluated.
+	 * @return {@link ComplexNumber} : the complex value of the function
 	 */
-	Complex value(Complex z) ;
+	ComplexNumber value(ComplexNumber z) ;
 }

@@ -2,6 +2,8 @@ package gsl4j;
 
 import org.gsl4j.complex.Real;
 import org.gsl4j.complex.RealBuilder;
+import org.gsl4j.complex.RealNumber;
+
 import static org.gsl4j.complex.Complex.* ;
 
 import org.gsl4j.complex.Complex;
@@ -88,11 +90,27 @@ public class TestComplex {
 		System.out.println(ComplexMath.arctan(w3));
 	}
 
+	public static void test5() {
+		RealNumber a = Real.of(2.3).getBuilder() ;
+		System.out.println(a);
+		System.out.println(a.getClass());
+		ComplexNumber b = a * j ;
+		System.out.println(b);
+		System.out.println(b.getClass());
+		ComplexNumber c = b.getBuilder() * j ;
+		System.out.println(c);
+		System.out.println(c.getClass());
+		ComplexNumber d = (c+3.1)/(2.0+j) ;
+		System.out.println(d);
+		System.out.println(c==d);
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
+		test5() ;
 	}
 
 }

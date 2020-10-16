@@ -16,7 +16,7 @@ import org.gsl4j.MathConstants;
  * @since 1.0
  *
  */
-public final class Real implements Serializable, ComplexNumber {
+public final class Real implements Serializable, RealNumber {
 
 	private static final long serialVersionUID = 1L;
 	public static double EPSILON = 1e-10 ;
@@ -152,6 +152,16 @@ public final class Real implements Serializable, ComplexNumber {
 	}
 
 	@Override
+	public RealNumber add(RealNumber v) {
+		return new Real(this.x + v.re()) ;
+	}
+
+	@Override
+	public RealNumber addRev(RealNumber v) {
+		return new Real(v.re() + this.x) ;
+	}
+
+	@Override
 	public ComplexNumber add(double re, double im) {
 		return Complex.ofRect(x+re, im) ;
 	}
@@ -205,6 +215,16 @@ public final class Real implements Serializable, ComplexNumber {
 
 	public Real subtractRev(Real v) {
 		return new Real(v.x-this.x) ;
+	}
+
+	@Override
+	public RealNumber subtract(RealNumber v) {
+		return new Real(this.x - v.re()) ;
+	}
+
+	@Override
+	public RealNumber subtractRev(RealNumber v) {
+		return new Real(v.re() - this.x) ;
 	}
 
 	@Override
@@ -264,6 +284,16 @@ public final class Real implements Serializable, ComplexNumber {
 	}
 
 	@Override
+	public RealNumber multiply(RealNumber v) {
+		return new Real(this.x * v.re()) ;
+	}
+
+	@Override
+	public RealNumber multiplyRev(RealNumber v) {
+		return new Real(v.re() * this.x) ;
+	}
+
+	@Override
 	public ComplexNumber multiply(ComplexNumber v) {
 		return Complex.ofRect(x*v.re(), x*v.im()) ;
 	}
@@ -320,6 +350,16 @@ public final class Real implements Serializable, ComplexNumber {
 	}
 
 	@Override
+	public RealNumber divide(RealNumber v) {
+		return new Real(this.x/v.re()) ;
+	}
+
+	@Override
+	public RealNumber divideRev(RealNumber v) {
+		return new Real(v.re()/this.x) ;
+	}
+
+	@Override
 	public ComplexNumber divide(ComplexNumber v) {
 		double mag = v.re()*v.re()+v.im()*v.im() ;
 		return Complex.ofRect(x*v.re()/mag, -x*v.im()/mag) ;
@@ -361,5 +401,6 @@ public final class Real implements Serializable, ComplexNumber {
 	public Real negate() {
 		return new Real(-x) ;
 	}
+
 
 }

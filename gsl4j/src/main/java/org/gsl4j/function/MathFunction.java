@@ -13,7 +13,7 @@ public interface MathFunction {
 	 * This method returns the real value of the function.
 	 *
 	 * @param x : point at which the function is evaluated
-	 * @return double : the value of function f(x)
+	 * @return {@code double} : the value of function f(x)
 	 */
 	double value(double x) ;
 

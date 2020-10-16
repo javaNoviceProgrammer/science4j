@@ -14,7 +14,7 @@ import org.gsl4j.function.MathFunction;
  * @since 1.0
  *
  */
-public class RealBuilder implements Serializable, ComplexNumber {
+public class RealBuilder implements Serializable, RealNumber {
 
 	private static final long serialVersionUID = 6445188397847083940L;
 
@@ -112,6 +112,18 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	}
 
 	@Override
+	public RealBuilder add(RealNumber v) {
+		x += v.re() ;
+		return this ;
+	}
+
+	@Override
+	public RealBuilder addRev(RealNumber v) {
+		x += v.re() ;
+		return this ;
+	}
+
+	@Override
 	public ComplexBuilder add(double re, double im) {
 		return new ComplexBuilder(x, 0.0).add(re, im) ;
 	}
@@ -168,6 +180,18 @@ public class RealBuilder implements Serializable, ComplexNumber {
 
 	public RealBuilder subtractRev(Real v) {
 		x = v.x - x ;
+		return this ;
+	}
+
+	@Override
+	public RealBuilder subtract(RealNumber v) {
+		x -= v.re() ;
+		return this ;
+	}
+
+	@Override
+	public RealBuilder subtractRev(RealNumber v) {
+		x = v.re() - x ;
 		return this ;
 	}
 
@@ -232,6 +256,18 @@ public class RealBuilder implements Serializable, ComplexNumber {
 	}
 
 	@Override
+	public RealBuilder multiply(RealNumber v) {
+		x *= v.re() ;
+		return this ;
+	}
+
+	@Override
+	public RealBuilder multiplyRev(RealNumber v) {
+		x *= v.re() ;
+		return this ;
+	}
+
+	@Override
 	public ComplexBuilder multiply(double re, double im) {
 		return new ComplexBuilder(x, 0.0).multiply(re, im) ;
 	}
@@ -289,6 +325,18 @@ public class RealBuilder implements Serializable, ComplexNumber {
 
 	public RealBuilder divideRev(Real v) {
 		x = v.x / x ;
+		return this ;
+	}
+
+	@Override
+	public RealBuilder divide(RealNumber v) {
+		x = x / v.re() ;
+		return this ;
+	}
+
+	@Override
+	public RealBuilder divideRev(RealNumber v) {
+		x = v.re() / x ;
 		return this ;
 	}
 
