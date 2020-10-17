@@ -142,36 +142,36 @@ public class MathConstants {
 
 	/**
 	 * This function returns true if x is not-a-number.
-	 * @param x
-	 * @return
+	 * @param x : real double-precision number
+	 * @return {@code boolean} : true if x is NaN
 	 */
 	public static native boolean isNaN(double x) ;
 
 	/**
 	 * This function returns true if x is infinity and false otherwise.
-	 * @param x
-	 * @return
+	 * @param x : real double-precision number
+	 * @return {@code boolean} : true if x is Inf
 	 */
 	public static native boolean isInf(double x) ;
 
 	/**
 	 * This function returns true if x is positive infinity.
-	 * @param x
-	 * @return
+	 * @param x : real double-precision number
+	 * @return {@code boolean} : true if x is positive Inf
 	 */
 	public static native boolean isPositiveInf(double x) ;
 
 	/**
 	 * This function returns true if x is negative infinity.
-	 * @param x
-	 * @return
+	 * @param x : real double-precision number
+	 * @return {@code boolean} : true if x is negative Inf
 	 */
 	public static native boolean isNegativeInf(double x) ;
 
 	/**
 	 * This function returns true if x is a real number, and false if it is infinite or not-a-number.
-	 * @param x
-	 * @return
+	 * @param x : real double-precision number
+	 * @return {@code boolean} : true if x is not Inf
 	 */
 	public static native boolean isFinite(double x) ;
 

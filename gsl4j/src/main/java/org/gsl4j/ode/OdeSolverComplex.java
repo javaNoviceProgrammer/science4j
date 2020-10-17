@@ -9,6 +9,7 @@ import static org.gsl4j.complex.Complex.* ;
  * These functions are declared in the header file {@code gsl_odeiv2.h}. This is a new interface in version 1.15 and uses the prefix {@code gsl_odeiv2} for all functions. It is recommended over the previous {@code gsl_odeiv} implementation defined in {@code gsl_odeiv.h}. The old interface has been retained under the original name for backwards compatibility.
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class OdeSolverComplex {
@@ -88,8 +89,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta (2, 3) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rk2(double x) {
 		return odeSystemSolver.rk2(x) ;
@@ -97,8 +98,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta (2, 3) method.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rk2(double[] x) {
 		return odeSystemSolver.rk2(x) ;
@@ -106,8 +107,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta (2, 3) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rk2Complex(double x) {
 		double[] z = odeSystemSolver.rk2(x) ;
@@ -116,8 +117,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta (2, 3) method.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rk2Complex(double[] x) {
 		double[][] z = odeSystemSolver.rk2(x) ;
@@ -131,8 +132,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit 4th order (classical) Runge-Kutta. Error estimation is carried out by the step doubling method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rk4(double x) {
 		return odeSystemSolver.rk4(x) ;
@@ -140,8 +141,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit 4th order (classical) Runge-Kutta. Error estimation is carried out by the step doubling method.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rk4(double[] x) {
 		return odeSystemSolver.rk4(x) ;
@@ -149,8 +150,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit 4th order (classical) Runge-Kutta. Error estimation is carried out by the step doubling method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rk4Complex(double x) {
 		double[] z = odeSystemSolver.rk4(x) ;
@@ -159,8 +160,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit 4th order (classical) Runge-Kutta. Error estimation is carried out by the step doubling method.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rk4Complex(double[] x) {
 		double[][] z = odeSystemSolver.rk4(x) ;
@@ -174,8 +175,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta-Fehlberg (4, 5) method. This method is a good general-purpose integrator.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rkf45(double x) {
 		return odeSystemSolver.rkf45(x) ;
@@ -183,8 +184,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta-Fehlberg (4, 5) method. This method is a good general-purpose integrator.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rkf45(double[] x) {
 		return odeSystemSolver.rk4(x) ;
@@ -192,8 +193,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta-Fehlberg (4, 5) method. This method is a good general-purpose integrator.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rkf45Complex(double x) {
 		double[] z = odeSystemSolver.rkf45(x) ;
@@ -202,8 +203,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta-Fehlberg (4, 5) method. This method is a good general-purpose integrator.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rkf45Complex(double[] x) {
 		double[][] z = odeSystemSolver.rkf45(x) ;
@@ -217,8 +218,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Cash-Karp (4, 5) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rkck(double x) {
 		return odeSystemSolver.rkck(x) ;
@@ -226,8 +227,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Cash-Karp (4, 5) method.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rkck(double[] x) {
 		return odeSystemSolver.rkck(x) ;
@@ -235,8 +236,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Cash-Karp (4, 5) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rkckComplex(double x) {
 		double[] z = odeSystemSolver.rkck(x) ;
@@ -245,8 +246,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Cash-Karp (4, 5) method.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rkckComplex(double[] x) {
 		double[][] z = odeSystemSolver.rkck(x) ;
@@ -260,8 +261,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Prince-Dormand (8, 9) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rk8pd(double x) {
 		return odeSystemSolver.rk8pd(x) ;
@@ -269,8 +270,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Prince-Dormand (8, 9) method.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rk8pd(double[] x) {
 		return odeSystemSolver.rk8pd(x) ;
@@ -278,8 +279,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Prince-Dormand (8, 9) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rk8pdComplex(double x) {
 		double[] z = odeSystemSolver.rk8pd(x) ;
@@ -288,8 +289,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Explicit embedded Runge-Kutta Prince-Dormand (8, 9) method.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rk8pdComplex(double[] x) {
 		double[][] z = odeSystemSolver.rk8pd(x) ;
@@ -303,8 +304,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian first order Runge-Kutta. Also known as implicit Euler or backward Euler method. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rk1imp(double x ) {
 		return odeSystemSolver.rk1imp(x) ;
@@ -312,8 +313,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian first order Runge-Kutta. Also known as implicit Euler or backward Euler method. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rk1imp(double[] x ) {
 		return odeSystemSolver.rk1imp(x) ;
@@ -321,8 +322,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian first order Runge-Kutta. Also known as implicit Euler or backward Euler method. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rk1impComplex(double x) {
 		double[] z = odeSystemSolver.rk1imp(x) ;
@@ -331,8 +332,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian first order Runge-Kutta. Also known as implicit Euler or backward Euler method. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rk1impComplex(double[] x) {
 		double[][] z = odeSystemSolver.rk1imp(x) ;
@@ -346,8 +347,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian second order Runge-Kutta. Also known as implicit mid-point rule. Error estimation is carried out by the step doubling method. This stepper requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rk2imp(double x) {
 		return odeSystemSolver.rk2imp(x) ;
@@ -355,8 +356,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian second order Runge-Kutta. Also known as implicit mid-point rule. Error estimation is carried out by the step doubling method. This stepper requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rk2imp(double[] x) {
 		return odeSystemSolver.rk2imp(x) ;
@@ -364,8 +365,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian second order Runge-Kutta. Also known as implicit mid-point rule. Error estimation is carried out by the step doubling method. This stepper requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rk2impComplex(double x) {
 		double[] z = odeSystemSolver.rk2imp(x) ;
@@ -374,8 +375,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian second order Runge-Kutta. Also known as implicit mid-point rule. Error estimation is carried out by the step doubling method. This stepper requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rk2impComplex(double[] x) {
 		double[][] z = odeSystemSolver.rk2imp(x) ;
@@ -389,8 +390,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian 4th order Runge-Kutta. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] rk4imp(double x) {
 		return odeSystemSolver.rk4imp(x) ;
@@ -398,8 +399,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian 4th order Runge-Kutta. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] rk4imp(double[] x) {
 		return odeSystemSolver.rk4imp(x) ;
@@ -407,8 +408,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian 4th order Runge-Kutta. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex rk4impComplex(double x) {
 		double[] z = odeSystemSolver.rk4imp(x) ;
@@ -417,8 +418,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Gaussian 4th order Runge-Kutta. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] rk4impComplex(double[] x) {
 		double[][] z = odeSystemSolver.rk4imp(x) ;
@@ -432,8 +433,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Bulirsch-Stoer method of Bader and Deuflhard. The method is generally suitable for stiff problems. This stepper requires the Jacobian.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] bsimp(double x) {
 		return odeSystemSolver.bsimp(x) ;
@@ -450,8 +451,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Bulirsch-Stoer method of Bader and Deuflhard. The method is generally suitable for stiff problems. This stepper requires the Jacobian.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex bsimpComplex(double x) {
 		double[] z = odeSystemSolver.bsimp(x) ;
@@ -460,8 +461,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Bulirsch-Stoer method of Bader and Deuflhard. The method is generally suitable for stiff problems. This stepper requires the Jacobian.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] bsimpComplex(double[] x) {
 		double[][] z = odeSystemSolver.bsimp(x) ;
@@ -475,8 +476,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep Adams method in Nordsieck form. This stepper uses explicit Adams-Bashforth (predictor) and implicit Adams-Moulton (corrector) methods in P(EC)^m functional iteration mode. Method order varies dynamically between 1 and 12. This stepper requires the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] msadams(double x) {
 		return odeSystemSolver.msadams(x) ;
@@ -484,8 +485,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep Adams method in Nordsieck form. This stepper uses explicit Adams-Bashforth (predictor) and implicit Adams-Moulton (corrector) methods in P(EC)^m functional iteration mode. Method order varies dynamically between 1 and 12. This stepper requires the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] msadams(double[] x) {
 		return odeSystemSolver.msadams(x) ;
@@ -493,8 +494,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep Adams method in Nordsieck form. This stepper uses explicit Adams-Bashforth (predictor) and implicit Adams-Moulton (corrector) methods in P(EC)^m functional iteration mode. Method order varies dynamically between 1 and 12. This stepper requires the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex msadamsComplex(double x) {
 		double[] z = odeSystemSolver.msadams(x) ;
@@ -503,8 +504,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep Adams method in Nordsieck form. This stepper uses explicit Adams-Bashforth (predictor) and implicit Adams-Moulton (corrector) methods in P(EC)^m functional iteration mode. Method order varies dynamically between 1 and 12. This stepper requires the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] msadamsComplex(double[] x) {
 		double[][] z = odeSystemSolver.msadams(x) ;
@@ -518,8 +519,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep backward differentiation formula (BDF) method in Nordsieck form. This stepper uses the explicit BDF formula as predictor and implicit BDF formula as corrector. A modified Newton iteration method is used to solve the system of non-linear equations. Method order varies dynamically between 1 and 5. The method is generally suitable for stiff problems. This stepper requires the Jacobian and the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@code double[]} : array of (re,im) of the ODE solution at x
 	 */
 	public double[] msbdf(double x) {
 		return odeSystemSolver.msbdf(x) ;
@@ -527,8 +528,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep backward differentiation formula (BDF) method in Nordsieck form. This stepper uses the explicit BDF formula as predictor and implicit BDF formula as corrector. A modified Newton iteration method is used to solve the system of non-linear equations. Method order varies dynamically between 1 and 5. The method is generally suitable for stiff problems. This stepper requires the Jacobian and the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] msbdf(double[] x) {
 		return odeSystemSolver.msbdf(x) ;
@@ -536,8 +537,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep backward differentiation formula (BDF) method in Nordsieck form. This stepper uses the explicit BDF formula as predictor and implicit BDF formula as corrector. A modified Newton iteration method is used to solve the system of non-linear equations. Method order varies dynamically between 1 and 5. The method is generally suitable for stiff problems. This stepper requires the Jacobian and the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which solution is calculated
+	 * @return {@link Complex} : complex solution of ODE at x
 	 */
 	public Complex msbdfComplex(double x) {
 		double[] z = odeSystemSolver.msbdf(x) ;
@@ -546,8 +547,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * A variable-coefficient linear multistep backward differentiation formula (BDF) method in Nordsieck form. This stepper uses the explicit BDF formula as predictor and implicit BDF formula as corrector. A modified Newton iteration method is used to solve the system of non-linear equations. Method order varies dynamically between 1 and 5. The method is generally suitable for stiff problems. This stepper requires the Jacobian and the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : complex array at which solution is calculated
+	 * @return {@code Complex[]} : array of complex solutions of ODE at x[].
 	 */
 	public Complex[] msbdfComplex(double[] x) {
 		double[][] z = odeSystemSolver.msbdf(x) ;

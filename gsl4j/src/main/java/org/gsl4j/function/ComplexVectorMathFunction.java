@@ -14,8 +14,8 @@ public interface ComplexVectorMathFunction {
 	/**
 	 *
 	 *
-	 * @param z
-	 * @return
+	 * @param z : array of {@link ComplexNumber}
+	 * @return {@code ComplexNumber[]} : array of complex values of f(z[])
 	 */
 	ComplexNumber[] value(ComplexNumber... z) ;
 }

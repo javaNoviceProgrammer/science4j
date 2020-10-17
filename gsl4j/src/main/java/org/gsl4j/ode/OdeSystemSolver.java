@@ -9,6 +9,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  * These functions are declared in the header file {@code gsl_odeiv2.h}. This is a new interface in version 1.15 and uses the prefix {@code gsl_odeiv2} for all functions. It is recommended over the previous {@code gsl_odeiv} implementation defined in {@code gsl_odeiv.h}. The old interface has been retained under the original name for backwards compatibility.
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class OdeSystemSolver {
