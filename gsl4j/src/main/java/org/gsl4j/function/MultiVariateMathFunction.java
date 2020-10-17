@@ -1,5 +1,8 @@
 package org.gsl4j.function;
 
+import org.gsl4j.complex.Real;
+import org.gsl4j.complex.RealNumber;
+
 /**
  * Represents a real-valued multi-variable function.
  *
@@ -8,5 +11,10 @@ package org.gsl4j.function;
  */
 @FunctionalInterface
 public interface MultiVariateMathFunction {
+
 	double value(double... x) ;
+
+	default RealNumber boxedValue(double... x) {
+		return Real.of(value(x)) ;
+	}
 }

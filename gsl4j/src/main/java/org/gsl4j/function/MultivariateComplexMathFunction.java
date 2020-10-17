@@ -1,6 +1,6 @@
 package org.gsl4j.function;
 
-import org.gsl4j.complex.Complex;
+import org.gsl4j.complex.ComplexNumber;
 
 /**
  *
@@ -10,5 +10,7 @@ import org.gsl4j.complex.Complex;
  */
 @FunctionalInterface
 public interface MultivariateComplexMathFunction {
-	Complex value(Complex... z) ;
+
+	ComplexNumber value(ComplexNumber... z) ;
+
 }

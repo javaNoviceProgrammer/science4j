@@ -3,6 +3,7 @@ package gsl4j;
 import org.gsl4j.complex.Real;
 import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.complex.RealNumber;
+import org.gsl4j.function.MathFunction;
 
 import static org.gsl4j.complex.Complex.* ;
 
@@ -110,13 +111,26 @@ public class TestComplex {
 		System.out.println(r1);
 	}
 
+	public static void test7() {
+		MathFunction func = x -> x*x+1.0 ;
+		RealNumber r1 = func.boxedValue(2.3) ;
+		System.out.println(r1);
+		RealNumber r2 = r1.getBuilder() ;
+		System.out.println(r2*3.0);
+		System.out.println(r2);
+		System.out.println(r2.getClass());
+		System.out.println(func.value(r2));
+		System.out.println(func.boxedValue(r2).getBuilder().getClass());
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
 //		test5() ;
-		test6() ;
+//		test6() ;
+		test7() ;
 	}
 
 }

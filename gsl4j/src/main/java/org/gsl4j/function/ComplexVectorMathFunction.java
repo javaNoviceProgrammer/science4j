@@ -1,6 +1,6 @@
 package org.gsl4j.function;
 
-import org.gsl4j.complex.Complex;
+import org.gsl4j.complex.ComplexNumber;
 
 /**
  *
@@ -17,5 +17,5 @@ public interface ComplexVectorMathFunction {
 	 * @param z
 	 * @return
 	 */
-	Complex[] value(Complex... z) ;
+	ComplexNumber[] value(ComplexNumber... z) ;
 }

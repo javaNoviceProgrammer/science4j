@@ -14,6 +14,12 @@ public interface RealNumber extends ComplexNumber {
 		return 0.0 ;
 	}
 
+	/**
+	 * Requesting an appropriate builder (real) for the number.
+	 * @return a builder : {@link RealBuilder}
+	 */
+	RealNumber getBuilder() ;
+
 	//*********** support for algebraic operations *************
 
 	/*----- addition ------*/

@@ -1,5 +1,10 @@
 package org.gsl4j.roots;
 
-public interface VectorRealRootDerivFunction {
+import org.gsl4j.function.VectorMathFunction;
+
+@FunctionalInterface
+public interface VectorRealRootDerivFunction extends VectorMathFunction {
+
+	double[] value(double... x) ;
 
 }
