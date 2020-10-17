@@ -1,5 +1,6 @@
 package org.gsl4j.function;
 
+import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexNumber;
 
 /**
@@ -19,4 +20,26 @@ public interface ComplexMathFunction {
 	 * @return {@link ComplexNumber} : the complex value of the function
 	 */
 	ComplexNumber value(ComplexNumber z) ;
+
+	/**
+	 * This method allows defining the f(z) in terms of real and imaginary parts of z: f(re+j*im)
+	 *
+	 * @param re : real part of z
+	 * @param im : imaginary part of z
+	 * @return {@link ComplexNumber} : the complex value of the function
+	 */
+	default ComplexNumber value(double re, double im) {
+		return value(Complex.ofRect(re, im)) ;
+	}
+
+	default double[] toArray(double re, double im) {
+		ComplexNumber z = value(re, im)  ;
+		return new double[] {z.re(), z.im()} ;
+	}
+
+	default double[] toArray(ComplexNumber z) {
+		ComplexNumber w = value(z)  ;
+		return new double[] {w.re(), w.im()} ;
+	}
+
 }
