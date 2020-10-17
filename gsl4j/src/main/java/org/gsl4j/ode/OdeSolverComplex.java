@@ -442,8 +442,8 @@ public class OdeSolverComplex {
 
 	/**
 	 * Implicit Bulirsch-Stoer method of Bader and Deuflhard. The method is generally suitable for stiff problems. This stepper requires the Jacobian.
-	 * @param x
-	 * @return
+	 * @param x : points at which solution is calculated
+	 * @return {@code double[][]} : 2D-array of (re,im) of the ODE solution at x[]. First row is the re[] and second row is im[].
 	 */
 	public double[][] bsimp(double[] x) {
 		return odeSystemSolver.bsimp(x) ;

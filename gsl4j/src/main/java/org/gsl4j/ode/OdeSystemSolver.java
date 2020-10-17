@@ -122,155 +122,155 @@ public class OdeSystemSolver {
 
 	/**
 	 * Explicit embedded Runge-Kutta (2, 3) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rk2(double x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta (2, 3) method.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rk2(double[] x) ;
 
 	/**
 	 * Explicit 4th order (classical) Runge-Kutta. Error estimation is carried out by the step doubling method.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rk4(double x) ;
 
 	/**
 	 * Explicit 4th order (classical) Runge-Kutta. Error estimation is carried out by the step doubling method.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rk4(double[] x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta-Fehlberg (4, 5) method. This method is a good general-purpose integrator.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rkf45(double x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta-Fehlberg (4, 5) method. This method is a good general-purpose integrator.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rkf45(double[] x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta Cash-Karp (4, 5) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rkck(double x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta Cash-Karp (4, 5) method.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rkck(double[] x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta Prince-Dormand (8, 9) method.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rk8pd(double x) ;
 
 	/**
 	 * Explicit embedded Runge-Kutta Prince-Dormand (8, 9) method.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rk8pd(double[] x) ;
 
 	/**
 	 * Implicit Gaussian first order Runge-Kutta. Also known as implicit Euler or backward Euler method. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rk1imp(double x ) ;
 
 	/**
 	 * Implicit Gaussian first order Runge-Kutta. Also known as implicit Euler or backward Euler method. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rk1imp(double[] x ) ;
 
 	/**
 	 * Implicit Gaussian second order Runge-Kutta. Also known as implicit mid-point rule. Error estimation is carried out by the step doubling method. This stepper requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rk2imp(double x) ;
 
 	/**
 	 * Implicit Gaussian second order Runge-Kutta. Also known as implicit mid-point rule. Error estimation is carried out by the step doubling method. This stepper requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rk2imp(double[] x) ;
 
 	/**
 	 * Implicit Gaussian 4th order Runge-Kutta. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] rk4imp(double x) ;
 
 	/**
 	 * Implicit Gaussian 4th order Runge-Kutta. Error estimation is carried out by the step doubling method. This algorithm requires the Jacobian and access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] rk4imp(double[] x) ;
 
 	/**
 	 * Implicit Bulirsch-Stoer method of Bader and Deuflhard. The method is generally suitable for stiff problems. This stepper requires the Jacobian.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] bsimp(double x) ;
 
 	/**
 	 * Implicit Bulirsch-Stoer method of Bader and Deuflhard. The method is generally suitable for stiff problems. This stepper requires the Jacobian.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] bsimp(double[] x) ;
 
 	/**
 	 * A variable-coefficient linear multistep Adams method in Nordsieck form. This stepper uses explicit Adams-Bashforth (predictor) and implicit Adams-Moulton (corrector) methods in P(EC)^m functional iteration mode. Method order varies dynamically between 1 and 12. This stepper requires the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] msadams(double x) ;
 
 	/**
 	 * A variable-coefficient linear multistep Adams method in Nordsieck form. This stepper uses explicit Adams-Bashforth (predictor) and implicit Adams-Moulton (corrector) methods in P(EC)^m functional iteration mode. Method order varies dynamically between 1 and 12. This stepper requires the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] msadams(double[] x) ;
 
 	/**
 	 * A variable-coefficient linear multistep backward differentiation formula (BDF) method in Nordsieck form. This stepper uses the explicit BDF formula as predictor and implicit BDF formula as corrector. A modified Newton iteration method is used to solve the system of non-linear equations. Method order varies dynamically between 1 and 5. The method is generally suitable for stiff problems. This stepper requires the Jacobian and the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : point at which system is solved
+	 * @return {@code double[]} : solution of ODE system at x.
 	 */
 	public native double[] msbdf(double x) ;
 
 	/**
 	 * A variable-coefficient linear multistep backward differentiation formula (BDF) method in Nordsieck form. This stepper uses the explicit BDF formula as predictor and implicit BDF formula as corrector. A modified Newton iteration method is used to solve the system of non-linear equations. Method order varies dynamically between 1 and 5. The method is generally suitable for stiff problems. This stepper requires the Jacobian and the access to the driver object via {@code gsl_odeiv2_step_set_driver()}.
-	 * @param x
-	 * @return
+	 * @param x : array of points at which system is solved
+	 * @return {@code double[][]} : solution of ODE system at x[]. Each row corresponds to one function solution y_i(x[]).
 	 */
 	public native double[][] msbdf(double[] x) ;
 
