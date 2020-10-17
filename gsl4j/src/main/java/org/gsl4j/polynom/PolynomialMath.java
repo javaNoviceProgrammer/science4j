@@ -16,15 +16,15 @@ public class PolynomialMath {
 
 	/**
 	 * This function evaluates a polynomial with real coefficients for the real variable x.
-	 * @param coeffs
-	 * @param x
-	 * @return
+	 * @param coeffs : coefficients of the real polynomial
+	 * @param x : a point at which the polynomial is evaluated
+	 * @return value of polynomial at x
 	 */
 	public static native double eval(double[] coeffs, double x) ;
 
 	/**
 	 * This function evaluates a polynomial with real coefficients for the complex variable z.
-	 * @param coeffs
+	 * @param coeffs : coefficients of the real polynomial
 	 * @param re
 	 * @param im
 	 * @return
