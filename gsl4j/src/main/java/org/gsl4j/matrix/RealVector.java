@@ -116,7 +116,7 @@ public class RealVector implements RealAlgebraVector {
 		}
 		for(int i=0; i<size; i++) {
 			temp.set(x[i], 0.0) ;
-			temp = func.apply(temp) ;
+			temp.set(func.apply(temp)) ;
 			re[i] = temp.re() ;
 			im[i] = temp.im() ;
 			temp.reset() ;
@@ -142,7 +142,7 @@ public class RealVector implements RealAlgebraVector {
 		}
 		for(int i=0; i<size; i++) {
 			temp.set(x[i], 0.0) ;
-			temp = func.value(temp) ;
+			temp.set(func.value(temp)) ;
 			re[i] = temp.re() ;
 			im[i] = temp.im() ;
 			temp.reset() ;

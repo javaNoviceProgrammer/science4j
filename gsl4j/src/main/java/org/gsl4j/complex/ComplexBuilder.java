@@ -29,6 +29,10 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	public ComplexBuilder() {
 		this.re = 0.0 ;
 		this.im = 0.0 ;
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexBuilder count = " + count);
+		}
 	}
 
 	// cartesian constructor

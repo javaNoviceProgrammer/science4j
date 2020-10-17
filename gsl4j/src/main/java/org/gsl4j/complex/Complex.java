@@ -48,7 +48,7 @@ public final class Complex implements Serializable, ComplexNumber {
 	 */
 	static double epsilon = 1e-10 ;
 
-	private ComplexBuilder cb = null ;
+	private ComplexBuilder cb ;
 
 	private final double re ;
 	private final double im ;
@@ -462,11 +462,13 @@ public final class Complex implements Serializable, ComplexNumber {
 	}
 
 	public ComplexBuilder multiply(ComplexBuilder v) {
-		return new ComplexBuilder(re, im).multiply(v) ;
+		v.multiply(this) ;
+		return v ;
 	}
 
 	public ComplexBuilder multiplyRev(ComplexBuilder v) {
-		return new ComplexBuilder(re, im).multiplyRev(v) ;
+		v.multiplyRev(this) ;
+		return v ;
 	}
 
 	public ComplexBuilder multiply(RealBuilder v) {
