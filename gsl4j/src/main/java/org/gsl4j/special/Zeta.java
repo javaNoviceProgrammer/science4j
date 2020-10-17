@@ -3,7 +3,7 @@ package org.gsl4j.special;
 import org.gsl4j.util.NativeLibraryLoader;
 
 /**
- * The Riemann zeta function is defined in Abramowitz & Stegun, Section 23.2.
+ * The Riemann zeta function is defined in Abramowitz {@literal &} Stegun, Section 23.2.
  * The functions described in this section are declared in the header file {@code gsl_sf_zeta.h}.
  * <br>
  * The Riemann zeta function is defined by the infinite sum:
@@ -55,7 +55,7 @@ public class Zeta {
 
 	// Hurwitz Zeta IntegralFunction1D
 	/**
-	 * These routines compute the Hurwitz zeta function \zeta(s,q) for s > 1, q > 0.
+	 * These routines compute the Hurwitz zeta function \zeta(s,q) for s {@literal >} 1, q {@literal >} 0.
 	 * @param s
 	 * @param q
 	 * @return

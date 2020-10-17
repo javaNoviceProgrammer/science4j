@@ -4,7 +4,7 @@ import org.gsl4j.util.NativeLibraryLoader;
 
 /**
  * Information on the properties of the Logarithm function
- * can be found in Abramowitz & Stegun, Chapter 4. The functions described in
+ * can be found in Abramowitz {@literal &} Stegun, Chapter 4. The functions described in
  * this section are declared in the header file gsl_sf_log.h.
  *
  * @author Meisam
@@ -23,7 +23,7 @@ public class Logarithm {
 	// Logarithm and Related Functions
 
 	/**
-	 * These routines compute the logarithm of x, \log(x), for x > 0.
+	 * These routines compute the logarithm of x, \log(x), for x {@literal >} 0.
 	 * @param x
 	 * @return
 	 */
@@ -45,14 +45,14 @@ public class Logarithm {
 	public static native double[] complexLog(double re, double im) ;
 
 	/**
-	 * These routines compute \log(1 + x) for x > -1 using an algorithm that is accurate for small x.
+	 * These routines compute \log(1 + x) for x {@literal >} -1 using an algorithm that is accurate for small x.
 	 * @param x
 	 * @return
 	 */
 	public static native double log1plusx(double x) ;
 
 	/**
-	 * These routines compute \log(1 + x) - x for x > -1 using an algorithm that is accurate for small x.
+	 * These routines compute \log(1 + x) - x for x {@literal >} -1 using an algorithm that is accurate for small x.
 	 * @param x
 	 * @return
 	 */

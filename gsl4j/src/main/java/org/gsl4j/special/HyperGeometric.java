@@ -3,7 +3,7 @@ package org.gsl4j.special;
 import org.gsl4j.util.NativeLibraryLoader;
 
 /**
- * Hypergeometric functions are described in Abramowitz & Stegun, Chapters 13 and 15. These functions are declared in the header file {@code gsl_sf_hyperg.h}.
+ * Hypergeometric functions are described in Abramowitz {@literal &} Stegun, Chapters 13 and 15. These functions are declared in the header file {@code gsl_sf_hyperg.h}.
  *
  * @author Meisam
  *
@@ -86,7 +86,7 @@ public class HyperGeometric {
 
 	/**
 	 * These routines compute the Gauss hypergeometric function
-	 * {}_2F_1(a,b,c,x) = F(a,b,c,x) for |x| < 1. If the arguments (a,b,c,x) are too close to a singularity then the function can return the error code GSL_EMAXITER when the series approximation converges too slowly. This occurs in the region of x = 1, c - a - b = m for integer m.
+	 * {}_2F_1(a,b,c,x) = F(a,b,c,x) for |x| {@literal <} 1. If the arguments (a,b,c,x) are too close to a singularity then the function can return the error code GSL_EMAXITER when the series approximation converges too slowly. This occurs in the region of x = 1, c - a - b = m for integer m.
 	 * @param a
 	 * @param b
 	 * @param c
@@ -97,7 +97,7 @@ public class HyperGeometric {
 
 	/**
 	 * These routines compute the Gauss hypergeometric function
-	 * {}_2F_1(a_R + i a_I, aR - i aI, c, x) with complex parameters for |x| < 1.
+	 * {}_2F_1(a_R + i a_I, aR - i aI, c, x) with complex parameters for |x| {@literal <} 1.
 	 * @param aR
 	 * @param aI
 	 * @param c
@@ -108,7 +108,7 @@ public class HyperGeometric {
 
 	/**
 	 * These routines compute the renormalized Gauss hypergeometric function
-	 * {}_2F_1(a,b,c,x) / \Gamma(c) for |x| < 1.
+	 * {}_2F_1(a,b,c,x) / \Gamma(c) for |x| {@literal <} 1.
 	 * @param a
 	 * @param b
 	 * @param c
@@ -119,7 +119,7 @@ public class HyperGeometric {
 
 	/**
 	 * These routines compute the renormalized Gauss hypergeometric function
-	 * {}_2F_1(a_R + i a_I, a_R - i a_I, c, x) / \Gamma(c) for |x| < 1.
+	 * {}_2F_1(a_R + i a_I, a_R - i a_I, c, x) / \Gamma(c) for |x| {@literal <} 1.
 	 * @param aR
 	 * @param aI
 	 * @param c
@@ -131,7 +131,7 @@ public class HyperGeometric {
 	/**
 	 * These routines compute the hypergeometric function {}_2F_0(a,b,x).
 	 * <br>
-	 * The series representation is a divergent hypergeometric series. However, for x < 0 we have
+	 * The series representation is a divergent hypergeometric series. However, for x {@literal <} 0 we have
 	 * {}_2F_0(a,b,x) = (-1/x)^a U(a,1+a-b,-1/x)
 	 *
 	 * @param a

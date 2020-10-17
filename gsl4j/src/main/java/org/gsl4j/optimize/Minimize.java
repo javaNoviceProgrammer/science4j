@@ -4,9 +4,10 @@ import org.gsl4j.function.MathFunction;
 import org.gsl4j.util.NativeLibraryLoader;
 
 /**
- * The minimization algorithms described in this class require an initial interval which is guaranteed to contain a minimum—if a and b are the endpoints of the interval and x is an estimate of the minimum then f(a) > f(x) < f(b). This ensures that the function has at least one minimum somewhere in the interval. If a valid initial interval is used then these algorithm cannot fail, provided the function is well-behaved.
+ * The minimization algorithms described in this class require an initial interval which is guaranteed to contain a minimum—if a and b are the endpoints of the interval and x is an estimate of the minimum then f(a) {@literal >} f(x) {@literal <} f(b). This ensures that the function has at least one minimum somewhere in the interval. If a valid initial interval is used then these algorithm cannot fail, provided the function is well-behaved.
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class Minimize {
@@ -48,7 +49,7 @@ public class Minimize {
 
 	/**
 	 * The golden section algorithm is the simplest method of bracketing the minimum of a function. It is the slowest algorithm provided by the library, with linear convergence.
-	 * <br>On each iteration, the algorithm first compares the subintervals from the endpoints to the current minimum. The larger subinterval is divided in a golden section (using the famous ratio (3-\sqrt 5)/2 \approx 0.3819660 and the value of the function at this new point is calculated. The new value is used with the constraint f(a') > f(x') < f(b') to a select new interval containing the minimum, by discarding the least useful point. This procedure can be continued indefinitely until the interval is sufficiently small. Choosing the golden section as the bisection ratio can be shown to provide the fastest convergence for this type of algorithm.
+	 * <br>On each iteration, the algorithm first compares the subintervals from the endpoints to the current minimum. The larger subinterval is divided in a golden section (using the famous ratio (3-\sqrt 5)/2 \approx 0.3819660 and the value of the function at this new point is calculated. The new value is used with the constraint f(a') {@literal >} f(x') {@literal <} f(b') to a select new interval containing the minimum, by discarding the least useful point. This procedure can be continued indefinitely until the interval is sufficiently small. Choosing the golden section as the bisection ratio can be shown to provide the fastest convergence for this type of algorithm.
 	 *
 	 * @return
 	 */
