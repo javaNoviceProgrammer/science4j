@@ -105,12 +105,18 @@ public class TestComplex {
 		System.out.println(c==d);
 	}
 
+	public static void test6() {
+		Real r1 = Double.valueOf(2.3) ;
+		System.out.println(r1);
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
-		test5() ;
+//		test5() ;
+		test6() ;
 	}
 
 }

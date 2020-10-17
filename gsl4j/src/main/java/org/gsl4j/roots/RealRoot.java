@@ -329,6 +329,12 @@ public class RealRoot {
 		}
 	}
 
+	/**
+	 * Same as {@link #secant(double)} but returns {@code Double.NaN} if no root was found.
+	 *
+	 * @param estimate : initial estimation of the root
+	 * @return The real root or {@code Double.NaN}
+	 */
 	public double secantSafe(double estimate) {
 		if(Math.abs(func.value(estimate))<absErr)
 			return estimate ;
@@ -341,6 +347,12 @@ public class RealRoot {
 		}
 	}
 
+	/**
+	 * Same as {@link #steffenson(double)} but returns {@code Double.NaN} if no root was found.
+	 *
+	 * @param estimate : initial estimation of the root
+	 * @return The real root or {@code Double.NaN}
+	 */
 	public double steffensonSafe(double estimate) {
 		if(Math.abs(func.value(estimate))<absErr)
 			return estimate ;
@@ -353,6 +365,14 @@ public class RealRoot {
 		}
 	}
 
+	/**
+	 * Uses {@link #newtonSafe(double)} to find all of the real roots in a given interval by using {@code N} subintervals.
+	 *
+	 * @param start : start of the bracket interval
+	 * @param end : end of the bracket interval
+	 * @param subIntervals : number of subintervals to search the roots in them
+	 * @return A list of all real roots or an empty list.
+	 */
 	public List<Double> newton(double start, double end, int subIntervals) {
 		List<Double> roots = new ArrayList<>() ;
 		double[] points = new double[subIntervals+1] ;
@@ -375,6 +395,14 @@ public class RealRoot {
 		return roots ;
 	}
 
+	/**
+	 * Uses {@link #secantSafe(double)} to find all of the real roots in a given interval by using {@code N} subintervals.
+	 *
+	 * @param start : start of the bracket interval
+	 * @param end : end of the bracket interval
+	 * @param subIntervals : number of subintervals to search the roots in them
+	 * @return A list of all real roots or an empty list.
+	 */
 	public List<Double> secant(double start, double end, int subIntervals) {
 		List<Double> roots = new ArrayList<>() ;
 		double[] points = new double[subIntervals+1] ;
@@ -397,6 +425,14 @@ public class RealRoot {
 		return roots ;
 	}
 
+	/**
+	 * Uses {@link #steffensonSafe(double)} to find all of the real roots in a given interval by using {@code N} subintervals.
+	 *
+	 * @param start : start of the bracket interval
+	 * @param end : end of the bracket interval
+	 * @param subIntervals : number of subintervals to search the roots in them
+	 * @return A list of all real roots or an empty list.
+	 */
 	public List<Double> steffenson(double start, double end, int subIntervals) {
 		List<Double> roots = new ArrayList<>() ;
 		double[] points = new double[subIntervals+1] ;
