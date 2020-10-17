@@ -1,44 +1,38 @@
 package org.gsl4j.matrix;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexNumber;
+import org.gsl4j.complex.Real;
+import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.ComplexMathFunction;
 import org.gsl4j.function.MathFunction;
+import org.gsl4j.util.NativeLibraryLoader;
 
 
-public class ComplexVector implements ComplexAlgebraVector {
+public class RealVector implements RealAlgebraVector {
 
-	double[] re ;
-	double[] im ;
+	static {
+		NativeLibraryLoader.loadLibraries();
+	}
+
+	ComplexBuilder temp ;
+	ComplexVectorBuilder cvb ;
+
+	double[] x ;
 	int size ;
 
-	public ComplexVector(double[] re, double[] im) {
-		if(re.length != im.length) {
-			throw new IllegalArgumentException("re[] and im[] arrays must have the same size") ;
-		}
-		this.re = re ;
-		this.im = im ;
-		this.size = re.length ;
+	public RealVector(double... x) {
+		this.x = x ;
+		this.size = x.length ;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder() ;
-		ComplexBuilder z = new ComplexBuilder() ;
-		sb.append("[") ;
-		for(int i=0; i<size-1; i++) {
-			z.add(re[i], im[i]) ;
-			sb.append(z.toString()).append(", ") ;
-			z.reset();
-		}
-		z.add(re[size-1], im[size-1]) ;
-		sb.append(z.toString());
-		sb.append("]") ;
-		return sb.toString() ;
+		return Arrays.toString(x) ;
 	}
 
 	@Override
@@ -47,54 +41,122 @@ public class ComplexVector implements ComplexAlgebraVector {
 	}
 
 	@Override
-	public ComplexNumber at(int index) {
-		return Complex.ofRect(re[index], im[index]) ;
+	public RealNumber at(int index) {
+		return Real.of(x[index]) ;
 	}
 
 	@Override
-	public ComplexNumber get(int index) {
-		return Complex.ofRect(re[index], im[index]) ;
+	public RealNumber get(int index) {
+		return Real.of(x[index]) ;
 	}
 
 	@Override
 	public double[] re() {
-		return re ;
+		return x ;
 	}
 
 	@Override
 	public double[] im() {
-		return im ;
+		return new double[size] ; // initialized to 0.0
+	}
+
+	@Override
+	public RealNumber[] toArray() {
+		RealNumber[] y = new RealNumber[size] ;
+		for(int i=0; i<size; i++) {
+			y[i] = Real.valueOf(x[i]) ;
+		}
+		return y ;
+	}
+
+	@Override
+	public List<RealNumber> toList() {
+		return Arrays.asList(toArray()) ;
+	}
+
+	@Override
+	public void set(int index, RealNumber z) {
+		x[index] = z.re() ;
 	}
 
 	@Override
 	public void set(int index, double z) {
-		// TODO Auto-generated method stub
+		x[index] = z ;
+	}
 
+	@Override
+	public void setAll(RealNumber z) {
+		Arrays.fill(x, z.re()) ;
 	}
 
 	@Override
 	public void setAll(double z) {
-		// TODO Auto-generated method stub
-
+		Arrays.fill(x, z) ;
 	}
+
+	@Override
+	public RealAlgebraVector conjugate() {
+		return this ;
+	}
+
+	@Override
+	public RealAlgebraVector getBuilder() {
+		return null;
+	}
+
+
+
 
 	@Override
 	public AlgebraVector apply(Function<ComplexNumber, ComplexNumber> func) {
-		// TODO Auto-generated method stub
-		return null;
+		double[] re = new double[size] ;
+		double[] im = new double[size] ;
+		if (temp==null) {
+			temp = new ComplexBuilder() ;
+		}
+		for(int i=0; i<size; i++) {
+			temp.set(x[i], 0.0) ;
+			temp = func.apply(temp) ;
+			re[i] = temp.re() ;
+			im[i] = temp.im() ;
+			temp.reset() ;
+		}
+		return new ComplexVector(re, im) ;
 	}
 
 	@Override
-	public AlgebraVector applyReal(MathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealAlgebraVector applyReal(MathFunction func) {
+		double[] y = new double[size] ;
+		for(int i=0; i<size; i++) {
+			y[i] = func.value(x[i]) ;
+		}
+		return new RealVector(y) ;
 	}
 
 	@Override
-	public AlgebraVector applyComplex(ComplexMathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexAlgebraVector applyComplex(ComplexMathFunction func) {
+		double[] re = new double[size] ;
+		double[] im = new double[size] ;
+		if (temp==null) {
+			temp = new ComplexBuilder() ;
+		}
+		for(int i=0; i<size; i++) {
+			temp.set(x[i], 0.0) ;
+			temp = func.value(temp) ;
+			re[i] = temp.re() ;
+			im[i] = temp.im() ;
+			temp.reset() ;
+		}
+		return new ComplexVector(re, im) ;
 	}
+
+
+
+
+
+
+
+
 
 	@Override
 	public AlgebraVector add(double v) {
@@ -198,47 +260,24 @@ public class ComplexVector implements ComplexAlgebraVector {
 		return null;
 	}
 
-	@Override
-	public ComplexNumber[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public List<ComplexNumber> toList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void set(int index, ComplexNumber z) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void setAll(ComplexNumber z) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public ComplexAlgebraVector conjugate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ComplexAlgebraVector getBuilder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ComplexAlgebraVector apply(ComplexMathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
+
+
+
+
+
+
+
+
 
 
 

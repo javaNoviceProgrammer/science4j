@@ -19,6 +19,9 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	private double re ;
 	private double im ;
 
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	// default constructor
 	/**
 	 * Default constructor: re=0.0, im=0.0
@@ -37,6 +40,10 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	public ComplexBuilder(double re, double im) {
 		this.re = re ;
 		this.im = im ;
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexBuilder count = " + count);
+		}
 	}
 
 	// base constructor
@@ -47,6 +54,10 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	public ComplexBuilder(Complex z) {
 		this.re = z.re() ;
 		this.im = z.im() ;
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexBuilder count = " + count);
+		}
 	}
 
 	// copy constructor
@@ -57,6 +68,10 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	public ComplexBuilder(ComplexBuilder z) {
 		this.re = z.re ;
 		this.im = z.im ;
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexBuilder count = " + count);
+		}
 	}
 
 	/**
@@ -124,6 +139,16 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	public void reset() {
 		re = 0.0 ;
 		im = 0.0 ;
+	}
+
+	public void set(double re, double im) {
+		this.re = re ;
+		this.im = im ;
+	}
+
+	public void set(ComplexNumber z) {
+		this.re = z.re() ;
+		this.im = z.im() ;
 	}
 
 	//*********** support for complex math functions *************

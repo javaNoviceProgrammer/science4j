@@ -16,6 +16,7 @@ import org.gsl4j.util.NativeLibraryLoader;
  *	} gsl_vector;<br>
  *
  * @author Meisam
+ * @since 1.0
  *
  */
 public class VectorMath {

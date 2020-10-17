@@ -16,8 +16,6 @@
 JNIEXPORT jdouble JNICALL Java_org_gsl4j_matrix_VectorMath_get
   (JNIEnv *env, jclass VectorMath, jdoubleArray x, jint i) {
 	jint len = env -> GetArrayLength(x) ;
-	if(i >= len)
-		throw 1 ;
 	jdouble *x_array = new jdouble[len] ;
 	env -> GetDoubleArrayRegion(x, 0, len, x_array) ;
 	jdouble elem = x_array[i] ;
@@ -33,8 +31,6 @@ JNIEXPORT jdouble JNICALL Java_org_gsl4j_matrix_VectorMath_get
 JNIEXPORT void JNICALL Java_org_gsl4j_matrix_VectorMath_set
   (JNIEnv *env, jclass VectorMath, jdoubleArray vec, jint i, jdouble x) {
 	jint len = env -> GetArrayLength(vec) ;
-	if(i >= len)
-		throw 1 ;
 	jdouble *vec_array = new jdouble[len] ;
 	env -> GetDoubleArrayRegion(vec, 0, len, vec_array) ;
 	vec_array[i] = x ;

@@ -48,6 +48,8 @@ public final class Complex implements Serializable, ComplexNumber {
 	 */
 	static double epsilon = 1e-10 ;
 
+	private ComplexBuilder cb = null ;
+
 	private final double re ;
 	private final double im ;
 
@@ -180,7 +182,15 @@ public final class Complex implements Serializable, ComplexNumber {
 	}
 
 	public ComplexBuilder getBuilder() {
-		return new ComplexBuilder(this) ;
+		if(cb != null) {
+			cb.set(this);
+			return cb ;
+		}
+		else {
+			cb = new ComplexBuilder(this) ;
+			return cb ;
+		}
+//		return new ComplexBuilder(this) ;
 	}
 
 	public double abs() {
