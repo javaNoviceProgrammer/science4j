@@ -13,12 +13,10 @@ public interface RealAlgebraVector extends AlgebraVector {
 	RealNumber[] toArray() ;
 	List<RealNumber> toList() ;
 
-	void set(int index, RealNumber z) ;
-
-	void setAll(RealNumber z) ;
-
 	RealAlgebraVector conjugate() ;
-	RealAlgebraVector getBuilder() ;
+
+	VectorBuilder getBuilder() ;
+	VectorBuilder cachedBuilder() ;
 
 	RealAlgebraVector add(RealAlgebraVector v) ;
 	RealAlgebraVector addRev(RealAlgebraVector v) ;

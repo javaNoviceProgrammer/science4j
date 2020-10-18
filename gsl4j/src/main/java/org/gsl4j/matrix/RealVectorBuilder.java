@@ -235,9 +235,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public RealAlgebraVector getBuilder() {
-		// TODO Auto-generated method stub
-		return null;
+	public VectorBuilder getBuilder() {
+		return this ;
+	}
+
+	@Override
+	public VectorBuilder cachedBuilder() {
+		return this ;
 	}
 
 	@Override
@@ -304,6 +308,18 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	public RealAlgebraVector negate() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void set(int index, ComplexNumber z) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setAll(ComplexNumber z) {
+		// TODO Auto-generated method stub
+
 	}
 
 

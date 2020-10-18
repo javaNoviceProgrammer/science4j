@@ -82,7 +82,17 @@ public class ComplexVector implements ComplexAlgebraVector {
 		return im ;
 	}
 
+	@Override
+	public ComplexVectorBuilder getBuilder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
+	@Override
+	public ComplexVectorBuilder cachedBuilder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 
@@ -248,17 +258,6 @@ public class ComplexVector implements ComplexAlgebraVector {
 		return null;
 	}
 
-	@Override
-	public void set(int index, ComplexNumber z) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setAll(ComplexNumber z) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public ComplexAlgebraVector conjugate() {
@@ -266,11 +265,7 @@ public class ComplexVector implements ComplexAlgebraVector {
 		return null;
 	}
 
-	@Override
-	public ComplexAlgebraVector getBuilder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public ComplexAlgebraVector apply(ComplexMathFunction func) {

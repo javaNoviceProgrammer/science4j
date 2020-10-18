@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexNumber;
+import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.ComplexMathFunction;
 import org.gsl4j.function.MathFunction;
 
@@ -250,11 +251,6 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return null;
 	}
 
-	@Override
-	public ComplexAlgebraVector getBuilder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ComplexAlgebraVector apply(ComplexMathFunction func) {
@@ -264,6 +260,30 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 
 	@Override
 	public void set(AlgebraVector v) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public VectorBuilder getBuilder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public VectorBuilder cachedBuilder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void set(int index, RealNumber z) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setAll(RealNumber z) {
 		// TODO Auto-generated method stub
 
 	}

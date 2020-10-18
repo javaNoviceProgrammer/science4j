@@ -13,12 +13,10 @@ public interface ComplexAlgebraVector extends AlgebraVector {
 	ComplexNumber[] toArray() ;
 	List<ComplexNumber> toList() ;
 
-	void set(int index, ComplexNumber z) ;
-
-	void setAll(ComplexNumber z) ;
-
 	ComplexAlgebraVector conjugate() ;
-	ComplexAlgebraVector getBuilder() ;
+
+	VectorBuilder getBuilder() ;
+	VectorBuilder cachedBuilder() ;
 
 	ComplexAlgebraVector apply(ComplexMathFunction func) ;
 

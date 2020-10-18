@@ -151,14 +151,26 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		im = 0.0 ;
 	}
 
-	public void set(double re, double im) {
+//	public void set(double re, double im) {
+//		this.re = re ;
+//		this.im = im ;
+//	}
+//
+//	public void set(ComplexNumber z) {
+//		this.re = z.re() ;
+//		this.im = z.im() ;
+//	}
+
+	public ComplexBuilder set(double re, double im) {
 		this.re = re ;
 		this.im = im ;
+		return this ;
 	}
 
-	public void set(ComplexNumber z) {
+	public ComplexBuilder set(ComplexNumber z) {
 		this.re = z.re() ;
 		this.im = z.im() ;
+		return this ;
 	}
 
 	//*********** support for complex math functions *************
