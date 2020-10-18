@@ -1,5 +1,6 @@
 package org.gsl4j.matrix;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -16,6 +17,9 @@ public class ComplexVector implements ComplexAlgebraVector {
 	double[] im ;
 	int size ;
 
+	ComplexBuilder temp ;
+	ComplexVectorBuilder cvb ;
+
 	public ComplexVector(double[] re, double[] im) {
 		if(re.length != im.length) {
 			throw new IllegalArgumentException("re[] and im[] arrays must have the same size") ;
@@ -25,18 +29,30 @@ public class ComplexVector implements ComplexAlgebraVector {
 		this.size = re.length ;
 	}
 
+	public ComplexVector(int size) {
+		this.size = size ;
+		this.re = new double[size] ;
+		this.im = new double[size] ;
+	}
+
 	@Override
 	public String toString() {
+		// initialize complex builder
+//		ComplexBuilder z = new ComplexBuilder() ;
+		if(temp != null) {
+			temp.reset();
+		} else {
+			temp = new ComplexBuilder() ;
+		}
 		StringBuilder sb = new StringBuilder() ;
-		ComplexBuilder z = new ComplexBuilder() ;
 		sb.append("[") ;
 		for(int i=0; i<size-1; i++) {
-			z.add(re[i], im[i]) ;
-			sb.append(z.toString()).append(", ") ;
-			z.reset();
+			temp.add(re[i], im[i]) ;
+			sb.append(temp.toString()).append(", ") ;
+			temp.reset();
 		}
-		z.add(re[size-1], im[size-1]) ;
-		sb.append(z.toString());
+		temp.add(re[size-1], im[size-1]) ;
+		sb.append(temp.toString());
 		sb.append("]") ;
 		return sb.toString() ;
 	}
@@ -66,22 +82,28 @@ public class ComplexVector implements ComplexAlgebraVector {
 		return im ;
 	}
 
-	@Override
-	public void set(int index, double z) {
-		// TODO Auto-generated method stub
 
-	}
 
-	@Override
-	public void setAll(double z) {
-		// TODO Auto-generated method stub
 
-	}
+
+
+
 
 	@Override
 	public AlgebraVector apply(Function<ComplexNumber, ComplexNumber> func) {
-		// TODO Auto-generated method stub
-		return null;
+		// initialize the complex builder
+		if(temp != null) {
+			temp.reset();
+		} else {
+			temp = new ComplexBuilder() ;
+		}
+		// apply the function to the complex builder
+		for(int i=0; i<size; i++) {
+			temp.set(func.apply(temp));
+			re[i] = temp.re() ;
+			im[i] = temp.im() ;
+		}
+		return new ComplexVector(re, im) ;
 	}
 
 	@Override
@@ -92,9 +114,25 @@ public class ComplexVector implements ComplexAlgebraVector {
 
 	@Override
 	public AlgebraVector applyComplex(ComplexMathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
+		// initialize the complex builder
+		if(temp != null) {
+			temp.reset();
+		} else {
+			temp = new ComplexBuilder() ;
+		}
+		// apply the function to the complex builder
+		for(int i=0; i<size; i++) {
+			temp.set(func.value(temp));
+			re[i] = temp.re() ;
+			im[i] = temp.im() ;
+		}
+		return new ComplexVector(re, im) ;
 	}
+
+
+
+
+
 
 	@Override
 	public AlgebraVector add(double v) {

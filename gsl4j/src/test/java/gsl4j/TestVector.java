@@ -1,12 +1,12 @@
 package gsl4j;
 
 import static org.gsl4j.complex.Complex.j;
-
 import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
-import org.gsl4j.complex.ComplexNumber;
 import org.gsl4j.matrix.AlgebraVector;
+import org.gsl4j.matrix.ComplexVectorBuilder;
 import org.gsl4j.matrix.RealVector;
+import org.gsl4j.matrix.VectorBuilder;
 import org.gsl4j.util.MathUtils;
 
 
@@ -15,7 +15,7 @@ public class TestVector {
 	public static void test1() {
 		Complex.debug = true ;
 		ComplexBuilder.debug = true ;
-		AlgebraVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 100)) ;
+		AlgebraVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 10)) ;
 		System.out.println(v1);
 		System.out.println(v1.getClass());
 		System.out.println(v1.size());
@@ -28,11 +28,18 @@ public class TestVector {
 		AlgebraVector v3 = v2.apply(t ->  z.getBuilder() * t) ;
 		System.out.println(v3);
 		System.out.println(v3.getClass());
-//		System.out.println(v3[1]);
+		System.out.println(v3[1]);
+		VectorBuilder vb = new ComplexVectorBuilder(v3) ;
+		System.out.println(vb[0]);
+	}
+
+	public static void test2() {
+
 	}
 
 	public static void main(String[] args) {
 		test1() ;
+//		test2() ;
 	}
 
 }

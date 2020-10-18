@@ -20,6 +20,20 @@ public interface RealAlgebraVector extends AlgebraVector {
 	RealAlgebraVector conjugate() ;
 	RealAlgebraVector getBuilder() ;
 
+	RealAlgebraVector add(RealAlgebraVector v) ;
+	RealAlgebraVector addRev(RealAlgebraVector v) ;
+
+	RealAlgebraVector subtract(RealAlgebraVector v) ;
+	RealAlgebraVector subtractRev(RealAlgebraVector v) ;
+
+	RealAlgebraVector multiply(RealAlgebraVector v) ;
+	RealAlgebraVector multiplyRev(RealAlgebraVector v) ;
+
+	RealAlgebraVector divide(RealAlgebraVector v) ;
+	RealAlgebraVector divideRev(RealAlgebraVector v) ;
+
+	RealAlgebraVector negate() ;
+
 	RealAlgebraVector applyReal(MathFunction func) ;
 
 }

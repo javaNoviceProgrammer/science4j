@@ -64,6 +64,14 @@ public class RealBuilder implements Serializable, RealNumber {
 		x = 0.0 ;
 	}
 
+	public void set(double x) {
+		this.x = x ;
+	}
+
+	public void set(RealNumber x) {
+		this.x = x.re() ;
+	}
+
 	//*********** support for complex math functions *************
 
 	@Override

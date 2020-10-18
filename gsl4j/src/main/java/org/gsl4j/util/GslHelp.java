@@ -1,4 +1,4 @@
-package org.gsl4j;
+package org.gsl4j.util;
 
 import java.awt.Desktop;
 import java.io.IOException;
