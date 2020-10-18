@@ -1,5 +1,6 @@
 package org.gsl4j.matrix;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -20,19 +21,16 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	public RealVectorBuilder(double... x) {
 		this.x = x ;
 		this.size = x.length ;
-		this.im = new double[size] ;
 	}
 
 	public RealVectorBuilder(int size) {
 		this.size = size ;
 		this.x = new double[size] ;
-		this.im = new double[size] ;
 	}
 
 	public RealVectorBuilder(RealAlgebraVector v) {
 		this.size = v.size() ;
 		this.x = v.re() ;
-		this.im = new double[size] ;
 	}
 
 
@@ -63,19 +61,27 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 
 	@Override
 	public double[] im() {
+		if(im==null) {
+			im = new double[size] ;
+		}
 		return im ;
 	}
 
 	@Override
 	public void set(int index, double z) {
-		// TODO Auto-generated method stub
-
+		x[index] = z ;
 	}
 
 	@Override
 	public void setAll(double z) {
-		// TODO Auto-generated method stub
+		Arrays.fill(x, z) ;
+	}
 
+	@Override
+	public void set(AlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.re()[i] ; // ignore imaginary part
+		}
 	}
 
 	@Override
@@ -299,5 +305,7 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 }

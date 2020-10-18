@@ -262,6 +262,12 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return null;
 	}
 
+	@Override
+	public void set(AlgebraVector v) {
+		// TODO Auto-generated method stub
+
+	}
+
 
 
 }

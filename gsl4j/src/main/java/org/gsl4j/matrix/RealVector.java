@@ -107,7 +107,6 @@ public class RealVector implements RealAlgebraVector {
 		if(rvb==null) {
 			rvb = new RealVectorBuilder(this) ;
 		} else {
-
 		}
 		return rvb ;
 	}
@@ -211,8 +210,26 @@ public class RealVector implements RealAlgebraVector {
 		return new RealVector(y) ;
 	}
 
+	public RealVector addRev(RealVector v) {
+		double[] y = new double[size] ;
+		for(int i=0; i<size; i++) {
+			y[i] = v.x[i] + x[i]  ;
+		}
+		return new RealVector(y) ;
+	}
 
 
+	@Override
+	public RealAlgebraVector add(RealAlgebraVector v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector addRev(RealAlgebraVector v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 
@@ -291,17 +308,7 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 
-	@Override
-	public RealAlgebraVector add(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public RealAlgebraVector addRev(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public RealAlgebraVector subtract(RealAlgebraVector v) {

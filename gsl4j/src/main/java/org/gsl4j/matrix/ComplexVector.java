@@ -1,6 +1,6 @@
 package org.gsl4j.matrix;
 
-import java.util.Arrays;
+
 import java.util.List;
 import java.util.function.Function;
 

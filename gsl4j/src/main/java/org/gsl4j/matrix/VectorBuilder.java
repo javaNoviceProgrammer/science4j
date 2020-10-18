@@ -6,6 +6,7 @@ public interface VectorBuilder extends AlgebraVector {
 
 	void set(int index, double z) ;
 	void setAll(double z) ;
+	void set(AlgebraVector v) ;
 
 
 

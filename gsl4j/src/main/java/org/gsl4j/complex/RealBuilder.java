@@ -18,18 +18,33 @@ public class RealBuilder implements Serializable, RealNumber {
 
 	private static final long serialVersionUID = 6445188397847083940L;
 
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	double x ;
 
 	public RealBuilder() {
 		x = 0.0 ;
+		if(debug) {
+			count++ ;
+			System.out.println("Real count = " + count);
+		}
 	}
 
 	public RealBuilder(double v) {
 		x = v ;
+		if(debug) {
+			count++ ;
+			System.out.println("Real count = " + count);
+		}
 	}
 
 	public RealBuilder(Real v) {
 		x = v.x ;
+		if(debug) {
+			count++ ;
+			System.out.println("Real count = " + count);
+		}
 	}
 
 	@Override
