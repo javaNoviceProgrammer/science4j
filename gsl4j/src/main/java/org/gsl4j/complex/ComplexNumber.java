@@ -39,6 +39,8 @@ public interface ComplexNumber extends AlgebraicEntity<ComplexNumber> {
 	 */
 	ComplexNumber getBuilder() ;
 
+	ComplexNumber cachedBuilder() ;
+
 	/**
 	 * A functional interface for applying any of {@link ComplexMath} methods.
 	 * @param func : a function to apply to a pair of (re,im) numbers.

@@ -24,6 +24,8 @@ public final class Real implements Serializable, RealNumber {
 	public static boolean debug = false ;
 	public static long count = 0 ;
 
+	RealBuilder rb ;
+
 	final double x ;
 
 	public Real(double v) {
@@ -85,6 +87,16 @@ public final class Real implements Serializable, RealNumber {
 	@Override
 	public RealBuilder getBuilder() {
 		return new RealBuilder(this) ;
+	}
+
+	@Override
+	public RealBuilder cachedBuilder() {
+		if(rb==null) {
+			rb = new RealBuilder(this) ;
+		} else {
+			rb.set(this) ;
+		}
+		return rb ;
 	}
 
 	//************ Finite or Infinite **************

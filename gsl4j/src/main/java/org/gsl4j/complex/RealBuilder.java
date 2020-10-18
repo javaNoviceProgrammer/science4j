@@ -62,7 +62,13 @@ public class RealBuilder implements Serializable, RealNumber {
 		return this ;
 	}
 
+	@Override
 	public RealBuilder getBuilder() {
+		return this ;
+	}
+
+	@Override
+	public ComplexNumber cachedBuilder() {
 		return this ;
 	}
 

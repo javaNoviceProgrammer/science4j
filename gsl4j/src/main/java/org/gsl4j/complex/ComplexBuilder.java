@@ -102,7 +102,13 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		return this ;
 	}
 
+	@Override
 	public ComplexBuilder getBuilder() {
+		return this ;
+	}
+
+	@Override
+	public ComplexNumber cachedBuilder() {
 		return this ;
 	}
 
