@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Function;
 
 import org.gsl4j.complex.ComplexNumber;
+import org.gsl4j.complex.Real;
 import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.ComplexMathFunction;
 import org.gsl4j.function.MathFunction;
@@ -71,6 +72,31 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
+	public RealNumber at(int index) {
+		return Real.of(x[index]) ;
+	}
+
+	@Override
+	public RealNumber get(int index) {
+		return Real.of(x[index]) ;
+	}
+
+	@Override
+	public double atIndex(int index) {
+		return x[index] ;
+	}
+
+	@Override
+	public double atReal(int index) {
+		return x[index] ;
+	}
+
+	@Override
+	public double atImag(int index) {
+		return 0.0 ;
+	}
+
+	@Override
 	public void set(int index, double z) {
 		x[index] = z ;
 	}
@@ -100,13 +126,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public AlgebraVector add(double v) {
+	public RealAlgebraVector add(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector addRev(double v) {
+	public RealAlgebraVector addRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -124,13 +150,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public AlgebraVector subtract(double v) {
+	public RealAlgebraVector subtract(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector subtractRev(double v) {
+	public RealAlgebraVector subtractRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -148,13 +174,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public AlgebraVector multiply(double v) {
+	public RealAlgebraVector multiply(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector multiplyRev(double v) {
+	public RealAlgebraVector multiplyRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -172,13 +198,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public AlgebraVector divide(double v) {
+	public RealAlgebraVector divide(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector divideRev(double v) {
+	public RealAlgebraVector divideRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -195,17 +221,7 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 		return null;
 	}
 
-	@Override
-	public RealNumber at(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public RealNumber get(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public RealNumber[] toArray() {
@@ -325,15 +341,107 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 
 	}
 
-	@Override
-	public double atIndex(int index) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 
 	@Override
 	public double[] toDoubleArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector add(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector addRev(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector add(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector addRev(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector subtract(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector subtractRev(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector subtract(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector subtractRev(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector multiply(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector multiplyRev(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector multiply(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector multiplyRev(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector divide(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector divideRev(RealNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector divide(ComplexNumber v) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public AlgebraVector divideRev(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}

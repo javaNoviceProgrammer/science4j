@@ -12,6 +12,7 @@ import org.gsl4j.complex.Real;
 import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.matrix.AlgebraVector;
 import org.gsl4j.matrix.ComplexVectorBuilder;
+import org.gsl4j.matrix.RealAlgebraVector;
 import org.gsl4j.matrix.RealVector;
 import org.gsl4j.matrix.RealVectorBuilder;
 import org.gsl4j.matrix.VectorBuilder;
@@ -74,7 +75,8 @@ public class TestVector {
 	}
 
 	public static void test2() {
-		RealVector v1 = new RealVector(1.1, 2.2, 3.5) ;
+//		RealVector v1 = new RealVector(1.1, 2.2, 3.5) ;
+		RealVector v1 = new double[] {1.1, 2.2, 3.5} ;
 		System.out.println(v1);
 		v1.re()[0] = -5.0 ;
 		System.out.println(v1);
@@ -82,12 +84,37 @@ public class TestVector {
 		System.out.println(v2.getClass());
 		v2.set(0, -5.0);
 		System.out.println(v2);
+		AlgebraVector v3 = v1 - j ;
+		System.out.println(v3);
+		System.out.println(v3.getClass());
+
+	}
+
+	public static void test3() {
+		RealVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 5)) ;
+		System.out.println(v1);
+		System.out.println(v1.getClass());
+		AlgebraVector v2 = v1 / (1.0+j) ;
+		System.out.println(v2);
+		System.out.println(v2.getClass());
+
+	}
+
+	public static void test4() {
+		RealAlgebraVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 6)) ;
+		System.out.println(v1);
+		System.out.println(v1.getClass());
+		AlgebraVector v2 = v1 / (2.0*v1) ;
+		System.out.println(v2);
+		System.out.println(v2.getClass());
 
 	}
 
 	public static void main(String[] args) {
 //		test1() ;
-		test2() ;
+//		test2() ;
+//		test3() ;
+		test4() ;
 	}
 
 }
