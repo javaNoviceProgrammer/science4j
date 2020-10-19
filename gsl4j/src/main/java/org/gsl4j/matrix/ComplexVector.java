@@ -24,8 +24,8 @@ public class ComplexVector implements ComplexAlgebraVector {
 		if(re.length != im.length) {
 			throw new IllegalArgumentException("re[] and im[] arrays must have the same size") ;
 		}
-		this.re = re ;
-		this.im = im ;
+		this.re = re.clone() ; // make new copies
+		this.im = im.clone() ; // make new copies
 		this.size = re.length ;
 	}
 

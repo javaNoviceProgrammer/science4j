@@ -56,6 +56,7 @@ public class VectorMath {
 	public static native double[] mul(double[] vec1, double[] vec2) ;
 	public static native double[] div(double[] vec1, double[] vec2) ;
 	public static native double[] scale(double[] vec1, double alpha) ;
+		/* rename this to add */
 	public static native double[] addConstant(double[] vec1, double x) ;
 	public static native double[] axpby(double a, double[] x, double b, double[] y) ;
 

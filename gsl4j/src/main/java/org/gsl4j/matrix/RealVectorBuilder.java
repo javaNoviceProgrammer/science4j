@@ -47,7 +47,10 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 
 
 
-
+	@Override
+	public String toString() {
+		return Arrays.toString(x) ;
+	}
 
 	@Override
 	public int size() {
@@ -235,12 +238,12 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public VectorBuilder getBuilder() {
+	public RealVectorBuilder getBuilder() {
 		return this ;
 	}
 
 	@Override
-	public VectorBuilder cachedBuilder() {
+	public RealVectorBuilder cachedBuilder() {
 		return this ;
 	}
 
@@ -320,6 +323,19 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	public void setAll(ComplexNumber z) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public double atIndex(int index) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public double[] toDoubleArray() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

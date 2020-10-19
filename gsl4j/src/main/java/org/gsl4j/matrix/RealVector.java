@@ -13,7 +13,12 @@ import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.ComplexMathFunction;
 import org.gsl4j.function.MathFunction;
 
-
+/**
+ * This class represents an immutable view of a real double-precision vector.
+ *
+ * @author Meisam
+ * @since 1.0
+ */
 public class RealVector implements RealAlgebraVector {
 
 	RealBuilder rb ;
@@ -26,19 +31,21 @@ public class RealVector implements RealAlgebraVector {
 	final double[] x ;
 	final int size ;
 
-	double[] im ;
+	final double[] im ;
 
 	// auxiliary array for math operations
-	double[] y ;
+	private double[] y ;
 
 	public RealVector(double... x) {
 		this.size = x.length ;
-		this.x = x.clone() ;
+		this.x = x.clone() ; // make new copy??
+		this.im = new double[size] ;
 	}
 
 	public RealVector(int size) {
 		this.size = size ;
 		this.x = new double[size] ;
+		this.im = new double[size] ;
 	}
 
 	@Override
@@ -62,16 +69,18 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	@Override
+	public double atIndex(int index) {
+		return x[index] ;
+	}
+
+	@Override
 	public double[] re() {
-		return x ;
+		return x.clone() ;
 	}
 
 	@Override
 	public double[] im() {
-		if(im==null) {              // lazy initialization
-			im = new double[size] ; // always zero
-		}
-		return im ;
+		return im.clone() ;
 	}
 
 	@Override
@@ -98,12 +107,12 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	@Override
-	public VectorBuilder getBuilder() {
+	public RealVectorBuilder getBuilder() {
 		return new RealVectorBuilder(this) ;
 	}
 
 	@Override
-	public VectorBuilder cachedBuilder() {
+	public RealVectorBuilder cachedBuilder() {
 		if(rvb==null) {
 			rvb = new RealVectorBuilder(this) ;
 		} else {
@@ -169,9 +178,7 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public AlgebraVector add(double v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = x[i] + v ;
 		}
@@ -180,9 +187,7 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public AlgebraVector addRev(double v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = v + x[i] ;
 		}
@@ -191,20 +196,29 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public AlgebraVector add(AlgebraVector v) {
-		return null ;
+		double[] re = new double[size] ;
+		double[] im = new double[size] ;
+		for(int i=0; i<size; i++) {
+			re[i] = v.re()[i] + x[i] ;
+			im[i] = v.im()[i] ;
+		}
+		return new ComplexVector(re, im) ;
 	}
 
 	@Override
 	public AlgebraVector addRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+		double[] re = new double[size] ;
+		double[] im = new double[size] ;
+		for(int i=0; i<size; i++) {
+			re[i] = x[i] + v.re()[i] ;
+			im[i] = v.im()[i] ;
+		}
+		return new ComplexVector(re, im) ;
 	}
 
 
 	public RealVector add(RealVector v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = x[i] + v.x[i] ;
 		}
@@ -212,9 +226,7 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	public RealVector addRev(RealVector v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = v.x[i] + x[i]  ;
 		}
@@ -224,9 +236,7 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public RealAlgebraVector add(RealAlgebraVector v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = x[i] + v.re()[i] ;
 		}
@@ -235,9 +245,7 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public RealAlgebraVector addRev(RealAlgebraVector v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = v.re()[i] + x[i]  ;
 		}
@@ -250,9 +258,7 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public AlgebraVector subtract(double v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = x[i] - v ;
 		}
@@ -261,9 +267,7 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public AlgebraVector subtractRev(double v) {
-		if(y==null) {
-			y = new double[size] ;
-		}
+		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
 			y[i] = v - x[i] ;
 		}
@@ -410,6 +414,12 @@ public class RealVector implements RealAlgebraVector {
 			y[i] = -x[i] ;
 		}
 		return new RealVector(y) ;
+	}
+
+	@Override
+	public double[] toDoubleArray() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

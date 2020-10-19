@@ -13,6 +13,7 @@ import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.matrix.AlgebraVector;
 import org.gsl4j.matrix.ComplexVectorBuilder;
 import org.gsl4j.matrix.RealVector;
+import org.gsl4j.matrix.RealVectorBuilder;
 import org.gsl4j.matrix.VectorBuilder;
 import org.gsl4j.util.MathUtils;
 import org.gsl4j.util.Timer;
@@ -20,16 +21,20 @@ import org.gsl4j.util.Timer;
 
 public class TestVector {
 
+	static {
+		Complex.debug = true ;
+		Real.debug = true ;
+		RealBuilder.debug = true ;
+		ComplexBuilder.debug = true ;
+	}
+
 	public static void test1() {
-//		Complex.debug = true ;
-//		Real.debug = true ;
-//		RealBuilder.debug = true ;
-//		ComplexBuilder.debug = true ;
+
 
 		Timer timer = new Timer() ;
 		timer.start();
 
-		AlgebraVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 5_000_000)) ;
+		AlgebraVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 50)) ;
 //		System.out.println(v1);
 //		System.out.println(v1.getClass());
 //		System.out.println(v1.size());
@@ -69,12 +74,20 @@ public class TestVector {
 	}
 
 	public static void test2() {
+		RealVector v1 = new RealVector(1.1, 2.2, 3.5) ;
+		System.out.println(v1);
+		v1.re()[0] = -5.0 ;
+		System.out.println(v1);
+		VectorBuilder v2 = v1.getBuilder() ;
+		System.out.println(v2.getClass());
+		v2.set(0, -5.0);
+		System.out.println(v2);
 
 	}
 
 	public static void main(String[] args) {
-		test1() ;
-//		test2() ;
+//		test1() ;
+		test2() ;
 	}
 
 }

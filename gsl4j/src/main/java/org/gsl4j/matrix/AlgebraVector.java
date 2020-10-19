@@ -21,6 +21,9 @@ public interface AlgebraVector extends AlgebraicEntity<AlgebraVector> {
 
 	List<? extends ComplexNumber> toList() ;
 
+	VectorBuilder getBuilder() ;
+	VectorBuilder cachedBuilder() ;
+
 	AlgebraVector apply(Function<ComplexNumber,ComplexNumber> func) ;
 	AlgebraVector applyReal(MathFunction func) ;
 	AlgebraVector applyComplex(ComplexMathFunction func) ;
