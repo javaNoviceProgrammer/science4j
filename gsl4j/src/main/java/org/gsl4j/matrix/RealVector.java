@@ -60,6 +60,29 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	@Override
+	public RealNumber[] toArray() {
+		RealNumber[] y = new RealNumber[size] ;
+		for(int i=0; i<size; i++) {
+			y[i] = Real.valueOf(x[i]) ;
+		}
+		return y ;
+	}
+
+	@Override
+	public List<RealNumber> toList() {
+		List<RealNumber> y = new ArrayList<>(size) ;
+		for(int i=0; i<size; i++) {
+			y.add(Real.valueOf(x[i])) ;
+		}
+		return y ;
+	}
+
+	@Override
+	public double[] toDoubleArray() {
+		return x.clone() ;
+	}
+
+	@Override
 	public int size() {
 		return size ;
 	}
@@ -95,29 +118,6 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	@Override
-	public RealNumber[] toArray() {
-		RealNumber[] y = new RealNumber[size] ;
-		for(int i=0; i<size; i++) {
-			y[i] = Real.valueOf(x[i]) ;
-		}
-		return y ;
-	}
-
-	@Override
-	public List<RealNumber> toList() {
-		List<RealNumber> y = new ArrayList<>(size) ;
-		for(int i=0; i<size; i++) {
-			y.add(Real.valueOf(x[i])) ;
-		}
-		return y ;
-	}
-
-	@Override
-	public double[] toDoubleArray() {
-		return x.clone() ;
-	}
-
-	@Override
 	public RealAlgebraVector conjugate() {
 		return this ;
 	}
@@ -140,8 +140,8 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public ComplexVector apply(Function<ComplexNumber, ComplexNumber> func) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		if (cb==null) {
 			cb = new ComplexBuilder() ;
 		}
@@ -150,7 +150,7 @@ public class RealVector implements RealAlgebraVector {
 			cb.set(func.apply(cb)) ;
 			re[i] = cb.re() ;
 			im[i] = cb.im() ;
-			cb.reset() ;
+//			cb.reset() ;
 		}
 		return new ComplexVector(re, im) ;
 	}

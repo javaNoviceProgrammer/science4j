@@ -1,5 +1,6 @@
 package org.gsl4j.matrix;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -23,6 +24,7 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 
 	final double[] x ;
 	final int size ;
+
 
 	public RealVectorBuilder(double... x) {
 		this.size = x.length ;
@@ -60,6 +62,29 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
+	public RealNumber[] toArray() {
+		RealNumber[] y = new RealNumber[size] ;
+		for(int i=0; i<size; i++) {
+			y[i] = Real.valueOf(x[i]) ;
+		}
+		return y ;
+	}
+
+	@Override
+	public double[] toDoubleArray() {
+		return x.clone() ;
+	}
+
+	@Override
+	public List<RealNumber> toList() {
+		List<RealNumber> y = new ArrayList<>(size) ;
+		for(int i=0; i<size; i++) {
+			y.add(Real.valueOf(x[i])) ;
+		}
+		return y ;
+	}
+
+	@Override
 	public int size() {
 		return size ;
 	}
@@ -92,6 +117,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	@Override
 	public double[] re() {
 		return x ;
+	}
+
+	@Override
+	public void reset() {
+		for(int i=0; i<size; i++) {
+			x[i] = 0.0 ;
+		}
 	}
 
 	@Override
@@ -155,25 +187,53 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 		return this ;
 	}
 
-
-
-
 	@Override
-	public AlgebraVector apply(Function<ComplexNumber, ComplexNumber> func) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealAlgebraVector conjugate() {
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector applyReal(MathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder getBuilder() {
+		return this ;
 	}
 
 	@Override
-	public AlgebraVector applyComplex(ComplexMathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder cachedBuilder() {
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder apply(Function<ComplexNumber, ComplexNumber> func) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.set(func.apply(cb)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public RealVectorBuilder applyReal(MathFunction func) {
+		for(int i=0; i<size; i++) {
+			x[i] = func.value(x[i]) ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder applyComplex(ComplexMathFunction func) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.set(func.value(cb)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
 	}
 
 	//*********** support for algebraic operations *************
@@ -181,347 +241,507 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	/*----- addition ------*/
 
 	@Override
-	public ComplexVectorBuilder add(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder addRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector add(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector addRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder subtract(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder subtractRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector subtract(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector subtractRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector multiply(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector multiplyRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder divide(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder divideRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector divide(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector divideRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void reset() {
-		// TODO Auto-generated method stub
-
-	}
-
-
-
-	@Override
-	public VectorBuilder add(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder addRev(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder subtract(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder subtractRev(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder multiply(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder multiplyRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder multiply(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder multiplyRev(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder divide(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public VectorBuilder divideRev(VectorBuilder v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RealVectorBuilder negate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RealNumber[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public double[] toDoubleArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<RealNumber> toList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RealAlgebraVector conjugate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RealVectorBuilder getBuilder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public RealVectorBuilder cachedBuilder() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
 	public RealVectorBuilder add(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] + v ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder addRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v + x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder add(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] + v.re() ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder addRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() + x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector add(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder add(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] + v.atReal(i) ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector addRev(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder addRev(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) + x[i] ;
+		}
+		return this ;
 	}
+
+	@Override
+	public ComplexVectorBuilder add(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] + v.re() ;
+			cvb.im[i] = x[i] + v.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder addRev(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.re() + x[i] ;
+			cvb.im[i] = v.im() + x[i] ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder add(AlgebraVector v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] + v.atReal(i) ;
+			cvb.im[i] = x[i] + v.atImag(i) ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder addRev(AlgebraVector v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.atReal(i) + x[i] ;
+			cvb.im[i] = v.atImag(i) + x[i] ;
+		}
+		return cvb ;
+	}
+
+	public RealVectorBuilder add(RealVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] + v.x[i] ;
+		}
+		return this ;
+	}
+
+	public RealVectorBuilder addRev(RealVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.x[i] + x[i] ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder add(VectorBuilder v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] + v.atReal(i) ;
+			cvb.im[i] = x[i] + v.atImag(i) ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder addRev(VectorBuilder v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.atReal(i) + x[i] ;
+			cvb.im[i] = v.atImag(i) + x[i] ;
+		}
+		return cvb ;
+	}
+
+	/*----- subtraction ------*/
 
 	@Override
 	public RealVectorBuilder subtract(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] - v ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder subtractRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v - x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder subtract(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] - v.re() ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder subtractRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() - x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector subtract(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder subtract(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] - v.atReal(i) ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector subtractRev(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder subtractRev(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) - x[i] ;
+		}
+		return this ;
 	}
+
+	@Override
+	public ComplexVectorBuilder subtract(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] - v.re() ;
+			cvb.im[i] = x[i] - v.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder subtractRev(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.re() - x[i] ;
+			cvb.im[i] = v.im() - x[i] ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder subtract(AlgebraVector v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] - v.atReal(i) ;
+			cvb.im[i] = x[i] - v.atImag(i) ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder subtractRev(AlgebraVector v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.atReal(i) - x[i] ;
+			cvb.im[i] = v.atImag(i) - x[i] ;
+		}
+		return cvb ;
+	}
+
+	public RealVectorBuilder subtract(RealVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] - v.x[i] ;
+		}
+		return this ;
+	}
+
+	public RealVectorBuilder subtractRev(RealVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.x[i] - x[i] ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder subtract(VectorBuilder v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] - v.atReal(i) ;
+			cvb.im[i] = x[i] - v.atImag(i) ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder subtractRev(VectorBuilder v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.atReal(i) - x[i] ;
+			cvb.im[i] = v.atImag(i) - x[i] ;
+		}
+		return cvb ;
+	}
+
+	/*----- multiplication ------*/
 
 	@Override
 	public RealVectorBuilder multiply(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] * v ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder multiplyRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v * x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder multiply(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] * v.re() ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder multiplyRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() * x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector multiply(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVectorBuilder multiply(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = x[i] * v.re() ;
+			cvb.im[i] = x[i] * v.im() ;
+		}
+		return cvb ;
 	}
 
 	@Override
-	public RealAlgebraVector multiplyRev(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVectorBuilder multiplyRev(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.re() * x[i] ;
+			cvb.im[i] = v.im() * x[i] ;
+		}
+		return cvb ;
 	}
+
+	@Override
+	public RealVectorBuilder multiply(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] * v.atReal(i) ;
+		}
+		return this ;
+	}
+
+	@Override
+	public RealVectorBuilder multiplyRev(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) * x[i] ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder multiply(AlgebraVector v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.multiply(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder multiplyRev(AlgebraVector v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.multiply(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder multiply(VectorBuilder v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.multiply(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder multiplyRev(VectorBuilder v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.multiply(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	/*----- division ------*/
 
 	@Override
 	public RealVectorBuilder divide(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] / v ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder divideRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v / x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder divide(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] / v.re() ;
+		}
+		return this ;
 	}
 
 	@Override
 	public RealVectorBuilder divideRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() / x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector divide(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder divide(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = x[i] / v.atReal(i) ;
+		}
+		return this ;
 	}
 
 	@Override
-	public RealAlgebraVector divideRev(RealAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public RealVectorBuilder divideRev(RealAlgebraVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) / x[i] ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder divide(ComplexNumber v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.divide(v) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder divideRev(ComplexNumber v) {
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cvb.re[i] = v.re() / x[i] ;
+			cvb.im[i] = v.im() / x[i] ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder divide(AlgebraVector v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.divide(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
+
+	@Override
+	public ComplexVectorBuilder divideRev(AlgebraVector v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.divideRev(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
 	}
 
 
+	@Override
+	public ComplexVectorBuilder divide(VectorBuilder v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.divide(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
 
+	@Override
+	public ComplexVectorBuilder divideRev(VectorBuilder v) {
+		if (cb==null) { cb = new ComplexBuilder() ; }
+		ComplexVectorBuilder cvb = new ComplexVectorBuilder(size) ;
+		for(int i=0; i<size; i++) {
+			cb.set(x[i], 0.0) ;
+			cb.divideRev(v.atReal(i), v.atImag(i)) ;
+			cvb.re[i] = cb.re() ;
+			cvb.im[i] = cb.im() ;
+		}
+		return cvb ;
+	}
 
+	/*----- negation ------*/
+
+	@Override
+	public RealVectorBuilder negate() {
+		for(int i=0; i<size; i++) {
+			x[i] = -x[i] ;
+		}
+		return this ;
+	}
 
 }
