@@ -8,7 +8,6 @@ import java.util.function.Function;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexNumber;
 import org.gsl4j.complex.Real;
-import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.ComplexMathFunction;
 import org.gsl4j.function.MathFunction;
@@ -21,11 +20,12 @@ import org.gsl4j.function.MathFunction;
  */
 public class RealVector implements RealAlgebraVector {
 
-	private RealBuilder rb ;
-	private RealVectorBuilder rvb ;
 
+	private RealVectorBuilder rvb ;
 	private ComplexBuilder cb ;
-//	private ComplexVectorBuilder cvb ;
+
+	public static boolean debug = false ;
+	public static long count = 0 ;
 
 	final double[] x ;
 	final int size ;
@@ -37,11 +37,21 @@ public class RealVector implements RealAlgebraVector {
 	public RealVector(double... x) {
 		this.size = x.length ;
 		this.x = x ; // make new copy (clone)??  --> probably not (immutable)
+
+		if(debug) {
+			count++ ;
+			System.out.println("RealVector count = " + count);
+		}
 	}
 
 	public RealVector(int size) {
 		this.size = size ;
 		this.x = new double[size] ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("RealVector count = " + count);
+		}
 	}
 
 	@Override
@@ -55,12 +65,12 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	@Override
-	public RealNumber at(int index) {
+	public Real at(int index) {
 		return Real.of(x[index]) ;
 	}
 
 	@Override
-	public RealNumber get(int index) {
+	public Real get(int index) {
 		return Real.of(x[index]) ;
 	}
 
@@ -508,24 +518,24 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	public RealVector multiply(RealNumber v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = x[i] * v.re() ;
+			re[i] = x[i] * v.re() ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	public RealVector multiplyRev(RealNumber v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = v.re() * x[i] ;
+			re[i] = v.re() * x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	public ComplexVector multiply(ComplexNumber v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		for(int i=0; i<size; i++) {
 			re[i] = x[i] * v.re() ;
 			im[i] = x[i] * v.im() ;
@@ -534,8 +544,8 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	public ComplexVector multiplyRev(ComplexNumber v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		for(int i=0; i<size; i++) {
 			re[i] = v.re() * x[i] ;
 			im[i] = v.im() * x[i] ;
@@ -545,8 +555,8 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public ComplexVector multiply(AlgebraVector v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		for(int i=0; i<size; i++) {
 			re[i] = x[i] * v.atReal(i) ;
 			im[i] = x[i] * v.atImag(i) ;
@@ -556,8 +566,8 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public ComplexVector multiplyRev(AlgebraVector v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		for(int i=0; i<size; i++) {
 			re[i] = v.atReal(i) * x[i] ;
 			im[i] = v.atImag(i) * x[i] ;
@@ -567,72 +577,66 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public RealVector multiply(RealAlgebraVector v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = x[i] * v.atReal(i) ;
+			re[i] = x[i] * v.atReal(i) ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	@Override
 	public RealVector multiplyRev(RealAlgebraVector v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = v.atReal(i) * x[i] ;
+			re[i] = v.atReal(i) * x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	public RealVector multiply(RealVector v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = x[i] * v.atReal(i) ;
+			re[i] = x[i] * v.x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	public RealVector multiplyRev(RealVector v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = v.atReal(i) * x[i] ;
+			re[i] = v.x[i] * x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	public RealVectorBuilder multiply(RealVectorBuilder v) {
-		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
-			y[i] = x[i] * v.atReal(i) ;
+			v.x[i] = x[i] * v.x[i] ;
 		}
-		return new RealVectorBuilder(y) ;
+		return v ;
 	}
 
 	public RealVectorBuilder multiplyRev(RealVectorBuilder v) {
-		double[] y = new double[size] ;
 		for(int i=0; i<size; i++) {
-			y[i] = v.atReal(i) * x[i] ;
+			v.x[i] = v.x[i] * x[i] ;
 		}
-		return new RealVectorBuilder(y) ;
+		return v ;
 	}
 
 	public ComplexVectorBuilder multiply(ComplexVectorBuilder v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
 		for(int i=0; i<size; i++) {
-			re[i] = x[i] * v.atReal(i) ;
-			im[i] = x[i] * v.atImag(i) ;
+			v.re[i] = x[i] * v.re[i] ;
+			v.im[i] = x[i] * v.im[i] ;
 		}
-		return new ComplexVectorBuilder(re, im) ;
+		return v ;
 	}
 
 	public ComplexVectorBuilder multiplyRev(ComplexVectorBuilder v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
 		for(int i=0; i<size; i++) {
-			re[i] = v.atReal(i) * x[i] ;
-			im[i] = v.atImag(i) * x[i] ;
+			v.re[i] = v.re[i] * x[i] ;
+			v.im[i] = v.re[i] * x[i] ;
 		}
-		return new ComplexVectorBuilder(re, im) ;
+		return v ;
 	}
 
 
@@ -640,44 +644,44 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public RealVector divide(double v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = x[i] / v ;
+			re[i] = x[i] / v ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	@Override
 	public RealVector divideRev(double v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = v / x[i] ;
+			re[i] = v / x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	@Override
 	public RealVector divide(RealNumber v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = x[i] / v.re() ;
+			re[i] = x[i] / v.re() ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	@Override
 	public RealVector divideRev(RealNumber v) {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = v.re() / x[i] ;
+			re[i] = v.re() / x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
 
 	@Override
 	public ComplexVector divide(ComplexNumber v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		if(cb==null) {cb = new ComplexBuilder() ;}
 		else {cb.reset();}
 		for(int i=0; i<size; i++) {
@@ -692,8 +696,8 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public ComplexVector divideRev(ComplexNumber v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		if(cb==null) {cb = new ComplexBuilder() ;}
 		else {cb.reset();}
 		for(int i=0; i<size; i++) {
@@ -708,8 +712,8 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public ComplexVector divide(AlgebraVector v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		if(cb==null) {cb = new ComplexBuilder() ;}
 		else {cb.reset();}
 		for(int i=0; i<size; i++) {
@@ -724,8 +728,8 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public ComplexVector divideRev(AlgebraVector v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
+		if(re == null) { re = new double[size] ; }
+		if(im == null) { im = new double[size] ; }
 		if(cb==null) {cb = new ComplexBuilder() ;}
 		else {cb.reset();}
 		for(int i=0; i<size; i++) {
@@ -740,158 +744,82 @@ public class RealVector implements RealAlgebraVector {
 
 	@Override
 	public RealVector divide(RealAlgebraVector v) {
-		double[] re = new double[size] ;
-		if(rb==null) {rb = new RealBuilder() ;}
-		else {rb.reset();}
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			rb.set(v.atReal(i)) ;
-//			rb.set(x[i]/rb) ;
-			rb.set(rb.divideRev(x[i])) ;
-			re[i] = rb.re() ;
+			re[i] = x[i] / v.atReal(i) ;
 		}
 		return new RealVector(re) ;
 	}
 
 	@Override
 	public RealVector divideRev(RealAlgebraVector v) {
-		double[] re = new double[size] ;
-		if(rb==null) {rb = new RealBuilder() ;}
-		else {rb.reset();}
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			rb.set(v.atReal(i)) ;
-//			rb.set(rb/x[i]) ;
-			rb.set(rb.divide(x[i])) ;
-			re[i] = rb.re() ;
+			re[i] = v.atReal(i) / x[i] ;
 		}
 		return new RealVector(re) ;
 	}
 
 	public RealVector divide(RealVector v) {
-		double[] re = new double[size] ;
-		if(rb==null) {rb = new RealBuilder() ;}
-		else {rb.reset();}
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			rb.set(v.atReal(i)) ;
-//			rb.set(x[i]/rb) ;
-			rb.set(rb.divideRev(x[i])) ;
-			re[i] = rb.re() ;
+			re[i] = x[i] / v.x[i] ;
 		}
 		return new RealVector(re) ;
 	}
 
 
 	public RealVector divideRev(RealVector v) {
-		double[] re = new double[size] ;
-		if(rb==null) {rb = new RealBuilder() ;}
-		else {rb.reset();}
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			rb.set(v.atReal(i)) ;
-//			rb.set(rb/x[i]) ;
-			rb.set(rb.divide(x[i])) ;
-			re[i] = rb.re() ;
+			re[i] = v.x[i] / x[i] ;
 		}
 		return new RealVector(re) ;
 	}
 
 	public RealVectorBuilder divide(RealVectorBuilder v) {
-		double[] re = new double[size] ;
-		if(rb==null) {rb = new RealBuilder() ;}
-		else {rb.reset();}
 		for(int i=0; i<size; i++) {
-			rb.set(v.atReal(i)) ;
-//			rb.set(x[i]/rb) ;
-			rb.set(rb.divideRev(x[i])) ;
-			re[i] = rb.re() ;
+			v.x[i] = x[i] / v.x[i] ;
 		}
-		return new RealVectorBuilder(re) ;
+		return v ;
 	}
 
 
 	public RealVectorBuilder divideRev(RealVectorBuilder v) {
-		double[] re = new double[size] ;
-		if(rb==null) {rb = new RealBuilder() ;}
-		else {rb.reset();}
 		for(int i=0; i<size; i++) {
-			rb.set(v.atReal(i)) ;
-//			rb.set(rb/x[i]) ;
-			rb.set(rb.divide(x[i])) ;
-			re[i] = rb.re() ;
+			v.x[i] = v.x[i] / x[i] ;
 		}
-		return new RealVectorBuilder(re) ;
+		return v ;
 	}
 
 	public ComplexVectorBuilder divide(ComplexVectorBuilder v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
-		if(cb==null) {cb = new ComplexBuilder() ;}
-		else {cb.reset();}
+		double mag ;
 		for(int i=0; i<size; i++) {
-			cb.set(v.atReal(i), v.atImag(i)) ;
-//			cb.set(x[i]/cb) ;
-			cb.set(cb.divideRev(x[i])) ;
-			re[i] = cb.re() ;
-			im[i] = cb.im() ;
+			mag = v.re[i]*v.re[i] + v.im[i]*v.im[i] ;
+			v.re[i] =  x[i] * v.re[i]/mag ;
+			v.im[i] = -x[i] * v.im[i]/mag ;
 		}
-		return new ComplexVectorBuilder(re, im) ;
+		return v ;
 	}
 
 	public ComplexVectorBuilder divideRev(ComplexVectorBuilder v) {
-		double[] re = new double[size] ;
-		double[] im = new double[size] ;
-		if(cb==null) {cb = new ComplexBuilder() ;}
-		else {cb.reset();}
 		for(int i=0; i<size; i++) {
-			cb.set(v.atReal(i), v.atImag(i)) ;
-//			cb.set(cb/x[i]) ;
-			cb.set(cb.divide(x[i])) ;
-			re[i] = cb.re() ;
-			im[i] = cb.im() ;
+			v.re[i] = v.re[i] / x[i] ;
+			v.im[i] = v.im[i] / x[i] ;
 		}
-		return new ComplexVectorBuilder(re, im) ;
+		return v ;
 	}
 
 	/*----- negation ------*/
 
 	@Override
 	public RealVector negate() {
-		double[] y = new double[size] ;
+		if(re == null) { re = new double[size] ; }
 		for(int i=0; i<size; i++) {
-			y[i] = -x[i] ;
+			re[i] = -x[i] ;
 		}
-		return new RealVector(y) ;
+		return new RealVector(re) ;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -8,19 +8,17 @@ public interface VectorBuilder extends AlgebraVector {
 
 	void reset() ;
 
-	void set(int index, double z) ;
-	void setAll(double z) ;
+	VectorBuilder set(int index, double z) ;
+	VectorBuilder setAll(double z) ;
 
-	void set(int index, RealNumber z) ;
-	void setAll(RealNumber z) ;
+	VectorBuilder set(int index, RealNumber z) ;
+	VectorBuilder setAll(RealNumber z) ;
 
-	void set(int index, double re, double im) ;
-	void setAll(double re, double im) ;
+	VectorBuilder set(int index, double re, double im) ;
+	VectorBuilder setAll(double re, double im) ;
 
-	void set(int index, ComplexNumber z) ;
-	void setAll(ComplexNumber z) ;
-
-	void set(AlgebraVector v) ;
+	VectorBuilder set(int index, ComplexNumber z) ;
+	VectorBuilder setAll(ComplexNumber z) ;
 
 	//*********** support for algebraic operations *************
 

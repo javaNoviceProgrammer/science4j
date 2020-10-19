@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
+import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexNumber;
 import org.gsl4j.complex.Real;
+import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.ComplexMathFunction;
 import org.gsl4j.function.MathFunction;
@@ -14,40 +16,43 @@ import org.gsl4j.function.MathFunction;
 
 public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 
+	private ComplexBuilder cb ;
+
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	final double[] x ;
 	final int size ;
 
-	double[] im ;
-
-
 	public RealVectorBuilder(double... x) {
-		this.x = x ;
 		this.size = x.length ;
+		this.x = x ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("RealVectorBuilder count = " + count);
+		}
 	}
 
 	public RealVectorBuilder(int size) {
 		this.size = size ;
 		this.x = new double[size] ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("RealVectorBuilder count = " + count);
+		}
 	}
 
 	public RealVectorBuilder(RealAlgebraVector v) {
 		this.size = v.size() ;
 		this.x = v.re() ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("RealVectorBuilder count = " + count);
+		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	@Override
 	public String toString() {
@@ -60,26 +65,13 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public double[] re() {
-		return x ;
+	public RealBuilder at(int index) {
+		return new RealBuilder(x[index]) ;
 	}
 
 	@Override
-	public double[] im() {
-		if(im==null) {
-			im = new double[size] ;
-		}
-		return im ;
-	}
-
-	@Override
-	public RealNumber at(int index) {
-		return Real.of(x[index]) ;
-	}
-
-	@Override
-	public RealNumber get(int index) {
-		return Real.of(x[index]) ;
+	public RealBuilder get(int index) {
+		return new RealBuilder(x[index]) ;
 	}
 
 	@Override
@@ -98,24 +90,82 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	}
 
 	@Override
-	public void set(int index, double z) {
+	public double[] re() {
+		return x ;
+	}
+
+	@Override
+	public RealVectorBuilder set(int index, double z) {
 		x[index] = z ;
+		return this ;
 	}
 
 	@Override
-	public void setAll(double z) {
+	public RealVectorBuilder setAll(double z) {
 		Arrays.fill(x, z) ;
+		return this ;
+	}
+
+	public RealVectorBuilder set(RealVector v) {
+		for(int i=0; i<size; i++) {
+			x[i] = v.x[i] ;
+		}
+		return this ;
 	}
 
 	@Override
-	public void set(AlgebraVector v) {
-		for(int i=0; i<size; i++) {
-			x[i] = v.re()[i] ; // ignore imaginary part
-		}
+	public RealVectorBuilder set(int index, RealNumber z) {
+		x[index] = z.re() ;
+		return this ;
 	}
+
+	@Override
+	public RealVectorBuilder setAll(RealNumber z) {
+		for(int i=0; i<size; i++) {
+			x[i] = z.re() ;
+		}
+		return this ;
+	}
+
+	@Override
+	public RealVectorBuilder set(int index, double re, double im) {
+		x[index] = re ; // ignore imaginary part
+		return this ;
+	}
+
+	@Override
+	public RealVectorBuilder setAll(double re, double im) {
+		for(int i=0; i<size; i++) {
+			x[i] = re ; // ignore imaginary part
+		}
+		return this ;
+	}
+
+	@Override
+	public RealVectorBuilder set(int index, ComplexNumber z) {
+		x[index] = z.re() ; // ignore imaginary part
+		return this ;
+	}
+
+	@Override
+	public RealVectorBuilder setAll(ComplexNumber z) {
+		for(int i=0; i<size; i++) {
+			x[i] = z.re() ; // ignore imaginary part
+		}
+		return this ;
+	}
+
+
+
 
 	@Override
 	public AlgebraVector apply(Function<ComplexNumber, ComplexNumber> func) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RealAlgebraVector applyReal(MathFunction func) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -125,6 +175,10 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	//*********** support for algebraic operations *************
+
+	/*----- addition ------*/
 
 	@Override
 	public ComplexVectorBuilder add(ComplexNumber v) {
@@ -216,41 +270,7 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 
 	}
 
-	@Override
-	public void set(int index, RealNumber z) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void setAll(RealNumber z) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void set(int index, double re, double im) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setAll(double re, double im) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void set(int index, ComplexNumber z) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setAll(ComplexNumber z) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public VectorBuilder add(VectorBuilder v) {
@@ -354,11 +374,7 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 		return null;
 	}
 
-	@Override
-	public RealAlgebraVector applyReal(MathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public RealVectorBuilder add(double v) {

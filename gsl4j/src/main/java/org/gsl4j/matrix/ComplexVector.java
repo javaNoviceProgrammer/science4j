@@ -14,12 +14,15 @@ import org.gsl4j.function.MathFunction;
 
 public class ComplexVector implements ComplexAlgebraVector {
 
+	ComplexBuilder temp ;
+	ComplexVectorBuilder cvb ;
+
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	double[] re ;
 	double[] im ;
 	int size ;
-
-	ComplexBuilder temp ;
-	ComplexVectorBuilder cvb ;
 
 	public ComplexVector(double[] re, double[] im) {
 		if(re.length != im.length) {
@@ -28,18 +31,33 @@ public class ComplexVector implements ComplexAlgebraVector {
 		this.size = re.length ;
 		this.re = re.clone() ; // make new copies
 		this.im = im.clone() ; // make new copies
+
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexVector count = " + count);
+		}
 	}
 
 	public ComplexVector(double... re) {
 		this.size = re.length ;
 		this.re = re.clone() ; // make new copies
 		this.im = new double[size] ; // make new copies
+
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexVector count = " + count);
+		}
 	}
 
 	public ComplexVector(int size) {
 		this.size = size ;
 		this.re = new double[size] ;
 		this.im = new double[size] ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexVector count = " + count);
+		}
 	}
 
 	@Override
@@ -53,7 +71,7 @@ public class ComplexVector implements ComplexAlgebraVector {
 		StringBuilder sb = new StringBuilder() ;
 		sb.append("[") ;
 		for(int i=0; i<size-1; i++) {
-			temp.add(re[i], im[i]) ;
+			temp.set(re[i], im[i]) ;
 			sb.append(temp.toString()).append(", ") ;
 			temp.reset();
 		}
