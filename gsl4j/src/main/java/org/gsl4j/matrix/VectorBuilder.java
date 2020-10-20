@@ -1,7 +1,11 @@
 package org.gsl4j.matrix;
 
+import java.util.function.Function;
+
 import org.gsl4j.complex.ComplexNumber;
 import org.gsl4j.complex.RealNumber;
+import org.gsl4j.function.ComplexMathFunction;
+import org.gsl4j.function.MathFunction;
 
 
 public interface VectorBuilder extends AlgebraVector {
@@ -19,6 +23,10 @@ public interface VectorBuilder extends AlgebraVector {
 
 	VectorBuilder set(int index, ComplexNumber z) ;
 	VectorBuilder setAll(ComplexNumber z) ;
+
+	VectorBuilder apply(Function<ComplexNumber,ComplexNumber> func) ;
+	VectorBuilder applyReal(MathFunction func) ;
+	VectorBuilder applyComplex(ComplexMathFunction func) ;
 
 	//*********** support for algebraic operations *************
 

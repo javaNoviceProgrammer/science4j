@@ -1,6 +1,5 @@
 package org.gsl4j.matrix;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
@@ -14,6 +13,9 @@ import org.gsl4j.function.MathFunction;
 
 public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder {
 
+	public static boolean debug = false ;
+	public static long count = 0 ;
+
 	double[] re ;
 	double[] im ;
 	int size ;
@@ -25,18 +27,33 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		this.re = re ;
 		this.im = im ;
 		this.size = re.length ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexVectorBuilder count = " + count);
+		}
 	}
 
 	public ComplexVectorBuilder(int size) {
 		this.size = size ;
 		this.re = new double[size] ;
 		this.im = new double[size] ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexVectorBuilder count = " + count);
+		}
 	}
 
 	public ComplexVectorBuilder(AlgebraVector v) {
 		this.size = v.size() ;
 		this.re = v.re() ;
 		this.im = v.im() ;
+
+		if(debug) {
+			count++ ;
+			System.out.println("ComplexVectorBuilder count = " + count);
+		}
 	}
 
 
@@ -52,20 +69,17 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return size ;
 	}
 
 	@Override
 	public double[] re() {
-		// TODO Auto-generated method stub
-		return null;
+		return re ;
 	}
 
 	@Override
 	public double[] im() {
-		// TODO Auto-generated method stub
-		return null;
+		return im ;
 	}
 
 	@Override
@@ -101,313 +115,313 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 
 
 	@Override
-	public AlgebraVector apply(Function<ComplexNumber, ComplexNumber> func) {
+	public ComplexVectorBuilder apply(Function<ComplexNumber, ComplexNumber> func) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector applyReal(MathFunction func) {
+	public ComplexVectorBuilder applyReal(MathFunction func) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector applyComplex(ComplexMathFunction func) {
+	public ComplexVectorBuilder applyComplex(ComplexMathFunction func) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector add(AlgebraVector v) {
+	public ComplexVectorBuilder add(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector addRev(AlgebraVector v) {
+	public ComplexVectorBuilder addRev(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector subtract(AlgebraVector v) {
+	public ComplexVectorBuilder subtract(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector subtractRev(AlgebraVector v) {
+	public ComplexVectorBuilder subtractRev(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector multiply(AlgebraVector v) {
+	public ComplexVectorBuilder multiply(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector multiplyRev(AlgebraVector v) {
+	public ComplexVectorBuilder multiplyRev(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector divide(AlgebraVector v) {
+	public ComplexVectorBuilder divide(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public AlgebraVector divideRev(AlgebraVector v) {
+	public ComplexVectorBuilder divideRev(AlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder set(int index, double z) {
+	public ComplexVectorBuilder set(int index, double z) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder setAll(double z) {
+	public ComplexVectorBuilder setAll(double z) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder set(int index, RealNumber z) {
+	public ComplexVectorBuilder set(int index, RealNumber z) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder setAll(RealNumber z) {
+	public ComplexVectorBuilder setAll(RealNumber z) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder set(int index, double re, double im) {
+	public ComplexVectorBuilder set(int index, double re, double im) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder setAll(double re, double im) {
+	public ComplexVectorBuilder setAll(double re, double im) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder set(int index, ComplexNumber z) {
+	public ComplexVectorBuilder set(int index, ComplexNumber z) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder setAll(ComplexNumber z) {
+	public ComplexVectorBuilder setAll(ComplexNumber z) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder add(double v) {
+	public ComplexVectorBuilder add(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder addRev(double v) {
+	public ComplexVectorBuilder addRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder add(RealNumber v) {
+	public ComplexVectorBuilder add(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder addRev(RealNumber v) {
+	public ComplexVectorBuilder addRev(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder add(ComplexNumber v) {
+	public ComplexVectorBuilder add(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder addRev(ComplexNumber v) {
+	public ComplexVectorBuilder addRev(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder add(VectorBuilder v) {
+	public ComplexVectorBuilder add(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder addRev(VectorBuilder v) {
+	public ComplexVectorBuilder addRev(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtract(double v) {
+	public ComplexVectorBuilder subtract(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtractRev(double v) {
+	public ComplexVectorBuilder subtractRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtract(RealNumber v) {
+	public ComplexVectorBuilder subtract(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtractRev(RealNumber v) {
+	public ComplexVectorBuilder subtractRev(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtract(ComplexNumber v) {
+	public ComplexVectorBuilder subtract(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtractRev(ComplexNumber v) {
+	public ComplexVectorBuilder subtractRev(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtract(VectorBuilder v) {
+	public ComplexVectorBuilder subtract(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder subtractRev(VectorBuilder v) {
+	public ComplexVectorBuilder subtractRev(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiply(double v) {
+	public ComplexVectorBuilder multiply(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiplyRev(double v) {
+	public ComplexVectorBuilder multiplyRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiply(RealNumber v) {
+	public ComplexVectorBuilder multiply(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiplyRev(RealNumber v) {
+	public ComplexVectorBuilder multiplyRev(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiply(ComplexNumber v) {
+	public ComplexVectorBuilder multiply(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiplyRev(ComplexNumber v) {
+	public ComplexVectorBuilder multiplyRev(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiply(VectorBuilder v) {
+	public ComplexVectorBuilder multiply(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder multiplyRev(VectorBuilder v) {
+	public ComplexVectorBuilder multiplyRev(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divide(double v) {
+	public ComplexVectorBuilder divide(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divideRev(double v) {
+	public ComplexVectorBuilder divideRev(double v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divide(RealNumber v) {
+	public ComplexVectorBuilder divide(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divideRev(RealNumber v) {
+	public ComplexVectorBuilder divideRev(RealNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divide(ComplexNumber v) {
+	public ComplexVectorBuilder divide(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divideRev(ComplexNumber v) {
+	public ComplexVectorBuilder divideRev(ComplexNumber v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divide(VectorBuilder v) {
+	public ComplexVectorBuilder divide(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder divideRev(VectorBuilder v) {
+	public ComplexVectorBuilder divideRev(VectorBuilder v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder negate() {
+	public ComplexVectorBuilder negate() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -425,73 +439,73 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 	}
 
 	@Override
-	public ComplexAlgebraVector conjugate() {
+	public ComplexVectorBuilder conjugate() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder getBuilder() {
+	public ComplexVectorBuilder getBuilder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public VectorBuilder cachedBuilder() {
+	public ComplexVectorBuilder cachedBuilder() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector apply(ComplexMathFunction func) {
+	public ComplexVectorBuilder apply(ComplexMathFunction func) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector add(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder add(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector addRev(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder addRev(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector subtract(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder subtract(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector subtractRev(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder subtractRev(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector multiply(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder multiply(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector multiplyRev(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder multiplyRev(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector divide(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder divide(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ComplexAlgebraVector divideRev(ComplexAlgebraVector v) {
+	public ComplexVectorBuilder divideRev(ComplexAlgebraVector v) {
 		// TODO Auto-generated method stub
 		return null;
 	}

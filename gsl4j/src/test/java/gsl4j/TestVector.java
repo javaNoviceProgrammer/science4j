@@ -30,7 +30,9 @@ public class TestVector {
 		ComplexBuilder.debug = true ;
 
 		RealVector.debug = true ;
+		RealVectorBuilder.debug = true ;
 		ComplexVector.debug = true ;
+		ComplexVectorBuilder.debug = true ;
 	}
 
 	public static void test1() {
@@ -114,11 +116,43 @@ public class TestVector {
 
 	}
 
+	// test real vector and real vector builder
+	public static void test5() {
+		RealVector v1 = new RealVector(-10.0, -5.0, 1.0, 6.0, 10.0) ;
+		System.out.println(v1);
+		System.out.println(v1.getClass());
+		RealVectorBuilder v2 = v1.getBuilder() ;
+		System.out.println(v2);
+		System.out.println(v2.getClass());
+		VectorBuilder v3 = (2.0*v2-1.0) * v1 + 3.5 ;
+		System.out.println(v3);
+		System.out.println(v3.getClass());
+		v3 = v3 / 2.5 ;
+		System.out.println(v3);
+		System.out.println(v2==v3);
+		v3 = v3.applyReal(t -> t*2.5) ;
+		System.out.println(v3);
+	}
+
+	public static void test6() {
+		Timer timer = new Timer() ;
+		timer.start();
+		RealVector v1 = MathUtils.linspace(-100.0, 100.0, 1_000_000) ;
+		RealVectorBuilder v2 = v1.getBuilder() ;
+		v2 = v2.applyReal(t -> 3.0*t-1.0) ;
+//		v2 = 3.0*v2-1.0 ;
+		timer.stop();
+		System.out.println(timer);
+		System.out.println(v2.atIndex(0));
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
+//		test5() ;
+		test6() ;
 	}
 
 }
