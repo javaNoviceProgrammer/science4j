@@ -23,17 +23,17 @@ import org.gsl4j.vector.VectorBuilder;
 
 public class TestVector {
 
-	static {
-		Complex.debug = true ;
-		Real.debug = true ;
-		RealBuilder.debug = true ;
-		ComplexBuilder.debug = true ;
-
-		RealVector.debug = true ;
-		RealVectorBuilder.debug = true ;
-		ComplexVector.debug = true ;
-		ComplexVectorBuilder.debug = true ;
-	}
+//	static {
+//		Complex.debug = true ;
+//		Real.debug = true ;
+//		RealBuilder.debug = true ;
+//		ComplexBuilder.debug = true ;
+//
+//		RealVector.debug = true ;
+//		RealVectorBuilder.debug = true ;
+//		ComplexVector.debug = true ;
+//		ComplexVectorBuilder.debug = true ;
+//	}
 
 	public static void test1() {
 
@@ -41,11 +41,11 @@ public class TestVector {
 		Timer timer = new Timer() ;
 		timer.start();
 
-		AlgebraVector v1 = new RealVector(MathUtils.linspace(-10.0, 10.0, 50)) ;
+		AlgebraVector v1 = new RealVector(MathUtils.linspace(-100.0, 100.0, 10_000_000)) ;
 //		System.out.println(v1);
 //		System.out.println(v1.getClass());
 //		System.out.println(v1.size());
-		AlgebraVector v2 = v1.applyReal(t -> -t*2.0) ;
+//		AlgebraVector v2 = v1.applyReal(t -> -t*2.0) ;
 //		System.out.println(v2);
 //		System.out.println(v2[0]);
 //		System.out.println(v2.toList());
@@ -54,14 +54,22 @@ public class TestVector {
 //		System.out.println(z);
 //		System.out.println(-(2.0+j.cachedBuilder()) * j);
 
-		ComplexBuilder z = -(2.0+j.cachedBuilder()) ;
-		z.set(z*j).set(z*(j+1.0)).set(z*j);
+		ComplexBuilder z = new ComplexBuilder() ;
+//		z.set(z*j).set(z*(j+1.0)).set(z*j);
+		z = z << -2.0 << z-2.0*j << z*j << z*(j+1.0) << z*j ;
 		ComplexNumber w = z.toComplex() ;
+
+		AlgebraVector v3 = v1.apply(t -> w.cachedBuilder()*w *t) ;
+
+//		AlgebraVector v3 = v1.applyReal(t -> 2.1 *t) ;
 
 //		System.out.println(z);
 //		System.out.println(-(2.0+j) * j * (j+1.0) * j);
 
-		AlgebraVector v3 = v2.apply(t -> w.cachedBuilder() *t) ;
+//		ComplexNumber w = -(2.0+j) * j * (j+1.0) * j ;
+//		AlgebraVector v3 = v1.apply(t -> w *t) ;
+
+
 
 //		System.out.println(w);
 
@@ -139,14 +147,15 @@ public class TestVector {
 		timer.start();
 		RealVector v1 = MathUtils.linspace(-100.0, 100.0, 10_000_000) ;
 		RealVectorBuilder v2 = v1.getBuilder() ;
-//		v2 = v2.applyReal(Math::sin) ;
+		v2 = v2.applyReal(Math::sin) ;
 //		v2 = 3.0*v2-1.0 ;
-		for(int i=0, len=v2.size(); i<len; i++) {
-			v2.set(i, Math.sin(v2.atReal(i))) ;
-		}
+//		for(int i=0, len=v2.size(); i<len; i++) {
+//			v2.set(i, Math.sin(v2.atReal(i))) ;
+//		}
 		timer.stop();
 		System.out.println(timer);
-		System.out.println(v2.atIndex(0));
+//		System.out.println(v2.atIndex(0));
+
 	}
 
 	// test ComplexVector
@@ -179,9 +188,11 @@ public class TestVector {
 //		test3() ;
 //		test4() ;
 //		test5() ;
-//		test6() ;
+		for(int i=0; i<20; i++) {
+			test1() ;
+		}
 //		test7() ;
-		test8() ;
+//		test8() ;
 	}
 
 }

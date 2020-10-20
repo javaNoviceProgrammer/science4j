@@ -1,8 +1,10 @@
 package org.gsl4j.vector;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
+import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexNumber;
 import org.gsl4j.complex.RealNumber;
@@ -12,6 +14,8 @@ import org.gsl4j.function.MathFunction;
 
 
 public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder {
+
+	ComplexBuilder cb ;
 
 	public static boolean debug = false ;
 	public static long count = 0 ;
@@ -56,6 +60,102 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		}
 	}
 
+	@Override
+	public String toString() {
+		// initialize complex builder
+		if(cb != null) { cb.reset(); }
+		else { cb = new ComplexBuilder() ; }
+		// create a strign builder
+		StringBuilder sb = new StringBuilder() ;
+		sb.append("[") ;
+		for(int i=0; i<size-1; i++) {
+			cb.set(re[i], im[i]) ;
+			sb.append(cb.toString()).append(", ") ;
+			cb.reset();
+		}
+		cb.add(re[size-1], im[size-1]) ;
+		sb.append(cb.toString());
+		sb.append("]") ;
+		return sb.toString() ;
+	}
+
+	@Override
+	public ComplexNumber[] toArray() {
+		ComplexNumber[] a = new ComplexNumber[size] ;
+		for(int i=0; i<size; i++) {
+			a[i] = Complex.ofRect(re[i], im[i]) ;
+		}
+		return a ;
+	}
+
+	@Override
+	public List<ComplexNumber> toList() {
+		List<ComplexNumber> list = new ArrayList<>(size) ;
+		for(int i=0; i<size; i++) {
+			list.add(Complex.ofRect(re[i], im[i])) ;
+		}
+		return list ;
+	}
+
+	@Override
+	public ComplexVectorBuilder set(int index, double z) {
+		re[index] = z ;
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder setAll(double z) {
+		for(int i=0; i<size; i++) {
+			re[i] = z ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder set(int index, RealNumber z) {
+		re[index] = z.re() ;
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder setAll(RealNumber z) {
+		for(int i=0; i<size; i++) {
+			re[i] = z.re() ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder set(int index, double re, double im) {
+		this.re[index] = re ;
+		this.im[index] = im ;
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder setAll(double re, double im) {
+		for(int i=0; i<size; i++) {
+			this.re[i] = re ;
+			this.im[i] = im ;
+		}
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder set(int index, ComplexNumber z) {
+		this.re[index] = z.re() ;
+		this.im[index] = z.im() ;
+		return this ;
+	}
+
+	@Override
+	public ComplexVectorBuilder setAll(ComplexNumber z) {
+		for(int i=0; i<size; i++) {
+			this.re[i] = z.re() ;
+			this.im[i] = z.im() ;
+		}
+		return this ;
+	}
 
 	public ComplexVectorBuilder set(ComplexVector v) {
 		for(int i=0; i<size; i++) {
@@ -64,14 +164,6 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		}
 		return this ;
 	}
-
-
-
-
-
-
-
-
 
 	@Override
 	public int size() {
@@ -108,7 +200,6 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return im[index] ;
 	}
 
-
 	@Override
 	public void reset() {
 		for(int i=0; i<size; i++) {
@@ -138,6 +229,11 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return null;
 	}
 
+
+	//*********** support for algebraic operations *************
+
+	/*----- addition ------*/
+
 	@Override
 	public ComplexVectorBuilder add(AlgebraVector v) {
 		// TODO Auto-generated method stub
@@ -150,6 +246,10 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return null;
 	}
 
+
+
+	/*----- subtraction ------*/
+
 	@Override
 	public ComplexVectorBuilder subtract(AlgebraVector v) {
 		// TODO Auto-generated method stub
@@ -161,6 +261,11 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
+
+	/*----- multiplication ------*/
 
 	@Override
 	public ComplexVectorBuilder multiply(AlgebraVector v) {
@@ -186,53 +291,12 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return null;
 	}
 
-	@Override
-	public ComplexVectorBuilder set(int index, double z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ComplexVectorBuilder setAll(double z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ComplexVectorBuilder set(int index, RealNumber z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ComplexVectorBuilder setAll(RealNumber z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public ComplexVectorBuilder set(int index, double re, double im) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*----- division ------*/
 
-	@Override
-	public ComplexVectorBuilder setAll(double re, double im) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder set(int index, ComplexNumber z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexVectorBuilder setAll(ComplexNumber z) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ComplexVectorBuilder add(double v) {
@@ -432,17 +496,6 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 		return null;
 	}
 
-	@Override
-	public ComplexNumber[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ComplexNumber> toList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public ComplexVectorBuilder conjugate() {

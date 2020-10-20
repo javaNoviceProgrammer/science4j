@@ -177,6 +177,17 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		return this ;
 	}
 
+	public ComplexBuilder shiftLeft(ComplexNumber z) {
+		this.re = z.re() ;
+		this.im = z.im() ;
+		return this ;
+	}
+
+	public ComplexBuilder shiftLeft(double z) {
+		this.re = z ;
+		return this ;
+	}
+
 	//*********** support for complex math functions *************
 
 	@Override
