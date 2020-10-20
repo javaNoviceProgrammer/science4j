@@ -22,8 +22,8 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 	public static boolean debug = false ;
 	public static long count = 0 ;
 
-	final double[] x ;
-	final int size ;
+	double[] x ;
+	int size ;
 
 
 	public RealVectorBuilder(double... x) {
@@ -54,6 +54,14 @@ public class RealVectorBuilder implements RealAlgebraVector, VectorBuilder {
 			count++ ;
 			System.out.println("RealVectorBuilder count = " + count);
 		}
+	}
+
+	public RealVectorBuilder shiftLeft(RealAlgebraVector v) {
+		this.size = v.size() ;
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) ;
+		}
+		return this ;
 	}
 
 	@Override

@@ -36,7 +36,7 @@ public class RealVector implements RealAlgebraVector {
 
 	public RealVector(double... x) {
 		this.size = x.length ;
-		this.x = x ; // make new copy (clone)??  --> probably not (immutable)
+		this.x = x.clone() ; // make new copy (clone)??
 
 		if(debug) {
 			count++ ;

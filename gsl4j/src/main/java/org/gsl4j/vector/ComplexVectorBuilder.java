@@ -57,7 +57,13 @@ public class ComplexVectorBuilder implements ComplexAlgebraVector, VectorBuilder
 	}
 
 
-
+	public ComplexVectorBuilder set(ComplexVector v) {
+		for(int i=0; i<size; i++) {
+			re[i] = v.re[i] ;
+			im[i] = v.im[i] ;
+		}
+		return this ;
+	}
 
 
 

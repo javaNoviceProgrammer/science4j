@@ -137,13 +137,40 @@ public class TestVector {
 	public static void test6() {
 		Timer timer = new Timer() ;
 		timer.start();
-		RealVector v1 = MathUtils.linspace(-100.0, 100.0, 1_000_000) ;
+		RealVector v1 = MathUtils.linspace(-100.0, 100.0, 10_000_000) ;
 		RealVectorBuilder v2 = v1.getBuilder() ;
-		v2 = v2.applyReal(t -> 3.0*t-1.0) ;
+//		v2 = v2.applyReal(Math::sin) ;
 //		v2 = 3.0*v2-1.0 ;
+		for(int i=0, len=v2.size(); i<len; i++) {
+			v2.set(i, Math.sin(v2.atReal(i))) ;
+		}
 		timer.stop();
 		System.out.println(timer);
 		System.out.println(v2.atIndex(0));
+	}
+
+	// test ComplexVector
+	public static void test7() {
+		ComplexVector v1 = new ComplexVector(1.1, 2.2, -3.5, 7.0) ;
+		System.out.println(v1) ;
+		ComplexVector v2 = v1 + 2.0 ;
+		System.out.println(v2);
+		ComplexVector v3 = v2/2.0 ;
+		System.out.println(v3);
+		System.out.println(v3);
+		ComplexVector v4 = j/v3 * (j+1.0) ;
+		System.out.println(v4);
+	}
+
+	public static void test8() {
+		RealVector v1 = new RealVector(1.1, 2.2, -3.5) ;
+		System.out.println(v1);
+
+		RealVectorBuilder v2 = new RealVectorBuilder(3) ;
+		System.out.println(v2);
+
+		v2 = v2 << v2+2.0 << 3.0*v2 << v2/5.0 ;
+		System.out.println(v2);
 	}
 
 	public static void main(String[] args) {
@@ -152,7 +179,9 @@ public class TestVector {
 //		test3() ;
 //		test4() ;
 //		test5() ;
-		test6() ;
+//		test6() ;
+//		test7() ;
+		test8() ;
 	}
 
 }

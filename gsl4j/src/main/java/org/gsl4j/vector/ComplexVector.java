@@ -1,6 +1,7 @@
 package org.gsl4j.vector;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -14,7 +15,7 @@ import org.gsl4j.function.MathFunction;
 
 public class ComplexVector implements ComplexAlgebraVector {
 
-	ComplexBuilder temp ;
+	ComplexBuilder cb ;
 	ComplexVectorBuilder cvb ;
 
 	public static boolean debug = false ;
@@ -23,6 +24,10 @@ public class ComplexVector implements ComplexAlgebraVector {
 	double[] re ;
 	double[] im ;
 	int size ;
+
+	// auxiliary arrays for math operations
+	double[] x ;
+	double[] y ;
 
 	public ComplexVector(double[] re, double[] im) {
 		if(re.length != im.length) {
@@ -40,7 +45,7 @@ public class ComplexVector implements ComplexAlgebraVector {
 
 	public ComplexVector(double... re) {
 		this.size = re.length ;
-		this.re = re.clone() ; // make new copies
+		this.re = re.clone() ;       // make new copies
 		this.im = new double[size] ; // make new copies
 
 		if(debug) {
@@ -63,22 +68,38 @@ public class ComplexVector implements ComplexAlgebraVector {
 	@Override
 	public String toString() {
 		// initialize complex builder
-		if(temp != null) {
-			temp.reset();
-		} else {
-			temp = new ComplexBuilder() ;
-		}
+		if(cb != null) { cb.reset(); }
+		else { cb = new ComplexBuilder() ; }
+		// create a strign builder
 		StringBuilder sb = new StringBuilder() ;
 		sb.append("[") ;
 		for(int i=0; i<size-1; i++) {
-			temp.set(re[i], im[i]) ;
-			sb.append(temp.toString()).append(", ") ;
-			temp.reset();
+			cb.set(re[i], im[i]) ;
+			sb.append(cb.toString()).append(", ") ;
+			cb.reset();
 		}
-		temp.add(re[size-1], im[size-1]) ;
-		sb.append(temp.toString());
+		cb.add(re[size-1], im[size-1]) ;
+		sb.append(cb.toString());
 		sb.append("]") ;
 		return sb.toString() ;
+	}
+
+	@Override
+	public ComplexNumber[] toArray() {
+		ComplexNumber[] a = new ComplexNumber[size] ;
+		for(int i=0; i<size; i++) {
+			a[i] = Complex.ofRect(re[i], im[i]) ;
+		}
+		return a ;
+	}
+
+	@Override
+	public List<ComplexNumber> toList() {
+		List<ComplexNumber> list = new ArrayList<>(size) ;
+		for(int i=0; i<size; i++) {
+			list.add(Complex.ofRect(re[i], im[i])) ;
+		}
+		return list ;
 	}
 
 	@Override
@@ -108,359 +129,579 @@ public class ComplexVector implements ComplexAlgebraVector {
 
 	@Override
 	public double[] re() {
-		return re ;
+		return re.clone() ;
 	}
 
 	@Override
 	public double[] im() {
-		return im ;
+		return im.clone() ;
+	}
+
+	@Override
+	public ComplexVector conjugate() {
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			y[i] = -im[i] ;
+		}
+		return new ComplexVector(re, y) ;
 	}
 
 	@Override
 	public ComplexVectorBuilder getBuilder() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ComplexVectorBuilder(this) ;
 	}
 
 	@Override
 	public ComplexVectorBuilder cachedBuilder() {
-		// TODO Auto-generated method stub
-		return null;
+		if (cvb == null) { cvb = new ComplexVectorBuilder(this) ; }
+		else { cvb.set(this) ; }
+		return cvb ;
 	}
 
 
-
-
-
-
 	@Override
-	public AlgebraVector apply(Function<ComplexNumber, ComplexNumber> func) {
+	public ComplexVector apply(Function<ComplexNumber, ComplexNumber> func) {
 		// initialize the complex builder
-		if(temp != null) {
-			temp.reset();
-		} else {
-			temp = new ComplexBuilder() ;
-		}
+		if(cb != null) { cb.reset(); }
+		else { cb = new ComplexBuilder() ; }
 		// apply the function to the complex builder
 		for(int i=0; i<size; i++) {
-			temp.set(func.apply(temp));
-			re[i] = temp.re() ;
-			im[i] = temp.im() ;
+			cb.set(func.apply(cb));
+			re[i] = cb.re() ;
+			im[i] = cb.im() ;
 		}
 		return new ComplexVector(re, im) ;
 	}
 
 	@Override
-	public AlgebraVector applyReal(MathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public AlgebraVector applyComplex(ComplexMathFunction func) {
-		// initialize the complex builder
-		if(temp != null) {
-			temp.reset();
-		} else {
-			temp = new ComplexBuilder() ;
-		}
-		// apply the function to the complex builder
+	public ComplexVector applyReal(MathFunction func) {
 		for(int i=0; i<size; i++) {
-			temp.set(func.value(temp));
-			re[i] = temp.re() ;
-			im[i] = temp.im() ;
+			re[i] = func.value(re[i]) ; // apply to re and im parts separately
+			im[i] = func.value(im[i]) ;
 		}
 		return new ComplexVector(re, im) ;
 	}
 
-
-
-
-
-
 	@Override
-	public ComplexAlgebraVector add(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector applyComplex(ComplexMathFunction func) {
+		// initialize the complex builder
+		if(cb != null) { cb.reset(); }
+		else { cb = new ComplexBuilder() ; }
+		// apply the function to the complex builder
+		for(int i=0; i<size; i++) {
+			cb.set(func.value(cb));
+			re[i] = cb.re() ;
+			im[i] = cb.im() ;
+		}
+		return new ComplexVector(re, im) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector addRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector apply(ComplexMathFunction func) {
+		// initialize the complex builder
+		if(cb != null) { cb.reset(); }
+		else { cb = new ComplexBuilder() ; }
+		// apply the function to the complex builder
+		for(int i=0; i<size; i++) {
+			cb.set(func.value(cb));
+			re[i] = cb.re() ;
+			im[i] = cb.im() ;
+		}
+		return new ComplexVector(re, im) ;
+	}
+
+	//*********** support for algebraic operations *************
+
+	/*----- addition ------*/
+
+	@Override
+	public ComplexVector add(double v) {
+		if(x==null) { x = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] + v ;
+		}
+		return new ComplexVector(x, im) ;
 	}
 
 	@Override
-	public AlgebraVector add(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector addRev(double v) {
+		if(x==null) { x = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v + re[i] ;
+		}
+		return new ComplexVector(x, im) ;
 	}
 
 	@Override
-	public AlgebraVector addRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector add(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] + v.re() ;
+		}
+		return new ComplexVector(x, im) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector subtract(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector addRev(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() + re[i] ;
+		}
+		return new ComplexVector(x, im) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector subtractRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector add(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] + v.re() ;
+			y[i] = im[i] + v.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public AlgebraVector subtract(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector addRev(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() + re[i] ;
+			y[i] = v.im() + im[i] ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public AlgebraVector subtractRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector add(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] + v.atReal(i) ;
+			y[i] = im[i] + v.atImag(i) ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector multiply(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector addRev(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) + re[i] ;
+			y[i] = v.atImag(i) + im[i] ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector multiplyRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector add(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] + v.atReal(i) ;
+			y[i] = im[i] + v.atImag(i) ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public AlgebraVector multiply(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector addRev(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) + re[i] ;
+			y[i] = v.atImag(i) + im[i] ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	/*----- subtraction ------*/
+
+	@Override
+	public ComplexVector subtract(double v) {
+		if(x==null) { x = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] - v ;
+		}
+		return new ComplexVector(x, im) ;
 	}
 
 	@Override
-	public AlgebraVector multiplyRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector subtractRev(double v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v - re[i] ;
+			y[i] = -im[i] ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector divide(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector subtract(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] - v.re() ;
+		}
+		return new ComplexVector(x, im) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector divideRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector subtractRev(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() - re[i] ;
+			y[i] = -im[i] ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public AlgebraVector divide(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector subtract(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] - v.re() ;
+			y[i] = im[i] - v.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public AlgebraVector divideRev(AlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector subtractRev(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() - re[i] ;
+			y[i] = v.im() - im[i] ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector subtract(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] - v.atReal(i) ;
+			y[i] = im[i] - v.atImag(i) ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector subtractRev(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) - re[i] ;
+			y[i] = v.atImag(i) - im[i] ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector subtract(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] - v.atReal(i) ;
+			y[i] = im[i] - v.atImag(i) ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector subtractRev(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.atReal(i) - re[i] ;
+			y[i] = v.atImag(i) - im[i] ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	/*----- multiplication ------*/
+
+	@Override
+	public ComplexVector multiply(double v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] * v ;
+			y[i] = im[i] * v ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiplyRev(double v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v * re[i] ;
+			y[i] = v * im[i] ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiply(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] * v.re() ;
+			y[i] = im[i] * v.re() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiplyRev(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = v.re() * re[i] ;
+			y[i] = v.re() * im[i] ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiply(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.multiply(v) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiplyRev(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.multiplyRev(v) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiply(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.multiply(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiplyRev(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.multiplyRev(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiply(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.multiply(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector multiplyRev(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.multiplyRev(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	/*----- division ------*/
+
+	@Override
+	public ComplexVector divide(double v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] / v ;
+			y[i] = im[i] / v ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector divideRev(double v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divideRev(v) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector divide(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = re[i] / v.re() ;
+			y[i] = im[i] / v.re() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector divideRev(RealNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divideRev(v.re(), v.im()) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector divide(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divide(v.re(), v.im()) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
+	}
+
+	@Override
+	public ComplexVector divideRev(ComplexNumber v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divideRev(v.re(), v.im()) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 
 	@Override
-	public ComplexNumber[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector divide(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divide(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public List<ComplexNumber> toList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public ComplexAlgebraVector conjugate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public ComplexAlgebraVector apply(ComplexMathFunction func) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector divideRev(AlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divideRev(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector add(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector divide(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divide(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
 
 	@Override
-	public ComplexAlgebraVector addRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector divideRev(ComplexAlgebraVector v) {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		if(cb==null) { cb = new ComplexBuilder() ; }
+		for(int i=0; i<size; i++) {
+			cb.set(re[i], im[i]) ;
+			cb.divideRev(v.atReal(i), v.atImag(i)) ;
+			x[i] = cb.re() ;
+			y[i] = cb.im() ;
+		}
+		return new ComplexVector(x, y) ;
 	}
+
+	/*----- negation ------*/
 
 	@Override
-	public ComplexAlgebraVector add(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
+	public ComplexVector negate() {
+		if(x==null) { x = new double[size] ; }
+		if(y==null) { y = new double[size] ; }
+		for(int i=0; i<size; i++) {
+			x[i] = -re[i] ;
+			y[i] = -im[i] ;
+		}
+		return new ComplexVector(x, y) ;
 	}
-
-	@Override
-	public ComplexAlgebraVector addRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector subtract(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector subtractRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector subtract(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector subtractRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector multiply(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector multiplyRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector multiply(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector multiplyRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector divide(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector divideRev(RealNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector divide(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector divideRev(ComplexNumber v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector add(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector addRev(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector subtract(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector subtractRev(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector multiply(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector multiplyRev(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector divide(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector divideRev(ComplexAlgebraVector v) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ComplexAlgebraVector negate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
-
-
-
-
-
-
-
 
 }
