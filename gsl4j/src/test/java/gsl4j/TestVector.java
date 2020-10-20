@@ -59,7 +59,7 @@ public class TestVector {
 		z = z << -2.0 << z-2.0*j << z*j << z*(j+1.0) << z*j ;
 		ComplexNumber w = z.toComplex() ;
 
-		AlgebraVector v3 = v1.apply(t -> w.cachedBuilder()*w *t) ;
+		AlgebraVector v3 = v1.apply(t -> w.cachedBuilder() *t) ;
 
 //		AlgebraVector v3 = v1.applyReal(t -> 2.1 *t) ;
 
