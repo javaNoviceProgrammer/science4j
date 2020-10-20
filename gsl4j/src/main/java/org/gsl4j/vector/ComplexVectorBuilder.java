@@ -1,4 +1,4 @@
-package org.gsl4j.matrix;
+package org.gsl4j.vector;
 
 import java.util.List;
 import java.util.function.Function;
