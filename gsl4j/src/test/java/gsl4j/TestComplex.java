@@ -4,16 +4,33 @@ import org.gsl4j.complex.Real;
 import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.complex.RealNumber;
 import org.gsl4j.function.MathFunction;
+import org.gsl4j.vector.ComplexVector;
+import org.gsl4j.vector.ComplexVectorBuilder;
+import org.gsl4j.vector.RealVector;
+import org.gsl4j.vector.RealVectorBuilder;
 
 import static org.gsl4j.complex.Complex.* ;
 
 import org.gsl4j.complex.Complex;
+import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
 import org.gsl4j.complex.ComplexNumber;
 
 
 
 public class TestComplex {
+
+	static {
+		Complex.debug = true ;
+		Real.debug = true ;
+		RealBuilder.debug = true ;
+		ComplexBuilder.debug = true ;
+
+		RealVector.debug = true ;
+		RealVectorBuilder.debug = true ;
+		ComplexVector.debug = true ;
+		ComplexVectorBuilder.debug = true ;
+	}
 
 	public static void test1() {
 		Real r1 = 2.3 ;
@@ -123,6 +140,16 @@ public class TestComplex {
 		System.out.println(func.boxedValue(r2).getBuilder().getClass());
 	}
 
+	public static void test8() {
+		Real r1 = 2.3 ;
+		System.out.println(r1);
+		// ((2*x+1)/3+2)*(x-5.0)/(0.5*x*x+1)
+		double result = ((2*r1.re()+1)/3+2)*(r1.re()-5.0) /(0.5*r1.re()*r1.re()+1) ;
+		System.out.println(result);
+		double x = 2.3 ;
+		System.out.println(((2*x+1)/3+2)*(x-5.0) /(0.5*x*x+1));
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
@@ -130,7 +157,8 @@ public class TestComplex {
 //		test4() ;
 //		test5() ;
 //		test6() ;
-		test7() ;
+//		test7() ;
+		test8() ;
 	}
 
 }

@@ -23,11 +23,14 @@ public class RealBuilder implements Serializable, RealNumber {
 
 	double x ;
 
+	// auxiliary parameter
+	double y ;
+
 	public RealBuilder() {
 		x = 0.0 ;
 		if(debug) {
 			count++ ;
-			System.out.println("Real count = " + count);
+			System.out.println("RealBuilder count = " + count);
 		}
 	}
 
@@ -35,7 +38,7 @@ public class RealBuilder implements Serializable, RealNumber {
 		x = v ;
 		if(debug) {
 			count++ ;
-			System.out.println("Real count = " + count);
+			System.out.println("RealBuilder count = " + count);
 		}
 	}
 
@@ -43,7 +46,7 @@ public class RealBuilder implements Serializable, RealNumber {
 		x = v.x ;
 		if(debug) {
 			count++ ;
-			System.out.println("Real count = " + count);
+			System.out.println("RealBuilder count = " + count);
 		}
 	}
 
@@ -400,19 +403,21 @@ public class RealBuilder implements Serializable, RealNumber {
 	}
 
 	public RealBuilder divide(RealBuilder v) {
-		return v.divide(x) ;
+		x = x / v.x ;
+		return this ;
 	}
 
 	public RealBuilder divideRev(RealBuilder v) {
-		return v.divideRev(x) ;
+		x = v.x / x ;
+		return this ;
 	}
 
 	public ComplexBuilder divide(ComplexBuilder v) {
-		return v.divide(x) ;
+		return v.divideRev(x) ;
 	}
 
 	public ComplexBuilder divideRev(ComplexBuilder v) {
-		return v.divideRev(x) ;
+		return v.divide(x) ;
 	}
 
 	/*----- negation ------*/

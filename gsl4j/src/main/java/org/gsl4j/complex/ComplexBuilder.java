@@ -19,6 +19,10 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	private double re ;
 	private double im ;
 
+	// auxiliary
+	double x ;
+	double y ;
+
 	public static boolean debug = false ;
 	public static long count = 0 ;
 

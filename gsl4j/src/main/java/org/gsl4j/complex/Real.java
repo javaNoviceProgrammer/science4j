@@ -96,6 +96,7 @@ public final class Real implements Serializable, RealNumber {
 		} else {
 			rb.set(this) ;
 		}
+		System.out.println("cached builder value = " + rb.x);
 		return rb ;
 	}
 
