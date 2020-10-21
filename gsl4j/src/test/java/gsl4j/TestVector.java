@@ -19,6 +19,7 @@ import org.gsl4j.vector.RealAlgebraVector;
 import org.gsl4j.vector.RealVector;
 import org.gsl4j.vector.RealVectorBuilder;
 import org.gsl4j.vector.VectorBuilder;
+import org.gsl4j.vector.VectorMath;
 
 
 public class TestVector {
@@ -182,17 +183,54 @@ public class TestVector {
 		System.out.println(v2);
 	}
 
+	public static void test9() {
+		Timer timer = new Timer() ;
+		timer.start();
+		double[] v1 = MathUtils.linspace(-100.0, 100.0, 10_000_000) ;
+		double[] v2 = MathUtils.linspace(-10.0, 10.0, 10_000_000) ;
+		double[] result = new double[v1.length] ;
+		VectorMath.mul(v1, v2, result) ;
+//		System.out.println(result[0]);
+//		System.out.println(result[result.length-1]);
+		timer.stop();
+		timer.show();
+	}
+
+	public static void test10() {
+		Timer timer = new Timer() ;
+		timer.start();
+		double[] v1 = MathUtils.linspace(-100.0, 100.0, 10_000_000) ;
+		double[] v2 = MathUtils.linspace(-10.0, 10.0, 10_000_000) ;
+		double[] result = new double[v1.length] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = v1[i] * v2[i] ;
+//		System.out.println(result[0]);
+//		System.out.println(result[result.length-1]);
+		timer.stop();
+		timer.show();
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
 //		test5() ;
-		for(int i=0; i<20; i++) {
-			test1() ;
-		}
+//		for(int i=0; i<20; i++) {
+//			test1() ;
+//		}
 //		test7() ;
 //		test8() ;
+//		test9() ;
+
+		for(int i=0; i<20; i++)
+			test10() ;
+
+		System.out.println("===============");
+
+		for(int i=0; i<20; i++)
+			test9() ;
+
 	}
 
 }
