@@ -29,51 +29,96 @@ public class VectorMath {
 
 	}
 
-	// Accessing vector elements
-	public static native double get(double[] vec, int i) ;
-	public static native void set(double[] vec, int i, double x) ;
+	// Vector operations (real vector, real vector) : no return
 
-	// Initializing vector elements
-	public static native void setAll(double[] vec, double x) ;
-	public static native void setZero(double[] vec) ;
-	public static native void setBasis(double[] vec, int i) ;
+	public static native void add(double[] vec1, double[] vec2, double[] result) ;
+	public static native void sub(double[] vec1, double[] vec2, double[] result) ;
+	public static native void mul(double[] vec1, double[] vec2, double[] result) ;
+	public static native void div(double[] vec1, double[] vec2, double[] result) ;
 
-	// Vector views
-	public static native double[] subVector(double[] vec, int offset, int n) ;
-	public static native double[] subVectorWithStride(double[] vec, int offset, int stride, int n) ;
+	public static native void addRev(double[] vec1, double[] vec2, double[] result) ;
+	public static native void subRev(double[] vec1, double[] vec2, double[] result) ;
+	public static native void mulRev(double[] vec1, double[] vec2, double[] result) ;
+	public static native void divRev(double[] vec1, double[] vec2, double[] result) ;
 
-	// Copying vectors
-	public static native void memcpy(double[] dest, double[] src) ;
-	public static native void swap(double[] v, double[] w) ;
+	public static native void add(double[] vec1, double x, double[] result) ;
+	public static native void sub(double[] vec1, double x, double[] result) ;
+	public static native void mul(double[] vec1, double x, double[] result) ;
+	public static native void div(double[] vec1, double x, double[] result) ;
 
-	// Exchanging elements
-	public static native double[] swapElements(double[] vec, int i, int j) ;
-	public static native double[] reverse(double[] vec) ;
+	public static native void addRev(double[] vec1, double x, double[] result) ;
+	public static native void subRev(double[] vec1, double x, double[] result) ;
+	public static native void mulRev(double[] vec1, double x, double[] result) ;
+	public static native void divRev(double[] vec1, double x, double[] result) ;
 
-	// Vector operations
-	public static native double[] add(double[] vec1, double[] vec2) ;
-	public static native double[] sub(double[] vec1, double[] vec2) ;
-	public static native double[] mul(double[] vec1, double[] vec2) ;
-	public static native double[] div(double[] vec1, double[] vec2) ;
-	public static native double[] scale(double[] vec1, double alpha) ;
-		/* rename this to add */
-	public static native double[] addConstant(double[] vec1, double x) ;
-	public static native double[] axpby(double a, double[] x, double b, double[] y) ;
+	public static native void axpby(double a, double[] x, double b, double[] y, double[] result) ;
 
-	// Finding maximum and minimum elements of vectors
-	public static native double max(double[] vec) ;
-	public static native double min(double[] vec) ;
-	public static native double[] minmax(double[] vec) ;
-	public static native int maxIndex(double[] vec) ;
-	public static native int minIndex(double[] vec) ;
-	public static native int[] minmaxIndex(double[] vec) ;
 
-	// Vector properties
-	public static native boolean isZero(double[] vec) ;
-	public static native boolean isPositive(double[] vec) ;
-	public static native boolean isNegative(double[] vec) ;
-	public static native boolean isNonNegative(double[] vec) ;
-	public static native boolean equal(double[] u, double[] v) ;
+
+
+
+
+
+
+	// Vector operations (real vector, real vector) : with return
+
+//	public static native double[] add(double[] vec1, double[] vec2) ;
+//	public static native double[] sub(double[] vec1, double[] vec2) ;
+//	public static native double[] mul(double[] vec1, double[] vec2) ;
+//	public static native double[] div(double[] vec1, double[] vec2) ;
+//	public static native double[] scale(double[] vec1, double alpha) ;
+//
+//	public static native double[] add(double[] vec1, double x) ;
+//	public static native double[] axpby(double a, double[] x, double b, double[] y) ;
+
+	// Vector operations (complex vector, real vector)
+
+
+	// Vector operations (complex vector, complex vector)
+
+
+
+
+
+
+
+//	// Accessing vector elements
+//	public static native double get(double[] vec, int i) ;
+//	public static native void set(double[] vec, int i, double x) ;
+//
+//	// Initializing vector elements
+//	public static native void setAll(double[] vec, double x) ;
+//	public static native void setZero(double[] vec) ;
+//	public static native void setBasis(double[] vec, int i) ;
+//
+//	// Vector views
+//	public static native double[] subVector(double[] vec, int offset, int n) ;
+//	public static native double[] subVectorWithStride(double[] vec, int offset, int stride, int n) ;
+//
+//	// Copying vectors
+//	public static native void memcpy(double[] dest, double[] src) ;
+//	public static native void swap(double[] v, double[] w) ;
+//
+//	// Exchanging elements
+//	public static native double[] swapElements(double[] vec, int i, int j) ;
+//	public static native double[] reverse(double[] vec) ;
+//
+//
+//
+//	// Finding maximum and minimum elements of vectors
+//	public static native double max(double[] vec) ;
+//	public static native double min(double[] vec) ;
+//	public static native double[] minmax(double[] vec) ;
+//	public static native int maxIndex(double[] vec) ;
+//	public static native int minIndex(double[] vec) ;
+//	public static native int[] minmaxIndex(double[] vec) ;
+//
+//	// Vector properties
+//	public static native boolean isZero(double[] vec) ;
+//	public static native boolean isPositive(double[] vec) ;
+//	public static native boolean isNegative(double[] vec) ;
+//	public static native boolean isNonNegative(double[] vec) ;
+//	public static native boolean equal(double[] u, double[] v) ;
 
 
 }

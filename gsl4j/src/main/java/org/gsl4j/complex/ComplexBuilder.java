@@ -183,6 +183,11 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		return this ;
 	}
 
+	public ComplexBuilder shiftLeft(Real z) {
+		this.re = z.x ;
+		return this ;
+	}
+
 	public ComplexBuilder shiftLeft(double z) {
 		this.re = z ;
 		return this ;

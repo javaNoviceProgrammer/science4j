@@ -106,6 +106,21 @@ public class RealBuilder implements Serializable, RealNumber {
 		return this ;
 	}
 
+	public RealBuilder shiftLeft(Real z) {
+		this.x = z.x ;
+		return this ;
+	}
+
+	public RealBuilder shiftLeft(RealBuilder z) {
+		this.x = z.x ;
+		return this ;
+	}
+
+	public RealBuilder shiftLeft(double z) {
+		this.x = z ;
+		return this ;
+	}
+
 	//*********** support for complex math functions *************
 
 	@Override

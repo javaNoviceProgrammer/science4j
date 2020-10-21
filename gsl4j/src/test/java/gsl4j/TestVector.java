@@ -41,7 +41,7 @@ public class TestVector {
 		Timer timer = new Timer() ;
 		timer.start();
 
-		AlgebraVector v1 = new RealVector(MathUtils.linspace(-100.0, 100.0, 10_000_000)) ;
+		AlgebraVector v1 = new RealVector(MathUtils.linspace(-100.0, 100.0, 1_000_000)) ;
 //		System.out.println(v1);
 //		System.out.println(v1.getClass());
 //		System.out.println(v1.size());
@@ -56,10 +56,10 @@ public class TestVector {
 
 		ComplexBuilder z = new ComplexBuilder() ;
 //		z.set(z*j).set(z*(j+1.0)).set(z*j);
-		z = z << -2.0 << z-2.0*j << z*j << z*(j+1.0) << z*j ;
+		z = z << -2.0 << z-2.0*j << z*j << z*(j+1.0) << z*j << ComplexMath.sin(z) ;
 		ComplexNumber w = z.toComplex() ;
 
-		AlgebraVector v3 = v1.apply(t -> w.cachedBuilder() *t) ;
+		AlgebraVector v3 = v1.apply(t -> ComplexMath.sin(w.cachedBuilder()) * t) ;
 
 //		AlgebraVector v3 = v1.applyReal(t -> 2.1 *t) ;
 
@@ -67,7 +67,7 @@ public class TestVector {
 //		System.out.println(-(2.0+j) * j * (j+1.0) * j);
 
 //		ComplexNumber w = -(2.0+j) * j * (j+1.0) * j ;
-//		AlgebraVector v3 = v1.apply(t -> w *t) ;
+//		AlgebraVector v3 = v1.apply(t -> ComplexMath.sin(w) *t) ;
 
 
 
