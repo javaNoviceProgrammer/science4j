@@ -9,5 +9,11 @@ package org.gsl4j.function;
  */
 @FunctionalInterface
 public interface VectorMathFunction {
+
+	/**
+	 *
+	 * @param x
+	 * @return
+	 */
 	double[] value(double... x) ;
 }

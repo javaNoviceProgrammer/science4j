@@ -1,7 +1,10 @@
 package org.gsl4j.function;
 
+import java.util.Arrays;
+
 import org.gsl4j.complex.Real;
 import org.gsl4j.complex.RealNumber;
+import org.gsl4j.diff.NumericalDiff;
 
 /**
  * Represents a real-valued single-variable function f(x).
@@ -49,6 +52,22 @@ public interface MathFunction {
 	 */
 	default RealNumber boxedValue(RealNumber x) {
 		return boxedValue(x.re()) ;
+	}
+
+	default MathFunction compose(MathFunction func) {
+		return x -> value(func.value(x)) ;
+	}
+
+	default MathFunction deriv() {
+		return x -> NumericalDiff.central(this, x, 0.1) ;
+	}
+
+	default MathFunction deriv2() {
+		return x -> NumericalDiff.central(this.deriv(), x, 0.1) ;
+	}
+
+	default double[] value(double[] x) {
+		return Arrays.stream(x).map(this::value).toArray() ;
 	}
 
 
