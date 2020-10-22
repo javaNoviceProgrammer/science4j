@@ -50,7 +50,7 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
 	// stack allocation: len < 100_000
-	if(len <= 100000) {
+	if(len <= 50000) {
 		jdouble v1[len] ;
 		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
 		jdouble v2[len] ;
@@ -84,7 +84,7 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
 	// stack allocation: len < 100_000
-	if(len <= 100000) {
+	if(len <= 50000) {
 		jdouble v1[len] ;
 		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
 		jdouble v2[len] ;
@@ -118,7 +118,7 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
 	// stack allocation: len < 100_000
-	if(len <= 100000) {
+	if(len <= 50000) {
 		jdouble v1[len] ;
 		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
 		jdouble v2[len] ;
