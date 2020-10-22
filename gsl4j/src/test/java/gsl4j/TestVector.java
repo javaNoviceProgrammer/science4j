@@ -2,19 +2,13 @@ package gsl4j;
 
 import static org.gsl4j.complex.Complex.j;
 
-import java.util.function.Function;
-
-import org.gsl4j.complex.Complex;
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
 import org.gsl4j.complex.ComplexNumber;
-import org.gsl4j.complex.Real;
-import org.gsl4j.complex.RealBuilder;
 import org.gsl4j.util.MathUtils;
 import org.gsl4j.util.Timer;
 import org.gsl4j.vector.AlgebraVector;
 import org.gsl4j.vector.ComplexVector;
-import org.gsl4j.vector.ComplexVectorBuilder;
 import org.gsl4j.vector.RealAlgebraVector;
 import org.gsl4j.vector.RealVector;
 import org.gsl4j.vector.RealVectorBuilder;
