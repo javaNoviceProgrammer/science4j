@@ -16,4 +16,14 @@ public interface VectorMathFunction {
 	 * @return
 	 */
 	double[] value(double... x) ;
+
+
+	default MultiVariateMathFunction at(int k) {
+		return x -> value(x)[k] ;
+	}
+
+	default MultiVariateMathFunction get(int k) {
+		return x -> value(x)[k] ;
+	}
+
 }

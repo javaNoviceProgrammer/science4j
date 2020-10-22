@@ -54,6 +54,10 @@ public interface MathFunction {
 		return boxedValue(x.re()) ;
 	}
 
+	default double[] value(double[] x) {
+		return Arrays.stream(x).map(this::value).toArray() ;
+	}
+
 	default MathFunction compose(MathFunction func) {
 		return x -> value(func.value(x)) ;
 	}
@@ -64,10 +68,6 @@ public interface MathFunction {
 
 	default MathFunction deriv2() {
 		return x -> NumericalDiff.central(this.deriv(), x, 0.1) ;
-	}
-
-	default double[] value(double[] x) {
-		return Arrays.stream(x).map(this::value).toArray() ;
 	}
 
 
