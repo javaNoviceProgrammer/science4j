@@ -9,7 +9,7 @@ import org.gsl4j.complex.ComplexNumber;
  *
  */
 @FunctionalInterface
-public interface MultivariateComplexMathFunction {
+public interface MultiVariateComplexMathFunction {
 
 	ComplexNumber value(ComplexNumber... z) ;
 

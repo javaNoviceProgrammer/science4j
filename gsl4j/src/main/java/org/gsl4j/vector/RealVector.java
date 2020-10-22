@@ -2,7 +2,9 @@ package org.gsl4j.vector;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.gsl4j.complex.ComplexBuilder;
@@ -23,6 +25,8 @@ public class RealVector implements RealAlgebraVector {
 
 	private RealVectorBuilder rvb ;
 	private ComplexBuilder cb ;
+
+	private Map<Integer, Real> cache ;
 
 	public static boolean debug = false ;
 	public static long count = 0 ;
@@ -88,13 +92,39 @@ public class RealVector implements RealAlgebraVector {
 	}
 
 	@Override
-	public Real at(int index) {
-		return Real.of(x[index]) ;
+	public Real at(int index) { // cache the returned value
+//		return Real.of(x[index]) ;
+
+		if(cache == null) {
+			cache = new HashMap<>() ;
+			Real v = Real.of(x[index]) ;
+			cache.put(index, v) ;
+			return v ;
+		}
+		else if(cache.containsKey(index)) {
+			return cache.get(index) ;
+		}
+		else {
+			return Real.of(x[index]) ;
+		}
 	}
 
 	@Override
-	public Real get(int index) {
-		return Real.of(x[index]) ;
+	public Real get(int index) { // cache the returned value
+//		return Real.of(x[index]) ;
+
+		if(cache == null) {
+			cache = new HashMap<>() ;
+			Real v = Real.of(x[index]) ;
+			cache.put(index, v) ;
+			return v ;
+		}
+		else if(cache.containsKey(index)) {
+			return cache.get(index) ;
+		}
+		else {
+			return Real.of(x[index]) ;
+		}
 	}
 
 	@Override

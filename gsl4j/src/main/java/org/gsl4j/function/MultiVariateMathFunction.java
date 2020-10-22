@@ -36,5 +36,21 @@ public interface MultiVariateMathFunction {
 		}, x[varIndex], 0.1) ;
 	}
 
+	default MultiVariateMathFunction deriv2(int varIndex, double h) {
+		return this.deriv(varIndex, h).deriv(varIndex, h) ;
+	}
+
+	default MultiVariateMathFunction deriv2(int varIndex) {
+		return this.deriv(varIndex).deriv(varIndex) ;
+	}
+
+	default MultiVariateMathFunction deriv2(int var1Index, int var2Index, double h) {
+		return this.deriv(var1Index, h).deriv(var2Index, h) ;
+	}
+
+	default MultiVariateMathFunction deriv2(int var1Index, int var2Index) {
+		return this.deriv(var1Index).deriv(var2Index) ;
+	}
+
 
 }
