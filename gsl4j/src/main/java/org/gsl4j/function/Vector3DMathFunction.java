@@ -13,7 +13,7 @@ public interface Vector3DMathFunction extends VectorMathFunction {
 	}
 
 	default MultiVariateMathFunction third() {
-		return x -> value(x)[1] ;
+		return x -> value(x)[2] ;
 	}
 
 

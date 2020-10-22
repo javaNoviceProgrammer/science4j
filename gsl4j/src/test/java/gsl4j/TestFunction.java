@@ -2,6 +2,7 @@ package gsl4j;
 
 import org.gsl4j.function.MathFunction;
 import org.gsl4j.function.MultiVariateMathFunction;
+import org.gsl4j.function.Vector3DCartesianMathFunction;
 import org.gsl4j.function.VectorMathFunction;
 import org.gsl4j.plot.style.Color;
 import org.gsl4j.plot.xy.XYPlot;
@@ -55,7 +56,14 @@ public class TestFunction {
 	}
 
 	public static void test4() {
+		// v = [x+y, z*x, -y] --> div(v) = 1 + 0 + 0 = 1
+		Vector3DCartesianMathFunction vec = xyz -> {
+			double x = xyz[0], y = xyz[1], z = xyz[2] ;
+			return new double[] {x*z+y, z*x, -y} ;
+		} ;
 
+		MultiVariateMathFunction divV = vec.div() ;
+		System.out.println(divV.value(1.0, 2.0, -5.0));
 	}
 
 	public static void main(String[] args) {
