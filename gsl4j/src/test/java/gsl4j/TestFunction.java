@@ -9,6 +9,7 @@ import org.gsl4j.function.VectorMathFunction;
 import org.gsl4j.plot.style.Color;
 import org.gsl4j.plot.xy.XYPlot;
 import org.gsl4j.util.MathUtils;
+import org.gsl4j.util.Timer;
 
 public class TestFunction {
 
@@ -112,6 +113,14 @@ public class TestFunction {
 		// f3 = f1 + f2 = x + y + x*y
 		MultiVariateMathFunction f3 = f1 + f2 ;
 		System.out.println(f3.value(1.1, 2.2)); // 2.42 + 3.3
+
+		Timer timer = new Timer() ;
+		timer.start();
+		for(int i=0; i<1_000_000; i++) {
+			f3.value(i, 2.0*i) ;
+		}
+		timer.stop();
+		timer.show();
 
 	}
 

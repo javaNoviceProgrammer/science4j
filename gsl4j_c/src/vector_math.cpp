@@ -7,6 +7,8 @@
 
 #include "../headers/org_gsl4j_vector_VectorMath.h"
 
+#include <iostream>
+
 /*
  * Class:     org_gsl4j_vector_VectorMath
  * Method:    add
@@ -15,30 +17,13 @@
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation: len < 100_000
-	if(len <= 100000) {
-		jdouble v1[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble v2[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v2[i] += v1[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v2) ;
+	// stack allocation
+	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
+	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
+	for(int i=0; i<len; i++) {
+		v1[i] += v2[i] ;
 	}
-	// heap allocation: len > 100_000
-	else {
-		jdouble* v1 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble* v2 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] += v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
-		delete[] v1 ;
-		delete[] v2 ;
-	}
+	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
 }
 
 /*
@@ -49,30 +34,13 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3D_3D_3D
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation: len < 100_000
-	if(len <= 50000) {
-		jdouble v1[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble v2[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] -= v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+	// stack allocation
+	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
+	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
+	for(int i=0; i<len; i++) {
+		v1[i] -= v2[i] ;
 	}
-	// heap allocation: len > 100_000
-	else {
-		jdouble* v1 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble* v2 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] -= v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
-		delete[] v1 ;
-		delete[] v2 ;
-	}
+	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
 }
 
 /*
@@ -83,30 +51,15 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation: len < 100_000
-	if(len <= 50000) {
-		jdouble v1[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble v2[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] *= v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+	// stack allocation
+	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
+	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
+	for(int i=0; i<len; i++) {
+		v1[i] = v1[i] * v2[i] ;
 	}
-	// heap allocation: len > 100_000
-	else {
-		jdouble* v1 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble* v2 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] *= v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
-		delete[] v1 ;
-		delete[] v2 ;
-	}
+	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+	delete[] v1 ;
+	delete[] v2 ;
 }
 
 /*
@@ -117,30 +70,13 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation: len < 100_000
-	if(len <= 50000) {
-		jdouble v1[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble v2[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] /= v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+	// stack allocation
+	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
+	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
+	for(int i=0; i<len; i++) {
+		v1[i] /= v2[i] ;
 	}
-	// heap allocation: len > 100_000
-	else {
-		jdouble* v1 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec1, 0, len, v1) ;
-		jdouble* v2 = new jdouble[len] ;
-		jvm -> GetDoubleArrayRegion(vec2, 0, len, v2) ;
-		for(int i=0; i<len; i++) {
-			v1[i] /= v2[i] ;
-		}
-		jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
-		delete[] v1 ;
-		delete[] v2 ;
-	}
+	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
 }
 
 /*
