@@ -16,14 +16,7 @@
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
-	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation
-	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
-	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
-	for(int i=0; i<len; i++) {
-		v1[i] += v2[i] ;
-	}
-	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+
 }
 
 /*
@@ -33,14 +26,7 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3D_3D_3D
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
-	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation
-	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
-	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
-	for(int i=0; i<len; i++) {
-		v1[i] -= v2[i] ;
-	}
-	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+
 }
 
 /*
@@ -51,15 +37,24 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation
-	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
-	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
-	for(int i=0; i<len; i++) {
-		v1[i] = v1[i] * v2[i] ;
+	jboolean isCopy1 {true} ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, &isCopy1) ;
+//	std::cout << std::boolalpha << (bool)isCopy1 << std::endl ;
+	jboolean isCopy2 {true} ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, &isCopy2) ;
+//	std::cout << std::boolalpha << (bool)isCopy2 << std::endl ;
+	jboolean isCopy3 {true} ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, &isCopy3) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v1[i] * v2[i] ;
 	}
-	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
-	delete[] v1 ;
-	delete[] v2 ;
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
+
 }
 
 /*
@@ -69,14 +64,7 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
-	jint len = jvm -> GetArrayLength(vec1) ;
-	// stack allocation
-	jdouble* v1 = jvm -> GetDoubleArrayElements(vec1, 0) ;
-	jdouble* v2 = jvm -> GetDoubleArrayElements(vec2, 0) ;
-	for(int i=0; i<len; i++) {
-		v1[i] /= v2[i] ;
-	}
-	jvm -> SetDoubleArrayRegion(result, 0, len, v1) ;
+
 }
 
 /*

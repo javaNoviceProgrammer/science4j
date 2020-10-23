@@ -116,7 +116,7 @@ public class TestFunction {
 
 		Timer timer = new Timer() ;
 		timer.start();
-		for(int i=0; i<1_000_000; i++) {
+		for(int i=0; i<10_000_000; i++) {
 			f3.value(i, 2.0*i) ;
 		}
 		timer.stop();

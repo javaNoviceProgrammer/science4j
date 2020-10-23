@@ -2,6 +2,8 @@ package gsl4j;
 
 import static org.gsl4j.complex.Complex.j;
 
+import java.util.Arrays;
+
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexMath;
 import org.gsl4j.complex.ComplexNumber;
@@ -184,8 +186,7 @@ public class TestVector {
 		double[] v2 = MathUtils.linspace(-10.0, 10.0, 10_000_000) ;
 		double[] result = new double[v1.length] ;
 		VectorMath.mul(v1, v2, result) ;
-//		System.out.println(result[0]);
-//		System.out.println(result[result.length-1]);
+//		System.out.println(Arrays.toString(result));
 		timer.stop();
 		timer.show();
 	}
@@ -198,8 +199,7 @@ public class TestVector {
 		double[] result = new double[v1.length] ;
 		for(int i=0; i<result.length; i++)
 			result[i] = v1[i] * v2[i] ;
-//		System.out.println(result[0]);
-//		System.out.println(result[result.length-1]);
+//		System.out.println(Arrays.toString(result));
 		timer.stop();
 		timer.show();
 	}
@@ -217,13 +217,17 @@ public class TestVector {
 //		test8() ;
 //		test9() ;
 
-		for(int i=0; i<10; i++)
+		for(int i=0; i<2; i++)
 			test10() ;
+
+		System.out.println("<<<<<===============>>>>>");
+
+		for(int i=0; i<2; i++)
+			test9() ;
 
 		System.out.println("===============");
 
-		for(int i=0; i<10; i++)
-			test9() ;
+
 
 	}
 
