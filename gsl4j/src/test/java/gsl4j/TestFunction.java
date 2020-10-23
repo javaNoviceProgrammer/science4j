@@ -1,5 +1,7 @@
 package gsl4j;
 
+import java.util.Arrays;
+
 import org.gsl4j.function.MathFunction;
 import org.gsl4j.function.MultiVariateMathFunction;
 import org.gsl4j.function.Vector3DCartesianMathFunction;
@@ -56,14 +58,50 @@ public class TestFunction {
 	}
 
 	public static void test4() {
-		// v = [x+y, z*x, -y] --> div(v) = 1 + 0 + 0 = 1
+		// v = [x*z+y, z*x*y, -y] --> div(v) = 1 + 0 + 0 = 1
 		Vector3DCartesianMathFunction vec = xyz -> {
 			double x = xyz[0], y = xyz[1], z = xyz[2] ;
-			return new double[] {x*z+y, z*x, -y} ;
+			return new double[] {x*z+y, z*x*y, -y} ;
 		} ;
 
 		MultiVariateMathFunction divV = vec.div() ;
-		System.out.println(divV.value(1.0, 2.0, -5.0));
+		System.out.println(divV.value(1.0, 2.0, -5.0)) ;
+
+		// curl(v) = [-1-x*y, x-0, y*z-1]
+		Vector3DCartesianMathFunction curlV = vec.curl() ;
+		System.out.println(Arrays.toString(curlV.value(-1, 2, -5)));
+
+		// div(curl(v)) == 0 Always true
+		MultiVariateMathFunction divCurlV = curlV.div() ;
+		System.out.println(divCurlV.value(-10.1, 2.2, -5.5));
+
+	}
+
+	public static void test5() {
+		MathFunction f1 = x -> 2.0*x ;
+		MathFunction f2 = x -> x + 1.0 ;
+		MathFunction f3 = f1 + f2 ; // 3x+1
+		System.out.println(f3.value(2.0));
+		System.out.println(f3.getClass());
+
+		MathFunction f4 = f1 - f2 ; // x-1
+		System.out.println(f4.value(2.0));
+		System.out.println(f4.getClass());
+
+		MathFunction f5 = f1 * f2 ; // 2x(x+1)
+		System.out.println(f5.value(2.0));
+		System.out.println(f5.getClass());
+
+		MathFunction f6 = f1 / f2 ; // 2x/(x+1)
+		System.out.println(f6.value(2.0));
+		System.out.println(f6.getClass());
+
+		MathFunction f7 = -f1 ; // -2x
+		System.out.println(f7.value(2.0));
+		System.out.println(f7.getClass());
+
+		MathFunction f8 = f2 - f3 * 2.0 ;
+		System.out.println(f8.value(2.0));
 	}
 
 	public static void main(String[] args) {
@@ -71,6 +109,7 @@ public class TestFunction {
 //		test2() ;
 //		test3() ;
 		test4() ;
+//		test5() ;
 	}
 
 }

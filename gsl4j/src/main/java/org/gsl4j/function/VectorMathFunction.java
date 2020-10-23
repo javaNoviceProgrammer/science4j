@@ -26,4 +26,15 @@ public interface VectorMathFunction {
 		return x -> value(x)[k] ;
 	}
 
+	default MultiVariateMathFunction dot(VectorMathFunction vec) {
+		return x -> {
+			double[] v = vec.value(x) ;
+			double[] val = value(x) ;
+			double result = 0.0 ;
+			for(int i=0; i<val.length; i++)
+				result = val[i] * v[i] ;
+			return result ;
+		} ;
+	}
+
 }

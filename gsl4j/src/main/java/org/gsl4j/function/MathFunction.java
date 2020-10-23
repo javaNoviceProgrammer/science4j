@@ -71,4 +71,73 @@ public interface MathFunction {
 	}
 
 
+
+
+	/*-------- addition ----------*/
+
+	default MathFunction add(double v) { // this + v
+		return x -> value(x) + v ;
+	}
+	default MathFunction addRev(double v) { // v + this
+		return x -> v + value(x) ;
+	}
+	default MathFunction add(MathFunction v) { // this + v
+		return x -> value(x) + v.value(x) ;
+	}
+	default MathFunction addRev(MathFunction v) { // v + this
+		return x -> v.value(x) + value(x) ;
+	}
+
+	/*-------- subtraction ----------*/
+
+	default MathFunction subtract(double v) { // this - v
+		return x -> value(x) - v ;
+	}
+	default MathFunction subtractRev(double v) { // v - this
+		return x -> v - value(x) ;
+	}
+	default MathFunction subtract(MathFunction v) { // this - v
+		return x -> value(x) - v.value(x) ;
+	}
+	default MathFunction subtractRev(MathFunction v) { // v - this
+		return x -> v.value(x) - value(x) ;
+	}
+
+	/*-------- Multiplication ----------*/
+
+	default MathFunction multiply(double v) { // this * v
+		return x -> value(x) * v ;
+	}
+	default MathFunction multiplyRev(double v) { // v * this
+		return x -> v * value(x) ;
+	}
+	default MathFunction multiply(MathFunction v) { // this * v
+		return x -> value(x) * v.value(x) ;
+	}
+	default MathFunction multiplyRev(MathFunction v) { // v * this
+		return x -> v.value(x) * value(x) ;
+	}
+
+	/*-------- Division ----------*/
+
+	default MathFunction divide(double v) { // this / v
+		return x -> value(x) / v ;
+	}
+	default MathFunction divideRev(double v) { // v / this
+		return x -> v / value(x) ;
+	}
+	default MathFunction divide(MathFunction v) { // this / v
+		return x -> value(x) / v.value(x) ;
+	}
+	default MathFunction divideRev(MathFunction v) { // v / this
+		return x -> v.value(x) / value(x) ;
+	}
+
+	/*-------- negation ----------*/
+
+	default MathFunction negate() { // - this
+		return x -> -value(x) ;
+	}
+
+
 }
