@@ -104,12 +104,24 @@ public class TestFunction {
 		System.out.println(f8.value(2.0));
 	}
 
+	public static void test6() {
+		// f1 = x + y
+		MultiVariateMathFunction f1 = v -> {double x = v[0], y = v[1]; return x+y;} ;
+		// f2 = x*y
+		MultiVariateMathFunction f2 = v -> {double x = v[0], y=v[1]; return x*y;} ;
+		// f3 = f1 + f2 = x + y + x*y
+		MultiVariateMathFunction f3 = f1 + f2 ;
+		System.out.println(f3.value(1.1, 2.2)); // 2.42 + 3.3
+
+	}
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
 //		test5() ;
+		test6() ;
 	}
 
 }
