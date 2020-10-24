@@ -185,7 +185,10 @@ public class TestVector {
 		double[] v1 = MathUtils.linspace(-100.0, 100.0, 10_000_000) ;
 		double[] v2 = MathUtils.linspace(-10.0, 10.0, 10_000_000) ;
 		double[] result = new double[v1.length] ;
-		VectorMath.mul(v1, v2, result) ;
+		VectorMath.div(v1, v2, result) ;
+		VectorMath.mul(result, v2, result) ;
+		VectorMath.div(result, v1, result) ;
+		VectorMath.sub(result, v1, result) ;
 //		System.out.println(Arrays.toString(result));
 		timer.stop();
 		timer.show();
@@ -194,11 +197,17 @@ public class TestVector {
 	public static void test10() {
 		Timer timer = new Timer() ;
 		timer.start();
-		double[] v1 = MathUtils.linspace(-100.0, 100.0, 10_000_000) ;
+		double[] v1 = MathUtils.linspace(-100.0, 10.0, 10_000_000) ;
 		double[] v2 = MathUtils.linspace(-10.0, 10.0, 10_000_000) ;
 		double[] result = new double[v1.length] ;
 		for(int i=0; i<result.length; i++)
-			result[i] = v1[i] * v2[i] ;
+			result[i] = v1[i] / v2[i] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = result[i] * v2[i] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = result[i] / v1[i] ;
+		for(int i=0; i<result.length; i++)
+			result[i] = result[i] - v1[i] ;
 //		System.out.println(Arrays.toString(result));
 		timer.stop();
 		timer.show();
@@ -218,10 +227,12 @@ public class TestVector {
 //		test9() ;
 
 
-		for(int i=0; i<20; i++) {
+		for(int i=0; i<1; i++) {
+//			test10() ;
 			test9() ;
 //			System.out.println("===============");
 			test10() ;
+
 			System.out.println("-----------------------------");
 		}
 
