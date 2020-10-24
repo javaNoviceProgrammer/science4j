@@ -217,16 +217,13 @@ public class TestVector {
 //		test8() ;
 //		test9() ;
 
-		for(int i=0; i<2; i++)
-			test10() ;
 
-		System.out.println("<<<<<===============>>>>>");
-
-		for(int i=0; i<2; i++)
+		for(int i=0; i<20; i++) {
 			test9() ;
-
-		System.out.println("===============");
-
+//			System.out.println("===============");
+			test10() ;
+			System.out.println("-----------------------------");
+		}
 
 
 	}

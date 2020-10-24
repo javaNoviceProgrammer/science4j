@@ -16,7 +16,17 @@
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
-
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v1[i] + v2[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
 }
 
 /*
@@ -26,7 +36,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3D_3D_3D
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
-
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v1[i] - v2[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
 }
 
 /*
@@ -37,24 +57,16 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3D_3D_3D
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
 	jint len = jvm -> GetArrayLength(vec1) ;
-	jboolean isCopy1 {true} ;
 	// get a direct pointer --> NO copying by JVM
-	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, &isCopy1) ;
-//	std::cout << std::boolalpha << (bool)isCopy1 << std::endl ;
-	jboolean isCopy2 {true} ;
-	// get a direct pointer --> NO copying by JVM
-	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, &isCopy2) ;
-//	std::cout << std::boolalpha << (bool)isCopy2 << std::endl ;
-	jboolean isCopy3 {true} ;
-	// get a direct pointer --> NO copying by JVM
-	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, &isCopy3) ;
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
 	for(jint i=0; i<len; i++) {
 		v3[i] = v1[i] * v2[i] ;
 	}
 	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
 	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
 	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
-
 }
 
 /*
@@ -64,7 +76,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3D_3D_3D
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3D_3D_3D
   (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
-
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v1[i] / v2[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
 }
 
 /*
@@ -73,7 +95,19 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3D_3D_3D
  * Signature: ([D[D[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_addRev___3D_3D_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdoubleArray, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v2[i] + v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -81,7 +115,19 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_addRev___3D_3D_3D
  * Signature: ([D[D[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_subRev___3D_3D_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdoubleArray, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v2[i] - v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -89,7 +135,19 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_subRev___3D_3D_3D
  * Signature: ([D[D[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mulRev___3D_3D_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdoubleArray, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v2[i] * v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -97,7 +155,19 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mulRev___3D_3D_3D
  * Signature: ([D[D[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_divRev___3D_3D_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdoubleArray, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdoubleArray vec2, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = v2[i] / v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -105,7 +175,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_divRev___3D_3D_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = v1[i] + x ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -113,7 +193,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_add___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = v1[i] - x ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -121,7 +211,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_sub___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = v1[i] * x ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -129,7 +229,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mul___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = v1[i] / x ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -137,7 +247,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_div___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_addRev___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = x + v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -145,7 +265,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_addRev___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_subRev___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = x - v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -153,7 +283,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_subRev___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mulRev___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = x * v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -161,7 +301,17 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_mulRev___3DD_3D
  * Signature: ([DD[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_divRev___3DD_3D
-  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray, jdouble, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdoubleArray vec1, jdouble x, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v2[i] = x / v1[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v2, 0) ;
+}
 
 /*
  * Class:     org_gsl4j_vector_VectorMath
@@ -169,7 +319,20 @@ JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_divRev___3DD_3D
  * Signature: (D[DD[D[D)V
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_vector_VectorMath_axpby
-  (JNIEnv *jvm, jclass VectorMath_class, jdouble, jdoubleArray, jdouble, jdoubleArray, jdoubleArray);
+  (JNIEnv *jvm, jclass VectorMath_class, jdouble a, jdoubleArray vec1, jdouble b, jdoubleArray vec2, jdoubleArray result) {
+	jint len = jvm -> GetArrayLength(vec1) ;
+	// get a direct pointer --> NO copying by JVM
+	jdouble* v1 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec1, nullptr) ;
+	jdouble* v2 = (jdouble*) jvm -> GetPrimitiveArrayCritical(vec2, nullptr) ;
+	jdouble* v3 =  (jdouble*) jvm -> GetPrimitiveArrayCritical(result, nullptr) ;
+	for(jint i=0; i<len; i++) {
+		v3[i] = a * v1[i] + b * v2[i] ;
+	}
+	jvm -> ReleasePrimitiveArrayCritical(vec1, v1, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(vec2, v2, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(result, v3, 0) ;
+
+}
 
 
 
