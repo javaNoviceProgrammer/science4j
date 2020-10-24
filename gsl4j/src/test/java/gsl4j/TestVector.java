@@ -227,7 +227,7 @@ public class TestVector {
 //		test9() ;
 
 
-		for(int i=0; i<1; i++) {
+		for(int i=0; i<10; i++) {
 //			test10() ;
 			test9() ;
 //			System.out.println("===============");
