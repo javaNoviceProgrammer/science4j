@@ -11,6 +11,8 @@ public class Test1 {
 		ArrayMath.add(v1, v2, sum);
 		System.out.println(Arrays.toString(sum));
 
+		System.out.println("max int = " + Integer.MAX_VALUE);
+
 //		OSUtils.printInfo();
 	}
 
