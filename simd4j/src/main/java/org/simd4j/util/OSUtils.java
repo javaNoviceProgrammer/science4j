@@ -59,7 +59,7 @@ public class OSUtils {
 			"AVX512F", "AVX512PF", "AVX512ER", "AVX512CD", "AVX512VL", "AVX512BW",
 			"AVX512DQ", "AVX512IFMA", "AVX512VBMI"} ;
 
-	private static void initCpuInfo() {
+	static void initCpuInfo() {
 		if(cpu != null) {
 			return ;
 		}
