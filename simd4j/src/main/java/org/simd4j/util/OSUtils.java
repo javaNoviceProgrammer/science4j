@@ -13,7 +13,6 @@ public class OSUtils {
 		OS = System.getProperty("os.name") ;
 		arch = System.getProperty("os.arch") ;
 		cpuInfo = new ArrayList<>() ;
-		initCpuInfo() ;
 	}
 
 
@@ -108,7 +107,7 @@ public class OSUtils {
 
 	private static void initCpuInfoLinux() {
 		// check avx
-		String command1 = "cat /proc/cpuinfo  | egrep \"(flags|model name|vendor)\" | sort | uniq -c" ;
+		String command1 = "cat /proc/cpuinfo" ;
 		Scanner scanner1 = null ;
 		String response1 = null ;
 		// exec via runtime
@@ -117,7 +116,13 @@ public class OSUtils {
 			// first command
 			process1 = Runtime.getRuntime().exec(command1) ;
 			scanner1 = new Scanner(process1.getInputStream()) ;
-			response1 = scanner1.nextLine() ;
+//			response1 = scanner1.nextLine() ;
+			while(scanner1.hasNextLine()) {
+				response1 = scanner1.nextLine() ;
+				if(response1.contains("flags")) {
+					break ;
+				}
+			}
 			cpu = response1.toUpperCase() ;
 			for(String x : response1.split(" ")) {
 				cpuInfo.add(x.toUpperCase()) ;
@@ -149,11 +154,11 @@ public class OSUtils {
 	}
 
 	public static boolean supportsSSE4p1() {
-		return cpuInfo.contains("SSE4.1") ;
+		return cpuInfo.contains("SSE4.1") || cpuInfo.contains("SSE4_1") ;
 	}
 
 	public static boolean supportsSSE4p2() {
-		return cpuInfo.contains("SSE4.2") ;
+		return cpuInfo.contains("SSE4.2") || cpuInfo.contains("SSE4_2") ;
 	}
 
 	public static boolean supportsAVX1() {
@@ -185,31 +190,35 @@ public class OSUtils {
 	}
 
 
-
-
-
-
-
-
+	public static void printInfo() {
+		System.out.println("OS name    : " + OS);
+		System.out.println("is Mac     : " + isMac()) ;
+		System.out.println("is Windows : " + isWindows()) ;
+		System.out.println("is Linux   : " + isLinux()) ;
+		System.out.println("is 64bit   : " + is64bit());
+		System.out.println("is 32bit   : " + is32bit());
+		System.out.println("OS arch    : " + getArch());
+		if (cpu == null) {
+			initCpuInfo();
+		}
+		System.out.println(OSUtils.cpu);
+		System.out.println("support AVX512 : " + supportsAVX512());
+		System.out.println("support AVX2   : " + supportsAVX2());
+		System.out.println("support AVX1   : " + supportsAVX1());
+		System.out.println("support SSE4.2 : " + supportsSSE4p2());
+		System.out.println("support SSE4.1 : " + supportsSSE4p1());
+		System.out.println("support SSE3   : " + supportsSSE3());
+		System.out.println("support SSSE3  : " + supportsSSSE3());
+		System.out.println("support SSE2   : " + supportsSSE2());
+		System.out.println("support SSE    : " + supportsSSE());
+	}
 
 
 
 
 
 	public static void main(String[] args) {
-		System.out.println(OS);
-		System.out.println("is Mac     : " + isMac()) ;
-		System.out.println("is Windows : " + isWindows()) ;
-		System.out.println("is Linux   : " + isLinux()) ;
-		System.out.println("is 64bit   : " + is64bit());
-		System.out.println("is 32bit   : " + is32bit());
-		System.out.println(getArch());
-		initCpuInfoMac();
-		System.out.println(cpu);
-		System.out.println(supportsAVX512());
-		System.out.println(supportsAVX2());
-		System.out.println(supportsAVX1());
-		System.out.println(supportsFMA());
+		printInfo();
 	}
 
 }
