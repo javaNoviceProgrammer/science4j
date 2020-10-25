@@ -116,7 +116,6 @@ public class OSUtils {
 			// first command
 			process1 = Runtime.getRuntime().exec(command1) ;
 			scanner1 = new Scanner(process1.getInputStream()) ;
-//			response1 = scanner1.nextLine() ;
 			while(scanner1.hasNextLine()) {
 				response1 = scanner1.nextLine() ;
 				if(response1.contains("flags")) {
