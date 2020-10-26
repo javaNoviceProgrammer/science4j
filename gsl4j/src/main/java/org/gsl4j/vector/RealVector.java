@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
 
 import org.gsl4j.complex.ComplexBuilder;
 import org.gsl4j.complex.ComplexNumber;
@@ -849,6 +851,17 @@ public class RealVector implements RealAlgebraVector {
 			re[i] = -x[i] ;
 		}
 		return new RealVector(re) ;
+	}
+
+
+	// support for stream API
+
+	public Stream<RealNumber> stream() {
+		return Stream.of(toArray()) ;
+	}
+
+	public DoubleStream doubleStream() {
+		return Arrays.stream(x) ;
 	}
 
 
