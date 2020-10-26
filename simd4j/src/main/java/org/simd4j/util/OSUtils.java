@@ -72,36 +72,33 @@ public class OSUtils {
 	}
 
 	private static void initCpuInfoMac() {
-		// check avx
-		String command1 = "sysctl -a | grep machdep.cpu.features" ;
-		Scanner scanner1 = null ;
-		String response1 = null ;
-		// check avx2
-		String command2 = "sysctl -a | grep machdep.cpu.leaf7_features" ;
-		Scanner scanner2 = null ;
-		String response2 = null ;
-		// exec via runtime
-		Process process1, process2 ;
-		try {
-			// first command
-			process1 = Runtime.getRuntime().exec(command1) ;
-			scanner1 = new Scanner(process1.getInputStream()) ;
-			response1 = scanner1.nextLine() ;
-			cpu = response1 ;
-			for(String x : response1.split(" ")) {
-				cpuInfo.add(x) ;
-			}
-			// second command
-			process2 = Runtime.getRuntime().exec(command2) ;
-			scanner2 = new Scanner(process2.getInputStream()) ;
-			response2 = scanner2.nextLine() ;
-			cpu += "\n" + response2 ;
-			for(String x : response2.split(" ")) {
-				cpuInfo.add(x) ;
-			}
+//		String command1 = "sysctl -a | grep machdep.cpu.features" ;
+		String command1 = "sysctl -a" ;
+		Scanner scanner1 = null;
+		String response1 = null;
+		String response2 = null;
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		try {
+			Process process1 = Runtime.getRuntime().exec(command1);
+			scanner1 = new Scanner(process1.getInputStream());
+			String line = null ;
+			while(scanner1.hasNextLine()) {
+				line = scanner1.nextLine() ;
+				if(line.contains("machdep.cpu.features")) {
+					response1 = line ;
+				}
+				else if(line.contains("machdep.cpu.leaf7_features")) {
+					response2 = line ;
+				}
+			}
+			cpu = response1 + "\n" + response2 ;
+			for(String x : response1.split(" "))
+				cpuInfo.add(x.toUpperCase()) ;
+			for(String x : response2.split(" "))
+				cpuInfo.add(x.toUpperCase()) ;
+
+		} catch (IOException var12) {
+			var12.printStackTrace();
 		}
 	}
 

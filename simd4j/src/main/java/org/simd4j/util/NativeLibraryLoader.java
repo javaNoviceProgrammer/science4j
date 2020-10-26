@@ -31,7 +31,6 @@ public class NativeLibraryLoader {
 	}
 
 	private static void loadMacLibraries() {
-		// copy gsl libs and load gsl4j library
 		try {
 			if(OSUtils.supportsAVX2())
 				NativeUtils.loadLibraryFromJar("/lib_mac/libsimd4j_avx2.dylib");
@@ -46,7 +45,6 @@ public class NativeLibraryLoader {
 
 	// linux
 	private static void loadLinuxLibraries() {
-		// copy gsl libs and load gsl4j library
 		try {
 			if(OSUtils.supportsAVX2())
 				NativeUtils.loadLibraryFromJar("/lib_mac/libgsl4j_avx2.so");
