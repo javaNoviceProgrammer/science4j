@@ -10,17 +10,21 @@
 
 /*************Initialize and Cache IDs*******************/
 
-static jclass jMathFunction ;
-static jmethodID jvalueMethod ;
+namespace { // create an anonymous namespace to limit the scope
 
-struct my_f_params {
-	JNIEnv *env ;
-	jobject MathFunction ;
-};
+	jclass MathFunction_class ;
+	jmethodID jvalueMethod ;
 
-static jdouble math_func(jdouble x, void *p) {
-	my_f_params *params = (my_f_params *)p;
-	return (*params).env -> CallDoubleMethod(params->MathFunction, jvalueMethod, x) ;
+	struct my_f_params {
+		JNIEnv* jvm ;
+		jobject MathFunction_obj ;
+	};
+
+	jdouble math_func(jdouble x, void* p) {
+		my_f_params* params = (my_f_params*) p;
+		return (*params).jvm -> CallDoubleMethod(params->MathFunction_obj, jvalueMethod, x) ;
+	}
+
 }
 
 /*
@@ -30,8 +34,8 @@ static jdouble math_func(jdouble x, void *p) {
  */
 JNIEXPORT void JNICALL Java_org_gsl4j_diff_NumericalDiff_initIDs
   (JNIEnv *env, jclass NumericalDiff) {
-	jMathFunction = env -> FindClass("org/gsl4j/function/MathFunction") ;
-	jvalueMethod = env -> GetMethodID(jMathFunction, "value", "(D)D") ;
+	MathFunction_class = env -> FindClass("org/gsl4j/function/MathFunction") ;
+	jvalueMethod = env -> GetMethodID(MathFunction_class, "value", "(D)D") ;
 }
 
 /*******************************************************/
@@ -42,8 +46,8 @@ JNIEXPORT void JNICALL Java_org_gsl4j_diff_NumericalDiff_initIDs
  * Signature: (Lorg/gsl4j/function/MathFunction;DD)D
  */
 JNIEXPORT jdouble JNICALL Java_org_gsl4j_diff_NumericalDiff_central__Lorg_gsl4j_function_MathFunction_2DD
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
@@ -59,23 +63,22 @@ JNIEXPORT jdouble JNICALL Java_org_gsl4j_diff_NumericalDiff_central__Lorg_gsl4j_
  * Signature: (Lorg/gsl4j/function/MathFunction;[DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_central__Lorg_gsl4j_function_MathFunction_2_3DD
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdoubleArray x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdoubleArray x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
 	jdouble absErr {0.0} ;
-	jint len = env -> GetArrayLength(x) ;
-	jdouble *x_array = new jdouble[len] ;
-	jdouble *result = new jdouble[len] ;
-	env -> GetDoubleArrayRegion(x, 0, len, x_array) ;
+	// create array and get direct access (no copying)
+	jint len = jvm -> GetArrayLength(x) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(len) ;
+	jdouble* jresult_array = (jdouble*) jvm -> GetPrimitiveArrayCritical(jresult, nullptr) ;
+	jdouble* x_array = (jdouble*) jvm -> GetPrimitiveArrayCritical(x, nullptr) ;
 	for(int i=0; i<len; i++) {
-		gsl_deriv_central(&F, x_array[i], h, (result+i), &absErr) ;
+		gsl_deriv_central(&F, x_array[i], h, (jresult_array+i), &absErr) ;
 	}
-	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-	delete[] x_array ;
-	delete[] result ;
+	jvm -> ReleasePrimitiveArrayCritical(x, x_array, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(jresult, jresult_array, 0) ;
 	return jresult ;
 }
 
@@ -85,8 +88,8 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_central__Lorg_g
  * Signature: (Lorg/gsl4j/function/MathFunction;DD)D
  */
 JNIEXPORT jdouble JNICALL Java_org_gsl4j_diff_NumericalDiff_forward__Lorg_gsl4j_function_MathFunction_2DD
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
@@ -102,23 +105,22 @@ JNIEXPORT jdouble JNICALL Java_org_gsl4j_diff_NumericalDiff_forward__Lorg_gsl4j_
  * Signature: (Lorg/gsl4j/function/MathFunction;[DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_forward__Lorg_gsl4j_function_MathFunction_2_3DD
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdoubleArray x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdoubleArray x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
 	jdouble absErr {0.0} ;
-	jint len = env -> GetArrayLength(x) ;
-	jdouble *x_array = new jdouble[len] ;
-	jdouble *result = new jdouble[len] ;
-	env -> GetDoubleArrayRegion(x, 0, len, x_array) ;
+	// create array and get direct access (no copying)
+	jint len = jvm -> GetArrayLength(x) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(len) ;
+	jdouble* jresult_array = (jdouble*) jvm -> GetPrimitiveArrayCritical(jresult, nullptr) ;
+	jdouble* x_array = (jdouble*) jvm -> GetPrimitiveArrayCritical(x, nullptr) ;
 	for(int i=0; i<len; i++) {
-		gsl_deriv_forward(&F, x_array[i], h, (result+i), &absErr) ;
+		gsl_deriv_forward(&F, x_array[i], h, (jresult_array+i), &absErr) ;
 	}
-	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-	delete[] x_array ;
-	delete[] result ;
+	jvm -> ReleasePrimitiveArrayCritical(x, x_array, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(jresult, jresult_array, 0) ;
 	return jresult ;
 }
 
@@ -129,8 +131,8 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_forward__Lorg_g
  * Signature: (Lorg/gsl4j/function/MathFunction;DD)D
  */
 JNIEXPORT jdouble JNICALL Java_org_gsl4j_diff_NumericalDiff_backward__Lorg_gsl4j_function_MathFunction_2DD
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
@@ -146,23 +148,22 @@ JNIEXPORT jdouble JNICALL Java_org_gsl4j_diff_NumericalDiff_backward__Lorg_gsl4j
  * Signature: (Lorg/gsl4j/function/MathFunction;[DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_backward__Lorg_gsl4j_function_MathFunction_2_3DD
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdoubleArray x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdoubleArray x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
 	jdouble absErr {0.0} ;
-	jint len = env -> GetArrayLength(x) ;
-	jdouble *x_array = new jdouble[len] ;
-	jdouble *result = new jdouble[len] ;
-	env -> GetDoubleArrayRegion(x, 0, len, x_array) ;
+	// create array and get direct access (no copying)
+	jint len = jvm -> GetArrayLength(x) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(len) ;
+	jdouble* jresult_array = (jdouble*) jvm -> GetPrimitiveArrayCritical(jresult, nullptr) ;
+	jdouble* x_array = (jdouble*) jvm -> GetPrimitiveArrayCritical(x, nullptr) ;
 	for(int i=0; i<len; i++) {
-		gsl_deriv_backward(&F, x_array[i], h, (result+i), &absErr) ;
+		gsl_deriv_backward(&F, x_array[i], h, (jresult_array+i), &absErr) ;
 	}
-	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-	delete[] x_array ;
-	delete[] result ;
+	jvm -> ReleasePrimitiveArrayCritical(x, x_array, 0) ;
+	jvm -> ReleasePrimitiveArrayCritical(jresult, jresult_array, 0) ;
 	return jresult ;
 }
 
@@ -173,17 +174,17 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_backward__Lorg_
  * Signature: (Lorg/gsl4j/function/MathFunction;DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_centralWithError
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
 	jdouble jresult {0.0} ;
 	jdouble absErr {0.0} ;
 	gsl_deriv_central(&F, x, h, &jresult, &absErr) ;
-	jdoubleArray jarray = env -> NewDoubleArray(2) ;
+	jdoubleArray jarray = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {jresult, absErr} ;
-	env -> SetDoubleArrayRegion(jarray, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jarray, 0, 2, buf) ;
 	return jarray ;
 }
 
@@ -193,17 +194,17 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_centralWithErro
  * Signature: (Lorg/gsl4j/function/MathFunction;DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_forwardWithError
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
 	jdouble jresult {0.0} ;
 	jdouble absErr {0.0} ;
 	gsl_deriv_forward(&F, x, h, &jresult, &absErr) ;
-	jdoubleArray jarray = env -> NewDoubleArray(2) ;
+	jdoubleArray jarray = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {jresult, absErr} ;
-	env -> SetDoubleArrayRegion(jarray, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jarray, 0, 2, buf) ;
 	return jarray ;
 }
 
@@ -213,17 +214,17 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_forwardWithErro
  * Signature: (Lorg/gsl4j/function/MathFunction;DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_diff_NumericalDiff_backwardWithError
-  (JNIEnv *env, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
-	my_f_params params {env, MathFunction};
+  (JNIEnv *jvm, jclass NumericalDiff, jobject MathFunction, jdouble x, jdouble h) {
+	my_f_params params {jvm, MathFunction};
 	gsl_function F ;
 	F.function = &math_func ;
 	F.params = &params ;
 	jdouble jresult {0.0} ;
 	jdouble absErr {0.0} ;
 	gsl_deriv_backward(&F, x, h, &jresult, &absErr) ;
-	jdoubleArray jarray = env -> NewDoubleArray(2) ;
+	jdoubleArray jarray = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {jresult, absErr} ;
-	env -> SetDoubleArrayRegion(jarray, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jarray, 0, 2, buf) ;
 	return jarray ;
 }
 
