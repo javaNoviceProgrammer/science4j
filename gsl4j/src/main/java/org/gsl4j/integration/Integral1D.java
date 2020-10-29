@@ -37,6 +37,9 @@ public class Integral1D {
 	double relErr = 1e-10 ;
 	int maxNumberOfIntervals = 100 ;
 
+//	public native void allocateWorkspace() ;
+//	public native void freeWorkspace() ;
+
 	/**
 	 * Signature of methods: <br>
 	 * Q - quadrature routine <br>
@@ -113,9 +116,9 @@ public class Integral1D {
 	 * Q - quadrature routine <br>
 	 * A - adaptive integrator <br>
 	 * G - general integrand (user-defined) <br>
-	 * @param a
-	 * @param b
-	 * @return
+	 * @param a : start of interval
+	 * @param b : end of interval
+	 * @return  numerical integration
 	 */
 	public native double qagGauss15(double a, double b) ;
 	public native double[] qagGauss15withError(double a, double b) ;
