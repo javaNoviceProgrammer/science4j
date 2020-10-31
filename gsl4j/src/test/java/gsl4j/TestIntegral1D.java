@@ -17,12 +17,12 @@ public class TestIntegral1D {
 	public static void test2() {
 		IntegralFunction1D func = t -> t*Math.sin(t) ;
 		Integral1D integration = new Integral1D(func) ;
-		double[] result = integration.qngDetailed(0.0, 1.0) ;
+		double[] result = integration.qngDetailed(0.0, 10.0) ;
 		System.out.println(Arrays.toString(result));
 	}
 
 	public static void main(String[] args) {
-		test1() ;
+//		test1() ;
 		test2() ;
 	}
 
