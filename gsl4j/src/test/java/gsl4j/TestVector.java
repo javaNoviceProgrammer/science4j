@@ -214,7 +214,7 @@ public class TestVector {
 	}
 
 	public static void main(String[] args) {
-//		test1() ;
+		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
@@ -227,14 +227,14 @@ public class TestVector {
 //		test9() ;
 
 
-		for(int i=0; i<10; i++) {
+//		for(int i=0; i<10; i++) {
+////			test10() ;
+//			test9() ;
+////			System.out.println("===============");
 //			test10() ;
-			test9() ;
-//			System.out.println("===============");
-			test10() ;
-
-			System.out.println("-----------------------------");
-		}
+//
+//			System.out.println("-----------------------------");
+//		}
 
 
 	}
