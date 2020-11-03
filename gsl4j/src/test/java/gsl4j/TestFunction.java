@@ -14,6 +14,9 @@ import org.gsl4j.util.Timer;
 public class TestFunction {
 
 	public static void test1() {
+		Timer timer = new Timer() ;
+		timer.start();
+
 		MathFunction f1 = x -> Math.sin(x*x) ;
 		MathFunction f1Deriv = f1.deriv() ;
 		MathFunction f1Deriv2 = f1.deriv2() ;
@@ -32,6 +35,9 @@ public class TestFunction {
 		plt.grid(true) ;
 		plt.legend(true) ;
 		plt.show();
+
+		timer.stop();
+		timer.show();
 	}
 
 	public static void test2() {

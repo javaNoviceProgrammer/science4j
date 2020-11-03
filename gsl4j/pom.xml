@@ -42,7 +42,10 @@
 				</executions>
 			</plugin>
 
+
 		</plugins>
 	</build>
 
+	<dependencies>
+	</dependencies>
 </project>
