@@ -47,7 +47,7 @@ public class BytecodeSupport {
 		Method method;
 		try {
 			method = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+integrandFunc).
+					loadClass("org.sym4j.bytecode."+integrandFunc).
 					getMethod("apply", new Class[] {double[].class});
 			//additionalParams is always not null
 			double[] args = new double[additionalParams.length+1];
@@ -106,7 +106,7 @@ public class BytecodeSupport {
 		Method method;
 		try {
 			method = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+integrandFunc).
+					loadClass("org.sym4j.bytecode."+integrandFunc).
 					getMethod("apply", new Class[] {double[].class});
 			//additionalParams is always not null
 			double[] args = new double[additionalParams.length+2];
@@ -144,10 +144,10 @@ public class BytecodeSupport {
 		Method mLower, mUpper;
 		try {
 			mLower = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+lowerBoundFunc).
+					loadClass("org.sym4j.bytecode."+lowerBoundFunc).
 					getMethod("apply", new Class[] {double[].class});
 			mUpper = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+upperBoundFunc).
+					loadClass("org.sym4j.bytecode."+upperBoundFunc).
 					getMethod("apply", new Class[] {double[].class});
 
 			//additionalParams is always not null
@@ -197,10 +197,10 @@ public class BytecodeSupport {
 		Method mLower, mUpper;
 		try {
 			mLower = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+lowerBoundFunc).
+					loadClass("org.sym4j.bytecode."+lowerBoundFunc).
 					getMethod("apply", new Class[] {double[].class});
 			mUpper = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+upperBoundFunc).
+					loadClass("org.sym4j.bytecode."+upperBoundFunc).
 					getMethod("apply", new Class[] {double[].class});
 
 			double[] args = { 0 };
@@ -245,7 +245,7 @@ public class BytecodeSupport {
 		int dim = minBound.length;
 		try {
 			Method integrand = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+integrandFunc).
+					loadClass("org.sym4j.bytecode."+integrandFunc).
 					getMethod("apply", new Class[] {double[].class});
 			double[] args = new double[dim + additionalParams.length];
 			System.arraycopy(additionalParams, 0, args, dim, additionalParams.length);
@@ -254,10 +254,10 @@ public class BytecodeSupport {
 			Method[] mUpper = new Method[dim];
 			for(int i=0; i<dim; i++) {
 				mLower[i] = BytecodeSupport.class.getClassLoader().
-						loadClass("symjava.bytecode."+minBound[i]).
+						loadClass("org.sym4j.bytecode."+minBound[i]).
 						getMethod("apply", new Class[] {double[].class});
 				mUpper[i] = BytecodeSupport.class.getClassLoader().
-						loadClass("symjava.bytecode."+maxBound[i]).
+						loadClass("org.sym4j.bytecode."+maxBound[i]).
 						getMethod("apply", new Class[] {double[].class});
 			}
 			double[] minBd = new double[dim];
@@ -270,7 +270,7 @@ public class BytecodeSupport {
 				maxBd[i] = val;
 			}
 			Method constr = BytecodeSupport.class.getClassLoader().
-					loadClass("symjava.bytecode."+constraint).
+					loadClass("org.sym4j.bytecode."+constraint).
 					getMethod("apply", new Class[] {double[].class});
 			double cubeVol = 1.0;
 			for(int i=0; i<dim; i++) {

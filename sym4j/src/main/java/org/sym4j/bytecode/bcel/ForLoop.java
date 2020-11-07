@@ -31,11 +31,11 @@ import com.sun.org.apache.bcel.internal.generic.Type;
 public class ForLoop {
 
 	public static void main(String[] args) {
-		String packageName = "symjava.bytecode";
+		String packageName = "org.sym4j.bytecode";
 		String clsName = "TestForLoop";
 		String fullClsName = packageName+"."+clsName;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"symjava.bytecode.BytecodeFunc"});
+				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
@@ -105,7 +105,7 @@ public class ForLoop {
 		System.out.println(fun.apply(params));
 
 		try {
-			cg.getJavaClass().dump("bin/symjava/bytecode/"+clsName+".class");
+			cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+clsName+".class");
 		} catch (java.io.IOException e) {
 			System.err.println(e);
 		}
@@ -113,11 +113,11 @@ public class ForLoop {
 }
 /**
 $ javap -verbose TestForLoop.class
-Classfile /home/yliu/workspace_java/SymJava/bin/symjava/bytecode/TestForLoop.class
+Classfile /home/yliu/workspace_java/org.sym4j/bin/org.sym4j/bytecode/TestForLoop.class
   Last modified Apr 9, 2015; size 441 bytes
   MD5 checksum 0c83fefac38f7c2a4f3ac482d6219cde
   Compiled from "<generated>"
-public class symjava.bytecode.TestForLoop implements symjava.bytecode.BytecodeFunc
+public class org.sym4j.bytecode.TestForLoop implements org.sym4j.bytecode.BytecodeFunc
   SourceFile: "<generated>"
   minor version: 3
   major version: 45
@@ -125,14 +125,14 @@ public class symjava.bytecode.TestForLoop implements symjava.bytecode.BytecodeFu
 Constant pool:
    #1 = Utf8               SourceFile
    #2 = Utf8               <generated>
-   #3 = Utf8               symjava/bytecode/TestForLoop
-   #4 = Class              #3             //  symjava/bytecode/TestForLoop
+   #3 = Utf8               org.sym4j/bytecode/TestForLoop
+   #4 = Class              #3             //  org.sym4j/bytecode/TestForLoop
    #5 = Utf8               java/lang/Object
    #6 = Class              #5             //  java/lang/Object
    #7 = Utf8               apply
    #8 = Utf8               ([D)D
    #9 = Utf8               this
-  #10 = Utf8               Lsymjava/bytecode/TestForLoop;
+  #10 = Utf8               Lorg.sym4j/bytecode/TestForLoop;
   #11 = Utf8               args
   #12 = Utf8               [D
   #13 = Utf8               sum
@@ -145,8 +145,8 @@ Constant pool:
   #20 = Utf8               ()V
   #21 = NameAndType        #19:#20        //  "<init>":()V
   #22 = Methodref          #6.#21         //  java/lang/Object."<init>":()V
-  #23 = Utf8               symjava/bytecode/BytecodeFunc
-  #24 = Class              #23            //  symjava/bytecode/BytecodeFunc
+  #23 = Utf8               org.sym4j/bytecode/BytecodeFunc
+  #24 = Class              #23            //  org.sym4j/bytecode/BytecodeFunc
 {
   public double apply(double[]);
     flags: ACC_PUBLIC
@@ -171,12 +171,12 @@ Constant pool:
         26: dreturn       //return sum
       LocalVariableTable:
         Start  Length  Slot  Name   Signature
-               0      27     0  this   Lsymjava/bytecode/TestForLoop;
+               0      27     0  this   Lorg/sym4j/bytecode/TestForLoop;
                0      27     1  args   [D
                1      26     2   sum   D
                3      24     4     i   I
 
-  public symjava.bytecode.TestForLoop();
+  public org.sym4j.bytecode.TestForLoop();
     flags: ACC_PUBLIC
     Code:
       stack=1, locals=1, args_size=1
@@ -185,6 +185,6 @@ Constant pool:
          4: return
       LocalVariableTable:
         Start  Length  Slot  Name   Signature
-               0       5     0  this   Lsymjava/bytecode/TestForLoop;
+               0       5     0  this   Lorg/sym4j/bytecode/TestForLoop;
 }
 */

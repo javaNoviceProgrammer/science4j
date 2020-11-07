@@ -1,4 +1,4 @@
-package org.sym4j.bytecode;
+package sym4j;
 
 public class TestBytecodeVarArgs {
 	public static int fun(double ...args) {

@@ -59,6 +59,7 @@ public class Symbol extends Expr {
 	public static SymInteger C2 = new SymInteger(2);
 
 	public static Infinity oo = new Infinity();
+	public static Infinity inf = new Infinity();
 
 	public Symbol(String name) {
 		this.label = name;

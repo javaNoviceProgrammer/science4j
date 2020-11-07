@@ -349,6 +349,7 @@ public class TestSymbolic {
 	}
 
 	public static void testPower() {
+
 		Expr expr = pow(x, 2.1) * pow(x,2);
 		checkResult("x^4.1", expr);
 		checkResult("x^0.5", pow(x,0.5));
@@ -396,12 +397,13 @@ public class TestSymbolic {
 
 		checkResult(1.0,JIT.compile(exp(-0.5*pow(z,2))).apply(2), exp(-0.5*pow(z,2)));
 
-		Domain I = Interval.apply(-oo, x, z);
+		Domain I = Interval.apply(-inf, x, z);
 		Expr cdf = Integrate.apply(exp(-0.5*pow(z,2)), I)/sqrt(PI2);
 		checkResult("1/\\sqrt{2\\pi}*\\int_{-oo}^{x}{e^{-0.5*z^2}}dz",cdf);
 		Domain I2 = Interval.apply(-10, x, z).setStepSize(0.001);
 		Expr cdf2 = Integrate.apply(exp(-0.5*pow(z,2)), I2)/sqrt(PI2);
 		checkResult(1.0,JIT.compile(cdf2).apply(10), cdf);
+//		checkResult(1.0,JIT.compile(Integrate.apply(exp(-0.5*pow(z,2)), I2)).apply(10), Integrate.apply(exp(-0.5*pow(z,2)), I2)/sqrt(PI2));
 	}
 
 	public static void testSinCosTan() {
@@ -501,8 +503,9 @@ public class TestSymbolic {
 //		testToBytecodeFunc();
 //		testDiff();
 //		testAbstract();
-		testIntegration();
-//		testPower();
+//		testIntegration();
+		testPower();
+//		testSinCosTan();
 //		testSymReal();
 //		testSinCosTan();
 //		testLogic();

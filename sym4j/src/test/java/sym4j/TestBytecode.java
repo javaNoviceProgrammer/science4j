@@ -1,4 +1,4 @@
-package org.sym4j.bytecode;
+package sym4j;
 
 
 public class TestBytecode {
