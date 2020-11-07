@@ -49,6 +49,7 @@ public class Concat extends NaryOp {
 	public void updateLabel() {
 		this.label = "["+Utils.joinLabels(args, ", ")+"]";
 		this.sortKey = this.label;
+		this.latexLabel = label ;
 	}
 
 	@Override

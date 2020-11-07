@@ -78,5 +78,7 @@ public class Sin extends UnaryOp {
 	public void updateLabel() {
 		label = "sin(" + arg + ")";
 		sortKey = label;
+		latexLabel = "\\" + label ;
 	}
+
 }

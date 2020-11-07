@@ -129,10 +129,20 @@ abstract public class Expr implements Cloneable {
 	 * Return the LaTex representation of the expression
 	 * @return
 	 */
+	// TODO : fix the latexLabel representation
 	public String toLaTex() {
-		if (latexLabel == null) {
-			latexLabel = label.replaceAll("\\*", "") ;
-		}
+//		if (latexLabel == null) {
+//			latexLabel = label.replaceAll("[*]", "") ;
+//			latexLabel = label.replaceAll("[*]", "\\\\times") ;
+//			latexLabel = label.replaceAll("[*]", "\\\\;") ;
+//		}
+//		return latexLabel ;
+//		return label ;
+		latexLabel = label.replaceAll("[*]", "")
+							.replaceAll("sin", "\\\\sin")
+							.replaceAll("cos", "\\\\cos")
+							.replaceAll("tan", "\\\\tan") ;
+
 		return latexLabel ;
 	}
 
@@ -159,8 +169,9 @@ abstract public class Expr implements Cloneable {
 			FileWriter fwriter = new FileWriter(texFile) ;
 			fwriter.write(sb.toString());
 			fwriter.close() ;
-			Process proc = Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
-			proc.waitFor() ;
+			Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
+//			Process proc = Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
+//			proc.waitFor() ;
 //			Scanner scanner = new Scanner(proc.getInputStream()) ;
 //			while(scanner.hasNextLine()) {
 //				System.out.println(scanner.nextLine());
@@ -168,9 +179,10 @@ abstract public class Expr implements Cloneable {
 //			scanner.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
+//		catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 
 	}
 

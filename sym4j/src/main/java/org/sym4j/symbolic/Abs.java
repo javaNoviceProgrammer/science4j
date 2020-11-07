@@ -22,6 +22,7 @@ public class Abs extends UnaryOp {
 		super(arg);
 		label = "|" + arg + "|";
 		sortKey = label;
+		latexLabel = "\\left|" + arg + "\\right|" ;
 	}
 
 	@Override

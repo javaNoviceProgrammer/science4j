@@ -77,5 +77,6 @@ public class Cos extends UnaryOp {
 	public void updateLabel() {
 		label = "cos(" + arg + ")";
 		sortKey = label;
+		latexLabel = "\\" + "cos(" + arg.latexLabel + ")";
 	}
 }

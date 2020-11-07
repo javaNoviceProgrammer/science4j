@@ -23,7 +23,8 @@ public class Pow extends BinaryOp {
 	}
 
 	public String toString() {
-		return "pow("+arg1+","+arg2+")";
+//		return "pow("+arg1+","+arg2+")";
+		return label ;
 	}
 
 	public static Expr simplifiedIns(Expr base, Expr exponent) {
@@ -137,22 +138,23 @@ public class Pow extends BinaryOp {
 	public void updateLabel() {
 		Expr base = arg1;
 		Expr exponent = arg2;
-//		String displayExp = exponent.toString();
-//		if(exponent instanceof SymReal<?>) {
-//			SymReal<?> realExp = (SymReal<?>)exponent;
-//			if(realExp.isInteger()) {
-//				displayExp = String.format("%d", realExp.getIntValue());
-//			}
-//			if(realExp.isNegative())
-//				displayExp = "{"+displayExp+"}";
-//		}
-//		if(base instanceof Symbol) {
-//			label = base + "^" + displayExp + "";
-//		} else {
-//			label = "("+base + ")^" + displayExp;
-//		}
+		String displayExp = exponent.toString();
+		if(exponent instanceof SymReal<?>) {
+			SymReal<?> realExp = (SymReal<?>)exponent;
+			if(realExp.isInteger()) {
+				displayExp = String.format("%d", realExp.getIntValue());
+			}
+			if(realExp.isNegative())
+				displayExp = "{"+displayExp+"}";
+		}
+		if(base instanceof Symbol) {
+			label = base + "^" + displayExp + "";
+		} else {
+			label = "("+base + ")^" + displayExp;
+		}
+
 		//TODO? x^3 + x^2 + x + 1
-		label = "pow(" + base + ","+exponent+")";
+//		label = "pow(" + base + ","+exponent+")";
 		sortKey = base.getSortKey()+"power"+exponent.getSortKey();
 
 	}

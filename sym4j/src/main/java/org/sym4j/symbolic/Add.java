@@ -183,6 +183,7 @@ public class Add extends BinaryOp {
 	public void updateLabel() {
 		label = arg1 + " + " + arg2;
 		sortKey = arg1.getSortKey()+arg2.getSortKey();
+		latexLabel = arg1.latexLabel + " + " + arg2.latexLabel ;
 	}
 
 	@Override

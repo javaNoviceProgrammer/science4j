@@ -63,11 +63,21 @@ public class Test1 {
 
 	public static void test4() {
 		String folder = "/Users/meisam/Desktop/test1" ;
-		Expr e2 = 3.1 * β + 5.1 + α*α + 2.1;
+		Expr e2 = 3.1 * β + 5.1 - α*α + γ + 2.1 * ξ * θ + sin(δ);
 		System.out.println(e2.toLaTex());
 		System.out.println(e2);
 		e2.latexRender(folder, "test4");
+	}
 
+	public static void test5() {
+		Expr e2 = 3.1 * β + 5.1 - α*α + γ + 2.1 * ξ * θ + sin(δ*cos(x)*tan(x+y));
+		System.out.println(e2);
+		System.out.println(e2.toLaTex());
+		Expr e3 = e2.diff(x) ;
+		System.out.println(e3);
+		System.out.println(e3.toLaTex());
+		String folder = "/Users/meisam/Desktop/test1" ;
+		e2.latexRender(folder, "test4");
 	}
 
 
@@ -76,7 +86,8 @@ public class Test1 {
 //			test1() ;
 //		test2() ;
 //		test3() ;
-		test4() ;
+//		test4() ;
+		test5() ;
 	}
 
 }
