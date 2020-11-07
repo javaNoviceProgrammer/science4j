@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import symjava.symbolic.Expr.TYPE;
-import symjava.symbolic.arity.BinaryOp;
-import symjava.symbolic.utils.BytecodeUtils;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.utils.BytecodeUtils;
+import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
@@ -21,6 +20,9 @@ import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.bcel.internal.generic.Type;
+
+
+
 
 public class Multiply extends BinaryOp {
 	public Multiply(Expr l, Expr r) {
@@ -148,20 +150,16 @@ public class Multiply extends BinaryOp {
 
 	@Override
 	public void flattenAdd(List<Expr> outList) {
-		if(device != null) {
+		List<Expr> list1 = new ArrayList<Expr>();
+		List<Expr> list2 = new ArrayList<Expr>();
+		arg1.flattenAdd(list1);
+		arg2.flattenAdd(list2);
+		if(list1.size()==1 && list2.size()==1)
 			outList.add(this);
-		} else {
-			List<Expr> list1 = new ArrayList<Expr>();
-			List<Expr> list2 = new ArrayList<Expr>();
-			arg1.flattenAdd(list1);
-			arg2.flattenAdd(list2);
-			if(list1.size()==1 && list2.size()==1)
-				outList.add(this);
-			else {
-				for(Expr e1 : list1) {
-					for(Expr e2 : list2) {
-						outList.add( shallowSimplifiedIns(e1, e2) );
-					}
+		else {
+			for(Expr e1 : list1) {
+				for(Expr e2 : list2) {
+					outList.add( shallowSimplifiedIns(e1, e2) );
 				}
 			}
 		}
@@ -169,12 +167,8 @@ public class Multiply extends BinaryOp {
 
 	@Override
 	public void flattenMultiply(List<Expr> outList) {
-		if(device != null) {
-			outList.add(this);
-		} else {
-			arg1.flattenMultiply(outList);
-			arg2.flattenMultiply(outList);
-		}
+		arg1.flattenMultiply(outList);
+		arg2.flattenMultiply(outList);
 	}
 
 	public boolean symEquals(Expr other) {

@@ -2,8 +2,9 @@ package org.sym4j.bytecode.bcel;
 
 import static com.sun.org.apache.bcel.internal.Constants.ACC_PUBLIC;
 import static com.sun.org.apache.bcel.internal.Constants.ACC_SUPER;
-import symjava.bytecode.BytecodeFunc;
-import symjava.symbolic.utils.FuncClassLoader;
+
+import org.sym4j.bytecode.BytecodeFunc;
+import org.sym4j.symbolic.utils.FuncClassLoader;
 
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
 import com.sun.org.apache.bcel.internal.generic.ArrayType;

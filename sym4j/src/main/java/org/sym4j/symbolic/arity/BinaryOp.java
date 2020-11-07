@@ -2,6 +2,8 @@ package org.sym4j.symbolic.arity;
 
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.TypeInfo;
+import org.sym4j.symbolic.utils.Utils;
+
 
 public abstract class BinaryOp extends Expr {
 	public Expr arg1;

@@ -2,9 +2,9 @@ package org.sym4j.symbolic;
 
 import java.util.Map;
 
-import symjava.symbolic.arity.UnaryOp;
-import symjava.symbolic.utils.BytecodeUtils;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.utils.BytecodeUtils;
+import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
 import com.sun.org.apache.bcel.internal.generic.InstructionConstants;

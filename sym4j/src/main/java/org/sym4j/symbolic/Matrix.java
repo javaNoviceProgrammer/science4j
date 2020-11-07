@@ -19,8 +19,7 @@ import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
-import symjava.matrix.ExprMatrix;
-import symjava.symbolic.Expr.TYPE;
+
 
 public class Matrix extends Tensor {
 	public int nRowStart;

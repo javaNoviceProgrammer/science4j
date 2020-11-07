@@ -18,7 +18,7 @@ import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
-import symjava.matrix.ExprVector;
+
 
 public class Vector extends Tensor {
 	public int nStart;

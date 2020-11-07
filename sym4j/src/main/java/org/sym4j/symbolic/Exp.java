@@ -1,7 +1,8 @@
 package org.sym4j.symbolic;
 
-import symjava.math.SymMath;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.math.SymMath;
+import org.sym4j.symbolic.utils.Utils;
+
 
 public class Exp extends Pow {
 	public Exp(Expr arg) {

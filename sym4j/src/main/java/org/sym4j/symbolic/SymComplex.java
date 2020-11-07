@@ -1,6 +1,6 @@
 package org.sym4j.symbolic;
 
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.utils.Utils;
 
 /**
  * TODO

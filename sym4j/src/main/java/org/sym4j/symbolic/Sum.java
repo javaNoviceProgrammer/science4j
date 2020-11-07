@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import symjava.symbolic.utils.AddList;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.utils.AddList;
+import org.sym4j.symbolic.utils.Utils;
+
+
 
 /**
  * a+b+c+d+...

@@ -2,14 +2,16 @@ package org.sym4j.symbolic;
 
 import java.util.List;
 
+import org.sym4j.bytecode.BConstant;
+import org.sym4j.bytecode.BytecodeFunc;
+import org.sym4j.symbolic.arity.NaryOp;
+import org.sym4j.symbolic.utils.BytecodeUtils;
+import org.sym4j.symbolic.utils.FuncClassLoader;
+import org.sym4j.symbolic.utils.Utils;
+
 import com.sun.org.apache.bcel.internal.generic.ClassGen;
 
-import symjava.bytecode.BConstant;
-import symjava.bytecode.BytecodeFunc;
-import symjava.symbolic.arity.NaryOp;
-import symjava.symbolic.utils.BytecodeUtils;
-import symjava.symbolic.utils.FuncClassLoader;
-import symjava.symbolic.utils.Utils;
+
 
 public class Func extends NaryOp {
 	protected Expr expr;

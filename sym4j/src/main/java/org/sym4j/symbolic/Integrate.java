@@ -2,12 +2,14 @@ package org.sym4j.symbolic;
 
 import java.util.List;
 
-import symjava.domains.Domain;
-import symjava.domains.Interval;
-import symjava.math.Transformation;
-import symjava.relational.Eq;
-import symjava.symbolic.utils.ExprPair;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.domains.Domain;
+import org.sym4j.domains.Interval;
+import org.sym4j.math.Transformation;
+import org.sym4j.relational.Eq;
+import org.sym4j.symbolic.utils.ExprPair;
+import org.sym4j.symbolic.utils.Utils;
+
+
 
 /**
  * Class represents an integration

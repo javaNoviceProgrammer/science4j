@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import symjava.symbolic.arity.BinaryOp;
-import symjava.symbolic.utils.BytecodeUtils;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.utils.BytecodeUtils;
+import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
 import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
@@ -15,11 +15,8 @@ import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
 import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.MethodGen;
 
-/**
- *
- * @author yuemingl
- *
- */
+
+
 public class Divide extends BinaryOp {
 	public Divide(Expr numerator, Expr denominator) {
 		super(numerator, denominator);

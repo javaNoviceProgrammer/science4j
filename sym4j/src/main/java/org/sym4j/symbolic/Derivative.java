@@ -3,7 +3,9 @@ package org.sym4j.symbolic;
 import java.util.ArrayList;
 import java.util.List;
 
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.utils.Utils;
+
+
 
 public class Derivative extends Func {
 	Func func = null;

@@ -8,10 +8,9 @@ import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.LADD
 import java.util.List;
 import java.util.Map;
 
-import symjava.symbolic.Expr.TYPE;
-import symjava.symbolic.arity.BinaryOp;
-import symjava.symbolic.utils.BytecodeUtils;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.utils.BytecodeUtils;
+import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
@@ -21,6 +20,7 @@ import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.Type;
+
 
 public class Add extends BinaryOp {
 	public Add(Expr l, Expr r) {
@@ -128,12 +128,8 @@ public class Add extends BinaryOp {
 	}
 
 	public void flattenAdd(List<Expr> outList) {
-		if(device != null) {
-			outList.add(this);
-		} else {
-			arg1.flattenAdd(outList);
-			arg2.flattenAdd(outList);
-		}
+		arg1.flattenAdd(outList);
+		arg2.flattenAdd(outList);
 	}
 
 	@Override

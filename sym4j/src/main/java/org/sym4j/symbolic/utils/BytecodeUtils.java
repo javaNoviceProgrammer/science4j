@@ -27,17 +27,41 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.sym4j.domains.Domain2D;
+import org.sym4j.domains.Interval;
+import org.sym4j.logic.And;
+import org.sym4j.logic.Logic;
+import org.sym4j.logic.Not;
+import org.sym4j.logic.Or;
+import org.sym4j.logic.Xor;
+import org.sym4j.math.Dot;
+import org.sym4j.relational.Eq;
+import org.sym4j.relational.Ge;
+import org.sym4j.relational.Gt;
+import org.sym4j.relational.Le;
+import org.sym4j.relational.Lt;
+import org.sym4j.relational.Neq;
+import org.sym4j.relational.Relation;
+import org.sym4j.symbolic.Add;
 import org.sym4j.symbolic.Cos;
+import org.sym4j.symbolic.Divide;
 import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.Expr.TYPE;
 import org.sym4j.symbolic.Func;
 import org.sym4j.symbolic.Infinity;
 import org.sym4j.symbolic.Integrate;
 import org.sym4j.symbolic.Log;
+import org.sym4j.symbolic.Multiply;
 import org.sym4j.symbolic.Negate;
+import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.Reciprocal;
 import org.sym4j.symbolic.Sin;
+import org.sym4j.symbolic.Sqrt;
+import org.sym4j.symbolic.Subtract;
 import org.sym4j.symbolic.Sum;
+import org.sym4j.symbolic.SymConst;
 import org.sym4j.symbolic.SymRandom;
+import org.sym4j.symbolic.SymReal;
 import org.sym4j.symbolic.Symbol;
 import org.sym4j.symbolic.Tan;
 import org.sym4j.symbolic.arity.BinaryOp;
@@ -781,70 +805,70 @@ public class BytecodeUtils {
 		}
 	}
 
-	public static int declareLocal(LCVar var, MethodGen mg, InstructionList il) {
-		//variable name
-		//initial value
-		//index in local variable table (LVT)
-		if(var instanceof LCInt) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.INT, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.ICONST_0);
-			lg.setStart(il.append(new ISTORE(idx)));
-			return idx;
-		} else if(var instanceof LCLong) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.LONG, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.LCONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-
-		} else if(var instanceof LCFloat) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.FLOAT, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.FCONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-		} else if(var instanceof LCDouble) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.DOUBLE, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.DCONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-		} else if(var instanceof LCBoolean) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.BOOLEAN, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.ICONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-		} else if(var instanceof LCChar) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.CHAR, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.ICONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-		} else if(var instanceof LCByte) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.BYTE, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.ICONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-		} else if(var instanceof LCShort) {
-			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
-					Type.SHORT, null, null);
-			int idx = lg.getIndex();
-			il.append(InstructionConstants.ICONST_0);
-			lg.setStart(il.append(new DSTORE(idx)));
-			return idx;
-		}
-		throw new RuntimeException();
-	}
+//	public static int declareLocal(LCVar var, MethodGen mg, InstructionList il) {
+//		//variable name
+//		//initial value
+//		//index in local variable table (LVT)
+//		if(var instanceof LCInt) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.INT, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.ICONST_0);
+//			lg.setStart(il.append(new ISTORE(idx)));
+//			return idx;
+//		} else if(var instanceof LCLong) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.LONG, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.LCONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//
+//		} else if(var instanceof LCFloat) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.FLOAT, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.FCONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//		} else if(var instanceof LCDouble) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.DOUBLE, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.DCONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//		} else if(var instanceof LCBoolean) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.BOOLEAN, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.ICONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//		} else if(var instanceof LCChar) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.CHAR, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.ICONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//		} else if(var instanceof LCByte) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.BYTE, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.ICONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//		} else if(var instanceof LCShort) {
+//			LocalVariableGen lg = mg.addLocalVariable(var.getLabel(),
+//					Type.SHORT, null, null);
+//			int idx = lg.getIndex();
+//			il.append(InstructionConstants.ICONST_0);
+//			lg.setStart(il.append(new DSTORE(idx)));
+//			return idx;
+//		}
+//		throw new RuntimeException();
+//	}
 
 	public static InstructionHandle typeCast(InstructionList il, TYPE fromType, TYPE toType) {
 		if(fromType != toType) {

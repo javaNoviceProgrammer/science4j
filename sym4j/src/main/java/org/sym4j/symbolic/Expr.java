@@ -3,6 +3,12 @@ package org.sym4j.symbolic;
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.logic.And;
+import org.sym4j.logic.Not;
+import org.sym4j.logic.Or;
+import org.sym4j.logic.Xor;
+import org.sym4j.symbolic.utils.Utils;
+
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
 import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
 import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
@@ -567,17 +573,17 @@ abstract public class Expr implements Cloneable {
 		return getTypeInfo().type;
 	}
 
-	public Expr assign(Expr expr) {
-		return new LCAssign(this, expr);
-	}
-
-	public Expr assign(double val) {
-		return new LCAssign(this, Expr.valueOf(val));
-	}
-
-	public Expr assign(int val) {
-		return new LCAssign(this, Expr.valueOf(val));
-	}
+//	public Expr assign(Expr expr) {
+//		return new LCAssign(this, expr);
+//	}
+//
+//	public Expr assign(double val) {
+//		return new LCAssign(this, Expr.valueOf(val));
+//	}
+//
+//	public Expr assign(int val) {
+//		return new LCAssign(this, Expr.valueOf(val));
+//	}
 
 /////////////////////////////////////////////////////////////////////////
 

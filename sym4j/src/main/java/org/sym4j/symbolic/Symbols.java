@@ -3,7 +3,9 @@ package org.sym4j.symbolic;
 import java.util.HashMap;
 import java.util.List;
 
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.utils.Utils;
+
+
 
 /**
  * An object of Symbols can represents a list of symbols

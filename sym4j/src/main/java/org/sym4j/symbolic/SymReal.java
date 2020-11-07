@@ -2,6 +2,8 @@ package org.sym4j.symbolic;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.utils.Utils;
+
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
 import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
 import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
@@ -9,7 +11,6 @@ import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.PUSH;
 
-import symjava.symbolic.utils.Utils;
 
 /**
  * A SymReal object is a symbolic representation of a real number

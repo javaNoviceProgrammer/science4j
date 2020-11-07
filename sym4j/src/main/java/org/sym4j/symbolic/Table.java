@@ -1,6 +1,6 @@
 package org.sym4j.symbolic;
 
-import symjava.symbolic.arity.NaryOp;
+import org.sym4j.symbolic.arity.NaryOp;
 
 /**
  * An expressions table is similar to the table of a relational database (RDBMS).

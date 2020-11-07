@@ -3,8 +3,8 @@ package org.sym4j.symbolic;
 import java.util.List;
 import java.util.Map;
 
-import symjava.symbolic.arity.BinaryOp;
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
@@ -13,6 +13,7 @@ import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
 import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.Type;
+
 
 public class Pow extends BinaryOp {
 
@@ -97,24 +98,20 @@ public class Pow extends BinaryOp {
 
 	@Override
 	public void flattenMultiply(List<Expr> outList) {
-		if(device != null) {
-			outList.add(this);
-		} else {
-			if(arg2 instanceof SymReal<?>) {
-				SymReal<?> realExp = (SymReal<?>)arg2;
-				if(realExp.isPositive()) {
-					double exp = realExp.getDoubleValue();
-					for(int i=0; i<(int)exp; i++)
-						outList.add(arg1);
-					double remain = exp - Math.floor(exp);
-					if(remain > 0.0) {
-						outList.add(simplifiedIns(arg1, Expr.valueOf(remain)));
-					}
-					return;
+		if(arg2 instanceof SymReal<?>) {
+			SymReal<?> realExp = (SymReal<?>)arg2;
+			if(realExp.isPositive()) {
+				double exp = realExp.getDoubleValue();
+				for(int i=0; i<(int)exp; i++)
+					outList.add(arg1);
+				double remain = exp - Math.floor(exp);
+				if(remain > 0.0) {
+					outList.add(simplifiedIns(arg1, Expr.valueOf(remain)));
 				}
+				return;
 			}
-			outList.add(this);
 		}
+		outList.add(this);
 	}
 	@Override
 	public InstructionHandle bytecodeGen(String clsName, MethodGen mg,

@@ -2,7 +2,7 @@ package org.sym4j.symbolic;
 
 import java.util.Map;
 
-import symjava.symbolic.utils.Utils;
+import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
