@@ -14,6 +14,7 @@ import com.sun.org.apache.bcel.internal.generic.ClassGen;
 
 
 public class Func extends NaryOp {
+
 	protected Expr expr;
 
 	/**

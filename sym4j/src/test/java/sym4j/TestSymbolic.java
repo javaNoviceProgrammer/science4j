@@ -416,7 +416,8 @@ public class TestSymbolic {
 		checkResult("1 + (tan(x))^2",tan(x).diff(x));
 
 		checkResult("cos(cos(x))*-sin(x)",sin(cos(x)).diff(x));
-		checkResult("-sin(x)*cos(x)",cos(sin(x)).diff(x));
+		checkResult("-sin(cos(x))*-sin(x)",cos(cos(x)).diff(x));
+		checkResult("-sin(sin(x))*cos(x)",cos(sin(x)).diff(x));
 		checkResult("cos(x)*(1 + (tan(sin(x)))^2)",tan(sin(x)).diff(x));
 
 	}
@@ -504,14 +505,13 @@ public class TestSymbolic {
 //		testDiff();
 //		testAbstract();
 //		testIntegration();
-		testPower();
+//		testPower();
 //		testSinCosTan();
 //		testSymReal();
-//		testSinCosTan();
 //		testLogic();
 
 		//set vm parameters: -XX:+PrintCompilation
-		//testJITVectorized();
+		testJITVectorized();
 		//testSymRandom();
 //		testMathematicalFunction();
 	}

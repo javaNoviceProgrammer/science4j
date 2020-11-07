@@ -267,7 +267,7 @@ public class BytecodeUtils {
 		cg.addEmptyConstructor(ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
-				cg.getJavaClass().dump("bin/org.sym4j/bytecode/"+clsName+".class");
+				cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+clsName+".class");
 			} catch (java.io.IOException e) {
 				System.err.println(e);
 			}
@@ -334,7 +334,7 @@ public class BytecodeUtils {
 		cg.addEmptyConstructor(ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
-				cg.getJavaClass().dump("bin/org.sym4j/bytecode/"+className+".class");
+				cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+className+".class");
 			} catch (java.io.IOException e) {
 				System.err.println(e);
 			}
@@ -454,7 +454,7 @@ public class BytecodeUtils {
 		cg.addEmptyConstructor(ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
-				cg.getJavaClass().dump("bin/org.sym4j/bytecode/"+className+".class");
+				cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+className+".class");
 			} catch (java.io.IOException e) {
 				System.err.println(e);
 			}
