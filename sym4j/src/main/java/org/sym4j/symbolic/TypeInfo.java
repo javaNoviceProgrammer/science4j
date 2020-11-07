@@ -9,6 +9,7 @@ import org.sym4j.symbolic.Expr.TYPE;
  *
  */
 public class TypeInfo {
+
 	public TYPE type;
 	public int[] dim;
 

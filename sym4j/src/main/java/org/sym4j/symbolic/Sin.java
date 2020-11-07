@@ -61,7 +61,7 @@ public class Sin extends UnaryOp {
 			Map<Expr, Integer> funcRefsMap) {
 		InstructionHandle startPos = arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg.getType() == TYPE.MATRIX || arg.getType() == TYPE.VECTOR) {
-			il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeOpSupport", "sin",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "sin",
 					new ObjectType("Jama.Matrix"),
 					new Type[] { new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));

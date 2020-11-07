@@ -109,12 +109,12 @@ public class Log extends BinaryOp {
 		InstructionHandle startPos = arg1.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg2.getType() == TYPE.MATRIX || arg2.getType() == TYPE.VECTOR) {
-			il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeOpSupport", "log",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "log",
 					new ObjectType("Jama.Matrix"),
 					new Type[] { Type.DOUBLE, new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));
 		} else {
-			il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "log",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",
 					Type.DOUBLE, new Type[] { Type.DOUBLE,  Type.DOUBLE }, Constants.INVOKESTATIC));
 		}
 

@@ -123,7 +123,7 @@ public class Pow extends BinaryOp {
 		if(arg2 instanceof SymReal<?>) {
 			SymReal<?> realExp = (SymReal<?>)arg2;
 			if(realExp.isInteger()) {
-				il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "powi",
+				il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "powi",
 						Type.DOUBLE, new Type[] { Type.DOUBLE, Type.INT }, Constants.INVOKESTATIC));
 				return startPos;
 			}

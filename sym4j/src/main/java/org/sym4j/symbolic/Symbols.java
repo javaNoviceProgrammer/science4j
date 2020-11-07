@@ -17,7 +17,6 @@ import org.sym4j.symbolic.utils.Utils;
  * This can be used to generate a list of symbols in summation
  * or as a parameter list in an equation.
  *
- * @author yuemingliu
  *
  */
 public class Symbols extends Expr {

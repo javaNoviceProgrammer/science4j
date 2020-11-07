@@ -67,7 +67,7 @@ public class Concat extends NaryOp {
 			if(startPos == null) startPos = tmp;
 			il.append(new AASTORE());
 		}
-		il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeOpSupport", "concat",
+		il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "concat",
 				new ObjectType("Jama.Matrix"), new Type[] { new ArrayType(new ObjectType("Jama.Matrix"),1) },
 				Constants.INVOKESTATIC));
 		return startPos;

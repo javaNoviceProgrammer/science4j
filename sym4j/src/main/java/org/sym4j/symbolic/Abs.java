@@ -57,7 +57,7 @@ public class Abs extends UnaryOp {
 			Map<Expr, Integer> funcRefsMap) {
 		InstructionHandle startPos = arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg.getType() == TYPE.MATRIX || arg.getType() == TYPE.VECTOR) {
-			il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeOpSupport", "abs",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "abs",
 					new ObjectType("Jama.Matrix"),
 					new Type[] { new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));
