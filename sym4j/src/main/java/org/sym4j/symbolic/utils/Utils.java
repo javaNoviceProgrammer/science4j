@@ -9,13 +9,17 @@ import java.util.List;
 import java.util.Set;
 
 import org.sym4j.symbolic.Add;
+import org.sym4j.symbolic.Divide;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Expr.TYPE;
+import org.sym4j.symbolic.Func;
 import org.sym4j.symbolic.Multiply;
 import org.sym4j.symbolic.Negate;
 import org.sym4j.symbolic.Reciprocal;
+import org.sym4j.symbolic.Subtract;
 import org.sym4j.symbolic.Symbol;
 import org.sym4j.symbolic.Symbols;
+import org.sym4j.symbolic.Tensor;
 
 
 
@@ -355,14 +359,14 @@ public class Utils {
 //		return rlt2;
 //	}
 
-	public static double[][] getDataFromCloudSDs(CloudSD[] cloudSDs) {
-		double[][] rlt = new double[cloudSDs.length][];
-		for(int i=0; i<cloudSDs.length; i++) {
-			if(cloudSDs[i].fetch())
-				rlt[i] = cloudSDs[i].getData();
-		}
-		return rlt;
-	}
+//	public static double[][] getDataFromCloudSDs(CloudSD[] cloudSDs) {
+//		double[][] rlt = new double[cloudSDs.length][];
+//		for(int i=0; i<cloudSDs.length; i++) {
+//			if(cloudSDs[i].fetch())
+//				rlt[i] = cloudSDs[i].getData();
+//		}
+//		return rlt;
+//	}
 
 	public static boolean containSymbol(Expr expr, Symbol s) {
 		List<Expr> list = new ArrayList<Expr>();

@@ -2,6 +2,8 @@ package org.sym4j.symbolic;
 
 import java.util.Map;
 
+import org.sym4j.matrix.ExprMatrix;
+
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
 import com.sun.org.apache.bcel.internal.generic.ASTORE;

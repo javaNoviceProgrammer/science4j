@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.sym4j.math.Transformation;
+import org.sym4j.numeric.NumFunc;
 import org.sym4j.symbolic.Expr;
 
 

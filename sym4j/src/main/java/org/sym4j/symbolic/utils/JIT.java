@@ -8,6 +8,8 @@ import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.bytecode.BytecodeVecFunc;
 import org.sym4j.bytecode.IR;
 import org.sym4j.bytecode.VecFuncs;
+import org.sym4j.matrix.ExprMatrix;
+import org.sym4j.numeric.NumMatrix;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
 import org.sym4j.symbolic.Symbol;
@@ -103,17 +105,17 @@ public class JIT {
 		return fcl.newInstance(genClass);
 	}
 
-	public static IR getIR(String name, Expr[] args, Expr expr) {
-		String className = name;
-		Func func = new Func(className, expr, args);
-		ClassGen genClass = BytecodeUtils.genClassBytecodeFunc(func, false, false);
-		IR ir =  new IR();
-		ir.type = FUNC_TYPE.SCALAR;
-		ir.name = genClass.getJavaClass().getClassName();
-		ir.bytes = genClass.getJavaClass().getBytes();
-		return ir;
-
-	}
+//	public static IR getIR(String name, Expr[] args, Expr expr) {
+//		String className = name;
+//		Func func = new Func(className, expr, args);
+//		ClassGen genClass = BytecodeUtils.genClassBytecodeFunc(func, false, false);
+//		IR ir =  new IR();
+//		ir.type = FUNC_TYPE.SCALAR;
+//		ir.name = genClass.getJavaClass().getClassName();
+//		ir.bytes = genClass.getJavaClass().getBytes();
+//		return ir;
+//
+//	}
 
 	public static void main(String[] args) {
 //		Expr[] exprs = new Expr[3];

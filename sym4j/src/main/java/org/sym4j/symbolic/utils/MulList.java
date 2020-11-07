@@ -1,8 +1,10 @@
 package org.sym4j.symbolic.utils;
 
 import java.util.ArrayList;
-import symjava.symbolic.Expr;
-import symjava.symbolic.Negate;
+
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.Negate;
+
 
 public class MulList extends ArrayList<Expr>{
 	private static final long serialVersionUID = 1L;

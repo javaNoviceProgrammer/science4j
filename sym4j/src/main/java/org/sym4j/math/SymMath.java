@@ -1,5 +1,7 @@
 package org.sym4j.math;
 
+import org.sym4j.matrix.ExprMatrix;
+import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Abs;
 import org.sym4j.symbolic.Cos;
 import org.sym4j.symbolic.Exp;
@@ -14,6 +16,7 @@ import org.sym4j.symbolic.SymConst;
 import org.sym4j.symbolic.SymRandom;
 import org.sym4j.symbolic.Tan;
 import org.sym4j.symbolic.Vector;
+import org.sym4j.symbolic.utils.Utils;
 
 public class SymMath {
 	/**

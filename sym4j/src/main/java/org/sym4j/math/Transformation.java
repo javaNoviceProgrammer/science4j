@@ -2,6 +2,7 @@ package org.sym4j.math;
 
 import java.util.HashSet;
 
+import org.sym4j.matrix.ExprMatrix;
 import org.sym4j.relational.Eq;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;

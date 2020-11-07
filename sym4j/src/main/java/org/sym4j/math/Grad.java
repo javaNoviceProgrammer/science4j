@@ -2,8 +2,11 @@ package org.sym4j.math;
 
 import java.util.List;
 
+import org.sym4j.matrix.ExprVector;
+import org.sym4j.symbolic.Derivative;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
+import org.sym4j.symbolic.utils.Utils;
 
 
 

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Add;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.SymReal;

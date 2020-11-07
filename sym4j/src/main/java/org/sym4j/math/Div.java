@@ -3,7 +3,9 @@ package org.sym4j.math;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.NaryOp;
 import org.sym4j.symbolic.utils.Utils;
 
