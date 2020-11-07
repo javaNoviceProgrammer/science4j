@@ -150,16 +150,18 @@ abstract public class Expr implements Cloneable {
 		// create and save latex file
 		StringBuilder sb = new StringBuilder(500) ;
 		String sep = System.lineSeparator() ;
-		sb.append("\\documentclass[20pt]{extreport}").append(sep) ;
+//		sb.append("\\documentclass[20pt]{extreport}").append(sep) ;
+		sb.append("\\documentclass[preview]{standalone}").append(sep) ;
 		sb.append("\\usepackage[usenames]{color} %used for font color").append(sep) ;
 		sb.append("\\usepackage{amssymb} %maths").append(sep) ;
 		sb.append("\\usepackage{amsmath} %maths").append(sep) ;
 		sb.append("\\usepackage[utf8]{inputenc} %useful to type directly diacritic characters").append(sep) ;
 		sb.append("\\pagestyle{empty}").append(sep) ;
 		sb.append("\\begin{document}").append(sep) ;
-		sb.append("\\begin{align*}").append(sep) ;
-		sb.append(this.toLaTex()).append(sep) ;
-		sb.append("\\end{align*}").append(sep) ;
+//		sb.append("\\begin{align*}").append(sep) ;
+//		sb.append(this.toLaTex()).append(sep) ;
+//		sb.append("\\end{align*}").append(sep) ;
+		sb.append("$").append(this.toLaTex()).append("$").append(sep) ;
 		sb.append("\\end{document}") ;
 		// run pdflatex
 		String latexFile = filePath + File.separator + fileName + ".tex" ;

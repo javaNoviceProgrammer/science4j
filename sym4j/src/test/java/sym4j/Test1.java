@@ -77,7 +77,7 @@ public class Test1 {
 		System.out.println(e3);
 		System.out.println(e3.toLaTex());
 		String folder = "/Users/meisam/Desktop/test1" ;
-		e2.latexRender(folder, "test4");
+		e3.latexRender(folder, "test4");
 	}
 
 
