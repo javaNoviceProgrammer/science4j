@@ -5,6 +5,7 @@ package org.sym4j.symbolic;
  *
  */
 public class Infinity extends Expr {
+
 	public Infinity() {
 		updateLabel();
 	}
@@ -38,6 +39,7 @@ public class Infinity extends Expr {
 	@Override
 	public void updateLabel() {
 		this.label = "oo";
+		this.latexLabel = "\\infty" ;
 		this.sortKey = label;
 	}
 }

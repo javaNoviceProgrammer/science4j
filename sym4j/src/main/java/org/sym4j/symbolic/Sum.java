@@ -13,6 +13,7 @@ import org.sym4j.symbolic.utils.Utils;
  * a+b+c+d+...
  */
 public class Sum extends Expr {
+
 	public Expr summandTemplate;
 	public Expr indexExpr;
 	public int start;

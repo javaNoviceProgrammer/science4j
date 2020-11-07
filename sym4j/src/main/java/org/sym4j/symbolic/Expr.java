@@ -24,6 +24,11 @@ abstract public class Expr implements Cloneable {
 	protected String label = null;
 
 	/**
+	 * Latex representation
+	 */
+	protected String latexLabel = null;
+
+	/**
 	 * A string used to sort the terms in an expression
 	 */
 	protected String sortKey = null;

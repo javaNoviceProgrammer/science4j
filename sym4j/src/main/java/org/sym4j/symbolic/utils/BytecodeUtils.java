@@ -206,11 +206,11 @@ public class BytecodeUtils {
 	}
 
 	public static ClassGen genClassBytecodeFunc(Func fun, boolean writeClassFile, boolean staticMethod) {
-		String packageName = "symjava.bytecode";
+		String packageName = "org.sym4j.bytecode";
 		String clsName = fun.getName();
 		String fullClsName = packageName+"."+clsName;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"symjava.bytecode.BytecodeFunc"});
+				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
@@ -268,7 +268,7 @@ public class BytecodeUtils {
 		cg.addEmptyConstructor(ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
-				cg.getJavaClass().dump("bin/symjava/bytecode/"+clsName+".class");
+				cg.getJavaClass().dump("bin/org.sym4j/bytecode/"+clsName+".class");
 			} catch (java.io.IOException e) {
 				System.err.println(e);
 			}
@@ -278,10 +278,10 @@ public class BytecodeUtils {
 
 	public static ClassGen genClassBytecodeBatchFunc(String className, List<Expr> exprs, List<Integer> outPos, Expr[] args,
 			boolean writeClassFile, boolean staticMethod) {
-		String packageName = "symjava.bytecode";
+		String packageName = "org.sym4j.bytecode";
 		String fullClsName = packageName+"."+className;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"symjava.bytecode.BytecodeBatchFunc"});
+				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeBatchFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
@@ -335,7 +335,7 @@ public class BytecodeUtils {
 		cg.addEmptyConstructor(ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
-				cg.getJavaClass().dump("bin/symjava/bytecode/"+className+".class");
+				cg.getJavaClass().dump("bin/org.sym4j/bytecode/"+className+".class");
 			} catch (java.io.IOException e) {
 				System.err.println(e);
 			}
@@ -359,10 +359,10 @@ public class BytecodeUtils {
 
 		System.out.println("JIT Batch: "+expr);
 
-		String packageName = "symjava.bytecode";
+		String packageName = "org.sym4j.bytecode";
 		String fullClsName = packageName+"."+className;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"symjava.bytecode.BytecodeVecFunc"});
+				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeVecFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
@@ -455,7 +455,7 @@ public class BytecodeUtils {
 		cg.addEmptyConstructor(ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
-				cg.getJavaClass().dump("bin/symjava/bytecode/"+className+".class");
+				cg.getJavaClass().dump("bin/org.sym4j/bytecode/"+className+".class");
 			} catch (java.io.IOException e) {
 				System.err.println(e);
 			}
@@ -522,7 +522,7 @@ public class BytecodeUtils {
 				if(realExp.isInteger()) {
 					il.append(new POP2()); //Replace double value to integer
 					il.append(new PUSH(cp, realExp.getIntValue()));
-					il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "powi",
+					il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "powi",
 							Type.DOUBLE, new Type[] { Type.DOUBLE, Type.INT }, Constants.INVOKESTATIC));
 					return;
 				}
@@ -540,7 +540,7 @@ public class BytecodeUtils {
 					return;
 				}
 			}
-			il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "sqrt",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "sqrt",
 					Type.DOUBLE, new Type[] { Type.DOUBLE, Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof Sin) {
 			il.append(factory.createInvoke("java.lang.Math", "sin",
@@ -561,7 +561,7 @@ public class BytecodeUtils {
 //						Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
 //				il.append(new POP2());
 //			} else {
-				il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "log",
+				il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",
 						Type.DOUBLE, new Type[] { Type.DOUBLE,  Type.DOUBLE }, Constants.INVOKESTATIC));
 //			}
 		} else if(ins instanceof SymRandom) {
@@ -597,7 +597,7 @@ public class BytecodeUtils {
 				il.append(new PUSH(cp, INT.domain.getStepSize()));
 				il.append(new PUSH(cp, integrand.getName()));
 				il.append((new ALOAD(1))); //additional parameters from user's call
-				il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "numIntegrate1D",
+				il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "numIntegrate1D",
 						Type.DOUBLE, new Type[] {
 						Type.DOUBLE, Type.DOUBLE, Type.DOUBLE,
 						Type.STRING,
@@ -636,7 +636,7 @@ public class BytecodeUtils {
 				il.append(new PUSH(cp, integrand.getName()));
 				il.append((new ALOAD(1))); //additional parameters from user's call
 				//Now the paramters are ready, call the function
-				il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "numIntegrate2D",
+				il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "numIntegrate2D",
 						Type.DOUBLE, new Type[] {
 						Type.DOUBLE, Type.DOUBLE, Type.DOUBLE,
 						Type.STRING, Type.STRING, Type.DOUBLE,
@@ -698,7 +698,7 @@ public class BytecodeUtils {
 				il.append(new PUSH(cp, constr.getName()));
 				il.append((new ALOAD(1))); //additional parameters from user's call
 				//Now the paramters are ready, call the function
-				il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeSupport", "numIntegrateMonteCarloND",
+				il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "numIntegrateMonteCarloND",
 						Type.DOUBLE, new Type[] {
 						new ArrayType(Type.STRING,1),new ArrayType(Type.STRING,1),
 						Type.STRING,Type.STRING,
