@@ -27,7 +27,7 @@ public class Func extends NaryOp {
 	 * @param name
 	 * @param args
 	 */
-	public Func(String name, Expr ...args) {
+	public Func(String name, Expr... args) {
 		super(args);
 		this.expr = null;
 		this.label = name;
