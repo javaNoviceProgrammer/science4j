@@ -3,6 +3,7 @@ package org.sym4j.symbolic.utils;
 import java.lang.reflect.Method;
 
 public class BytecodeSupport {
+
 	public static double powi(double base, int exp) {
 		if(exp == 0) return 1.0;
 		else if(exp < 0) return 1.0/powi(base, -exp);

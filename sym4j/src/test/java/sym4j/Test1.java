@@ -1,11 +1,14 @@
 package sym4j;
 
 import static org.sym4j.symbolic.Symbol.* ;
+import static org.sym4j.symbolic.GreekSymbol.* ;
 import static org.sym4j.math.SymMath.* ;
 
 import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
+import org.sym4j.symbolic.GreekSymbol;
+import org.sym4j.symbolic.utils.JIT;
 
 
 public class Test1 {
@@ -31,12 +34,49 @@ public class Test1 {
 		long end = System.currentTimeMillis() ;
 		System.out.println("Time (msec) = " + (end-start));
 
+	}
 
+	public static void test2() {
+		Expr e1 = sin(x*x)*x+2.0 ;
+		System.out.println(e1);
+		Func f1 = new Func("f1", e1) ;
+		System.out.println(f1);
+		System.out.println(f1.toLaTex());
+		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
+		System.out.println(f1bytecode.getClass());
+		System.out.println(f1bytecode.apply(2.1));
+
+		Expr e2 = e1.diff(x) ;
+		System.out.println(e2);
+		System.out.println(JIT.compile(e2).apply(1.1));
+	}
+
+	public static void test3() {
+		Expr e1 = GreekSymbol.β ;
+		System.out.println(e1.toLaTex());
+		System.out.println(e1);
+
+		Expr e2 = 3.1*β+2.1;
+		System.out.println(e2.toLaTex());
+		System.out.println(e2);
+	}
+
+	public static void test4() {
+		String folder = "/Users/meisam/Desktop/test1" ;
+		Expr e2 = 3.1 * β + 5.1 + α*α + 2.1;
+		System.out.println(e2.toLaTex());
+		System.out.println(e2);
+		e2.latexRender(folder, "test4");
 
 	}
 
+
 	public static void main(String[] args) {
-		test1() ;
+//		for (int i=0; i<50; i++)
+//			test1() ;
+//		test2() ;
+//		test3() ;
+		test4() ;
 	}
 
 }

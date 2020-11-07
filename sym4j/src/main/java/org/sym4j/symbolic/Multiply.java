@@ -22,6 +22,7 @@ import com.sun.org.apache.bcel.internal.generic.Type;
 
 
 public class Multiply extends BinaryOp {
+
 	public Multiply(Expr l, Expr r) {
 		super(l, r);
 		if((!(l instanceof SymReal) && !(l instanceof SymInteger)) &&

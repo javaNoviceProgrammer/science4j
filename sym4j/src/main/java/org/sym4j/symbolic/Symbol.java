@@ -23,6 +23,7 @@ import com.sun.org.apache.bcel.internal.generic.PUSH;
  *
  */
 public class Symbol extends Expr {
+
 	public static Symbol a = new Symbol("a");
 	public static Symbol b = new Symbol("b");
 	public static Symbol c = new Symbol("c");
@@ -63,6 +64,12 @@ public class Symbol extends Expr {
 
 	public Symbol(String name) {
 		this.label = name;
+		sortKey = label;
+	}
+
+	public Symbol(String name, String latexName) {
+		this.label = name;
+		this.latexLabel = latexName ;
 		sortKey = label;
 	}
 

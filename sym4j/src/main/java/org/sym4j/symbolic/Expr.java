@@ -1,5 +1,8 @@
 package org.sym4j.symbolic;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -127,7 +130,48 @@ abstract public class Expr implements Cloneable {
 	 * @return
 	 */
 	public String toLaTex() {
-		return label;
+		if (latexLabel == null) {
+			latexLabel = label.replaceAll("\\*", "") ;
+		}
+		return latexLabel ;
+	}
+
+	public void latexRender(String filePath, String fileName) {
+		// create and save latex file
+		StringBuilder sb = new StringBuilder(500) ;
+		String sep = System.lineSeparator() ;
+		sb.append("\\documentclass[20pt]{extreport}").append(sep) ;
+		sb.append("\\usepackage[usenames]{color} %used for font color").append(sep) ;
+		sb.append("\\usepackage{amssymb} %maths").append(sep) ;
+		sb.append("\\usepackage{amsmath} %maths").append(sep) ;
+		sb.append("\\usepackage[utf8]{inputenc} %useful to type directly diacritic characters").append(sep) ;
+		sb.append("\\pagestyle{empty}").append(sep) ;
+		sb.append("\\begin{document}").append(sep) ;
+		sb.append("\\begin{align*}").append(sep) ;
+		sb.append(this.toLaTex()).append(sep) ;
+		sb.append("\\end{align*}").append(sep) ;
+		sb.append("\\end{document}") ;
+		// run pdflatex
+		String latexFile = filePath + File.separator + fileName + ".tex" ;
+		System.out.println("File : " + latexFile);
+		File texFile = new File(latexFile) ;
+		try {
+			FileWriter fwriter = new FileWriter(texFile) ;
+			fwriter.write(sb.toString());
+			fwriter.close() ;
+			Process proc = Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
+			proc.waitFor() ;
+//			Scanner scanner = new Scanner(proc.getInputStream()) ;
+//			while(scanner.hasNextLine()) {
+//				System.out.println(scanner.nextLine());
+//			}
+//			scanner.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	/**
