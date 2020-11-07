@@ -85,7 +85,6 @@ import com.sun.org.apache.bcel.internal.generic.DASTORE;
 import com.sun.org.apache.bcel.internal.generic.DCMPL;
 import com.sun.org.apache.bcel.internal.generic.DDIV;
 import com.sun.org.apache.bcel.internal.generic.DMUL;
-import com.sun.org.apache.bcel.internal.generic.DSTORE;
 import com.sun.org.apache.bcel.internal.generic.DSUB;
 import com.sun.org.apache.bcel.internal.generic.GOTO;
 import com.sun.org.apache.bcel.internal.generic.I2D;

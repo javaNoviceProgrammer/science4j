@@ -1,10 +1,5 @@
 package org.sym4j.math;
 
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.DADD;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.FADD;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.IADD;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.LADD;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -182,7 +177,7 @@ public class Dot extends BinaryOp {
 		InstructionHandle startPos = arg1.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg1.getType() == TYPE.VECTOR && arg2.getType() == TYPE.VECTOR) {
 			arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
-			il.append(factory.createInvoke("symjava.symbolic.utils.BytecodeOpSupport", "dot",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "dot",
 					//Type.DOUBLE, new Type[] { new ObjectType("Jama.Matrix"),new ObjectType("Jama.Matrix") },
 					new ObjectType("Jama.Matrix"), new Type[] { new ObjectType("Jama.Matrix"),new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));

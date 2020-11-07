@@ -9,7 +9,6 @@ import com.sun.org.apache.bcel.internal.generic.ALOAD;
 import com.sun.org.apache.bcel.internal.generic.ASTORE;
 import com.sun.org.apache.bcel.internal.generic.ArrayType;
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.DSTORE;
 import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
 import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
 import com.sun.org.apache.bcel.internal.generic.InstructionHandle;

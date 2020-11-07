@@ -6,7 +6,6 @@ import java.util.List;
 import org.sym4j.bytecode.BytecodeBatchFunc;
 import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.bytecode.BytecodeVecFunc;
-import org.sym4j.bytecode.IR;
 import org.sym4j.bytecode.VecFuncs;
 import org.sym4j.matrix.ExprMatrix;
 import org.sym4j.numeric.NumMatrix;

@@ -20,7 +20,6 @@ import com.sun.org.apache.bcel.internal.generic.IINC;
 import com.sun.org.apache.bcel.internal.generic.ILOAD;
 import com.sun.org.apache.bcel.internal.generic.ISTORE;
 import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
 import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
 import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
@@ -38,7 +37,7 @@ public class ForLoop {
 				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
-		InstructionFactory factory = new InstructionFactory(cg);
+//		InstructionFactory factory = new InstructionFactory(cg);
 
 		short acc_flags = ACC_PUBLIC;
 		MethodGen mg = new MethodGen(acc_flags, // access flags
