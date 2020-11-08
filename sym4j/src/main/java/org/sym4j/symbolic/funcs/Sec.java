@@ -12,25 +12,24 @@ import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
 import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
 import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.MethodGen;
+import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
+public class Sec extends UnaryOp {
 
-
-public class Tan extends UnaryOp {
-
-	public Tan(Expr arg) {
+	public Sec(Expr arg) {
 		super(arg);
 		updateLabel();
 	}
 
 	@Override
 	public Expr diff(Expr expr) {
-		//1 + tan^2(x)
-		return arg.diff(expr).multiply(new Pow(this, Expr.valueOf(2)).add(1));
+		// sec(x)*tan(x)
+		return this.multiply(new Tan(expr)).multiply(arg.diff(expr)) ;
 	}
 
 	public static Expr simplifiedIns(Expr expr) {
-		return new Tan(expr);
+		return new Sec(expr);
 	}
 
 	@Override
@@ -45,13 +44,13 @@ public class Tan extends UnaryOp {
 		Expr sl = arg.subs(from, to);
 		if(sl == arg)
 			return this;
-		return new Tan(sl);
+		return new Sec(sl);
 	}
 
 	@Override
 	public boolean symEquals(Expr other) {
-		if(other instanceof Tan) {
-			return Utils.symCompare(this.arg, ((Tan) other).arg);
+		if(other instanceof Sec) {
+			Utils.symCompare(this.arg, ((Sec) other).arg);
 		}
 		return false;
 	}
@@ -62,17 +61,25 @@ public class Tan extends UnaryOp {
 			InstructionList il, Map<String, Integer> argsMap, int argsStartPos,
 			Map<Expr, Integer> funcRefsMap) {
 		InstructionHandle startPos = arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
-		il.append(factory.createInvoke("java.lang.Math", "tan",
-				Type.DOUBLE,
-				new Type[] { Type.DOUBLE },
-		Constants.INVOKESTATIC));
+		if(arg.getType() == TYPE.MATRIX || arg.getType() == TYPE.VECTOR) {
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "sec",
+					new ObjectType("Jama.Matrix"),
+					new Type[] { new ObjectType("Jama.Matrix") },
+					Constants.INVOKESTATIC));
+		} else {
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "sec",
+					Type.DOUBLE,
+					new Type[] { Type.DOUBLE },
+					Constants.INVOKESTATIC));
+		}
+
 		return startPos;
 	}
 
 	@Override
 	public void updateLabel() {
-		label = "tan(" + arg + ")" ;
-		sortKey = label ;
-		latexLabel = "\\tan(" + arg.getLatexLabel() + ")" ;
+		label = "sec(" + arg + ")";
+		sortKey = label;
+		latexLabel = "\\" + "sec(" + arg.getLatexLabel() + ")";
 	}
 }

@@ -141,6 +141,6 @@ public class Negate extends UnaryOp {
 	public void updateLabel() {
 		label = "-" + SymPrinting.addParenthsesIfNeeded(arg, this);
 		sortKey = arg.getSortKey();
-		latexLabel = "-" + SymPrinting.addParenthsesIfNeeded(arg, this);
+		latexLabel = "-" + SymPrinting.addParenthsesIfNeededLatex(arg, this);
 	}
 }

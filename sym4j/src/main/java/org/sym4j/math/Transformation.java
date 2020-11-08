@@ -20,6 +20,7 @@ import org.sym4j.symbolic.utils.Utils;
  *
  */
 public class Transformation {
+
 	public Eq[] eqs = null;
 
 	public Transformation(Eq ...eqs) {
@@ -52,7 +53,6 @@ public class Transformation {
 	}
 
 	public Expr getJacobian() {
-
 		return getJacobianMatrix().det();
 	}
 

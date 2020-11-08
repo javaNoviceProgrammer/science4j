@@ -151,13 +151,15 @@ public class Pow extends BinaryOp {
 			}
 			if(realExp.isNegative())
 				displayExp = "{"+displayExp+"}";
+		} else {
+			displayExp = "{"+displayExp+"}" ;
 		}
 		if(base instanceof Symbol) {
 			label = base + "^" + displayExp + "" ;
-			latexLabel = base + "^" + displayExp + "" ;
+			latexLabel = base.getLatexLabel() + "^" + "{" + exponent.getLatexLabel() + "}" ;
 		} else {
 			label = "(" + base + ")^" + displayExp ;
-			latexLabel = "(" + base + ")^" + displayExp ;
+			latexLabel = "(" + base.getLatexLabel() + ")^" + "{" + exponent.getLatexLabel() + "}" ;
 		}
 
 		//TODO? x^3 + x^2 + x + 1

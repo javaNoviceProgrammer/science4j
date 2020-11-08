@@ -3,6 +3,7 @@ package org.sym4j.symbolic.utils;
 import Jama.Matrix;
 
 public class BytecodeOpSupport {
+
 	public static Jama.Matrix concat(Jama.Matrix[] args) {
 		int len = 0;
 		for(int i=0; i<args.length; i++) {

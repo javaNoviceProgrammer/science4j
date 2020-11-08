@@ -74,12 +74,60 @@ public class Test2 {
 		System.out.println(f1bytecode.apply(2.1));
 	}
 
+	public static void test6() {
+//		Expr e1 = sqrt(x+1, 2*x) ;
+		Expr e1 = pow(x+1, 2*x) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+	}
+
+	public static void test7() {
+		Expr e1 = sec(x) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		Func f1 = new Func("f1", e1) ;
+		System.out.println(f1);
+		System.out.println(f1.toLaTex());
+		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
+		System.out.println(f1bytecode.getClass());
+		System.out.println(f1bytecode.apply(2.1));
+	}
+
+	public static void test8() {
+		Expr e1 = csc(x) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		Func f1 = new Func("f1", e1) ;
+		System.out.println(f1);
+		System.out.println(f1.toLaTex());
+		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
+		System.out.println(f1bytecode.getClass());
+		System.out.println(f1bytecode.apply(2.1));
+	}
+
+	public static void test9() {
+		Expr e1 = cot(x).diff(x) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		Func f1 = new Func("f1", e1) ;
+		System.out.println(f1);
+		System.out.println(f1.toLaTex());
+		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
+		System.out.println(f1bytecode.getClass());
+		System.out.println(f1bytecode.apply(2.1));
+	}
+
+
 	public static void main(String[] args) {
 //		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
-		test5() ;
+//		test5() ;
+//		test6() ;
+//		test7() ;
+//		test8() ;
+		test9() ;
 	}
 
 }

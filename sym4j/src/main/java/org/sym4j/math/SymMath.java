@@ -7,12 +7,15 @@ import org.sym4j.symbolic.Vector;
 import org.sym4j.symbolic.funcs.Abs;
 import org.sym4j.symbolic.funcs.Cos;
 import org.sym4j.symbolic.funcs.Cosh;
+import org.sym4j.symbolic.funcs.Cot;
 import org.sym4j.symbolic.funcs.Coth;
+import org.sym4j.symbolic.funcs.Csc;
 import org.sym4j.symbolic.funcs.Exp;
 import org.sym4j.symbolic.funcs.Log;
 import org.sym4j.symbolic.funcs.Log10;
 import org.sym4j.symbolic.funcs.Log2;
 import org.sym4j.symbolic.funcs.Pow;
+import org.sym4j.symbolic.funcs.Sec;
 import org.sym4j.symbolic.funcs.Sin;
 import org.sym4j.symbolic.funcs.Sinh;
 import org.sym4j.symbolic.funcs.Sqrt;
@@ -122,6 +125,18 @@ public class SymMath {
 
 	public static Expr tan(Expr x) {
 		return Tan.simplifiedIns(x);
+	}
+
+	public static Expr cot(Expr x) {
+		return Cot.simplifiedIns(x) ;
+	}
+
+	public static Expr sec(Expr x) {
+		return Sec.simplifiedIns(x) ;
+	}
+
+	public static Expr csc(Expr x) {
+		return Csc.simplifiedIns(x) ;
 	}
 
 	///////////////////////////////////////////////////////////////

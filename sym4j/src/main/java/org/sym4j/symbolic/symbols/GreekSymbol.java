@@ -55,5 +55,4 @@ public class GreekSymbol {
 	public static Symbol Ψ = new Symbol("\\Psi");
 	public static Symbol Ω = new Symbol("\\Omega");
 
-
 }

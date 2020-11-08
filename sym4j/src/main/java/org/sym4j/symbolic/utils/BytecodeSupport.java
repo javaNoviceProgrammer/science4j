@@ -37,6 +37,18 @@ public class BytecodeSupport {
 		return 1.0/Math.tanh(x) ;
 	}
 
+	public static double sec(double x) {
+		return 1.0/Math.cos(x) ;
+	}
+
+	public static double csc(double x) {
+		return 1.0/Math.sin(x) ;
+	}
+
+	public static double cot(double x) {
+		return 1.0/Math.tan(x) ;
+	}
+
 	/**
 	 * 1D integration
 	 * @param begin

@@ -20,6 +20,7 @@ import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
 public class Sqrt extends BinaryOp {
+
 	public Sqrt(Expr expr) {
 		super(expr, Expr.valueOf(2));
 		updateLabel();
@@ -106,16 +107,16 @@ public class Sqrt extends BinaryOp {
 	@Override
 	public void updateLabel() {
 		if(arg2 instanceof SymReal<?>) {
-			SymReal<?> t = (SymReal<?>)arg2;
+			SymReal<?> t = (SymReal<?>) arg2 ;
 			if(t.isInteger() && t.getIntValue() == 2) {
 				label = "sqrt(" + arg1 + ")";
 				sortKey = arg1.getSortKey()+"sqrt[2]"+arg2;
-				latexLabel = "\\sqrt{" + arg1 + "}";
+				latexLabel = "\\sqrt{" + arg1.getLatexLabel() + "}";
 				return;
 			}
 		}
 		label = "sqrtn(" + arg1 + "," + arg2 + ")";
 		sortKey = arg1.getSortKey()+"sqrt"+arg2.getSortKey();
-		latexLabel = "\\sqrt[" + arg2 + "]" + "{" + arg1 + "}";
+		latexLabel = "\\sqrt[" + arg2.getLatexLabel() + "]" + "{" + arg1.getLatexLabel() + "}";
 	}
 }

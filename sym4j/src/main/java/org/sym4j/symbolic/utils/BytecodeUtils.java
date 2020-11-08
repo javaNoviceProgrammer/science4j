@@ -53,9 +53,12 @@ import org.sym4j.symbolic.arity.TernaryOp;
 import org.sym4j.symbolic.arity.UnaryOp;
 import org.sym4j.symbolic.funcs.Cos;
 import org.sym4j.symbolic.funcs.Cosh;
+import org.sym4j.symbolic.funcs.Cot;
 import org.sym4j.symbolic.funcs.Coth;
+import org.sym4j.symbolic.funcs.Csc;
 import org.sym4j.symbolic.funcs.Log;
 import org.sym4j.symbolic.funcs.Pow;
+import org.sym4j.symbolic.funcs.Sec;
 import org.sym4j.symbolic.funcs.Sin;
 import org.sym4j.symbolic.funcs.Sinh;
 import org.sym4j.symbolic.funcs.Sqrt;
@@ -121,6 +124,7 @@ public class BytecodeUtils {
 
 	public static void post_order(Expr e, List<Expr> outList) {
 		if(e == null) return;
+
 		if(e instanceof BinaryOp) {
 			BinaryOp be = (BinaryOp)e;
 			post_order(be.arg1, outList);
@@ -566,6 +570,15 @@ public class BytecodeUtils {
 					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof Coth) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "coth",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Cot) {
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "cot",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Sec) {
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "sec",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Csc) {
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "csc",
 					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof Log) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",
