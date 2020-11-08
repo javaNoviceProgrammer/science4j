@@ -5,6 +5,8 @@ import java.util.List;
 import org.sym4j.bytecode.BConstant;
 import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.symbolic.arity.NaryOp;
+import org.sym4j.symbolic.symbols.SymReal;
+import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.FuncClassLoader;
 import org.sym4j.symbolic.utils.Utils;

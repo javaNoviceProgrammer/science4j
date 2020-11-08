@@ -1,8 +1,10 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.symbols;
 
 import java.util.HashMap;
 import java.util.List;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.utils.Utils;
 
 

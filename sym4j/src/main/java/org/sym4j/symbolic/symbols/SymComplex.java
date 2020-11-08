@@ -1,5 +1,7 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.symbols;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.utils.Utils;
 
 /**
@@ -22,7 +24,8 @@ public class SymComplex extends Expr {
 	}
 
 	public String toString() {
-		return real.label + "+" + imaginary.label + "i";
+//		return real.label + "+" + imaginary.label + "i";
+		return real.getLabel() + "+" + imaginary.getLabel() + "i";
 	}
 
 	@Override

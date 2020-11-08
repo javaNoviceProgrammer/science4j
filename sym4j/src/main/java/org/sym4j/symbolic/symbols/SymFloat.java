@@ -1,5 +1,4 @@
-package org.sym4j.symbolic;
-
+package org.sym4j.symbolic.symbols;
 
 public class SymFloat extends SymReal<Float> {
 

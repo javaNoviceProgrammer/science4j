@@ -14,11 +14,11 @@ import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.operation.Reciprocal;
 import org.sym4j.symbolic.operation.Subtract;
+import org.sym4j.symbolic.symbols.Symbol;
+import org.sym4j.symbolic.symbols.Symbols;
 import org.sym4j.symbolic.Func;
-import org.sym4j.symbolic.Reciprocal;
-import org.sym4j.symbolic.Symbol;
-import org.sym4j.symbolic.Symbols;
 import org.sym4j.symbolic.Tensor;
 
 

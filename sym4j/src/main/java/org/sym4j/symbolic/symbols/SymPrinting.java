@@ -1,9 +1,14 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.symbols;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.Func;
+import org.sym4j.symbolic.Pow;
+import org.sym4j.symbolic.Sum;
 import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.operation.Reciprocal;
 import org.sym4j.symbolic.operation.Subtract;
 
 public class SymPrinting {

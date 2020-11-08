@@ -1,9 +1,10 @@
 package org.sym4j.domains;
 
+import static org.sym4j.symbolic.symbols.Symbol.x;
+
 import org.sym4j.math.Transformation;
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.SymDouble;
-import static org.sym4j.symbolic.Symbol.x ;
+import org.sym4j.symbolic.symbols.SymDouble;
 
 public class Interval extends Domain1D {
 	Expr start;

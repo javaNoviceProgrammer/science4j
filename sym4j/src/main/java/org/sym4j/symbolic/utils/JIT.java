@@ -11,7 +11,7 @@ import org.sym4j.matrix.ExprMatrix;
 import org.sym4j.numeric.NumMatrix;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
-import org.sym4j.symbolic.Symbol;
+import org.sym4j.symbolic.symbols.Symbol;
 
 import com.sun.org.apache.bcel.internal.generic.ClassGen;
 

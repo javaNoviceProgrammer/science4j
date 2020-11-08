@@ -12,10 +12,10 @@ import org.sym4j.symbolic.Log2;
 import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.Sin;
 import org.sym4j.symbolic.Sqrt;
-import org.sym4j.symbolic.SymConst;
-import org.sym4j.symbolic.SymRandom;
 import org.sym4j.symbolic.Tan;
 import org.sym4j.symbolic.Vector;
+import org.sym4j.symbolic.symbols.SymConst;
+import org.sym4j.symbolic.symbols.SymRandom;
 import org.sym4j.symbolic.utils.Utils;
 
 public class SymMath {

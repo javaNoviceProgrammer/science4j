@@ -14,7 +14,14 @@ import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.operation.Remainder;
 import org.sym4j.symbolic.operation.Subtract;
+import org.sym4j.symbolic.symbols.SymDouble;
+import org.sym4j.symbolic.symbols.SymFloat;
+import org.sym4j.symbolic.symbols.SymInteger;
+import org.sym4j.symbolic.symbols.SymLong;
+import org.sym4j.symbolic.symbols.SymReal;
+import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;

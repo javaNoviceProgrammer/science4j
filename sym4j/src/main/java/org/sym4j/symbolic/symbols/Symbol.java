@@ -1,7 +1,10 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.symbols;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
+import org.sym4j.symbolic.special.Infinity;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ALOAD;
@@ -100,8 +103,10 @@ public class Symbol extends Expr {
 
 	@Override
 	public boolean symEquals(Expr other) {
-		if(other instanceof Symbol)
-			return this.label.equals(other.label);
+		if(other instanceof Symbol) {
+//			return this.label.equals(other.label);
+			return this.label.equals(other.getLabel());
+		}
 		return false;
 	}
 

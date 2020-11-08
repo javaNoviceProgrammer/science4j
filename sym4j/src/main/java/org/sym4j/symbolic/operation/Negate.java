@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.SymDouble;
-import org.sym4j.symbolic.SymInteger;
-import org.sym4j.symbolic.SymLong;
-import org.sym4j.symbolic.SymPrinting;
-import org.sym4j.symbolic.SymReal;
 import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.symbols.SymDouble;
+import org.sym4j.symbolic.symbols.SymInteger;
+import org.sym4j.symbolic.symbols.SymLong;
+import org.sym4j.symbolic.symbols.SymPrinting;
+import org.sym4j.symbolic.symbols.SymReal;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;

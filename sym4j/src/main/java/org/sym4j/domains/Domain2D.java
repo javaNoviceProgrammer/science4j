@@ -2,7 +2,7 @@ package org.sym4j.domains;
 
 import org.sym4j.math.Transformation;
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.Symbol;
+import org.sym4j.symbolic.symbols.Symbol;
 
 public class Domain2D extends Domain {
 

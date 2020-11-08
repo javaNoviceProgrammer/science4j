@@ -1,6 +1,9 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.symbols;
 
 import java.util.Map;
+
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
 import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
@@ -42,7 +45,8 @@ public class SymConst extends Expr {
 
 	@Override
 	public boolean symEquals(Expr other) {
-		return this.label.equals(other.label);
+//		return this.label.equals(other.label);
+		return this.label.equals(other.getLabel());
 	}
 
 	@Override

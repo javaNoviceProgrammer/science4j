@@ -1,4 +1,4 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.DREM;
 import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.FREM;
@@ -7,6 +7,7 @@ import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.LREM
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
@@ -22,6 +23,7 @@ import com.sun.org.apache.bcel.internal.generic.MethodGen;
  *
  */
 public class Remainder extends BinaryOp {
+
 	public Remainder(Expr arg1, Expr arg2) {
 		super(arg1, arg2);
 		updateLabel();
@@ -68,7 +70,8 @@ public class Remainder extends BinaryOp {
 
 	@Override
 	public void updateLabel() {
-		this.label = arg1+"%"+arg2;
+		this.label = arg1 + "%" + arg2;
 		this.sortKey = this.label;
+		this.latexLabel = arg1.getLatexLabel() + "\\%" + arg2.getLatexLabel() ;
 	}
 }

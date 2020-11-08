@@ -17,19 +17,20 @@ import org.sym4j.relational.Neq;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
 import org.sym4j.symbolic.Integrate;
-import org.sym4j.symbolic.Reciprocal;
 import org.sym4j.symbolic.Sum;
-import org.sym4j.symbolic.SymDouble;
-import org.sym4j.symbolic.SymFloat;
-import org.sym4j.symbolic.SymInteger;
-import org.sym4j.symbolic.SymLong;
-import org.sym4j.symbolic.SymRandom;
-import org.sym4j.symbolic.SymReal;
-import org.sym4j.symbolic.Symbol;
-import org.sym4j.symbolic.Symbols;
+import org.sym4j.symbolic.operation.Reciprocal;
+import org.sym4j.symbolic.symbols.SymDouble;
+import org.sym4j.symbolic.symbols.SymFloat;
+import org.sym4j.symbolic.symbols.SymInteger;
+import org.sym4j.symbolic.symbols.SymLong;
+import org.sym4j.symbolic.symbols.SymRandom;
+import org.sym4j.symbolic.symbols.SymReal;
+import org.sym4j.symbolic.symbols.Symbol;
+import org.sym4j.symbolic.symbols.Symbols;
 import org.sym4j.symbolic.utils.JIT;
-import static org.sym4j.symbolic.Symbol.* ;
+
 import static org.sym4j.math.SymMath.* ;
+import static org.sym4j.symbolic.symbols.Symbol.*;
 
 
 public class TestSymbolic {

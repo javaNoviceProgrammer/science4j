@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.symbols.SymPrinting;
+import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.AddList;
 import org.sym4j.symbolic.utils.Utils;
 

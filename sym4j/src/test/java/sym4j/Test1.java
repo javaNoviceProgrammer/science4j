@@ -1,13 +1,13 @@
 package sym4j;
 
-import static org.sym4j.symbolic.Symbol.* ;
-import static org.sym4j.symbolic.GreekSymbol.* ;
+import static org.sym4j.symbolic.symbols.GreekSymbol.*;
+import static org.sym4j.symbolic.symbols.Symbol.*;
 import static org.sym4j.math.SymMath.* ;
 
 import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
-import org.sym4j.symbolic.GreekSymbol;
+import org.sym4j.symbolic.symbols.GreekSymbol;
 import org.sym4j.symbolic.utils.JIT;
 
 
@@ -130,6 +130,33 @@ public class Test1 {
 		System.out.println(f.apply(2.1, 5.0));
 	}
 
+	public static void test12() {
+		Expr e1 = x/3.0 ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		System.out.println(e1.toLaTex());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1, 5.0));
+	}
+
+	public static void test13() {
+		Expr e1 = x % y ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		System.out.println(e1.toLaTex());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(10, 3));
+	}
+
+	public static void test14() {
+		Expr e1 = (x+GreekSymbol.α)/inf ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		System.out.println(e1.toLaTex());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(10, 3));
+	}
+
 
 	public static void main(String[] args) {
 //		test1() ;
@@ -142,7 +169,10 @@ public class Test1 {
 //		test8() ;
 //		test9() ;
 //		test10() ;
-		test11() ;
+//		test11() ;
+//		test12() ;
+//		test13() ;
+		test14() ;
 	}
 
 }

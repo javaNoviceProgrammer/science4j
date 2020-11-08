@@ -1,10 +1,14 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.arity.UnaryOp;
-import org.sym4j.symbolic.operation.Divide;
-import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.symbols.SymDouble;
+import org.sym4j.symbolic.symbols.SymPrinting;
+import org.sym4j.symbolic.symbols.SymReal;
+import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
@@ -87,6 +91,7 @@ public class Reciprocal extends UnaryOp {
 	public void updateLabel() {
 		label =  "1/" +  SymPrinting.addParenthsesIfNeeded(arg, this);
 		sortKey = arg.getSortKey();
+		latexLabel =  "\\frac{1}{" +  SymPrinting.addParenthsesIfNeededLatex(arg, this) + "}" ;
 	}
 
 }

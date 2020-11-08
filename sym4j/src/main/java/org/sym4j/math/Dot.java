@@ -6,10 +6,10 @@ import java.util.Map;
 
 import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.SymReal;
 import org.sym4j.symbolic.Vector;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.symbols.SymReal;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;

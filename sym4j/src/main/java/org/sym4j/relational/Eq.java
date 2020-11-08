@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.Symbol;
 import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;

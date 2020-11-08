@@ -1,6 +1,7 @@
 package org.sym4j.symbolic;
 
 import org.sym4j.math.SymMath;
+import org.sym4j.symbolic.symbols.SymReal;
 import org.sym4j.symbolic.utils.Utils;
 
 

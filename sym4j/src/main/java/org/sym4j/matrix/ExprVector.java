@@ -5,8 +5,8 @@ import java.util.Vector;
 
 import org.sym4j.numeric.NumVector;
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.Symbols;
 import org.sym4j.symbolic.TypeInfo;
+import org.sym4j.symbolic.symbols.Symbols;
 import org.sym4j.symbolic.utils.AddList;
 
 

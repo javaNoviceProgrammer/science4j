@@ -1,4 +1,7 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.special;
+
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 
 /**
  * A symbol represents infinity
@@ -38,7 +41,8 @@ public class Infinity extends Expr {
 
 	@Override
 	public void updateLabel() {
-		this.label = "oo";
+//		this.label = "oo";
+		this.label = "∞";
 		this.latexLabel = "\\infty" ;
 		this.sortKey = label;
 	}

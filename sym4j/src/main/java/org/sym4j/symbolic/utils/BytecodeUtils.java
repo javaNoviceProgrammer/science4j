@@ -46,18 +46,12 @@ import org.sym4j.symbolic.Cos;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Expr.TYPE;
 import org.sym4j.symbolic.Func;
-import org.sym4j.symbolic.Infinity;
 import org.sym4j.symbolic.Integrate;
 import org.sym4j.symbolic.Log;
 import org.sym4j.symbolic.Pow;
-import org.sym4j.symbolic.Reciprocal;
 import org.sym4j.symbolic.Sin;
 import org.sym4j.symbolic.Sqrt;
 import org.sym4j.symbolic.Sum;
-import org.sym4j.symbolic.SymConst;
-import org.sym4j.symbolic.SymRandom;
-import org.sym4j.symbolic.SymReal;
-import org.sym4j.symbolic.Symbol;
 import org.sym4j.symbolic.Tan;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.arity.NaryOp;
@@ -67,7 +61,13 @@ import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.operation.Reciprocal;
 import org.sym4j.symbolic.operation.Subtract;
+import org.sym4j.symbolic.special.Infinity;
+import org.sym4j.symbolic.symbols.SymConst;
+import org.sym4j.symbolic.symbols.SymRandom;
+import org.sym4j.symbolic.symbols.SymReal;
+import org.sym4j.symbolic.symbols.Symbol;
 
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
@@ -114,6 +114,7 @@ import com.sun.org.apache.bcel.internal.generic.PUSH;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
 public class BytecodeUtils {
+
 	public static void post_order(Expr e, List<Expr> outList) {
 		if(e == null) return;
 		if(e instanceof BinaryOp) {

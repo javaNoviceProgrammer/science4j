@@ -1,6 +1,9 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.symbols;
 
 import java.util.Map;
+
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 
 import com.sun.org.apache.bcel.internal.Constants;
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
