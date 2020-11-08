@@ -31,7 +31,6 @@ import com.sun.org.apache.bcel.internal.generic.InstructionList;
 import com.sun.org.apache.bcel.internal.generic.MethodGen;
 
 
-
 abstract public class Expr implements Cloneable {
 	/**
 	 * Label(or name) of an expression
