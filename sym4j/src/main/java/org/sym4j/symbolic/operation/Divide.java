@@ -1,11 +1,17 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.Reciprocal;
+import org.sym4j.symbolic.SymDouble;
+import org.sym4j.symbolic.SymInteger;
+import org.sym4j.symbolic.SymPrinting;
+import org.sym4j.symbolic.SymReal;
+import org.sym4j.symbolic.Symbol;
 import org.sym4j.symbolic.arity.BinaryOp;
-import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
@@ -19,6 +25,7 @@ import com.sun.org.apache.bcel.internal.generic.MethodGen;
 
 
 public class Divide extends BinaryOp {
+
 	public Divide(Expr numerator, Expr denominator) {
 		super(numerator, denominator);
 		updateLabel();
@@ -135,7 +142,7 @@ public class Divide extends BinaryOp {
 				+ "/" +
 				SymPrinting.addParenthsesIfNeeded2(arg2, this);
 		sortKey = arg1.getSortKey()+arg2.getSortKey();
-		latexLabel = "\\frac{" + SymPrinting.addParenthsesIfNeeded(arg1, this) + "}" +
-					 "{" + SymPrinting.addParenthsesIfNeeded2(arg2, this) + "}" ;
+		latexLabel = "\\frac{" + SymPrinting.addParenthsesIfNeededLatex(arg1, this) + "}" +
+					 "{" + SymPrinting.addParenthsesIfNeededLatex2(arg2, this) + "}" ;
 	}
 }

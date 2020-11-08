@@ -3,6 +3,7 @@ package org.sym4j.symbolic;
 import java.util.Map;
 
 import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;

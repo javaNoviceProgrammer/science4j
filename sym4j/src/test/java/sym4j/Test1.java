@@ -112,6 +112,14 @@ public class Test1 {
 		System.out.println(f.apply(2.1));
 	}
 
+	public static void test10() {
+		Expr e1 = 2/(3+x) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1));
+	}
+
 
 	public static void main(String[] args) {
 //		test1() ;
@@ -122,7 +130,8 @@ public class Test1 {
 //		test6() ;
 //		test7() ;
 //		test8() ;
-		test9() ;
+//		test9() ;
+		test10() ;
 	}
 
 }

@@ -1,6 +1,7 @@
 package org.sym4j.symbolic;
 
 import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.operation.Subtract;
@@ -39,6 +40,18 @@ public class SymPrinting {
 		if(getPrecedence(toMe) <= getPrecedence(forOperation))
 			return "(" + toMe.toString() + ")";
 		return toMe.toString();
+	}
+
+	public static String addParenthsesIfNeededLatex(Expr toMe, Expr forOperation) {
+		if(getPrecedence(toMe) < getPrecedence(forOperation))
+			return "(" + toMe.getLatexLabel() + ")";
+		return toMe.getLatexLabel() ;
+	}
+
+	public static String addParenthsesIfNeededLatex2(Expr toMe, Expr forOperation) {
+		if(getPrecedence(toMe) <= getPrecedence(forOperation))
+			return "(" + toMe.getLatexLabel() + ")";
+		return toMe.getLatexLabel() ;
 	}
 
 	public static String join(Expr[] exprs,String deliminator) {

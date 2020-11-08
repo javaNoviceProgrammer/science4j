@@ -1,7 +1,9 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.NaryOp;
 import org.sym4j.symbolic.utils.Utils;
 
@@ -47,9 +49,9 @@ public class Concat extends NaryOp {
 
 	@Override
 	public void updateLabel() {
-		this.label = "["+Utils.joinLabels(args, ", ")+"]";
+		this.label = "["+Utils.joinLabels(args, ", ")+"]" ;
 		this.sortKey = this.label;
-		this.latexLabel = label ;
+		this.latexLabel = "[" + Utils.joinLabelsLatex(args, ", ") + "]" ;
 	}
 
 	@Override

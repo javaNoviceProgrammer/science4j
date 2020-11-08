@@ -8,6 +8,7 @@ import org.sym4j.symbolic.utils.Utils;
 
 
 public class Derivative extends Func {
+
 	Func func = null;
 	List<Expr> dxyz = new ArrayList<Expr>();
 

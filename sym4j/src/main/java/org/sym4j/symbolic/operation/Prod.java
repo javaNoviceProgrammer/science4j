@@ -1,4 +1,7 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
+
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.TypeInfo;
 
 /**
  * TODO

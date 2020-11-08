@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.sym4j.symbolic.Divide;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.Reciprocal;

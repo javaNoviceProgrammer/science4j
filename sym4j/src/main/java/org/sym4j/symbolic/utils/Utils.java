@@ -8,10 +8,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.sym4j.symbolic.Divide;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Expr.TYPE;
 import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.operation.Subtract;
@@ -393,6 +393,18 @@ public class Utils {
 		if(list == null) return null;
 		for(Expr e : list) {
 			sb.append(e.toString());
+			sb.append(deliminator);
+		}
+		if(sb.length() > deliminator.length())
+			sb.delete(sb.length()-deliminator.length(), sb.length());
+		return sb.toString();
+	}
+
+	public static String joinLabelsLatex(Expr[] list, String deliminator) {
+		StringBuilder sb = new StringBuilder();
+		if(list == null) return null;
+		for(Expr e : list) {
+			sb.append(e.getLatexLabel());
 			sb.append(deliminator);
 		}
 		if(sb.length() > deliminator.length())

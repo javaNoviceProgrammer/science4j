@@ -11,6 +11,7 @@ import org.sym4j.logic.Not;
 import org.sym4j.logic.Or;
 import org.sym4j.logic.Xor;
 import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.operation.Subtract;
