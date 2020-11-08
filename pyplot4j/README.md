@@ -21,7 +21,7 @@ REQUIREMENTS: this framework requires the installation of _python 2_ or _python 
 * XYSubPlot
    * this is similar to executing _plt.subplot(row, column, index)_ first and then _plt.plot(x, y, *args, **kwargs)_ in _matplotlib_.
 
-<img src="./src/main/resources/xyUML.png" width="500" />
+<img src="./src/main/resources/xyUML.png" width="600" />
 
 * PolarPlot
    * this is similar to executing a plot with _projection='polar'_ keyword argument.
@@ -35,6 +35,8 @@ REQUIREMENTS: this framework requires the installation of _python 2_ or _python 
    ```
 * ContourSubPlot
    * this is similar to having multiple subplots each one drawing contour plots.
+
+<img src="./src/main/resources/contourUML.png" width="600" />
 
 ## Visual Guide to Matplotlib
 
