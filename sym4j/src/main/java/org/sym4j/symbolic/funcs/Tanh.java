@@ -25,8 +25,8 @@ public class Tanh extends UnaryOp {
 
 	@Override
 	public Expr diff(Expr expr) {
-		// coth(x)
-		return new Coth(arg).multiply(arg.diff(expr)) ;
+		// 1-tanh^2(x)
+		return arg.diff(expr).multiply(new Pow(this, Expr.valueOf(2)).subtractRev(1));
 	}
 
 	public static Expr simplifiedIns(Expr expr) {

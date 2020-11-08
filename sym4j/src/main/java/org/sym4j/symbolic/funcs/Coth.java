@@ -25,8 +25,8 @@ public class Coth extends UnaryOp {
 
 	@Override
 	public Expr diff(Expr expr) {
-		// tanh(x)
-		return new Tanh(arg).multiply(arg.diff(expr)) ;
+		// 1-coth^2(x)
+		return arg.diff(expr).multiply(new Pow(this, Expr.valueOf(2)).subtractRev(1));
 	}
 
 	public static Expr simplifiedIns(Expr expr) {
@@ -63,7 +63,7 @@ public class Coth extends UnaryOp {
 			Map<Expr, Integer> funcRefsMap) {
 		InstructionHandle startPos = arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg.getType() == TYPE.MATRIX || arg.getType() == TYPE.VECTOR) {
-			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "tanh",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "coth",
 					new ObjectType("Jama.Matrix"),
 					new Type[] { new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));
