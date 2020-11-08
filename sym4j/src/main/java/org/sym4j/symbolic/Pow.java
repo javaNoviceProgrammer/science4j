@@ -148,9 +148,11 @@ public class Pow extends BinaryOp {
 				displayExp = "{"+displayExp+"}";
 		}
 		if(base instanceof Symbol) {
-			label = base + "^" + displayExp + "";
+			label = base + "^" + displayExp + "" ;
+			latexLabel = base + "^" + displayExp + "" ;
 		} else {
-			label = "("+base + ")^" + displayExp;
+			label = "(" + base + ")^" + displayExp ;
+			latexLabel = "(" + base + ")^" + displayExp ;
 		}
 
 		//TODO? x^3 + x^2 + x + 1

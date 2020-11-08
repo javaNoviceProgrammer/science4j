@@ -113,11 +113,21 @@ public class Test1 {
 	}
 
 	public static void test10() {
-		Expr e1 = 2/(3+x) ;
+		Expr e1 = (2/(3+x))*5 ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
+		System.out.println(e1.toLaTex());
 		BytecodeFunc f = JIT.compile(e1) ;
-		System.out.println(f.apply(2.1));
+		System.out.println(f.apply(2.1, 5.0));
+	}
+
+	public static void test11() {
+		Expr e1 = pow(x, 3) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		System.out.println(e1.toLaTex());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1, 5.0));
 	}
 
 
@@ -131,7 +141,8 @@ public class Test1 {
 //		test7() ;
 //		test8() ;
 //		test9() ;
-		test10() ;
+//		test10() ;
+		test11() ;
 	}
 
 }

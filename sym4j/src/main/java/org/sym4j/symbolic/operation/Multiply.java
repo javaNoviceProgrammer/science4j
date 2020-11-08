@@ -252,9 +252,9 @@ public class Multiply extends BinaryOp {
 		} else {
 			sortKey = arg1.getSortKey()+arg2.getSortKey();
 		}
-		latexLabel =  SymPrinting.addParenthsesIfNeeded(arg1, this)
+		latexLabel =  SymPrinting.addParenthsesIfNeededLatex(arg1, this)
 				+ "" +
-				SymPrinting.addParenthsesIfNeeded(arg2, this);
+				SymPrinting.addParenthsesIfNeededLatex(arg2, this);
 	}
 
 	@Override
