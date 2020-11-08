@@ -17,8 +17,12 @@ REQUIREMENTS: this framework requires the installation of _python 2_ or _python 
 ## Current Capabilities
 * XYPlot
    * this is similar to executing _plt.plot(x, y, *args, **kwargs)_ in python. XYPlot resembles a _Figure_ object in _matplotlib_.
+
 * XYSubPlot
    * this is similar to executing _plt.subplot(row, column, index)_ first and then _plt.plot(x, y, *args, **kwargs)_ in _matplotlib_.
+
+<img src="./src/main/resources/xyUML.png" width="500" />
+
 * PolarPlot
    * this is similar to executing a plot with _projection='polar'_ keyword argument.
 * ContourPlot
