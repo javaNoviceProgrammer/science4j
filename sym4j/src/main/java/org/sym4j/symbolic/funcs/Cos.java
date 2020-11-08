@@ -1,8 +1,10 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.funcs;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;
@@ -14,17 +16,19 @@ import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
-
-
-public class Abs extends UnaryOp {
-
-	public Abs(Expr arg) {
+public class Cos extends UnaryOp {
+	public Cos(Expr arg) {
 		super(arg);
-//		label = "|" + arg + "|";
-//		sortKey = label;
-//		latexLabel = "\\left|" + arg + "\\right|" ;
+		updateLabel();
+	}
 
-		updateLabel() ;
+	@Override
+	public Expr diff(Expr expr) {
+		return Negate.simplifiedIns(Sin.simplifiedIns(arg)).multiply(arg.diff(expr));
+	}
+
+	public static Expr simplifiedIns(Expr expr) {
+		return new Cos(expr);
 	}
 
 	@Override
@@ -33,24 +37,21 @@ public class Abs extends UnaryOp {
 	}
 
 	@Override
+	public Expr subs(Expr from, Expr to) {
+		if(Utils.symCompare(this, from))
+			return to;
+		Expr sl = arg.subs(from, to);
+		if(sl == arg)
+			return this;
+		return new Cos(sl);
+	}
+
+	@Override
 	public boolean symEquals(Expr other) {
-		if(other instanceof Abs) {
+		if(other instanceof Cos) {
 			Utils.symCompare(this.arg, ((Cos) other).arg);
 		}
 		return false;
-	}
-
-	public static Expr simplifiedIns(Expr expr) {
-		return new Abs(expr);
-	}
-
-	/**
-	 * Recall that |f(x)| = sqrt(f(x)*f(x)), so
-	 * |f(x)|' = f(x)*f'(x)/|f(x)|
-	 */
-	@Override
-	public Expr diff(Expr x) {
-		return arg.multiply(arg.diff(x)).divide(this);
 	}
 
 	@Override
@@ -60,26 +61,24 @@ public class Abs extends UnaryOp {
 			Map<Expr, Integer> funcRefsMap) {
 		InstructionHandle startPos = arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg.getType() == TYPE.MATRIX || arg.getType() == TYPE.VECTOR) {
-			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "abs",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "cos",
 					new ObjectType("Jama.Matrix"),
 					new Type[] { new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));
 		} else {
-			il.append(factory.createInvoke("java.lang.Math", "abs",
+			il.append(factory.createInvoke("java.lang.Math", "cos",
 					Type.DOUBLE,
 					new Type[] { Type.DOUBLE },
 					Constants.INVOKESTATIC));
 		}
+
 		return startPos;
 	}
 
 	@Override
 	public void updateLabel() {
-//		label = "|" + arg + "|";
-//		sortKey = label;
-
-		label = "|" + arg + "|";
+		label = "cos(" + arg + ")";
 		sortKey = label;
-		latexLabel = "\\left|" + arg + "\\right|" ;
+		latexLabel = "\\" + "cos(" + arg.getLatexLabel() + ")";
 	}
 }

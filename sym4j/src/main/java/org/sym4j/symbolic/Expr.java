@@ -648,7 +648,7 @@ abstract public class Expr implements Cloneable {
 	}
 
 	public enum TYPE {INT, LONG, FLOAT, DOUBLE, BOOLEAN, BYTE, CHAR, SHORT, VOID,
-		MATRIX, VECTOR, TENSOR};
+		MATRIX, VECTOR, TENSOR, COMPLEX};
 
 	public abstract TypeInfo getTypeInfo();
 

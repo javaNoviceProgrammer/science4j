@@ -1,9 +1,9 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.funcs;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.UnaryOp;
-import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;
@@ -15,19 +15,21 @@ import com.sun.org.apache.bcel.internal.generic.MethodGen;
 import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
-public class Cos extends UnaryOp {
-	public Cos(Expr arg) {
+
+public class Sin extends UnaryOp {
+
+	public Sin(Expr arg) {
 		super(arg);
 		updateLabel();
 	}
 
 	@Override
 	public Expr diff(Expr expr) {
-		return Negate.simplifiedIns(Sin.simplifiedIns(arg)).multiply(arg.diff(expr));
+		return new Cos(arg).multiply(arg.diff(expr));
 	}
 
 	public static Expr simplifiedIns(Expr expr) {
-		return new Cos(expr);
+		return new Sin(expr);
 	}
 
 	@Override
@@ -42,13 +44,13 @@ public class Cos extends UnaryOp {
 		Expr sl = arg.subs(from, to);
 		if(sl == arg)
 			return this;
-		return new Cos(sl);
+		return new Sin(sl);
 	}
 
 	@Override
 	public boolean symEquals(Expr other) {
-		if(other instanceof Cos) {
-			Utils.symCompare(this.arg, ((Cos) other).arg);
+		if(other instanceof Sin) {
+			return Utils.symCompare(this.arg, ((Sin) other).arg);
 		}
 		return false;
 	}
@@ -60,24 +62,24 @@ public class Cos extends UnaryOp {
 			Map<Expr, Integer> funcRefsMap) {
 		InstructionHandle startPos = arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		if(arg.getType() == TYPE.MATRIX || arg.getType() == TYPE.VECTOR) {
-			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "cos",
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "sin",
 					new ObjectType("Jama.Matrix"),
 					new Type[] { new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));
 		} else {
-			il.append(factory.createInvoke("java.lang.Math", "cos",
+			il.append(factory.createInvoke("java.lang.Math", "sin",
 					Type.DOUBLE,
 					new Type[] { Type.DOUBLE },
 					Constants.INVOKESTATIC));
 		}
-
 		return startPos;
 	}
 
 	@Override
 	public void updateLabel() {
-		label = "cos(" + arg + ")";
+		label = "sin(" + arg + ")";
 		sortKey = label;
-		latexLabel = "\\" + "cos(" + arg.latexLabel + ")";
+		latexLabel = "\\sin(" + arg + ")" ;
 	}
+
 }

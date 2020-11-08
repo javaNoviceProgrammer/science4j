@@ -1,7 +1,8 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.funcs;
 
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.operation.Reciprocal;
 import org.sym4j.symbolic.symbols.SymDouble;

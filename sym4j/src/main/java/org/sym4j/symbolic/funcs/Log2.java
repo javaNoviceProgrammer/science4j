@@ -1,4 +1,6 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.funcs;
+
+import org.sym4j.symbolic.Expr;
 
 public class Log2 extends Log {
 

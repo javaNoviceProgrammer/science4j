@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.funcs.Pow;
 import org.sym4j.symbolic.symbols.SymDouble;
 import org.sym4j.symbolic.symbols.SymInteger;
 import org.sym4j.symbolic.symbols.SymLong;

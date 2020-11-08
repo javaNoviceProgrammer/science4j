@@ -3,8 +3,8 @@ package org.sym4j.symbolic.operation;
 import java.util.Map;
 
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.funcs.Pow;
 import org.sym4j.symbolic.symbols.SymDouble;
 import org.sym4j.symbolic.symbols.SymPrinting;
 import org.sym4j.symbolic.symbols.SymReal;

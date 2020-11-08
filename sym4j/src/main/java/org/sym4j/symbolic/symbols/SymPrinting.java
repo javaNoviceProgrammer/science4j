@@ -2,8 +2,8 @@ package org.sym4j.symbolic.symbols;
 
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
-import org.sym4j.symbolic.Pow;
 import org.sym4j.symbolic.Sum;
+import org.sym4j.symbolic.funcs.Pow;
 import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;

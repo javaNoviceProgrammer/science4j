@@ -21,6 +21,7 @@ public class TypeInfo {
 	public static TypeInfo tiLong = new TypeInfo(TYPE.LONG);
 	public static TypeInfo tiFloat = new TypeInfo(TYPE.FLOAT);
 	public static TypeInfo tiDouble = new TypeInfo(TYPE.DOUBLE);
+	public static TypeInfo tiComplex = new TypeInfo(TYPE.COMPLEX);
 
 	public TypeInfo(TYPE type) {
 		this.type = type;
