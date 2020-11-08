@@ -63,7 +63,7 @@ public class Test2 {
 	}
 
 	public static void test5() {
-		Expr e1 = coth(x) ;
+		Expr e1 = sinh(x*x+tanh(x)).diff(x) ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
 		Func f1 = new Func("f1", e1) ;

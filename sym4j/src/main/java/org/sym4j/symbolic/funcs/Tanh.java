@@ -2,7 +2,6 @@ package org.sym4j.symbolic.funcs;
 
 import java.util.Map;
 
-import org.sym4j.math.SymMath;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.UnaryOp;
 import org.sym4j.symbolic.utils.Utils;
@@ -26,7 +25,8 @@ public class Tanh extends UnaryOp {
 
 	@Override
 	public Expr diff(Expr expr) {
-		return arg.diff(expr) * 2.0/(1.0 + SymMath.cosh(2.0*arg)) ;
+		// coth(x)
+		return new Coth(arg).multiply(arg.diff(expr)) ;
 	}
 
 	public static Expr simplifiedIns(Expr expr) {
