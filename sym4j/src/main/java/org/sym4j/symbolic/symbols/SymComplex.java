@@ -14,8 +14,9 @@ public class SymComplex extends Expr {
 	Expr imaginary;
 
 	public SymComplex(Expr re, Expr im) {
-		real = re;
-		imaginary = im;
+		real = re ;
+		imaginary = im ;
+		updateLabel() ;
 	}
 
 	@Override
@@ -25,7 +26,8 @@ public class SymComplex extends Expr {
 
 	public String toString() {
 //		return real.label + "+" + imaginary.label + "i";
-		return real.getLabel() + "+" + imaginary.getLabel() + "i";
+//		return real.getLabel() + "+" + imaginary.getLabel() + "j";
+		return label ;
 	}
 
 	@Override
@@ -52,8 +54,7 @@ public class SymComplex extends Expr {
 
 	@Override
 	public TypeInfo getTypeInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return TypeInfo.tiComplex ;
 	}
 
 	@Override
@@ -63,8 +64,11 @@ public class SymComplex extends Expr {
 
 	@Override
 	public void updateLabel() {
-		// TODO Auto-generated method stub
-
+//		label = "(" + real.getLabel() + "+" + imaginary.getLabel() + "j" + ")" ;
+		label = "(" + real.getLabel() + "+j" + imaginary.getLabel() + ")" ;
+		sortKey = label ;
+//		latexLabel = "(" + real.getLatexLabel() + "+" + imaginary.getLatexLabel() + "j" + ")" ;
+		latexLabel = "(" + real.getLatexLabel() + "+j" + imaginary.getLatexLabel() + ")" ;
 	}
 
 }

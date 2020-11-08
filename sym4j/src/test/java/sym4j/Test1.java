@@ -159,7 +159,7 @@ public class Test1 {
 
 
 	public static void main(String[] args) {
-//		test1() ;
+		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
@@ -172,7 +172,7 @@ public class Test1 {
 //		test11() ;
 //		test12() ;
 //		test13() ;
-		test14() ;
+//		test14() ;
 	}
 
 }

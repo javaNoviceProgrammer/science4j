@@ -52,11 +52,15 @@ import org.sym4j.symbolic.arity.NaryOp;
 import org.sym4j.symbolic.arity.TernaryOp;
 import org.sym4j.symbolic.arity.UnaryOp;
 import org.sym4j.symbolic.funcs.Cos;
+import org.sym4j.symbolic.funcs.Cosh;
+import org.sym4j.symbolic.funcs.Coth;
 import org.sym4j.symbolic.funcs.Log;
 import org.sym4j.symbolic.funcs.Pow;
 import org.sym4j.symbolic.funcs.Sin;
+import org.sym4j.symbolic.funcs.Sinh;
 import org.sym4j.symbolic.funcs.Sqrt;
 import org.sym4j.symbolic.funcs.Tan;
+import org.sym4j.symbolic.funcs.Tanh;
 import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.operation.Divide;
 import org.sym4j.symbolic.operation.Multiply;
@@ -551,19 +555,21 @@ public class BytecodeUtils {
 		} else if(ins instanceof Tan) {
 			il.append(factory.createInvoke("java.lang.Math", "tan",
 					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
-//		} else if(ins instanceof Log10) {
-//			il.append(factory.createInvoke("java.lang.Math", "log10",
-//					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
-//			il.append(new POP2()); //this pop out the result of log10, not the base
+		} else if(ins instanceof Sinh) {
+			il.append(factory.createInvoke("java.lang.Math", "sinh",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Cosh) {
+			il.append(factory.createInvoke("java.lang.Math", "cosh",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Tanh) {
+			il.append(factory.createInvoke("java.lang.Math", "tanh",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Coth) {
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "coth",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof Log) {
-//			if(Utils.symCompare(((Log) ins).arg1, Exp.E)) {
-//				il.append(factory.createInvoke("java.lang.Math", "log",
-//						Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
-//				il.append(new POP2());
-//			} else {
-				il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",
-						Type.DOUBLE, new Type[] { Type.DOUBLE,  Type.DOUBLE }, Constants.INVOKESTATIC));
-//			}
+			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",
+					Type.DOUBLE, new Type[] { Type.DOUBLE,  Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof SymRandom) {
 			il.append(factory.createInvoke("java.lang.Math", "random",
 					Type.DOUBLE, new Type[] { }, Constants.INVOKESTATIC));

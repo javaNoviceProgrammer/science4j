@@ -6,14 +6,19 @@ import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Vector;
 import org.sym4j.symbolic.funcs.Abs;
 import org.sym4j.symbolic.funcs.Cos;
+import org.sym4j.symbolic.funcs.Cosh;
+import org.sym4j.symbolic.funcs.Coth;
 import org.sym4j.symbolic.funcs.Exp;
 import org.sym4j.symbolic.funcs.Log;
 import org.sym4j.symbolic.funcs.Log10;
 import org.sym4j.symbolic.funcs.Log2;
 import org.sym4j.symbolic.funcs.Pow;
 import org.sym4j.symbolic.funcs.Sin;
+import org.sym4j.symbolic.funcs.Sinh;
 import org.sym4j.symbolic.funcs.Sqrt;
 import org.sym4j.symbolic.funcs.Tan;
+import org.sym4j.symbolic.funcs.Tanh;
+import org.sym4j.symbolic.symbols.SymComplex;
 import org.sym4j.symbolic.symbols.SymConst;
 import org.sym4j.symbolic.symbols.SymRandom;
 import org.sym4j.symbolic.utils.Utils;
@@ -25,6 +30,8 @@ public class SymMath {
 	public static SymConst PI = new SymConst("pi", Math.PI);
 	public static SymConst PI2 = new SymConst("2*pi", 2*Math.PI);
 	public static SymConst E = new SymConst("e", Math.E);
+
+	public static SymComplex j = new SymComplex(C(0.0), C(1.0)) ;
 
 	/**
 	 * A quick way to define constant real number symbols
@@ -115,6 +122,24 @@ public class SymMath {
 
 	public static Expr tan(Expr x) {
 		return Tan.simplifiedIns(x);
+	}
+
+	///////////////////////////////////////////////////////////////
+
+	public static Expr sinh(Expr x) {
+		return Sinh.simplifiedIns(x) ;
+	}
+
+	public static Expr cosh(Expr x) {
+		return Cosh.simplifiedIns(x) ;
+	}
+
+	public static Expr tanh(Expr x) {
+		return Tanh.simplifiedIns(x) ;
+	}
+
+	public static Expr coth(Expr x) {
+		return Coth.simplifiedIns(x) ;
 	}
 
 	//////////////////////////////////////////////////////////////

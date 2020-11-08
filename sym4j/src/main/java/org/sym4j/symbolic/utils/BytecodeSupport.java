@@ -33,6 +33,10 @@ public class BytecodeSupport {
 		return Math.log(expr)/Math.log(base);
 	}
 
+	public static double coth(double x) {
+		return 1.0/Math.tanh(x) ;
+	}
+
 	/**
 	 * 1D integration
 	 * @param begin
