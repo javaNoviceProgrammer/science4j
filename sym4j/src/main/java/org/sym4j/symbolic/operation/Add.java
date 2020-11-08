@@ -1,4 +1,4 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.DADD;
 import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.FADD;
@@ -8,6 +8,13 @@ import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.LADD
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.SymDouble;
+import org.sym4j.symbolic.SymInteger;
+import org.sym4j.symbolic.SymLong;
+import org.sym4j.symbolic.SymReal;
+import org.sym4j.symbolic.Symbol;
+import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
@@ -23,6 +30,7 @@ import com.sun.org.apache.bcel.internal.generic.Type;
 
 
 public class Add extends BinaryOp {
+
 	public Add(Expr l, Expr r) {
 		super(l, r);
 		updateLabel();
@@ -183,7 +191,7 @@ public class Add extends BinaryOp {
 	public void updateLabel() {
 		label = arg1 + " + " + arg2;
 		sortKey = arg1.getSortKey()+arg2.getSortKey();
-		latexLabel = arg1.latexLabel + " + " + arg2.latexLabel ;
+		latexLabel = arg1.getLatexLabel() + " + " + arg2.getLatexLabel() ;
 	}
 
 	@Override

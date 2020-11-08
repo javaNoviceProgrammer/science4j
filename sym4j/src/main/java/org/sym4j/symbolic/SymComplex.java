@@ -7,6 +7,7 @@ import org.sym4j.symbolic.utils.Utils;
  *
  */
 public class SymComplex extends Expr {
+
 	Expr real;
 	Expr imaginary;
 
@@ -51,6 +52,7 @@ public class SymComplex extends Expr {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	@Override
 	public Expr[] args() {
 		return new Expr[] {real, imaginary};

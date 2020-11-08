@@ -1,9 +1,20 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.symbolic.Divide;
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.Pow;
+import org.sym4j.symbolic.Reciprocal;
+import org.sym4j.symbolic.SymDouble;
+import org.sym4j.symbolic.SymInteger;
+import org.sym4j.symbolic.SymLong;
+import org.sym4j.symbolic.SymPrinting;
+import org.sym4j.symbolic.SymReal;
+import org.sym4j.symbolic.Symbol;
+import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
@@ -104,13 +115,14 @@ public class Multiply extends BinaryOp {
 		//return Utils.flattenSortAndSimplify(shallowSimplifiedIns(l, r));
 	}
 
-	boolean isCoeffMulSymbol() {
+	public boolean isCoeffMulSymbol() {
 		if(arg1 instanceof SymReal<?> && !(arg2 instanceof SymReal<?>) )
 			return true;
 		if(arg2 instanceof SymReal<?> && !(arg1 instanceof SymReal<?>) )
 			return true;
 		return false;
 	}
+
 	public Expr getCoeffTerm() {
 		if(arg1 instanceof SymReal<?> && !(arg2 instanceof SymReal<?>) )
 			return arg1;
@@ -241,6 +253,9 @@ public class Multiply extends BinaryOp {
 		} else {
 			sortKey = arg1.getSortKey()+arg2.getSortKey();
 		}
+		latexLabel =  SymPrinting.addParenthsesIfNeeded(arg1, this)
+				+ "" +
+				SymPrinting.addParenthsesIfNeeded(arg2, this);
 	}
 
 	@Override

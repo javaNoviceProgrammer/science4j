@@ -6,6 +6,7 @@ import org.sym4j.symbolic.utils.Utils;
 
 
 public abstract class BinaryOp extends Expr {
+
 	public Expr arg1;
 	public Expr arg2;
 

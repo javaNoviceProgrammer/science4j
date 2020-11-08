@@ -3,6 +3,7 @@ package org.sym4j.symbolic;
 import java.util.Map;
 
 import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.operation.Negate;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.Constants;

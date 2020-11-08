@@ -16,12 +16,14 @@ import com.sun.org.apache.bcel.internal.generic.PUSH;
  *
  */
 public class SymConst extends Expr {
+
 	double value;
 
 	public SymConst(String label, double value) {
 		this.label = label;
 		this.sortKey = label;
 		this.value = value;
+		updateLabel() ;
 	}
 
 	public double getValue() {
@@ -63,6 +65,6 @@ public class SymConst extends Expr {
 
 	@Override
 	public void updateLabel() {
-		//Do nothing
+		latexLabel = this.label ;
 	}
 }

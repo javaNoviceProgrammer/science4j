@@ -1,9 +1,15 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.SymDouble;
+import org.sym4j.symbolic.SymInteger;
+import org.sym4j.symbolic.SymLong;
+import org.sym4j.symbolic.SymPrinting;
+import org.sym4j.symbolic.SymReal;
 import org.sym4j.symbolic.arity.UnaryOp;
 import org.sym4j.symbolic.utils.Utils;
 
@@ -135,5 +141,6 @@ public class Negate extends UnaryOp {
 	public void updateLabel() {
 		label = "-" + SymPrinting.addParenthsesIfNeeded(arg, this);
 		sortKey = arg.getSortKey();
+		latexLabel = "-" + SymPrinting.addParenthsesIfNeeded(arg, this);
 	}
 }

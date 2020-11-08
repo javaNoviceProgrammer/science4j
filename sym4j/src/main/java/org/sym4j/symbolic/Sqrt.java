@@ -105,10 +105,12 @@ public class Sqrt extends BinaryOp {
 			if(t.isInteger() && t.getIntValue() == 2) {
 				label = "sqrt(" + arg1 + ")";
 				sortKey = arg1.getSortKey()+"sqrt[2]"+arg2;
+				latexLabel = "\\sqrt{" + arg1 + "}";
 				return;
 			}
 		}
 		label = "sqrtn(" + arg1 + "," + arg2 + ")";
 		sortKey = arg1.getSortKey()+"sqrt"+arg2.getSortKey();
+		latexLabel = "\\sqrt[" + arg2 + "]" + "{" + arg1 + "}";
 	}
 }

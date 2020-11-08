@@ -80,14 +80,49 @@ public class Test1 {
 		e3.latexRender(folder, "test4");
 	}
 
+	public static void test6() {
+		Expr e1 = sqrt(x+5.0, 3) + 7.1 ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1));
+	}
+
+	public static void test7() {
+		Expr e1 = x*7.1 ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1));
+	}
+
+	public static void test8() {
+		Expr e1 = -x ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1));
+	}
+
+	public static void test9() {
+		Expr e1 = 2-x ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		BytecodeFunc f = JIT.compile(e1) ;
+		System.out.println(f.apply(2.1));
+	}
+
 
 	public static void main(String[] args) {
-//		for (int i=0; i<50; i++)
-//			test1() ;
+//		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
-		test5() ;
+//		test5() ;
+//		test6() ;
+//		test7() ;
+//		test8() ;
+		test9() ;
 	}
 
 }

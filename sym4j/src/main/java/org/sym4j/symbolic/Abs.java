@@ -20,9 +20,11 @@ public class Abs extends UnaryOp {
 
 	public Abs(Expr arg) {
 		super(arg);
-		label = "|" + arg + "|";
-		sortKey = label;
-		latexLabel = "\\left|" + arg + "\\right|" ;
+//		label = "|" + arg + "|";
+//		sortKey = label;
+//		latexLabel = "\\left|" + arg + "\\right|" ;
+
+		updateLabel() ;
 	}
 
 	@Override
@@ -73,7 +75,11 @@ public class Abs extends UnaryOp {
 
 	@Override
 	public void updateLabel() {
+//		label = "|" + arg + "|";
+//		sortKey = label;
+
 		label = "|" + arg + "|";
 		sortKey = label;
+		latexLabel = "\\left|" + arg + "\\right|" ;
 	}
 }

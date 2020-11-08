@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.sym4j.symbolic.arity.BinaryOp;
+import org.sym4j.symbolic.operation.Multiply;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
@@ -104,6 +105,7 @@ public class Divide extends BinaryOp {
 		//return Utils.flattenSortAndCompare(this, other);
 		return Utils.flattenSortAndCompare(this.simplify(), other.simplify());
 	}
+
 	@Override
 	public InstructionHandle bytecodeGen(String clsName, MethodGen mg,
 			ConstantPoolGen cp, InstructionFactory factory,
@@ -133,5 +135,7 @@ public class Divide extends BinaryOp {
 				+ "/" +
 				SymPrinting.addParenthsesIfNeeded2(arg2, this);
 		sortKey = arg1.getSortKey()+arg2.getSortKey();
+		latexLabel = "\\frac{" + SymPrinting.addParenthsesIfNeeded(arg1, this) + "}" +
+					 "{" + SymPrinting.addParenthsesIfNeeded2(arg2, this) + "}" ;
 	}
 }

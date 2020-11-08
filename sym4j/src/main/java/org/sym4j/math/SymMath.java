@@ -63,6 +63,10 @@ public class SymMath {
 		return new Sqrt(arg, Expr.valueOf(root));
 	}
 
+	public static Expr sqrt(Expr arg, int root) {
+		return new Sqrt(arg, Expr.valueOf(root));
+	}
+
 	public static Expr sqrt(Expr arg, Expr root) {
 		return Sqrt.simplifiedIns(arg, root);
 	}

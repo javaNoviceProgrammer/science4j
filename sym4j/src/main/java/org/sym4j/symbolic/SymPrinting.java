@@ -1,5 +1,10 @@
 package org.sym4j.symbolic;
 
+import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.operation.Multiply;
+import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.operation.Subtract;
+
 public class SymPrinting {
 	public static int getPrecedence(Expr expr) {
 		if(expr instanceof Sum)

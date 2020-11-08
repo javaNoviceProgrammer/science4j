@@ -16,6 +16,7 @@ public class Log10 extends Log {
 	public void updateLabel() {
 		label = "log10(" + arg2 + ")";
 		sortKey = label;
+		latexLabel = "\\log_{10}{(" + arg2 + ")}";
 	}
 
 }

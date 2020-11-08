@@ -3,7 +3,7 @@ package org.sym4j.symbolic.utils;
 import java.util.ArrayList;
 
 import org.sym4j.symbolic.Expr;
-import org.sym4j.symbolic.Negate;
+import org.sym4j.symbolic.operation.Negate;
 
 
 public class MulList extends ArrayList<Expr>{

@@ -151,6 +151,7 @@ public class SymReal<T extends Number> extends Expr {
 	public void updateLabel() {
 		label = String.valueOf(value);
 		sortKey = label;
+		latexLabel = String.valueOf(value) ;
 	}
 
 }

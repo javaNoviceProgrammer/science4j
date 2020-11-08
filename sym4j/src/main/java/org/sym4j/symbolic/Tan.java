@@ -70,8 +70,8 @@ public class Tan extends UnaryOp {
 
 	@Override
 	public void updateLabel() {
-		label = "tan(" + arg + ")";
-		sortKey = label;
-
+		label = "tan(" + arg + ")" ;
+		sortKey = label ;
+		latexLabel = "\\tan(" + arg + ")" ;
 	}
 }

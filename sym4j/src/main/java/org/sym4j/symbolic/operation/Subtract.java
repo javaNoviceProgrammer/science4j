@@ -1,8 +1,14 @@
-package org.sym4j.symbolic;
+package org.sym4j.symbolic.operation;
 
 import java.util.List;
 import java.util.Map;
 
+import org.sym4j.symbolic.Expr;
+import org.sym4j.symbolic.SymDouble;
+import org.sym4j.symbolic.SymInteger;
+import org.sym4j.symbolic.SymLong;
+import org.sym4j.symbolic.SymReal;
+import org.sym4j.symbolic.Symbol;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
@@ -18,10 +24,10 @@ import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
 public class Subtract extends BinaryOp {
+
 	public Subtract(Expr l, Expr r) {
 		super(l, r);
 		updateLabel();
-
 	}
 
 	@Override
@@ -123,11 +129,14 @@ public class Subtract extends BinaryOp {
 
 	@Override
 	public void updateLabel() {
-		if(arg2 instanceof Add || arg2 instanceof Subtract)
-			label = arg1 + " - (" + arg2 + ")";
-		else
-			label = arg1 + " - " + arg2;
-
+		if(arg2 instanceof Add || arg2 instanceof Subtract) {
+			label = arg1 + " - (" + arg2 + ")" ;
+			latexLabel = arg1.getLatexLabel() + " - (" + arg2.getLatexLabel() + ")" ;
+		}
+		else {
+			label = arg1 + " - " + arg2 ;
+			latexLabel = arg1.getLatexLabel() + " - " + arg2.getLatexLabel() ;
+		}
 		sortKey = arg1.getSortKey()+arg2.getSortKey();
 	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.sym4j.symbolic.operation.Add;
 import org.sym4j.symbolic.utils.AddList;
 import org.sym4j.symbolic.utils.Utils;
 

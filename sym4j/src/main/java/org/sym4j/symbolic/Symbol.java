@@ -64,6 +64,7 @@ public class Symbol extends Expr {
 
 	public Symbol(String name) {
 		this.label = name;
+		this.latexLabel = name ;
 		sortKey = label;
 	}
 

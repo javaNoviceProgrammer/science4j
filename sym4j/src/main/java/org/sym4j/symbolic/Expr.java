@@ -10,6 +10,10 @@ import org.sym4j.logic.And;
 import org.sym4j.logic.Not;
 import org.sym4j.logic.Or;
 import org.sym4j.logic.Xor;
+import org.sym4j.symbolic.operation.Add;
+import org.sym4j.symbolic.operation.Multiply;
+import org.sym4j.symbolic.operation.Negate;
+import org.sym4j.symbolic.operation.Subtract;
 import org.sym4j.symbolic.utils.Utils;
 
 import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
@@ -144,6 +148,14 @@ abstract public class Expr implements Cloneable {
 							.replaceAll("tan", "\\\\tan") ;
 
 		return latexLabel ;
+	}
+
+	public String getLatexLabel() {
+		return latexLabel ;
+	}
+
+	public void setLatexLabel(String latexLabel) {
+		this.latexLabel = latexLabel ;
 	}
 
 	public void latexRender(String filePath, String fileName) {
