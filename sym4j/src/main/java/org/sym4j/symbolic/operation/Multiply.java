@@ -252,7 +252,7 @@ public class Multiply extends BinaryOp {
 			sortKey = arg1.getSortKey()+arg2.getSortKey();
 		}
 		latexLabel =  SymPrinting.addParenthsesIfNeededLatex(arg1, this)
-				+ "" +
+				+ "\\;" +
 				SymPrinting.addParenthsesIfNeededLatex(arg2, this);
 	}
 

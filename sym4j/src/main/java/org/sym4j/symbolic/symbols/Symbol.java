@@ -48,13 +48,13 @@ public class Symbol extends Expr {
 	public static Symbol y = new Symbol("y");
 	public static Symbol z = new Symbol("z");
 
-	public static Symbol phi = new Symbol("\\phi");
-	public static Symbol psi = new Symbol("\\psi");
-	public static Symbol chi = new Symbol("\\chi");
-
-	public static Symbol alpha = new Symbol("\\alpha");
-	public static Symbol beta = new Symbol("\\beta");
-	public static Symbol gamma = new Symbol("\\gamma");
+//	public static Symbol phi = new Symbol("\\phi");
+//	public static Symbol psi = new Symbol("\\psi");
+//	public static Symbol chi = new Symbol("\\chi");
+//
+//	public static Symbol alpha = new Symbol("\\alpha");
+//	public static Symbol beta = new Symbol("\\beta");
+//	public static Symbol gamma = new Symbol("\\gamma");
 
 	public static SymInteger Cm2 = new SymInteger(-1);
 	public static SymInteger Cm1 = new SymInteger(-1);

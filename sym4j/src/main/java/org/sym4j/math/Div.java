@@ -16,6 +16,7 @@ import org.sym4j.symbolic.utils.Utils;
  *
  */
 public class Div extends NaryOp {
+
 	protected Expr expr;
 
 	public Div(ExprVector vec) {
@@ -26,6 +27,7 @@ public class Div extends NaryOp {
 				this.args = g.getData();
 				this.label = "div(" +g+ ")";
 				this.sortKey = this.label;
+//				this.latexLabel = "\\vec{\\nabla}\\cdot" + g ;
 				return;
 			}
 		}

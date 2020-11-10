@@ -341,7 +341,7 @@ public class TestSymbolic {
 		Expr t2 = Integrate.apply(pow(e,r), I2);
 		checkResult("\\int_{-oo}^{x}{e^r}dx", t2);
 
-		System.out.println(t2.toLaTex());
+		System.out.println(t2.toLatex());
 
 		checkResult("e^r", t2.diff(x));
 

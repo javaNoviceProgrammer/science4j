@@ -18,7 +18,7 @@ public class Test1 {
 		System.out.println(e1);
 		Func f1 = new Func("f1", e1) ;
 		System.out.println(f1);
-		System.out.println(f1.toLaTex());
+		System.out.println(f1.toLatex());
 		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
 		System.out.println(f1bytecode.getClass());
 
@@ -41,7 +41,7 @@ public class Test1 {
 		System.out.println(e1);
 		Func f1 = new Func("f1", e1) ;
 		System.out.println(f1);
-		System.out.println(f1.toLaTex());
+		System.out.println(f1.toLatex());
 		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
 		System.out.println(f1bytecode.getClass());
 		System.out.println(f1bytecode.apply(2.1));
@@ -53,18 +53,18 @@ public class Test1 {
 
 	public static void test3() {
 		Expr e1 = GreekSymbol.β ;
-		System.out.println(e1.toLaTex());
+		System.out.println(e1.toLatex());
 		System.out.println(e1);
 
 		Expr e2 = 3.1*β+2.1;
-		System.out.println(e2.toLaTex());
+		System.out.println(e2.toLatex());
 		System.out.println(e2);
 	}
 
 	public static void test4() {
 		String folder = "/Users/meisam/Desktop/test1" ;
 		Expr e2 = 3.1 * β + 5.1 - α*α + γ + 2.1 * ξ * θ + sin(δ);
-		System.out.println(e2.toLaTex());
+		System.out.println(e2.toLatex());
 		System.out.println(e2);
 		e2.latexRender(folder, "test4");
 	}
@@ -72,10 +72,10 @@ public class Test1 {
 	public static void test5() {
 		Expr e2 = 3.1 * β + 5.1 - α*α + γ + 2.1 * ξ * θ + sin(δ*cos(x)*tan(x+y));
 		System.out.println(e2);
-		System.out.println(e2.toLaTex());
+		System.out.println(e2.toLatex());
 		Expr e3 = e2.diff(x) ;
 		System.out.println(e3);
-		System.out.println(e3.toLaTex());
+		System.out.println(e3.toLatex());
 		String folder = "/Users/meisam/Desktop/test1" ;
 		e3.latexRender(folder, "test4");
 	}
@@ -116,7 +116,7 @@ public class Test1 {
 		Expr e1 = (2/(3+x))*5 ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
-		System.out.println(e1.toLaTex());
+		System.out.println(e1.toLatex());
 		BytecodeFunc f = JIT.compile(e1) ;
 		System.out.println(f.apply(2.1, 5.0));
 	}
@@ -125,7 +125,7 @@ public class Test1 {
 		Expr e1 = pow(x, 3) ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
-		System.out.println(e1.toLaTex());
+		System.out.println(e1.toLatex());
 		BytecodeFunc f = JIT.compile(e1) ;
 		System.out.println(f.apply(2.1, 5.0));
 	}
@@ -134,7 +134,7 @@ public class Test1 {
 		Expr e1 = x/3.0 ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
-		System.out.println(e1.toLaTex());
+		System.out.println(e1.toLatex());
 		BytecodeFunc f = JIT.compile(e1) ;
 		System.out.println(f.apply(2.1, 5.0));
 	}
@@ -143,7 +143,7 @@ public class Test1 {
 		Expr e1 = x % y ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
-		System.out.println(e1.toLaTex());
+		System.out.println(e1.toLatex());
 		BytecodeFunc f = JIT.compile(e1) ;
 		System.out.println(f.apply(10, 3));
 	}
@@ -152,7 +152,7 @@ public class Test1 {
 		Expr e1 = (x+GreekSymbol.α)/inf ;
 		System.out.println(e1);
 		System.out.println(e1.getLatexLabel());
-		System.out.println(e1.toLaTex());
+		System.out.println(e1.toLatex());
 		BytecodeFunc f = JIT.compile(e1) ;
 		System.out.println(f.apply(10, 3));
 	}

@@ -6,6 +6,7 @@ import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.utils.JIT;
 
 public class NumVector {
+
 	BytecodeBatchFunc func;
 	int size;
 	double[] lastEvalData;

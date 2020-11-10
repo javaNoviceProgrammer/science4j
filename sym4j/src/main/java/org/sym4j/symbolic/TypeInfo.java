@@ -27,6 +27,7 @@ public class TypeInfo {
 		this.type = type;
 		dim = new int[0];
 	}
+
 	public TypeInfo(TYPE type, int[] dim) {
 		this.type = type;
 		this.dim = dim;

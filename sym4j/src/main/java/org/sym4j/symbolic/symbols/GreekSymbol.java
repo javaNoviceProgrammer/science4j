@@ -55,4 +55,56 @@ public class GreekSymbol {
 	public static Symbol Ψ = new Symbol("\\Psi");
 	public static Symbol Ω = new Symbol("\\Omega");
 
+	// lowercase letters
+	public static Symbol alpha = new Symbol("\\alpha");
+	public static Symbol beta = new Symbol("\\beta");
+	public static Symbol gamma = new Symbol("\\gamma");
+	public static Symbol delta = new Symbol("\\delta");
+	public static Symbol epsilon = new Symbol("\\epsilon");
+	public static Symbol zeta = new Symbol("\\zeta");
+	public static Symbol eta = new Symbol("\\eta");
+	public static Symbol theta = new Symbol("\\theta");
+	public static Symbol iota = new Symbol("\\iota");
+	public static Symbol kappa = new Symbol("\\kappa");
+	public static Symbol lambda = new Symbol("\\lambda");
+	public static Symbol mu = new Symbol("\\mu");
+	public static Symbol nu = new Symbol("\\nu");
+	public static Symbol xi = new Symbol("\\xi");
+	public static Symbol omicron = new Symbol("\\omicron");
+	public static Symbol pi = new Symbol("\\pi");
+	public static Symbol rho = new Symbol("\\rho");
+	public static Symbol sigma = new Symbol("\\sigma");
+	public static Symbol tau = new Symbol("\\tau");
+	public static Symbol upsilon = new Symbol("\\upsilon");
+	public static Symbol phi = new Symbol("\\phi");
+	public static Symbol chi = new Symbol("\\chi");
+	public static Symbol psi = new Symbol("\\psi");
+	public static Symbol omega = new Symbol("\\omega");
+
+	// uppercase letters
+	public static Symbol Alpha = new Symbol("\\Alpha");
+	public static Symbol Beta = new Symbol("\\Beta");
+	public static Symbol Gamma = new Symbol("\\Gamma");
+	public static Symbol Delta = new Symbol("\\Delta");
+	public static Symbol Epsilon = new Symbol("\\Epsilon");
+	public static Symbol Zeta = new Symbol("\\Zeta");
+	public static Symbol Eta = new Symbol("\\Eta");
+	public static Symbol Theta = new Symbol("\\Theta");
+	public static Symbol Iota = new Symbol("\\Iota");
+	public static Symbol Kappa = new Symbol("\\Kappa");
+	public static Symbol Lambda = new Symbol("\\Lambda");
+	public static Symbol Mu = new Symbol("\\Mu");
+	public static Symbol Nu = new Symbol("\\Nu");
+	public static Symbol Xi = new Symbol("\\Xi");
+	public static Symbol Omicron = new Symbol("\\Omicron");
+	public static Symbol Pi = new Symbol("\\Pi");
+	public static Symbol Rho = new Symbol("\\Rho");
+	public static Symbol Sigma = new Symbol("\\Sigma");
+	public static Symbol Tau = new Symbol("\\Tau");
+	public static Symbol Upsilon = new Symbol("\\Upsilon");
+	public static Symbol Phi = new Symbol("\\Phi");
+	public static Symbol Chi = new Symbol("\\Chi");
+	public static Symbol Psi = new Symbol("\\Psi");
+	public static Symbol Omega = new Symbol("\\Omega");
+
 }

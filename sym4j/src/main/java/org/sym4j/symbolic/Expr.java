@@ -141,7 +141,7 @@ abstract public class Expr implements Cloneable {
 	 * @return
 	 */
 	// TODO : fix the latexLabel representation
-	public String toLaTex() {
+	public String toLatex() {
 //		if (latexLabel == null) {
 //			latexLabel = label.replaceAll("[*]", "") ;
 //			latexLabel = label.replaceAll("[*]", "\\\\times") ;
@@ -149,7 +149,7 @@ abstract public class Expr implements Cloneable {
 //		}
 //		return latexLabel ;
 //		return label ;
-		latexLabel = label.replaceAll("[*]", "")
+		latexLabel = label.replaceAll("[*]", "\\\\;")
 							.replaceAll("sin", "\\\\sin")
 							.replaceAll("cos", "\\\\cos")
 							.replaceAll("tan", "\\\\tan") ;
@@ -180,7 +180,7 @@ abstract public class Expr implements Cloneable {
 //		sb.append("\\begin{align*}").append(sep) ;
 //		sb.append(this.toLaTex()).append(sep) ;
 //		sb.append("\\end{align*}").append(sep) ;
-		sb.append("$").append(this.toLaTex()).append("$").append(sep) ;
+		sb.append("$").append(this.toLatex()).append("$").append(sep) ;
 		sb.append("\\end{document}") ;
 		// run pdflatex
 		String latexFile = filePath + File.separator + fileName + ".tex" ;

@@ -28,7 +28,9 @@ import com.sun.org.apache.bcel.internal.generic.Type;
  *
  */
 public class Dot extends BinaryOp {
+
 	protected Expr expr = null;
+
 	public Dot(ExprVector l, ExprVector r) {
 		super(l,r);
 		if(l.dim() != r.dim())

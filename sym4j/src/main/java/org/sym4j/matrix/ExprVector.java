@@ -17,6 +17,7 @@ import org.sym4j.symbolic.utils.AddList;
  *
  */
 public class ExprVector extends Expr implements Iterable<Expr> {
+
 	protected boolean isRow = true;
 	protected Vector<Expr> data = new Vector<Expr>();
 
@@ -84,10 +85,6 @@ public class ExprVector extends Expr implements Iterable<Expr> {
 		return data.toArray(new Expr[0]);
 	}
 
-//	  \left[ {\begin{array}{c}
-//	   1\\
-//	   3\\
-//	  \end{array} } \right]
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("vector(");
@@ -101,14 +98,20 @@ public class ExprVector extends Expr implements Iterable<Expr> {
 		return sb.toString();
 	}
 
+//	  \left[ {\begin{array}{c}
+//	   1\\
+//	   3\\
+//	  \end{array} } \right]
+	@Override
 	public String toLatex() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\\left[ {\\begin{array}{c}");
 		for(int j=0; j<data.size(); j++) {
-			sb.append(data.get(j)+"\\\\\n");
+//			sb.append(data.get(j)+"\\\\\n");
+			sb.append(data.get(j).getLatexLabel()+"\\\\\n");
 		}
 		sb.append("\\end{array} } \\right]");
-		if(isRow) sb.append("'");
+		if(isRow) sb.append("^{T}");
 		return sb.toString();
 	}
 

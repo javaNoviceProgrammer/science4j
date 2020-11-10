@@ -23,6 +23,7 @@ import com.sun.org.apache.bcel.internal.generic.Type;
 
 
 public class Vector extends Tensor {
+
 	public int nStart;
 	public int nDim;
 	public Vector parent;

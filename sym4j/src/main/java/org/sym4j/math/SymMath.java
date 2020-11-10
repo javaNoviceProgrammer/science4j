@@ -23,6 +23,8 @@ import org.sym4j.symbolic.funcs.Tan;
 import org.sym4j.symbolic.funcs.Tanh;
 import org.sym4j.symbolic.symbols.SymComplex;
 import org.sym4j.symbolic.symbols.SymConst;
+import org.sym4j.symbolic.symbols.SymDouble;
+import org.sym4j.symbolic.symbols.SymInteger;
 import org.sym4j.symbolic.symbols.SymRandom;
 import org.sym4j.symbolic.utils.Utils;
 
@@ -67,6 +69,14 @@ public class SymMath {
 
 	public static Expr sqrt(Expr arg) {
 		return new Sqrt(arg);
+	}
+
+	public static Expr sqrt(double arg) {
+		return new Sqrt(new SymDouble(arg));
+	}
+
+	public static Expr sqrt(int arg) {
+		return new Sqrt(new SymInteger(arg));
 	}
 
 	public static Expr sqrt(Expr arg, double root) {

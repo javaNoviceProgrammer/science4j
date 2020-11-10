@@ -23,6 +23,7 @@ import com.sun.org.apache.bcel.internal.generic.Type;
 
 
 public class Matrix extends Tensor {
+
 	public int nRowStart;
 	public int nColStart;
 	public int nRow;
