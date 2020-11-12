@@ -1,22 +1,13 @@
 package sym4j;
 
 
-import static org.sym4j.math.SymMath.cos;
-import static org.sym4j.math.SymMath.cosh;
-import static org.sym4j.math.SymMath.cot;
-import static org.sym4j.math.SymMath.csc;
-import static org.sym4j.math.SymMath.j;
-import static org.sym4j.math.SymMath.pow;
-import static org.sym4j.math.SymMath.sec;
-import static org.sym4j.math.SymMath.sin;
-import static org.sym4j.math.SymMath.sinh;
-import static org.sym4j.math.SymMath.tan;
-import static org.sym4j.math.SymMath.tanh;
+import static org.sym4j.math.SymMath.* ;
 import static org.sym4j.symbolic.symbols.Symbol.x;
 import static org.sym4j.symbolic.symbols.Symbol.y;
 
 import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.latex.LatexBracket;
+import org.sym4j.latex.LatexUnary;
 import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
@@ -36,7 +27,6 @@ public class Test2 {
 		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
 		System.out.println(f1bytecode.getClass());
 		System.out.println(f1bytecode.apply(2.1));
-
 	}
 
 	public static void test2() {
@@ -143,6 +133,26 @@ public class Test2 {
 		System.out.println(e1);
 	}
 
+	public static void test12() {
+		Expr e1 = arcsin(tan(x+3.1)) ;
+		System.out.println(e1);
+		System.out.println(e1.getLatexLabel());
+		Expr e2 = e1.diff(x) ;
+		System.out.println(e2);
+		System.out.println(e2.getLatexLabel());
+		Func f1 = new Func("f1", e1) ;
+		System.out.println(f1);
+		System.out.println(f1.diff(x).getLatexLabel());
+		BytecodeFunc f1bytecode = f1.toBytecodeFunc() ;
+		System.out.println(f1bytecode.getClass());
+		System.out.println(f1bytecode.apply(0.999999));
+	}
+
+	public static void test13() {
+		Expr e1 = LatexUnary.overrightarrow(x+tan(y)*GreekSymbol.α) + LatexUnary.overleftarrow(sin(x)) ;
+		System.out.println(e1.getLatexLabel());
+		System.out.println(e1);
+	}
 
 
 	public static void main(String[] args) {
@@ -156,7 +166,9 @@ public class Test2 {
 //		test8() ;
 //		test9() ;
 //		test10() ;
-		test11() ;
+//		test11() ;
+//		test12() ;
+		test13() ;
 	}
 
 }

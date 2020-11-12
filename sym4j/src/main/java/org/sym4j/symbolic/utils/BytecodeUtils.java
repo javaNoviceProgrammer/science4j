@@ -51,6 +51,7 @@ import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.arity.NaryOp;
 import org.sym4j.symbolic.arity.TernaryOp;
 import org.sym4j.symbolic.arity.UnaryOp;
+import org.sym4j.symbolic.funcs.Arcsin;
 import org.sym4j.symbolic.funcs.Cos;
 import org.sym4j.symbolic.funcs.Cosh;
 import org.sym4j.symbolic.funcs.Cot;
@@ -579,6 +580,9 @@ public class BytecodeUtils {
 					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof Csc) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "csc",
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+		} else if(ins instanceof Arcsin) {
+			il.append(factory.createInvoke("java.lang.Math", "asin",
 					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
 		} else if(ins instanceof Log) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",

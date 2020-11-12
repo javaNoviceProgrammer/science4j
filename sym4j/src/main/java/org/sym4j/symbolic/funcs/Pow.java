@@ -145,7 +145,7 @@ public class Pow extends BinaryOp {
 		Expr exponent = arg2;
 		String displayExp = exponent.toString();
 		if(exponent instanceof SymReal<?>) {
-			SymReal<?> realExp = (SymReal<?>)exponent;
+			SymReal<?> realExp = (SymReal<?>) exponent;
 			if(realExp.isInteger()) {
 				displayExp = String.format("%d", realExp.getIntValue());
 			}

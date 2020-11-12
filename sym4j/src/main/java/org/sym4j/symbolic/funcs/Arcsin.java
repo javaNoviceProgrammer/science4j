@@ -16,20 +16,20 @@ import com.sun.org.apache.bcel.internal.generic.ObjectType;
 import com.sun.org.apache.bcel.internal.generic.Type;
 
 
-public class Sin extends UnaryOp {
+public class Arcsin extends UnaryOp {
 
-	public Sin(Expr arg) {
+	public Arcsin(Expr arg) {
 		super(arg);
 		updateLabel();
 	}
 
 	@Override
 	public Expr diff(Expr expr) {
-		return new Cos(arg).multiply(arg.diff(expr));
+		return arg.diff(expr).multiply(new Sqrt(arg.multiply(arg).subtractRev(1)).divideRev(1)) ;
 	}
 
 	public static Expr simplifiedIns(Expr expr) {
-		return new Sin(expr);
+		return new Arcsin(expr);
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class Sin extends UnaryOp {
 		Expr sl = arg.subs(from, to);
 		if(sl == arg)
 			return this;
-		return new Sin(sl);
+		return new Arcsin(sl);
 	}
 
 	@Override
 	public boolean symEquals(Expr other) {
-		if(other instanceof Sin) {
-			return Utils.symCompare(this.arg, ((Sin) other).arg);
+		if(other instanceof Arcsin) {
+			return Utils.symCompare(this.arg, ((Arcsin) other).arg);
 		}
 		return false;
 	}
@@ -67,7 +67,7 @@ public class Sin extends UnaryOp {
 					new Type[] { new ObjectType("Jama.Matrix") },
 					Constants.INVOKESTATIC));
 		} else {
-			il.append(factory.createInvoke("java.lang.Math", "sin",
+			il.append(factory.createInvoke("java.lang.Math", "asin",
 					Type.DOUBLE,
 					new Type[] { Type.DOUBLE },
 					Constants.INVOKESTATIC));
@@ -77,9 +77,9 @@ public class Sin extends UnaryOp {
 
 	@Override
 	public void updateLabel() {
-		label = "sin(" + arg + ")";
+		label = "arcsin(" + arg + ")";
 		sortKey = label;
-		latexLabel = "\\sin(" + arg.getLatexLabel() + ")" ;
+		latexLabel = "\\arcsin(" + arg.getLatexLabel() + ")" ;
 	}
 
 }

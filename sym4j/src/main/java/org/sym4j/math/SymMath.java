@@ -5,6 +5,7 @@ import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Vector;
 import org.sym4j.symbolic.funcs.Abs;
+import org.sym4j.symbolic.funcs.Arcsin;
 import org.sym4j.symbolic.funcs.Cos;
 import org.sym4j.symbolic.funcs.Cosh;
 import org.sym4j.symbolic.funcs.Cot;
@@ -147,6 +148,12 @@ public class SymMath {
 
 	public static Expr csc(Expr x) {
 		return Csc.simplifiedIns(x) ;
+	}
+
+	///////////////////////////////////////////////////////////////
+
+	public static Expr arcsin(Expr x) {
+		return Arcsin.simplifiedIns(x) ;
 	}
 
 	///////////////////////////////////////////////////////////////
