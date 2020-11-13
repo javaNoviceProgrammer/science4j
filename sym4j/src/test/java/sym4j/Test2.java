@@ -154,6 +154,16 @@ public class Test2 {
 		System.out.println(e1);
 	}
 
+	public static void test14() {
+		Expr e3 = LatexUnary.leftRightRoundBrackets(GreekSymbol.alpha)
+				+ LatexUnary.widehat(sin(LatexUnary.dot(x)))
+				+ LatexUnary.mathring(GreekSymbol.gamma);
+		System.out.println(e3);
+		System.out.println(e3.toLatex());
+		String folder = "/Users/meisam/Desktop/test1" ;
+		e3.latexRender(folder, "test4");
+	}
+
 
 	public static void main(String[] args) {
 //		test1() ;
@@ -168,7 +178,8 @@ public class Test2 {
 //		test10() ;
 //		test11() ;
 //		test12() ;
-		test13() ;
+//		test13() ;
+		test14() ;
 	}
 
 }

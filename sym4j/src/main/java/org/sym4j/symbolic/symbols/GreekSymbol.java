@@ -107,4 +107,9 @@ public class GreekSymbol {
 	public static Symbol Psi = new Symbol("\\Psi");
 	public static Symbol Omega = new Symbol("\\Omega");
 
+	// other variations
+	public static Symbol varepsilon = new Symbol("\\varepsilon");
+	public static Symbol varpi = new Symbol("\\varpi");
+
+
 }
