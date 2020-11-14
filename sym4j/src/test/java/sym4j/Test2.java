@@ -2,16 +2,17 @@ package sym4j;
 
 
 import static org.sym4j.math.SymMath.* ;
-import static org.sym4j.symbolic.symbols.Symbol.x;
-import static org.sym4j.symbolic.symbols.Symbol.y;
+import static org.sym4j.symbolic.symbols.Symbol.* ;
 
 import org.sym4j.bytecode.BytecodeFunc;
+import org.sym4j.latex.LatexBinary;
 import org.sym4j.latex.LatexBracket;
 import org.sym4j.latex.LatexUnary;
 import org.sym4j.matrix.ExprVector;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.Func;
 import org.sym4j.symbolic.symbols.GreekSymbol;
+import org.sym4j.symbolic.symbols.Symbol;
 
 
 
@@ -155,9 +156,9 @@ public class Test2 {
 	}
 
 	public static void test14() {
-		Expr e3 = LatexUnary.leftRightRoundBrackets(GreekSymbol.alpha)
-				+ LatexUnary.widehat(sin(LatexUnary.dot(x)))
-				+ LatexUnary.mathring(GreekSymbol.gamma);
+		Symbol a1 = new Symbol("a_1") ;
+		Symbol a2 = new Symbol("a_2") ;
+		Expr e3 = LatexBinary.overbrace(a2+a1+a1, x) ;
 		System.out.println(e3);
 		System.out.println(e3.toLatex());
 		String folder = "/Users/meisam/Desktop/test1" ;
