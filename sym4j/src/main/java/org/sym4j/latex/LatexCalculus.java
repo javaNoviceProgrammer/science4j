@@ -4,6 +4,7 @@ import org.sym4j.symbolic.symbols.Symbol;
 
 public class LatexCalculus {
 
+	public static Symbol partial = new Symbol("\\partial");
 	public static Symbol sum = new Symbol("\\sum");
 	public static Symbol prod = new Symbol("\\prod");
 	public static Symbol bigcup = new Symbol("\\bigcup");

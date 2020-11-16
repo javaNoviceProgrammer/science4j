@@ -158,7 +158,7 @@ public class Test2 {
 	public static void test14() {
 		Symbol a1 = new Symbol("a_1") ;
 		Symbol a2 = new Symbol("a_2") ;
-		Expr e3 = LatexBinary.overbrace(a2+a1+a1, x) ;
+		Expr e3 = LatexBinary.partialDiff(x+x*x+x*x*x, a1+a2) ;
 		System.out.println(e3);
 		System.out.println(e3.toLatex());
 		String folder = "/Users/meisam/Desktop/test1" ;

@@ -3,6 +3,7 @@ package org.sym4j.symbolic.arity;
 import org.sym4j.symbolic.Expr;
 
 public abstract class TernaryOp extends Expr {
+
 	public Expr arg1;
 	public Expr arg2;
 	public Expr arg3;
@@ -22,6 +23,7 @@ public abstract class TernaryOp extends Expr {
 	public Expr[] args() {
 		return new Expr[] { arg1, arg2, arg3 };
 	}
+
 	public Expr setArg(int index, Expr arg) {
 		if(index == 0) arg1 = arg;
 		else if(index == 1) arg2 = arg;
@@ -29,4 +31,5 @@ public abstract class TernaryOp extends Expr {
 		updateLabel();
 		return this;
 	}
+
 }
