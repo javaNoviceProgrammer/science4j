@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="org.pyplot4j.contour.ContourLabel" project="pyplot4j" 
-    file="/pyplot4j/src/main/java/org/pyplot4j/contour/ContourLabel.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="pyplot4j.contour.ContourLabel" project="pyplot4j" 
+    file="/pyplot4j/src/main/java/pyplot4j/contour/ContourLabel.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="803" y="378"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -10,8 +10,8 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="org.pyplot4j.contour.ContourSeries" project="pyplot4j" 
-    file="/pyplot4j/src/main/java/org/pyplot4j/contour/ContourSeries.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="pyplot4j.contour.ContourSeries" project="pyplot4j" 
+    file="/pyplot4j/src/main/java/pyplot4j/contour/ContourSeries.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="545" y="437"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -19,8 +19,8 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="org.pyplot4j.contour.ContourPlot" project="pyplot4j" 
-    file="/pyplot4j/src/main/java/org/pyplot4j/contour/ContourPlot.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="3" language="java" name="pyplot4j.contour.ContourPlot" project="pyplot4j" 
+    file="/pyplot4j/src/main/java/pyplot4j/contour/ContourPlot.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="191" y="377"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="org.pyplot4j.contour.ContourSubPlot" project="pyplot4j" 
-    file="/pyplot4j/src/main/java/org/pyplot4j/contour/ContourSubPlot.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="pyplot4j.contour.ContourSubPlot" project="pyplot4j" 
+    file="/pyplot4j/src/main/java/pyplot4j/contour/ContourSubPlot.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="480" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,8 +37,8 @@
       <operations public="false" package="false" protected="false" private="false" static="false"/>    
     </display>  
   </class>  
-  <interface id="5" language="java" name="org.pyplot4j.contour.MeshGrid" project="pyplot4j" 
-    file="/pyplot4j/src/main/java/org/pyplot4j/contour/MeshGrid.java" binary="false" corner="BOTTOM_RIGHT">    
+  <interface id="5" language="java" name="pyplot4j.contour.MeshGrid" project="pyplot4j" 
+    file="/pyplot4j/src/main/java/pyplot4j/contour/MeshGrid.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="797" y="611"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -59,15 +59,15 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="9">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="10" name="contourSeriesCollection">        
-        <position height="18" width="142" x="321" y="383"/>      
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="10" name="clabel">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="11" minimum="0" maximum="2147483647">        
-        <position height="16" width="23" x="362" y="410"/>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="12">    
@@ -75,17 +75,23 @@
       <attribute id="13" name="contourPlotSeries">        
         <position height="18" width="108" x="304" y="280"/>      
       </attribute>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+      <multiplicity id="14" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="15">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="16" name="clabel"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="16" name="contourSeriesCollection">        
+        <position height="18" width="142" x="321" y="383"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
+        <position height="16" width="23" x="362" y="410"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
