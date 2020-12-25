@@ -15,7 +15,7 @@ import pyplot4j.util.FileOutput;
 import pyplot4j.util.TerminalExecutor;
 import pyplot4j.xy.XYSeries;
 
-
+ 
 public class Plot {
 	String title = null ;
 	String xlabel = null ;
