@@ -84,8 +84,10 @@ public class ComplexPolynomial {
     public ComplexPolynomial plus(ComplexPolynomial b) {
     	ComplexPolynomial a = this;
     	ComplexPolynomial c = new ComplexPolynomial(ZERO, Math.max(a.deg, b.deg));
-        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
-        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] + b.coef[i];
+//        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
+//        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] + b.coef[i];
+        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i].add(a.coef[i]);
+        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i].add(b.coef[i]);
         c.deg = c.degree();
         return c;
     }
@@ -93,15 +95,18 @@ public class ComplexPolynomial {
     public ComplexPolynomial plus(Polynomial b) {
     	ComplexPolynomial a = this;
     	ComplexPolynomial c = new ComplexPolynomial(ZERO, Math.max(a.deg, b.deg));
-        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
-        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] + b.coeffs[i];
+//        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
+//        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] + b.coeffs[i];
+        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i].add(a.coef[i]);
+        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i].add(b.coeffs[i]);
         c.deg = c.degree();
         return c;
     }
 
     public ComplexPolynomial plus(Complex b) {
         Complex[] coeffSum = new Complex[coef.length] ;
-        coeffSum[0] = coef[0] + b ;
+//        coeffSum[0] = coef[0] + b ;
+        coeffSum[0] = coef[0].add(b) ;
         for(int i=1; i<coef.length; i++) {
         	coeffSum[i] = coef[i] ;
         }
@@ -110,7 +115,8 @@ public class ComplexPolynomial {
 
     public ComplexPolynomial plus(double b) {
         Complex[] coeffSum = new Complex[coef.length] ;
-        coeffSum[0] = coef[0] + b ;
+//        coeffSum[0] = coef[0] + b ;
+        coeffSum[0] = coef[0].add(b) ;
         for(int i=1; i<coef.length; i++) {
         	coeffSum[i] = coef[i] ;
         }
@@ -121,8 +127,10 @@ public class ComplexPolynomial {
     public ComplexPolynomial minus(ComplexPolynomial b) {
     	ComplexPolynomial a = this;
     	ComplexPolynomial c = new ComplexPolynomial(ZERO, Math.max(a.deg, b.deg));
-        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
-        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] - b.coef[i];
+//        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
+//        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] - b.coef[i];
+        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i].add(a.coef[i]);
+        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i].subtract(b.coef[i]);
         c.deg = c.degree();
         return c;
     }
@@ -130,15 +138,18 @@ public class ComplexPolynomial {
     public ComplexPolynomial minus(Polynomial b) {
     	ComplexPolynomial a = this;
     	ComplexPolynomial c = new ComplexPolynomial(ZERO, Math.max(a.deg, b.deg));
-        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
-        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] - b.coeffs[i];
+//        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i] + a.coef[i];
+//        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i] - b.coeffs[i];
+        for (int i = 0; i <= a.deg; i++) c.coef[i] = c.coef[i].add(a.coef[i]);
+        for (int i = 0; i <= b.deg; i++) c.coef[i] = c.coef[i].subtract(b.coeffs[i]);
         c.deg = c.degree();
         return c;
     }
 
     public ComplexPolynomial minus(Complex b) {
         Complex[] coeffSum = new Complex[coef.length] ;
-        coeffSum[0] = coef[0] - b ;
+//        coeffSum[0] = coef[0] - b ;
+        coeffSum[0] = coef[0].subtract(b) ;
         for(int i=1; i<coef.length; i++) {
         	coeffSum[i] = coef[i] ;
         }
@@ -147,7 +158,8 @@ public class ComplexPolynomial {
 
     public ComplexPolynomial minus(double b) {
         Complex[] coeffSum = new Complex[coef.length] ;
-        coeffSum[0] = coef[0] - b ;
+//        coeffSum[0] = coef[0] - b ;
+        coeffSum[0] = coef[0].subtract(b) ;
         for(int i=1; i<coef.length; i++) {
         	coeffSum[i] = coef[i] ;
         }
@@ -160,7 +172,8 @@ public class ComplexPolynomial {
     	ComplexPolynomial c = new ComplexPolynomial(ZERO, a.deg + b.deg);
         for (int i = 0; i <= a.deg; i++)
             for (int j = 0; j <= b.deg; j++)
-                c.coef[i+j] = c.coef[i+j] + (a.coef[i] * b.coef[j]);
+//                c.coef[i+j] = c.coef[i+j] + (a.coef[i] * b.coef[j]);
+        		c.coef[i+j] = c.coef[i+j].add(a.coef[i].multiply(b.coef[j]));
         c.deg = c.degree();
         return c;
     }
@@ -170,7 +183,8 @@ public class ComplexPolynomial {
     	ComplexPolynomial c = new ComplexPolynomial(ZERO, a.deg + b.deg);
         for (int i = 0; i <= a.deg; i++)
             for (int j = 0; j <= b.deg; j++)
-                c.coef[i+j] = c.coef[i+j] + (a.coef[i] * b.coeffs[j]);
+//                c.coef[i+j] = c.coef[i+j] + (a.coef[i] * b.coeffs[j]);
+        		c.coef[i+j] = c.coef[i+j].add(a.coef[i].multiply(b.coeffs[j]));
         c.deg = c.degree();
         return c;
     }
@@ -178,7 +192,8 @@ public class ComplexPolynomial {
     public ComplexPolynomial times(Complex b) {
     	Complex[] coeffSum = new Complex[coef.length] ;
         for(int i=0; i<coef.length; i++) {
-        	coeffSum[i] = b*coef[i] ;
+//        	coeffSum[i] = b*coef[i] ;
+        	coeffSum[i] = coef[i].multiply(b) ;
         }
         return new ComplexPolynomial(coeffSum) ;
     }
@@ -186,7 +201,8 @@ public class ComplexPolynomial {
     public ComplexPolynomial times(double b) {
     	Complex[] coeffSum = new Complex[coef.length] ;
         for(int i=0; i<coef.length; i++) {
-        	coeffSum[i] = b*coef[i] ;
+//        	coeffSum[i] = b*coef[i] ;
+        	coeffSum[i] = coef[i].multiply(b) ;
         }
         return new ComplexPolynomial(coeffSum) ;
     }
@@ -201,7 +217,8 @@ public class ComplexPolynomial {
     		throw new IllegalArgumentException("cannot divide by zero!") ;
     	Complex[] coeffSum = new Complex[coef.length] ;
         for(int i=0; i<coef.length; i++) {
-        	coeffSum[i] = coef[i]/b ;
+//        	coeffSum[i] = coef[i]/b ;
+        	coeffSum[i] = coef[i].divide(b) ;
         }
         return new ComplexPolynomial(coeffSum) ;
     }
@@ -211,14 +228,15 @@ public class ComplexPolynomial {
     		throw new IllegalArgumentException("cannot divide by zero!") ;
     	Complex[] coeffSum = new Complex[coef.length] ;
         for(int i=0; i<coef.length; i++) {
-        	coeffSum[i] = coef[i]/b ;
+//        	coeffSum[i] = coef[i]/b ;
+        	coeffSum[i] = coef[i].divide(b) ;
         }
         return new ComplexPolynomial(coeffSum) ;
     }
 
     public ComplexPolynomial pow(int m) {
     	ComplexPolynomial a = this ;
-    	ComplexPolynomial p = new ComplexPolynomial(new Complex[] {1.0}) ;
+    	ComplexPolynomial p = new ComplexPolynomial(new double[] {1.0}) ;
         for(int i=0; i<m; i++) {
         	p = p.times(a) ;
         }
@@ -267,16 +285,20 @@ public class ComplexPolynomial {
 
 	// use Horner's method to compute and return the polynomial evaluated at x
     public Complex evaluate(Complex x) {
-    	Complex p = 0;
+//    	Complex p = 0;
+    	Complex p = Complex.valueOf(0);
         for (int i = deg; i >= 0; i--)
-            p = coef[i] + (x * p);
+//            p = coef[i] + (x * p);
+        	p = coef[i].add(x.multiply(p));
         return p;
     }
 
     public Complex evaluate(double x) {
-    	Complex p = 0;
+//    	Complex p = 0;
+    	Complex p = Complex.valueOf(0) ;
         for (int i = deg; i >= 0; i--)
-            p = coef[i] + (x * p);
+//            p = coef[i] + (x * p);
+        	p = coef[i].add(p.multiply(x));
         return p;
     }
 
@@ -286,7 +308,8 @@ public class ComplexPolynomial {
         ComplexPolynomial deriv = new ComplexPolynomial(0.0, deg - 1);
         deriv.deg = deg - 1;
         for (int i = 0; i < deg; i++)
-            deriv.coef[i] = (i + 1) * coef[i + 1];
+//            deriv.coef[i] = (i + 1) * coef[i + 1];
+        	deriv.coef[i] = coef[i+1].multiply(i+1) ;
         return deriv;
     }
 
@@ -301,11 +324,12 @@ public class ComplexPolynomial {
 
     // integrate this polynomial and return it
     public ComplexPolynomial integrate() {
-        if (deg == 0) return new ComplexPolynomial(new Complex[] {0.0, 1.0});
+        if (deg == 0) return new ComplexPolynomial(new double[] {0.0, 1.0});
         ComplexPolynomial integral = new ComplexPolynomial(0, deg + 1);
         integral.deg = deg + 1;
         for (int i = 1; i < deg+2; i++)
-        	integral.coef[i] = coef[i - 1] / i ;
+//        	integral.coef[i] = coef[i - 1] / i ;
+        	integral.coef[i] = coef[i-1].divide(i) ;
         return integral;
     }
 
@@ -319,11 +343,13 @@ public class ComplexPolynomial {
     }
 
     public Complex integrate(Complex xStart, Complex xEnd) {
-    	return integrate().evaluate(xEnd)-integrate().evaluate(xStart) ;
+//    	return integrate().evaluate(xEnd)-integrate().evaluate(xStart) ;
+    	return integrate().evaluate(xEnd).subtract(integrate().evaluate(xStart)) ;
     }
 
     public Complex integrate(double xStart, double xEnd) {
-    	return integrate().evaluate(xEnd)-integrate().evaluate(xStart) ;
+//    	return integrate().evaluate(xEnd)-integrate().evaluate(xStart) ;
+    	return integrate().evaluate(xEnd).subtract(integrate().evaluate(xStart)) ;
     }
 
     public Complex[] getRoots() {
