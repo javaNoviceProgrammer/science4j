@@ -33,21 +33,21 @@ public class TestComplex {
 	}
 
 	public static void test1() {
-		Real r1 = 2.3 ;
-		Real r2 = 2 * r1 ;
+		Real r1 = Real.valueOf(2.3) ;
+		Real r2 = r1.multiply(2) ;
 		System.out.println(r2);
 		System.out.println(r2.getClass());
-		RealBuilder r3 = r2.getBuilder() - 3.0 ;
+		RealBuilder r3 = r2.getBuilder().subtract(3.0) ;
 		System.out.println(r3);
 		System.out.println(r3.getClass());
-		r3 = r3 + 3.1 - 1.0 ;
+		r3 = r3.add(3.1).subtract(1.0) ;
 		System.out.println(r3);
 	}
 
 	public static void test2() {
 		Complex.debug = true ;
 		Real.debug = true ;
-		Real r1 = 5.1 ;
+		Real r1 = Real.valueOf(5.1) ;
 		System.out.println(r1);
 		System.out.println(r1.getClass());
 		ComplexNumber c1 = 2.0*j.getBuilder()-1.0 ;
@@ -152,13 +152,13 @@ public class TestComplex {
 
 	public static void main(String[] args) {
 		test1() ;
-		test2() ;
-		test3() ;
-		test4() ;
-		test5() ;
-		test6() ;
-		test7() ;
-		test8() ;
+//		test2() ;
+//		test3() ;
+//		test4() ;
+//		test5() ;
+//		test6() ;
+//		test7() ;
+//		test8() ;
 	}
 
 }

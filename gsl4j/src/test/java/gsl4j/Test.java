@@ -18,7 +18,7 @@ public class Test {
 		for(int i=0; i<xvals.length; i++) {
 			result[i] = test.test1(xvals[i]) ;
 		}
-//		System.out.println(result[0]);
+		System.out.println(result[0]);
 //		result = Arrays.stream(xvals).parallel().map(test::test1).toArray() ;
 		long end = System.currentTimeMillis() ;
 		System.out.println("Time (msec) = " + (end-start));
