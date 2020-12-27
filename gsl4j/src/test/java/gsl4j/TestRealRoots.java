@@ -20,7 +20,6 @@ public class TestRealRoots {
 
 		timer.stop();
 		timer.show();
-
 	}
 
 	public static void main(String[] args) {
