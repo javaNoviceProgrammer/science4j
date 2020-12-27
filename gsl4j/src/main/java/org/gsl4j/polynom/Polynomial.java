@@ -446,7 +446,8 @@ public class Polynomial implements Serializable {
 	}
 
 	public Rational divideRev(double v) {
-		return Rational.valueOf(v) / this;
+//		return Rational.valueOf(v) / this;
+		return new Rational(ofCoeffs(v), this) ;
 	}
 
 	public Polynomial negate() {

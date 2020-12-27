@@ -454,7 +454,8 @@ public class FileInput implements AutoCloseable {
 				}
 
 				if (var2) {
-					var3.add(new Integer(var5));
+//					var3.add(new Integer(var5));
+					var3.add(var5);
 				}
 			}
 
@@ -515,7 +516,8 @@ public class FileInput implements AutoCloseable {
 					}
 
 					if (var8) {
-						var4.add(new Integer(var17 + 1));
+//						var4.add(new Integer(var17 + 1));
+						var4.add(var17 + 1);
 					}
 
 					if (var9 >= var5) {

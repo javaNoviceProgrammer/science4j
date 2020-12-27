@@ -7,7 +7,7 @@ import static org.gsl4j.complex.Complex.* ;
 public class ComplexPolynomial {
 
 	public static final ComplexPolynomial Xc =
-			new ComplexPolynomial(new Complex[] {0.0, 1.0}) ;
+			new ComplexPolynomial(new double[] {0.0, 1.0}) ;
 
 	Complex[] coef; // coefficients (length = degree + 1)
 	int deg; // degree of polynomial (0 for the zero polynomial)

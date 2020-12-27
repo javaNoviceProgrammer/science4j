@@ -19,7 +19,8 @@ public class Rational {
 	// Rational R(x) = p(x)/1
 
 	public Rational(Polynomial numerator) {
-		this.q = 0 * x + 1;
+//		this.q = 0 * x + 1;
+		this.q = ofCoeffs(1) ;
 		this.p = numerator;
 	}
 
@@ -52,51 +53,65 @@ public class Rational {
 
 	public Rational plus(Rational r) {
 		Rational a = this ;
-		Polynomial num = a.p * r.q + a.q * r.p ;
-		Polynomial denom = a.q * r.q ;
+//		Polynomial num = a.p * r.q + a.q * r.p ;
+//		Polynomial denom = a.q * r.q ;
+		Polynomial num = a.p.multiply(r.q).add(a.q.multiply(r.p)) ;
+		Polynomial denom = a.q.multiply(r.q) ;
 		return new Rational(num, denom) ;
 	}
 
 	public Rational plus(double a) {
-		return new Rational(p+q*a, q) ;
+//		return new Rational(p+q*a, q) ;
+		return new Rational(p.add(q.multiply(a)), q) ;
 	}
 
 	public Rational minus(Rational r) {
 		Rational a = this ;
-		Polynomial num = a.p * r.q - a.q * r.p ;
-		Polynomial denom = a.q * r.q ;
+//		Polynomial num = a.p * r.q - a.q * r.p ;
+//		Polynomial denom = a.q * r.q ;
+		Polynomial num = a.p.multiply(r.q).subtract(a.q.multiply(r.p)) ;
+		Polynomial denom = a.q.multiply(r.q) ;
 		return new Rational(num, denom) ;
 	}
 
 	public Rational minus(double a) {
-		return new Rational(p-q*a, q) ;
+//		return new Rational(p-q*a, q) ;
+		return new Rational(p.subtract(q.multiply(a)), q) ;
 	}
 
 	public Rational times(Rational r) {
 		Rational a = this ;
-		Polynomial num = a.p * r.p ;
-		Polynomial denom = a.q * r.q ;
+//		Polynomial num = a.p * r.p ;
+//		Polynomial denom = a.q * r.q ;
+		Polynomial num = a.p.multiply(r.p) ;
+		Polynomial denom = a.q.multiply(r.q) ;
 		return new Rational(num, denom) ;
 	}
 
 	public Rational times(double a) {
-		return new Rational(p*a, q) ;
+//		return new Rational(p*a, q) ;
+		return new Rational(p.multiply(a), q) ;
 	}
 
 	public Rational divides(Rational r) {
 		Rational a = this ;
-		Polynomial num = a.p * r.q ;
-		Polynomial denom = a.q * r.p ;
+//		Polynomial num = a.p * r.q ;
+//		Polynomial denom = a.q * r.p ;
+		Polynomial num = a.p.multiply(r.q) ;
+		Polynomial denom = a.q.multiply(r.p) ;
 		return new Rational(num, denom) ;
 	}
 
 	public Rational divides(double a) {
-		return new Rational(p, q*a) ;
+//		return new Rational(p, q*a) ;
+		return new Rational(p, q.multiply(a)) ;
 	}
 
 	public Rational diff() {
-		Polynomial num = p.diff() * q - p * q.diff() ;
-		Polynomial denom = q * q ;
+//		Polynomial num = p.diff() * q - p * q.diff() ;
+//		Polynomial denom = q * q ;
+		Polynomial num = p.diff().multiply(q).subtract(p.multiply(q.diff())) ;
+		Polynomial denom = q.multiply(q) ;
 		return new Rational(num, denom) ;
 	}
 
@@ -118,18 +133,24 @@ public class Rational {
 		factorsOfP.removeAll(getCommonFactors(p, q)) ;
 		factorsOfQ.removeAll(getCommonFactors(q, p)) ;
 		// reconstruct p(x) and q(x)
-		Polynomial pSimp = 0*x+1 ;
+//		Polynomial pSimp = 0*x+1 ;
+		Polynomial pSimp = ofCoeffs(1) ;
 		for(Polynomial w : factorsOfP)
-			pSimp = pSimp * w ;
-		Polynomial qSimp = 0*x+1 ;
+//			pSimp = pSimp * w ;
+			pSimp = pSimp.multiply(w) ;
+//		Polynomial qSimp = 0*x+1 ;
+		Polynomial qSimp = ofCoeffs(1) ;
 		for(Polynomial z : factorsOfQ)
-			qSimp = qSimp * z ;
+//			qSimp = qSimp * z ;
+			qSimp = qSimp.multiply(z) ;
 
-		return new Rational(pSimp * pcoef, qSimp * qcoef) ;
+//		return new Rational(pSimp * pcoef, qSimp * qcoef) ;
+		return new Rational(pSimp.multiply(pcoef), qSimp.multiply(qcoef)) ;
 	}
 
 	public static Rational toRational(Polynomial p) {
-		return new Rational(p, 0*x+1) ;
+//		return new Rational(p, 0*x+1) ;
+		return new Rational(p, ofCoeffs(1)) ;
 	}
 
 	public ArrayList<Complex> zeroes() {
@@ -148,26 +169,28 @@ public class Rational {
 
 	@Override
 	public String toString() {
-		StringBuilder st = new StringBuilder() ;
-		st.append(p) ;
-		st.append("\n") ;
+		StringBuilder sb = new StringBuilder() ;
+		sb.append(p) ;
+		sb.append("\n") ;
 		int m = Math.max(p.toString().length(), q.toString().length()) ;
 		for(int i=0; i<m; i++)
-			st.append("-") ;
-		st.append("\n") ;
-		st.append(q) ;
-		st.append("\n") ;
-		return st ;
+			sb.append("-") ;
+		sb.append("\n") ;
+		sb.append(q) ;
+		sb.append("\n") ;
+		return sb.toString() ;
 	}
 
 	// ************ operator overloading **********************
 
 	public static Rational valueOf(double v) {
-		return new Rational(0*x+v);
+//		return new Rational(0*x+v);
+		return new Rational(ofCoeffs(v));
 	}
 
 	public static Rational valueOf(Polynomial v) {
-		return new Rational(v, 0*x+1) ;
+//		return new Rational(v, 0*x+1) ;
+		return new Rational(v, ofCoeffs(1)) ;
 	}
 
 	public Rational add(Polynomial v) {
@@ -263,7 +286,8 @@ public class Rational {
 	}
 
 	public Rational divideRev(double v) {
-		return (new Rational(0*x+v)).divides(this);
+//		return (new Rational(0*x+v)).divides(this);
+		return (new Rational(ofCoeffs(v))).divides(this);
 	}
 
 	public Rational negate() {
