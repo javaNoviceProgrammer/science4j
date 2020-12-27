@@ -204,7 +204,7 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 	}
 
 	@Override
-	public ComplexNumber apply(Function<ComplexNumber, ComplexNumber> func) {
+	public ComplexBuilder apply(Function<ComplexNumber, ComplexNumber> func) {
 		ComplexNumber z = func.apply(this) ;
 		this.re = z.re() ;
 		this.im = z.im() ;

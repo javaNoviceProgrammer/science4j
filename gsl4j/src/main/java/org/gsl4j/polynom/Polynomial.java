@@ -214,14 +214,16 @@ public class Polynomial implements Serializable {
 	public static Polynomial ofFactors(ArrayList<Polynomial> factors) {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (int i = 0; i < factors.size(); i++)
-			p = p * factors.get(i);
+//			p = p * factors.get(i);
+			p = p.multiply(factors.get(i));
 		return p;
 	}
 
 	public static Polynomial ofFactors(Polynomial... factors) {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (int i = 0; i < factors.length; i++)
-			p = p * factors[i];
+//			p = p * factors[i];
+		p = p.multiply(factors[i]);
 		return p;
 	}
 
@@ -229,12 +231,18 @@ public class Polynomial implements Serializable {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (Complex root : roots) {
 			if (Math.abs(root.im()) < 1e-5) {
-				p = p * (x - root.re());
+//				p = p * (x - root.re());
+				p = p.multiply(x.subtract(root.re())) ;
 			}
 		}
 		for (Complex root : roots) {
 			if (root.im() > 1e-5) {
-				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
+//				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
+//				p = p.multiply(x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()) ) ;
+				var p0 = x.multiply(x) ;
+				var p1 = x.multiply(2*root.re()) ;
+				var p2 = ComplexMath.abs2(root.re(), root.im()) ;
+				p = p.multiply(p0.subtract(p1).add(p2)) ;
 			}
 		}
 		return p;
@@ -244,12 +252,17 @@ public class Polynomial implements Serializable {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (Complex root : roots) {
 			if (Math.abs(root.im()) < 1e-5) {
-				p = p * (x - root.re());
+//				p = p * (x - root.re());
+				p = p.multiply(x.subtract(root.re()));
 			}
 		}
 		for (Complex root : roots) {
 			if (root.im() > 1e-5) {
-				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
+//				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
+				var p0 = x.multiply(x) ;
+				var p1 = x.multiply(2*root.re()) ;
+				var p2 = ComplexMath.abs2(root.re(), root.im()) ;
+				p = p.multiply(p0.subtract(p1).add(p2)) ;
 			}
 		}
 		return p;
@@ -258,7 +271,8 @@ public class Polynomial implements Serializable {
 	public static Polynomial ofRoots(double... roots) {
 		Polynomial p = ofCoeffs(1.0) ;
 		for (double root : roots) {
-			p = p * (x - root) ;
+//			p = p * (x - root) ;
+			p = p.multiply((x.subtract(root))) ;
 		}
 		return p;
 	}
