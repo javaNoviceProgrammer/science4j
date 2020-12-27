@@ -46,7 +46,8 @@ public class TestFunction {
 			return x*y*y ;
 		}; // x*y^2
 
-		MultiVariateMathFunction dfunc = func.deriv(0).deriv(1) ;
+//		MultiVariateMathFunction dfunc = func.deriv(0).deriv(1) ;
+		var dfunc = func.deriv(0).deriv(1) ;
 		System.out.println(dfunc.value(1.0, -2.0));
 
 		MultiVariateMathFunction dfunc2 = func.deriv(1).deriv(0) ;
@@ -60,8 +61,12 @@ public class TestFunction {
 			return new double[] {x*y, z-x, y+z} ;
 		} ;
 
-		MultiVariateMathFunction elem = func[0]  ;
+//		MultiVariateMathFunction elem = func[0]  ;
+		MultiVariateMathFunction elem = func.get(0)  ;
 		System.out.println(elem.value(3.0, 2.0, 3.0)) ;
+		
+		var elem2 = func.get(0)  ;
+		System.out.println(elem2.value(3.0, 2.0, 3.0)) ;
 	}
 
 	public static void test4() {
@@ -87,27 +92,27 @@ public class TestFunction {
 	public static void test5() {
 		MathFunction f1 = x -> 2.0*x ;
 		MathFunction f2 = x -> x + 1.0 ;
-		MathFunction f3 = f1 + f2 ; // 3x+1
+		MathFunction f3 = f1.add(f2) ; // 3x+1
 		System.out.println(f3.value(2.0));
 		System.out.println(f3.getClass());
 
-		MathFunction f4 = f1 - f2 ; // x-1
+		MathFunction f4 = f1.subtract(f2) ; // x-1
 		System.out.println(f4.value(2.0));
 		System.out.println(f4.getClass());
 
-		MathFunction f5 = f1 * f2 ; // 2x(x+1)
+		MathFunction f5 = f1.multiply(f2) ; // 2x(x+1)
 		System.out.println(f5.value(2.0));
 		System.out.println(f5.getClass());
 
-		MathFunction f6 = f1 / f2 ; // 2x/(x+1)
+		MathFunction f6 = f1.divide(f2) ; // 2x/(x+1)
 		System.out.println(f6.value(2.0));
 		System.out.println(f6.getClass());
 
-		MathFunction f7 = -f1 ; // -2x
+		MathFunction f7 = f1.negate() ; // -2x
 		System.out.println(f7.value(2.0));
 		System.out.println(f7.getClass());
 
-		MathFunction f8 = f2 - f3 * 2.0 ;
+		MathFunction f8 = f2.subtract(f3.multiply(2.0)) ;
 		System.out.println(f8.value(2.0));
 	}
 
@@ -117,7 +122,7 @@ public class TestFunction {
 		// f2 = x*y
 		MultiVariateMathFunction f2 = v -> {double x = v[0], y=v[1]; return x*y;} ;
 		// f3 = f1 + f2 = x + y + x*y
-		MultiVariateMathFunction f3 = f1 + f2 ;
+		MultiVariateMathFunction f3 = f1.add(f2) ;
 		System.out.println(f3.value(1.1, 2.2)); // 2.42 + 3.3
 
 		Timer timer = new Timer() ;
@@ -131,12 +136,12 @@ public class TestFunction {
 	}
 
 	public static void main(String[] args) {
-		test1() ;
+//		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
 //		test5() ;
-//		test6() ;
+		test6() ;
 	}
 
 }

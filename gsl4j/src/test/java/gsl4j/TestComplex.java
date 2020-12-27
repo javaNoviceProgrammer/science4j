@@ -50,7 +50,7 @@ public class TestComplex {
 		Real r1 = Real.valueOf(5.1) ;
 		System.out.println(r1);
 		System.out.println(r1.getClass());
-		ComplexNumber c1 = 2.0*j.getBuilder()-1.0 ;
+		ComplexNumber c1 = j.getBuilder().multiply(2.0).subtract(1.0) ;
 		System.out.println(c1);
 		System.out.println(c1.getClass());
 		ComplexNumber c2 = c1.getBuilder().multiply(-1.0, 1.0) ;
@@ -58,7 +58,7 @@ public class TestComplex {
 		System.out.println(c2.getClass());
 		System.out.println(c1);
 		System.out.println(c1==c2);
-		ComplexNumber c3 = (c2+1.1).multiply(2.0).divide(j) ;
+		ComplexNumber c3 = (c2.add(1.1)).multiply(2.0).divide(j) ;
 		System.out.println(c2);
 		System.out.println(c2.getClass());
 		System.out.println(c3);
@@ -71,7 +71,7 @@ public class TestComplex {
 	public static void test3() {
 		Complex.debug = true ;
 		Complex.setDisplayAccuracy(6);
-		ComplexNumber w1 = 1.0+j ;
+		ComplexNumber w1 = j.add(1.0) ;
 		System.out.println(w1);
 		System.out.println(w1.getClass());
 		ComplexNumber w2 = ComplexMath.pow(w1, j) ;
@@ -112,19 +112,19 @@ public class TestComplex {
 		RealNumber a = Real.of(2.3).getBuilder() ;
 		System.out.println(a);
 		System.out.println(a.getClass());
-		ComplexNumber b = a * j ;
+		ComplexNumber b = j.multiply(a) ;
 		System.out.println(b);
 		System.out.println(b.getClass());
-		ComplexNumber c = b.getBuilder() * j ;
+		ComplexNumber c = b.getBuilder().multiply(j) ;
 		System.out.println(c);
 		System.out.println(c.getClass());
-		ComplexNumber d = (c+3.1)/(2.0+j) ;
+		ComplexNumber d = (c.add(3.1)).divide(j.add(2.0)) ;
 		System.out.println(d);
 		System.out.println(c==d);
 	}
 
 	public static void test6() {
-		Real r1 = Double.valueOf(2.3) ;
+		Real r1 = Real.valueOf(2.3) ;
 		System.out.println(r1);
 	}
 
@@ -133,7 +133,7 @@ public class TestComplex {
 		RealNumber r1 = func.boxedValue(2.3) ;
 		System.out.println(r1);
 		RealNumber r2 = r1.getBuilder() ;
-		System.out.println(r2*3.0);
+		System.out.println(r2.multiply(3.0));
 		System.out.println(r2);
 		System.out.println(r2.getClass());
 		System.out.println(func.value(r2));
@@ -141,7 +141,7 @@ public class TestComplex {
 	}
 
 	public static void test8() {
-		Real r1 = 2.3 ;
+		RealNumber r1 = Real.valueOf(2.3) ;
 		System.out.println(r1);
 		// ((2*x+1)/3+2)*(x-5.0)/(0.5*x*x+1)
 		double result = ((2*r1.re()+1)/3+2)*(r1.re()-5.0) /(0.5*r1.re()*r1.re()+1) ;
@@ -151,14 +151,14 @@ public class TestComplex {
 	}
 
 	public static void main(String[] args) {
-		test1() ;
+//		test1() ;
 //		test2() ;
 //		test3() ;
 //		test4() ;
 //		test5() ;
 //		test6() ;
 //		test7() ;
-//		test8() ;
+		test8() ;
 	}
 
 }

@@ -26,6 +26,7 @@ public class RealRoot {
 
 	double absErr = 1e-10 ;
 	double relErr = 1e-10 ;
+	double absErrUniqueness = 1e-5 ;
 	int maxNumberOfIterations = 100 ;
 	RealRootFunction func ;
 	RealRootDerivFunction derivFunc ;
@@ -86,6 +87,18 @@ public class RealRoot {
 	public void setDerivFunction(RealRootDerivFunction derivfunc) {
 		this.func = t -> derivfunc.value(t)[0] ;
 		this.derivFunc = derivfunc ;
+	}
+	
+	public void setAbsoluteError(double absErr) {
+		this.absErr = absErr ;
+	}
+	
+	public void setRelativeError(double relErr) {
+		this.relErr = relErr ;
+	}
+	
+	public void setAbsErrForUniqueness(double absErr) {
+		this.absErrUniqueness = absErr ;
 	}
 
 	// Root Bracketing Algorithms (use func)
@@ -203,7 +216,7 @@ public class RealRoot {
 			if(!Double.isNaN(potentialRoot)){
 				boolean repeated = false ;
 				for(int j=0;j<roots.size(); j++){
-					if(Math.abs(potentialRoot-roots.get(j))<absErr)
+					if(Math.abs(potentialRoot-roots.get(j))<absErrUniqueness)
 						repeated = true ;
 				}
 				if(!repeated)
@@ -233,7 +246,7 @@ public class RealRoot {
 			if(!Double.isNaN(potentialRoot)){
 				boolean repeated = false ;
 				for(int j=0;j<roots.size(); j++){
-					if(Math.abs(potentialRoot-roots.get(j))<absErr)
+					if(Math.abs(potentialRoot-roots.get(j))<absErrUniqueness)
 						repeated = true ;
 				}
 				if(!repeated)
@@ -263,7 +276,7 @@ public class RealRoot {
 			if(!Double.isNaN(potentialRoot)){
 				boolean repeated = false ;
 				for(int j=0;j<roots.size(); j++){
-					if(Math.abs(potentialRoot-roots.get(j))<absErr)
+					if(Math.abs(potentialRoot-roots.get(j))<absErrUniqueness)
 						repeated = true ;
 				}
 				if(!repeated)
@@ -385,7 +398,7 @@ public class RealRoot {
 			if(!Double.isNaN(potentialRoot)){
 				boolean repeated = false ;
 				for(int j=0;j<roots.size(); j++){
-					if(Math.abs(potentialRoot-roots.get(j))<absErr)
+					if(Math.abs(potentialRoot-roots.get(j))<absErrUniqueness)
 						repeated = true ;
 				}
 				if(!repeated)
@@ -415,7 +428,7 @@ public class RealRoot {
 			if(!Double.isNaN(potentialRoot)){
 				boolean repeated = false ;
 				for(int j=0;j<roots.size(); j++){
-					if(Math.abs(potentialRoot-roots.get(j))<absErr)
+					if(Math.abs(potentialRoot-roots.get(j))<absErrUniqueness)
 						repeated = true ;
 				}
 				if(!repeated)
@@ -445,7 +458,7 @@ public class RealRoot {
 			if(!Double.isNaN(potentialRoot)){
 				boolean repeated = false ;
 				for(int j=0;j<roots.size(); j++){
-					if(Math.abs(potentialRoot-roots.get(j))<absErr)
+					if(Math.abs(potentialRoot-roots.get(j))<absErrUniqueness)
 						repeated = true ;
 				}
 				if(!repeated)
