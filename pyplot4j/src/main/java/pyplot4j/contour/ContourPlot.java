@@ -12,8 +12,9 @@ import pyplot4j.util.TerminalExecutor;
 
 /**
  * matplotlib.pyplot.contour(*args, data=None, **kwargs)
- * contour([X, Y,] Z, [levels], **kwargs)
- *
+ * <p>
+ * Usage: contour([X, Y,] Z, [levels], **kwargs)
+ * 
  * @author Meisam
  *
  */
