@@ -36,7 +36,7 @@ public class Plot {
 	String[] ytickLabels ;
 	// other properties
 	boolean tightLayout = false ;
-
+	boolean useTkAgg = false ;
 	// data
 	List<XYSeries> xyseriesCollection;
 	List<ContourSeries> contourSeriesCollection;
@@ -45,6 +45,8 @@ public class Plot {
 	static int id = 0 ;
 	// header
 	public boolean isSubplot = false ;
+	// font
+	double fontSize = -1.0 ;
 
 
 	public Plot(String title) {
@@ -169,6 +171,16 @@ public class Plot {
 		this.cla = true ;
 		return this ;
 	}
+	
+	public Plot fontSize(double fontSize) {
+		this.fontSize = fontSize ;
+		return this ;
+	}
+	
+	public Plot useTkAgg(boolean useTkAgg) {
+		this.useTkAgg = useTkAgg ;
+		return this ;
+	}
 
 	public void savefig(String fileName) {
 		if (xyseriesCollection.isEmpty() && contourSeriesCollection.isEmpty())
@@ -229,9 +241,14 @@ public class Plot {
 			fo.println("from sys import platform as sys_pf") ;
 			fo.println("if sys_pf == 'darwin':") ;
 			fo.println("\timport matplotlib") ;
-			fo.println("\tmatplotlib.use('TkAgg')") ;
+			if(useTkAgg) {
+				fo.println("\tmatplotlib.use('TkAgg')") ;
+			}
 			fo.println("import numpy as np") ;
 			fo.println("import matplotlib.pyplot as plt");
+			if(fontSize>0.0) {
+				fo.println(format("plt.rcParams['font.size']=%f", fontSize));
+			}
 			fo.println();
 		}
 		// for each xy series, write the data

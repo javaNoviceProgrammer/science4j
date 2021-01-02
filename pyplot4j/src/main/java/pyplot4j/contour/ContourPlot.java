@@ -34,12 +34,15 @@ public class ContourPlot {
 	String legendLocation ;
 	// other properties
 	boolean tightLayout = false ;
+	boolean useTkAgg = false ;
 	String style ;
 	// contour series
 	ArrayList<ContourSeries> contourSeriesCollection ;
 	int count = 1 ;
 	public boolean isSubplot = false ;
 	static int id = 0 ;
+	// font
+	double fontSize = -1.0 ;
 
 
 	public ContourPlot(String title) {
@@ -142,8 +145,15 @@ public class ContourPlot {
 		return this ;
 	}
 
-
-
+	public ContourPlot fontSize(double fontSize) {
+		this.fontSize = fontSize ;
+		return this ;
+	}
+	
+	public ContourPlot useTkAgg(boolean useTkAgg) {
+		this.useTkAgg = useTkAgg ;
+		return this ;
+	}
 
 	public void savefig(String fileName) {
 		if(contourSeriesCollection.isEmpty())
@@ -193,9 +203,14 @@ public class ContourPlot {
 			fo.println("from sys import platform as sys_pf") ;
 			fo.println("if sys_pf == 'darwin':") ;
 			fo.println("\timport matplotlib") ;
-			fo.println("\tmatplotlib.use('TkAgg')") ;
+			if(useTkAgg) {
+				fo.println("\tmatplotlib.use('TkAgg')") ;
+			}
 			fo.println("import numpy as np") ;
 			fo.println("import matplotlib.pyplot as plt");
+			if(fontSize>0.0) {
+				fo.println(format("plt.rcParams['font.size']=%f", fontSize));
+			}
 			fo.println();
 		}
 		// print x and y values

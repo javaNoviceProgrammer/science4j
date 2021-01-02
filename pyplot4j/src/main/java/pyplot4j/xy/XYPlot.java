@@ -36,12 +36,16 @@ public class XYPlot {
 	String[] ytickLabels ;
 	// other properties
 	boolean tightLayout = false ;
+	boolean useTkAgg = false ;
 	// data
 	ArrayList<XYSeries> xySeriesCollection ;
 	int count = 1 ;
 	static int id = 0 ;
 	// header
 	public boolean isSubplot = false ;
+	// font
+	double fontSize = -1.0 ;
+
 
 	public XYPlot(String title) {
 		this.title = title ;
@@ -199,6 +203,16 @@ public class XYPlot {
 		this.cla = true ;
 		return this ;
 	}
+	
+	public XYPlot fontSize(double fontSize) {
+		this.fontSize = fontSize ;
+		return this ;
+	}
+	
+	public XYPlot useTkAgg(boolean useTkAgg) {
+		this.useTkAgg = useTkAgg ;
+		return this ;
+	}
 
 	public void savefig(String fileName) {
 		if(xySeriesCollection.isEmpty())
@@ -269,9 +283,14 @@ public class XYPlot {
 			fo.println("from sys import platform as sys_pf") ;
 			fo.println("if sys_pf == 'darwin':") ;
 			fo.println("\timport matplotlib") ;
-			fo.println("\tmatplotlib.use('TkAgg')") ;
+			if(useTkAgg) {
+				fo.println("\tmatplotlib.use('TkAgg')") ;
+			}
 			fo.println("import numpy as np") ;
 			fo.println("import matplotlib.pyplot as plt");
+			if(fontSize>0.0) {
+				fo.println(format("plt.rcParams['font.size']=%f", fontSize));
+			}
 			fo.println();
 		}
 		// for each xy series, write the data

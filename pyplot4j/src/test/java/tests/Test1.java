@@ -15,8 +15,11 @@ public class Test1 {
 		plt.plot(x, y).color(Color.blue).linewidth(2) ;
 		plt.grid(true) ;
 		plt.xlabel("X data").ylabel("Y data") ;
+		plt.fontSize(15);
+		plt.tightLayout() ;
 		plt.show();
 		plt.savefig("test1.pdf");
+		plt.savefig("test1.png");
 	}
 	
 	public static void main(String[] args) {
