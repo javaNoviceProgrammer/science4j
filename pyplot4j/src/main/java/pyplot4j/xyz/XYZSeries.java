@@ -7,7 +7,7 @@ import pyplot4j.style.FillStyle;
 import pyplot4j.style.JoinStyle;
 import pyplot4j.style.LineStyle;
 import pyplot4j.style.Marker;
-import pyplot4j.xy.XYSeries;
+
 
 public class XYZSeries {
 	
@@ -24,7 +24,6 @@ public class XYZSeries {
 	// axis type
 	boolean semilogx = false ; // ?
 	boolean semilogy = false ; // ?
-	boolean semilogz = false ; // ?
 	boolean loglog = false ; // ?
 	// additional Line2D params // ?
 	String drawStyle ;
@@ -45,12 +44,17 @@ public class XYZSeries {
 	double linewidth = 2.0 ;
 	String solidCapStyle ;
 	String solidJoinStyle ;
+	// zdir
+	String zdir ;
 	
-	public XYSeries(double[] x, double[] y, String xvar, String yvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+	
+	public XYZSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
+		this.z = z ;
 		this.xvar = (xvar!=null)? xvar.trim() : null ;
 		this.yvar = (yvar!=null)? yvar.trim() : null ;
+		this.zvar = (zvar!=null)? zvar.trim() : null ;
 		this.color = (color!=null)? color.trim() : null ;
 		this.label = (label!=null)? label.trim() : null ;
 		this.marker = (marker!=null)? marker.trim() : null ;
@@ -59,160 +63,171 @@ public class XYZSeries {
 		this.linewidth = linewidth ;
 	}
 
-	public XYSeries(double[] x, double[] y) {
+	public XYZSeries(double[] x, double[] y, double[] z) {
 		this.x = x ;
 		this.y = y ;
+		this.z = z ;
 	}
 
-	public XYSeries() {
+	public XYZSeries() {
 
 	}
 
-	public XYSeries setXData(double[] x) {
+	public XYZSeries setXData(double[] x) {
 		this.x = x ;
 		return this ;
 	}
 
-	public XYSeries setYData(double[] y) {
+	public XYZSeries setYData(double[] y) {
 		this.y = y ;
 		return this ;
 	}
+	
+	public XYZSeries setZData(double[] z) {
+		this.z = z ;
+		return this ;
+	}
 
-	public XYSeries setXvar(String xvar) {
+	public XYZSeries setXvar(String xvar) {
 		this.xvar = (xvar!=null) ? xvar.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries setYvar(String yvar) {
+	public XYZSeries setYvar(String yvar) {
 		this.yvar = (yvar!=null) ? yvar.trim() : null ;
 		return this ;
 	}
+	
+	public XYZSeries setZvar(String zvar) {
+		this.zvar = (zvar!=null) ? zvar.trim() : null ;
+		return this ;
+	}
 
-	public XYSeries color(String color) {
+	public XYZSeries color(String color) {
 		this.color = (color!=null) ? color.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries color(Color color) {
+	public XYZSeries color(Color color) {
 		this.color = (color!=null) ? color.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries marker(String marker) {
+	public XYZSeries marker(String marker) {
 		this.marker = (marker!=null) ? marker.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries marker(Marker marker) {
+	public XYZSeries marker(Marker marker) {
 		this.marker = (marker!=null) ? marker.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries markerSize(double markerSize) {
+	public XYZSeries markerSize(double markerSize) {
 		this.markerSize = markerSize ;
 		return this ;
 	}
 
-	public XYSeries markerEdgeColor(String markerEdgeColor) {
+	public XYZSeries markerEdgeColor(String markerEdgeColor) {
 		this.markerEdgeColor = (markerEdgeColor!=null) ? markerEdgeColor.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries markerEdgeColor(Color markerEdgeColor) {
+	public XYZSeries markerEdgeColor(Color markerEdgeColor) {
 		this.markerEdgeColor = (markerEdgeColor!=null) ? markerEdgeColor.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries markerEdgeWidth(double markerEdgeWidth) {
+	public XYZSeries markerEdgeWidth(double markerEdgeWidth) {
 		this.markerEdgeWidth = markerEdgeWidth ;
 		return this ;
 	}
 
-	public XYSeries markerFaceColor(String markerFaceColor) {
+	public XYZSeries markerFaceColor(String markerFaceColor) {
 		this.markerFaceColor = (markerFaceColor!=null) ? markerFaceColor.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries markerFaceColor(Color markerFaceColor) {
+	public XYZSeries markerFaceColor(Color markerFaceColor) {
 		this.markerFaceColor = (markerFaceColor!=null) ? markerFaceColor.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries linestyle(String linestyle) {
+	public XYZSeries linestyle(String linestyle) {
 		this.linestyle = (linestyle!=null) ? linestyle.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries linestyle(LineStyle linestyle) {
+	public XYZSeries linestyle(LineStyle linestyle) {
 		this.linestyle = (linestyle!=null) ? linestyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries linewidth(double linewidth) {
+	public XYZSeries linewidth(double linewidth) {
 		this.linewidth = linewidth ;
 		return this ;
 	}
 
-	public XYSeries label(String label) {
+	public XYZSeries label(String label) {
 		this.label = (label!=null) ? label.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries fillstyle(String fillStyle) {
+	public XYZSeries fillstyle(String fillStyle) {
 		this.fillStyle = (fillStyle!=null) ? fillStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries fillstyle(FillStyle fillStyle) {
+	public XYZSeries fillstyle(FillStyle fillStyle) {
 		this.fillStyle = (fillStyle!=null) ? fillStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries drawstyle(String drawStyle) {
+	public XYZSeries drawstyle(String drawStyle) {
 		this.drawStyle = (drawStyle!=null) ? drawStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries drawstyle(DrawStyle drawStyle) {
+	public XYZSeries drawstyle(DrawStyle drawStyle) {
 		this.drawStyle = (drawStyle!=null) ? drawStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries solidCapStyle(String capStyle) {
+	public XYZSeries solidCapStyle(String capStyle) {
 		this.solidCapStyle = (capStyle!=null) ? capStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries solidCapStyle(CapStyle capStyle) {
+	public XYZSeries solidCapStyle(CapStyle capStyle) {
 		this.solidCapStyle = (capStyle!=null) ? capStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries solidJoinStyle(String joinStyle) {
+	public XYZSeries solidJoinStyle(String joinStyle) {
 		this.solidJoinStyle = (joinStyle!=null) ? joinStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYSeries solidJoinStyle(JoinStyle joinStyle) {
+	public XYZSeries solidJoinStyle(JoinStyle joinStyle) {
 		this.solidJoinStyle = (joinStyle!=null) ? joinStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYSeries semilogx() {
+	public XYZSeries semilogx() {
 		semilogx = true ;
 		semilogy = false ;
 		loglog = false ;
 		return this ;
 	}
 
-	public XYSeries semilogy() {
+	public XYZSeries semilogy() {
 		semilogx = false ;
 		semilogy = true ;
 		loglog = false ;
 		return this ;
 	}
 
-	public XYSeries loglog() {
+	public XYZSeries loglog() {
 		semilogx = false ;
 		semilogy = false ;
 		loglog = true ;
@@ -222,13 +237,13 @@ public class XYZSeries {
 	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
 		if(semilogx)
-			sb.append("plt.semilogx(") ;
+			sb.append("plt.gca(projection='3d').semilogx(") ;
 		else if(semilogy)
-			sb.append("plt.semilogy(") ;
+			sb.append("plt.gca(projection='3d').semilogy(") ;
 		else if(loglog)
-			sb.append("plt.loglog(") ;
+			sb.append("plt.gca(projection='3d').loglog(") ;
 		else
-			sb.append("plt.plot(") ;
+			sb.append("plt.gca(projection='3d').plot(") ;
 		if(xvar == null)
 			throw new IllegalArgumentException("x variable cannot be NULL") ;
 		else
@@ -236,7 +251,12 @@ public class XYZSeries {
 		if(yvar == null)
 			throw new IllegalArgumentException("x variable cannot be NULL") ;
 		else
-			sb.append(yvar) ;
+			sb.append(yvar+", ") ;
+		if(zvar == null)
+			throw new IllegalArgumentException("z variable cannot be NULL") ;
+		else
+			sb.append(zvar) ;
+		
 		if(color != null) {
 			sb.append(", ") ;
 			sb.append("color='" + color + "'") ;
