@@ -10,7 +10,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipException;
 
-import ch.epfl.general_libraries.logging.Logger;
+import visualizer4j.logging.Logger;
 
 public class ClasspathClassesEnumerator {
 	

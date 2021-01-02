@@ -1,7 +1,7 @@
 package visualizer4j.statistics.meanconfigurabledist;
 
 import umontreal.iro.lecuyer.probdist.ParetoDist;
-import ch.epfl.general_libraries.clazzes.ParamName;
+import visualizer4j.clazzes.ParamName;
 
 public class ParetoDistribution extends AbstractSSJBasedMeanConfigurableDistribution {
 	

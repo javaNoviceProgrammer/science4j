@@ -1,6 +1,6 @@
 package visualizer4j.statistics.meanconfigurabledist;
 
-import ch.epfl.general_libraries.clazzes.ConstructorDef;
+import visualizer4j.clazzes.ConstructorDef;
 
 public class UniformDistribution extends
 		AbstractSSJBasedMeanConfigurableDistribution {

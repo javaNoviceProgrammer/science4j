@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import ch.epfl.general_libraries.utils.Pair;
-import ch.epfl.general_libraries.utils.PairList;
+import visualizer4j.utils.Pair;
+import visualizer4j.utils.PairList;
 
 public class CriteriumSet extends ArrayList<List<Criterium>> {
 

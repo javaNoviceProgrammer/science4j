@@ -28,8 +28,10 @@ import org.jfree.chart.title.LegendTitle;
 import org.jfree.ui.RectangleEdge;
 import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.Size2D;
-import ch.epfl.general_libraries.utils.Pair;
-import ch.epfl.general_libraries.utils.PairList;
+
+import visualizer4j.utils.Pair;
+import visualizer4j.utils.PairList;
+
 
 public class CustomChartPanel extends ChartPanel {
 

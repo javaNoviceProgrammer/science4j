@@ -53,7 +53,7 @@ import org.jfree.data.general.DatasetChangeEvent;
 import org.jfree.data.xy.XYIntervalSeries;
 import org.jfree.data.xy.XYIntervalSeriesCollection;
 
-import ch.epfl.general_libraries.results.DataRetrievalOptions;
+import visualizer4j.results.DataRetrievalOptions;
 
 /**
  * A collection of {@link XYIntervalSeries} objects.

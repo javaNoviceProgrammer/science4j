@@ -1,6 +1,6 @@
 package visualizer4j.results;
 
-import ch.epfl.general_libraries.utils.SimpleMap;
+import visualizer4j.utils.SimpleMap;
 
 public class PropertyMap extends SimpleMap<String, String> {
 	

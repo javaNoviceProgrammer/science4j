@@ -22,7 +22,7 @@ import org.jfree.ui.RectangleEdge;
 import visualizer4j.charts.paints.Texture;
 
 import visualizer4j.logging.Logger;
-import ch.epfl.general_libraries.results.DataRetrievalOptions;
+import visualizer4j.results.DataRetrievalOptions;
 
 
 public class CustomBarRenderer extends BarRenderer {

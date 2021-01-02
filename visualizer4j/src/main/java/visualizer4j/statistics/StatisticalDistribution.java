@@ -6,9 +6,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
-import ch.epfl.general_libraries.results.DataPoint;
-import ch.epfl.general_libraries.results.Execution;
-import ch.epfl.general_libraries.utils.Pair;
+import visualizer4j.results.DataPoint;
+import visualizer4j.results.Execution;
+import visualizer4j.utils.Pair;
 
 import umontreal.iro.lecuyer.probdist.EmpiricalDist;
 

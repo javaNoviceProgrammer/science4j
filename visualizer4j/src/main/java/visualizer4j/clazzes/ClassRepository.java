@@ -9,7 +9,7 @@ import java.util.List;
 import org.apache.bcel.Repository;
 import org.apache.bcel.classfile.JavaClass;
 
-import ch.epfl.general_libraries.logging.Logger;
+import visualizer4j.logging.Logger;
 
 public class ClassRepository {
 	

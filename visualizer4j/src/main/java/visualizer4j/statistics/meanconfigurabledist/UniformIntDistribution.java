@@ -1,7 +1,7 @@
 package visualizer4j.statistics.meanconfigurabledist;
 
 import umontreal.iro.lecuyer.probdist.UniformIntDist;
-import ch.epfl.general_libraries.clazzes.ConstructorDef;
+import visualizer4j.clazzes.ConstructorDef;
 
 public class UniformIntDistribution extends AbstractSSJBasedMeanConfigurableDistribution {
 	

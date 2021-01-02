@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.TreeMap;
 import java.util.Vector;
 
-import ch.epfl.general_libraries.utils.BoxedPriorityQueue;
-import ch.epfl.general_libraries.utils.Pair;
-import ch.epfl.general_libraries.utils.PairList;
+import visualizer4j.utils.BoxedPriorityQueue;
+import visualizer4j.utils.Pair;
+import visualizer4j.utils.PairList;
 
 
 

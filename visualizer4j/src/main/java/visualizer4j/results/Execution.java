@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.epfl.general_libraries.utils.DateAndTimeFormatter;
+import visualizer4j.utils.DateAndTimeFormatter;
 
 public class Execution implements Serializable {
 

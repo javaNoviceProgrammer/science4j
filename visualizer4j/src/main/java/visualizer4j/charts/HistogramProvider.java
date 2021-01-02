@@ -8,7 +8,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.statistics.HistogramDataset;
 import org.jfree.data.statistics.HistogramType;
 
-import ch.epfl.general_libraries.statistics.StatisticalDistribution;
+import visualizer4j.statistics.StatisticalDistribution;
+
 
 public class HistogramProvider {
 	
