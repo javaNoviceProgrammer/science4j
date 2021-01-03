@@ -13,8 +13,7 @@ import java.util.Arrays;
 import pyplot4j.style.LegendLocation;
 import pyplot4j.util.FileOutput;
 import pyplot4j.util.TerminalExecutor;
-import pyplot4j.xy.XYPlot;
-import pyplot4j.xy.XYSeries;
+
 
 // mplot3d
 /**
@@ -102,134 +101,183 @@ public class XYZLinePlot {
 		return series ;
 	}
 
-	public XYZSeries semilogy(double[] x, double[] y, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZSeries series = new XYZSeries(x, y, "x"+count, "y"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZSeries semilogy(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYSeries semilogy(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, 0, null, 2, null) ;
-		xyseries.semilogy() ;
-		xyzSeriesCollection.add(xyseries) ;
+	public XYZSeries semilogy(double[] x, double[] y, double[] z) {
+		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+		series.semilogy() ;
+		xyzSeriesCollection.add(series) ;
 		++count ;
-		return xyseries ;
+		return series ;
 	}
 
-	public XYSeries loglog(double[] x, double[] y, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, color, marker, markerSize, linestyle, linewidth, label) ;
-		xyseries.loglog() ;
-		xyzSeriesCollection.add(xyseries) ;
+	public XYZSeries loglog(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+		series.loglog() ;
+		xyzSeriesCollection.add(series) ;
 		++count ;
-		return xyseries ;
+		return series ;
 	}
 
-	public XYSeries loglog(double[] x, double[] y) {
-		XYSeries xyseries = new XYSeries(x, y, "x"+count, "y"+count, null, null, 0, null, 2, null) ;
-		xyseries.loglog() ;
-		xyzSeriesCollection.add(xyseries) ;
+	public XYZSeries loglog(double[] x, double[] y, double[] z) {
+		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+		series.loglog() ;
+		xyzSeriesCollection.add(series) ;
 		++count ;
-		return xyseries ;
+		return series ;
+	}
+	
+	// XY plot at a given z location
+	public XYZSeries plotXY(double[] x, double[] y, double zloc) {
+		XYZSeries series = new XYZSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
+		xyzSeriesCollection.add(series) ;
+		++count ;
+		return series ;
+	}
+	
+	// XZ plot at a given y location
+	public XYZSeries plotXZ(double[] x, double[] z, double yloc) {
+		XYZSeries series = new XYZSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
+		xyzSeriesCollection.add(series) ;
+		++count ;
+		return series ;
+	}
+	
+	// YZ plot at a given y location
+	public XYZSeries plotYZ(double[] y, double[] z, double xloc) {
+		XYZSeries series = new XYZSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
+		xyzSeriesCollection.add(series) ;
+		++count ;
+		return series ;
 	}
 
-	public XYPlot xlabel(String xlabel) {
+	public XYZLinePlot xlabel(String xlabel) {
 		this.xlabel = xlabel ;
 		return this ;
 	}
 
-	public XYPlot ylabel(String ylabel) {
+	public XYZLinePlot ylabel(String ylabel) {
 		this.ylabel = ylabel ;
 		return this ;
 	}
 
-	public XYPlot title(String title) {
+	public XYZLinePlot title(String title) {
 		this.title = title ;
 		return this ;
 	}
 
-	public XYPlot xlim(double xmin, double xmax) {
+	public XYZLinePlot xlim(double xmin, double xmax) {
 		this.xlim = format("[%f, %f]", xmin, xmax) ;
 		return this ;
 	}
 
-	public XYPlot ylim(double ymin, double ymax) {
+	public XYZLinePlot ylim(double ymin, double ymax) {
 		this.ylim = format("[%f, %f]", ymin, ymax) ;
 		return this ;
 	}
 
-	public XYPlot grid(boolean on, String which, String axis) {
+	public XYZLinePlot grid(boolean on, String which, String axis) {
 		this.grid = on ;
 		this.gridWhich = which ;
 		this.gridAxis = axis ;
 		return this ;
 	}
 
-	public XYPlot grid(boolean on) {
+	public XYZLinePlot grid(boolean on) {
 		this.grid = on ;
 		this.gridWhich = "both" ;
 		this.gridAxis = "both" ;
 		return this ;
 	}
 
-	public XYPlot legend(boolean on) {
+	public XYZLinePlot legend(boolean on) {
 		this.legend = on ;
 		return this ;
 	}
 
-	public XYPlot legend(boolean on, String loc) {
+	public XYZLinePlot legend(boolean on, String loc) {
 		this.legend = on ;
 		this.legendLocation = (loc!=null) ? loc.trim() : null ;
 		return this ;
 	}
 
-	public XYPlot legend(boolean on, LegendLocation loc) {
+	public XYZLinePlot legend(boolean on, LegendLocation loc) {
 		this.legend = on ;
 		this.legendLocation = (loc!=null) ? loc.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYPlot xticks(double... xticks) {
+	public XYZLinePlot xticks(double... xticks) {
 		this.xticks = (xticks!=null) ? xticks : null ;
 		return this ;
 	}
 
-	public XYPlot xticks(String... xlabels) {
+	public XYZLinePlot xticks(String... xlabels) {
 		this.xtickLabels = (xlabels!=null) ? xlabels : null ;
 		return this ;
 	}
 
-	public XYPlot yticks(double... yticks) {
+	public XYZLinePlot yticks(double... yticks) {
 		this.yticks = (yticks!=null) ? yticks : null ;
 		return this ;
 	}
 
-	public XYPlot yticks(String... ylabels) {
+	public XYZLinePlot yticks(String... ylabels) {
 		this.ytickLabels = (ylabels!=null) ? ylabels : null ;
 		return this ;
 	}
 
-	public XYPlot tightLayout() {
+	public XYZLinePlot tightLayout() {
 		this.tightLayout = true ;
 		return this ;
 	}
 
-	public XYPlot cla() {
+	public XYZLinePlot cla() {
 		this.cla = true ;
 		return this ;
 	}
 	
-	public XYPlot fontSize(double fontSize) {
+	public XYZLinePlot fontSize(double fontSize) {
 		this.fontSize = fontSize ;
 		return this ;
 	}
 	
-	public XYPlot useTkAgg(boolean useTkAgg) {
+	public XYZLinePlot useTkAgg(boolean useTkAgg) {
 		this.useTkAgg = useTkAgg ;
 		return this ;
 	}
-
+	
+//	public void savefig(String fileName, boolean saveSource) {
+//		if(xyzSeriesCollection.isEmpty())
+//			throw new IllegalStateException("XYPlot data is empty") ;
+//		// open the output stream
+//		int index = fileName.lastIndexOf('.') ;
+//		String pyName = fileName.substring(0, index) ;
+//		FileOutput fo = new FileOutput(pyName+".py") ;
+//		pythonCode(fo);
+//		// show the plot
+//		if(cla) {
+//			fo.println("plt.cla()");
+//		}
+//		fo.println(format("plt.savefig('%s')", fileName));
+//		// close the output stream
+//		fo.close();
+//		// run the python code
+//		Thread thread = new Thread(() -> {
+//			TerminalExecutor.execute("python", fo.getFilename());
+//		}) ;
+//		thread.start();
+//		if(!saveSource) {
+//			FileOutput.deleteFile(pyName+".py") ;
+//		}
+//	}
+	
 	public void savefig(String fileName) {
 		if(xyzSeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
@@ -276,7 +324,7 @@ public class XYZLinePlot {
 		if(xyzSeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
-		File file = new File("xy_plot_"+(id++)) ;
+		File file = new File("xyz_lineplot_"+(id++)) ;
 		file.deleteOnExit();
 		FileOutput fo = new FileOutput(file) ;
 		pythonCode(fo);
@@ -310,19 +358,24 @@ public class XYZLinePlot {
 			fo.println();
 		}
 		// for each xy series, write the data
-		for(XYSeries xyseries: xyzSeriesCollection) {
+		for(XYZSeries series: xyzSeriesCollection) {
 			// print x
-			fo.print(xyseries.xvar + " = [");
-			fo.printcomma(xyseries.x);
+			fo.print(series.xvar + " = [");
+			fo.printcomma(series.x);
 			fo.print("];") ;
 			fo.println();
 			// print y
-			fo.print(xyseries.yvar + " = [");
-			fo.printcomma(xyseries.y);
+			fo.print(series.yvar + " = [");
+			fo.printcomma(series.y);
+			fo.print("];") ;
+			fo.println();
+			// print z
+			fo.print(series.zvar + " = [");
+			fo.printcomma(series.z);
 			fo.print("];") ;
 			fo.println();
 			// plot
-			fo.println(xyseries.toString());
+			fo.println(series.toString());
 		}
 		// configure the plot
 		if(title != null)

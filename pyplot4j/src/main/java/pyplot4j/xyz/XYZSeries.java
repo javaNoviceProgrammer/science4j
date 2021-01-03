@@ -46,7 +46,24 @@ public class XYZSeries {
 	String solidJoinStyle ;
 	// zdir
 	String zdir ;
+	double zs = 0.0 ;
 	
+	
+	public XYZSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+		this.x = x ;
+		this.y = y ;
+		this.z = z ;
+		this.xvar = (xvar!=null)? xvar.trim() : null ;
+		this.yvar = (yvar!=null)? yvar.trim() : null ;
+		this.zvar = (zvar!=null)? zvar.trim() : null ;
+		this.zdir = (zdir!=null)? zdir.trim() : null ;
+		this.color = (color!=null)? color.trim() : null ;
+		this.label = (label!=null)? label.trim() : null ;
+		this.marker = (marker!=null)? marker.trim() : null ;
+		this.markerSize = markerSize ;
+		this.linestyle = (linestyle!=null)? linestyle.trim() : null ;
+		this.linewidth = linewidth ;
+	}
 	
 	public XYZSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
@@ -55,6 +72,7 @@ public class XYZSeries {
 		this.xvar = (xvar!=null)? xvar.trim() : null ;
 		this.yvar = (yvar!=null)? yvar.trim() : null ;
 		this.zvar = (zvar!=null)? zvar.trim() : null ;
+		this.zdir = "z" ;
 		this.color = (color!=null)? color.trim() : null ;
 		this.label = (label!=null)? label.trim() : null ;
 		this.marker = (marker!=null)? marker.trim() : null ;
@@ -255,8 +273,11 @@ public class XYZSeries {
 		if(zvar == null)
 			throw new IllegalArgumentException("z variable cannot be NULL") ;
 		else
-			sb.append(zvar) ;
-		
+			sb.append("zs=" + zvar) ;
+		if(zdir != null) {
+			sb.append(", ") ;
+			sb.append("zdir='" + zdir + "'") ;
+		}
 		if(color != null) {
 			sb.append(", ") ;
 			sb.append("color='" + color + "'") ;
