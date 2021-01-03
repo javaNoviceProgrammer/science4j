@@ -38,6 +38,9 @@ REQUIREMENTS: this framework requires the installation of _python 2_ or _python 
 
 <img src="./src/main/resources/contourUML.png" width="600" />
 
+* XYZLinePlot
+	* this is similar to having 3D axis as projection and then ploting a curve in the three-dimensional space: _plt.gca(projection='3d').plot(x, y, z, zdir='z')_
+
 ## Visual Guide to Matplotlib
 
 <img src="./readme/pic2.png" width="500" />
@@ -189,5 +192,49 @@ Here's the result:
 
 <img src="./readme/pic5.png" width="500" />
 
+## XYZLinePlot
+As the name suggests, this provides a simple API to draw curves in the three-dimensional XYZ cartesian coordinates.
+The step-by-step guide is as follows:
 
+* Step 0: create some data. Let's plot the curve x=(z^2+1)*sin(theta) and y=(z^2+1)*cos(theta) and z, over the range theta=[-2pi, 2pi] and z=[-2, 2] interval.
+```java
+// step 0
+double[] theta = MathUtils.linspace(-4.0 * Math.PI, 4.0 * Math.PI, 1000) ;
+double[] z = MathUtils.linspace(-2.0, 2.0, 1000) ;
+// r = z**2 + 1
+double[] r = Arrays.stream(z).map(t -> t*t+1).toArray() ;
+// x = r * np.sin(theta)
+double[] x = new double[z.length] ;
+// y = r * np.cos(theta)
+double[] y = new double[z.length] ;
+for(int i=0, len=x.length; i<len; i++) {
+	x[i] = r[i] * Math.sin(theta[i]) ;
+	y[i] = r[i] * Math.cos(theta[i]) ;
+}
+```
+* Step 1: create XYZLinePlot object. Let's give it a title such as "3D Line Plot in Java!!".
+```java
+// step 1
+XYZLinePlot plt = new XYZLinePlot("3D Line Plot in Java!!") ;
+```
+* Step 2: Let's plot the 3D curve with the blue color
+```java
+// step 2
+plt.plot(x, y, z).color("b") ;
+```
+* Step 3: now, we also add the 2D projection of the curve on the XY plane and XZ planes. We can actually choose the location of these 2D planes. For example, we can set the projection on the XY plane to be at z=-2.0:
+```java
+// step 3
+plt.plotXY(x, y, -2.0).color("r").linestyle(LineStyle.dotted) ;
+plt.plotXZ(x, z, 6.0).color("g").linestyle("--") ;
+```
+* Step 4: finally, let's format our plot and show it in a window.
+```java
+plt.xlabel("X (meter)").ylabel("Y (meter)") ;
+plt.fontSize(11) ;
+plt.tightLayout() ;
+plt.show();
+```
+The result is the following:
 
+<img src="./readme/pic6.png" width="500" />
