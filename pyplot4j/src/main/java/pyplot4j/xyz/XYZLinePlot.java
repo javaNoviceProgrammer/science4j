@@ -253,32 +253,7 @@ public class XYZLinePlot {
 		return this ;
 	}
 	
-//	public void savefig(String fileName, boolean saveSource) {
-//		if(xyzSeriesCollection.isEmpty())
-//			throw new IllegalStateException("XYPlot data is empty") ;
-//		// open the output stream
-//		int index = fileName.lastIndexOf('.') ;
-//		String pyName = fileName.substring(0, index) ;
-//		FileOutput fo = new FileOutput(pyName+".py") ;
-//		pythonCode(fo);
-//		// show the plot
-//		if(cla) {
-//			fo.println("plt.cla()");
-//		}
-//		fo.println(format("plt.savefig('%s')", fileName));
-//		// close the output stream
-//		fo.close();
-//		// run the python code
-//		Thread thread = new Thread(() -> {
-//			TerminalExecutor.execute("python", fo.getFilename());
-//		}) ;
-//		thread.start();
-//		if(!saveSource) {
-//			FileOutput.deleteFile(pyName+".py") ;
-//		}
-//	}
-	
-	public void savefig(String fileName) {
+	public void savefig(String fileName, boolean saveSource) {
 		if(xyzSeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
@@ -298,7 +273,41 @@ public class XYZLinePlot {
 			TerminalExecutor.execute("python", fo.getFilename());
 		}) ;
 		thread.start();
+		if(!saveSource) {
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			FileOutput.deleteFile(pyName+".py") ;
+		}
 	}
+	
+	public void savefig(String fileName) {
+		savefig(fileName, false);
+	}
+	
+//	public void savefig(String fileName) {
+//		if(xyzSeriesCollection.isEmpty())
+//			throw new IllegalStateException("XYPlot data is empty") ;
+//		// open the output stream
+//		int index = fileName.lastIndexOf('.') ;
+//		String pyName = fileName.substring(0, index) ;
+//		FileOutput fo = new FileOutput(pyName+".py") ;
+//		pythonCode(fo);
+//		// show the plot
+//		if(cla) {
+//			fo.println("plt.cla()");
+//		}
+//		fo.println(format("plt.savefig('%s')", fileName));
+//		// close the output stream
+//		fo.close();
+//		// run the python code
+//		Thread thread = new Thread(() -> {
+//			TerminalExecutor.execute("python", fo.getFilename());
+//		}) ;
+//		thread.start();
+//	}
 
 	public void show(String fileName) {
 		if(xyzSeriesCollection.isEmpty())
