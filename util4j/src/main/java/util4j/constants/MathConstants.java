@@ -175,9 +175,4 @@ public class MathConstants {
 	 */
 	public static native boolean isFinite(double x) ;
 
-	// precision for special functions
-	public static final int GSL_PREC_DOUBLE = 0 ;
-	public static final int GSL_PREC_SINGLE = 0 ;
-	public static final int GSL_PREC_APPROX = 0 ;
-
 }

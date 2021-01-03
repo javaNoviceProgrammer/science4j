@@ -3,8 +3,9 @@ package util4j.array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.gsl4j.complex.Complex;
-import org.gsl4j.function.MathFunction;
+import java.util.function.Function;
+
+import util4j.complex.Complex;
 
 
 public class ArrayUtils {
@@ -26,15 +27,15 @@ public class ArrayUtils {
 		return complexArray ;
 	}
 
-	public static double[] eval(MathFunction func, double[] x) {
+	public static double[] eval(Function<Double, Double> func, double[] x) {
 		double[] result = new double[x.length] ;
 		if(x.length<10000) {
 			// single-threaded (sequential)
-			result = Arrays.stream(x).map(t -> func.value(t)).toArray() ;
+			result = Arrays.stream(x).map(t -> func.apply(t)).toArray() ;
 		}
 		else {
 			// multi-threaded (parallel)
-			result = Arrays.stream(x).parallel().map(t -> func.value(t)).toArray() ;
+			result = Arrays.stream(x).parallel().map(t -> func.apply(t)).toArray() ;
 		}
 		return result ;
 	}
