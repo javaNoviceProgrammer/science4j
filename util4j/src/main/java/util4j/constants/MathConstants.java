@@ -1,6 +1,6 @@
 package util4j.constants;
 
-import org.gsl4j.util.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
 
 /**
  * The library ensures that the standard BSD mathematical constants are defined.
