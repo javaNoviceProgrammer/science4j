@@ -37,9 +37,12 @@ public class NativeLibraryLoader {
 	private static void loadMacLibraries(String... lib) {
 		// copy gsl libs and load gsl4j library
 		try {
-			copyToLocation("/usr/local/lib", "libgsl.25.dylib");
-			copyToLocation("/usr/local/lib", "libgslcblas.0.dylib");
-			NativeUtils.loadLibraryFromJar("/libgsl4j_c.dylib");
+//			copyToLocation("/usr/local/lib", "libgsl.25.dylib");
+//			copyToLocation("/usr/local/lib", "libgslcblas.0.dylib");
+//			NativeUtils.loadLibraryFromJar("/libgsl4j_c.dylib");
+			for(int i=0; i<lib.length; i++) {
+				NativeUtils.loadLibraryFromJar(lib[i]+".dylib") ;
+			}
 		} catch (IOException e) {
 			System.err.println("Could not load GSL4j dynamic library");
 		}
@@ -49,8 +52,8 @@ public class NativeLibraryLoader {
 	private static void loadLinuxLibraries(String... lib) {
 		// copy gsl libs and load gsl4j library
 		try {
-			copyToLocation("/usr/local/lib", "libgsl.so.25.0.0");
-			copyToLocation("/usr/local/lib", "libgslcblas.so.0.0.0");
+//			copyToLocation("/usr/local/lib", "libgsl.so.25.0.0");
+//			copyToLocation("/usr/local/lib", "libgslcblas.so.0.0.0");
 			NativeUtils.loadLibraryFromJar("/libgsl4j_c.so");
 		} catch (IOException e) {
 			System.err.println("Could not load GSL4j dynamic library");
@@ -62,7 +65,7 @@ public class NativeLibraryLoader {
 
 	}
 
-	private static void copyToLocation(String path, String libName) {
+	public static void copyToLocation(String path, String libName) {
 		// mac: /usr/local/lib
 		// linux: /usr/local/lib
 		File temp = new File(path, libName);

@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import util4j.natives.NativeLibraryLoader;
 import util4j.string.StringUtils;
 
 /**
@@ -17,10 +16,6 @@ import util4j.string.StringUtils;
  * @since 1.0
  */
 public final class Complex implements Serializable, ComplexNumber {
-
-	static {
-		NativeLibraryLoader.loadLibraries();
-	}
 
 	private static final long serialVersionUID = -5423139577060070132L;
 

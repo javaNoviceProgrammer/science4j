@@ -22,7 +22,7 @@ import util4j.natives.NativeLibraryLoader;
 public final class ComplexMath {
 
 	static {
-		NativeLibraryLoader.loadLibraries();
+		NativeLibraryLoader.loadLibraries("/libutil4j_c");
 	}
 
 	private ComplexMath() {
