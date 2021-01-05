@@ -38,22 +38,22 @@ JNIEXPORT jdouble JNICALL Java_util4j_complex_ComplexMath_abs2
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    logabs
  * Signature: (DD)D
  */
-JNIEXPORT jdouble JNICALL Java_org_gsl4j_complex_ComplexMath_logabs
+JNIEXPORT jdouble JNICALL Java_util4j_complex_ComplexMath_logabs
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	return gsl_complex_logabs(z) ;
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    add
  * Signature: (DDDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_add
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_add
   (JNIEnv *jvm, jclass complexMathClass, jdouble re1, jdouble im1, jdouble re2, jdouble im2) {
 	gsl_complex z1 {{re1, im1}} ;
 	gsl_complex z2 {{re2, im2}} ;
@@ -64,11 +64,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_add
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sub
  * Signature: (DDDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sub
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sub
   (JNIEnv *jvm, jclass complexMathClass, jdouble re1, jdouble im1, jdouble re2, jdouble im2) {
 	gsl_complex z1 {{re1, im1}} ;
 	gsl_complex z2 {{re2, im2}} ;
@@ -79,11 +79,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sub
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    mul
  * Signature: (DDDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_mul
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_mul
   (JNIEnv *jvm, jclass complexMathClass, jdouble re1, jdouble im1, jdouble re2, jdouble im2) {
 	gsl_complex z1 {{re1, im1}} ;
 	gsl_complex z2 {{re2, im2}} ;
@@ -94,11 +94,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_mul
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    div
  * Signature: (DDDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_div
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_div
   (JNIEnv *jvm, jclass complexMathClass, jdouble re1, jdouble im1, jdouble re2, jdouble im2) {
 	gsl_complex z1 {{re1, im1}} ;
 	gsl_complex z2 {{re2, im2}} ;
@@ -109,11 +109,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_div
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    addReal
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_addReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_addReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_add_real(z1, x) ;
@@ -123,11 +123,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_addReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    subReal
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_subReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_subReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_sub_real(z1, x) ;
@@ -137,11 +137,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_subReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    mulReal
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_mulReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_mulReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_mul_real(z1, x) ;
@@ -151,11 +151,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_mulReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    divReal
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_divReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_divReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_div_real(z1, x) ;
@@ -165,11 +165,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_divReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    addImag
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_addImag
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_addImag
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_add_imag(z1, x) ;
@@ -179,11 +179,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_addImag
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    subImag
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_subImag
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_subImag
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_sub_imag(z1, x) ;
@@ -193,11 +193,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_subImag
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    mulImag
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_mulImag
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_mulImag
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_mul_imag(z1, x) ;
@@ -207,11 +207,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_mulImag
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    divImag
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_divImag
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_divImag
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z1 {{re, im}} ;
 	gsl_complex result = gsl_complex_div_imag(z1, x) ;
@@ -221,11 +221,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_divImag
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    conjugate
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_conjugate
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_conjugate
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_conjugate(z) ;
@@ -235,11 +235,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_conjugate
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    inverse
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_inverse
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_inverse
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_inverse(z) ;
@@ -249,11 +249,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_inverse
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    negative
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_negative
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_negative
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_negative(z) ;
@@ -263,11 +263,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_negative
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sqrt
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sqrt
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sqrt
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_sqrt(z) ;
@@ -277,11 +277,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sqrt
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sqrtReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sqrtReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sqrtReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_sqrt_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -290,11 +290,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sqrtReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    pow
  * Signature: (DDDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_pow
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_pow
   (JNIEnv *jvm, jclass complexMathClass, jdouble re1, jdouble im1, jdouble re2, jdouble im2) {
 	gsl_complex z1 {{re1, im1}} ;
 	gsl_complex z2 {{re2, im2}} ;
@@ -305,11 +305,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_pow
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    powReal
  * Signature: (DDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_powReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_powReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im, jdouble x) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_pow_real(z, x) ;
@@ -319,11 +319,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_powReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    exp
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_exp
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_exp
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_exp(z) ;
@@ -333,11 +333,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_exp
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    log
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_log
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_log
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_log(z) ;
@@ -347,11 +347,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_log
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    log10
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_log10
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_log10
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_log10(z) ;
@@ -361,11 +361,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_log10
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    logb
  * Signature: (DDDD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_logb
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_logb
   (JNIEnv *jvm, jclass complexMathClass, jdouble re1, jdouble im1, jdouble re2, jdouble im2) {
 	gsl_complex z1 {{re1, im1}} ;
 	gsl_complex z2 {{re2, im2}} ;
@@ -376,11 +376,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_logb
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sin
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sin
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sin
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_sin(z) ;
@@ -390,11 +390,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sin
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    cos
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_cos
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_cos
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_cos(z) ;
@@ -404,11 +404,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_cos
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    tan
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_tan
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_tan
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_tan(z) ;
@@ -418,11 +418,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_tan
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sec
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sec
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sec
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_sec(z) ;
@@ -432,11 +432,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sec
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    csc
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_csc
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_csc
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_csc(z) ;
@@ -446,11 +446,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_csc
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    cot
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_cot
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_cot
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_cot(z) ;
@@ -460,11 +460,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_cot
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arcsin
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsin
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arcsin
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arcsin(z) ;
@@ -474,11 +474,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsin
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arcsinReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsinReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arcsinReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_arcsin_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -487,11 +487,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsinReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccos
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccos
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccos
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arccos(z) ;
@@ -501,11 +501,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccos
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccosReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccosReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccosReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_arccos_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -514,11 +514,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccosReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arctan
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arctan
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arctan
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arctan(z) ;
@@ -528,11 +528,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arctan
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arcsec
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsec
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arcsec
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arcsec(z) ;
@@ -542,11 +542,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsec
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arcsecReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsecReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arcsecReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_arcsec_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -555,11 +555,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsecReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccsc
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccsc
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccsc
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arccsc(z) ;
@@ -569,11 +569,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccsc
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccscReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccscReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccscReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_arccsc_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -582,11 +582,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccscReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccot
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccot
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccot
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arccot(z) ;
@@ -596,11 +596,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccot
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sinh
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sinh
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sinh
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_sinh(z) ;
@@ -610,11 +610,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sinh
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    cosh
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_cosh
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_cosh
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_cosh(z) ;
@@ -624,11 +624,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_cosh
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    tanh
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_tanh
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_tanh
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_tanh(z) ;
@@ -638,11 +638,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_tanh
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    sech
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sech
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_sech
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_sech(z) ;
@@ -652,11 +652,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_sech
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    csch
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_csch
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_csch
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_csch(z) ;
@@ -666,11 +666,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_csch
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    coth
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_coth
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_coth
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_coth(z) ;
@@ -680,11 +680,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_coth
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arcsinh
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsinh
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arcsinh
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arcsinh(z) ;
@@ -694,11 +694,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsinh
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccosh
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccosh
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccosh
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arccosh(z) ;
@@ -708,11 +708,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccosh
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccoshReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccoshReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccoshReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_arccosh_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -721,11 +721,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccoshReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arctanh
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arctanh
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arctanh
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arctanh(z) ;
@@ -735,11 +735,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arctanh
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arctanhReal
  * Signature: (D)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arctanhReal
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arctanhReal
   (JNIEnv *jvm, jclass complexMathClass, jdouble x) {
 	gsl_complex result = gsl_complex_arctanh_real(x) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
@@ -748,11 +748,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arctanhReal
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arcsech
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsech
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arcsech
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arcsech(z) ;
@@ -762,11 +762,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arcsech
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccsch
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccsch
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccsch
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arccsch(z) ;
@@ -776,11 +776,11 @@ JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccsch
 }
 
 /*
- * Class:     org_gsl4j_complex_ComplexMath
+ * Class:     util4j_complex_ComplexMath
  * Method:    arccoth
  * Signature: (DD)[D
  */
-JNIEXPORT jdoubleArray JNICALL Java_org_gsl4j_complex_ComplexMath_arccoth
+JNIEXPORT jdoubleArray JNICALL Java_util4j_complex_ComplexMath_arccoth
   (JNIEnv *jvm, jclass complexMathClass, jdouble re, jdouble im) {
 	gsl_complex z {{re, im}} ;
 	gsl_complex result = gsl_complex_arccoth(z) ;
