@@ -17,16 +17,16 @@ public class NativeLibraryLoader {
 
 	}
 
-	public static void loadLibraries() {
+	public static void loadLibraries(String... lib) {
 		if (isLoaded) {
 			return;
 		} else {
 			if (OSUtils.isMac())
-				loadMacLibraries();
+				loadMacLibraries(lib);
 			else if (OSUtils.isLinux())
-				loadLinuxLibraries();
+				loadLinuxLibraries(lib);
 			else if (OSUtils.isWindows())
-				loadWindowsLibraries();
+				loadWindowsLibraries(lib);
 			else
 				System.out.println("Operating System NOT supported.");
 
@@ -34,7 +34,7 @@ public class NativeLibraryLoader {
 		}
 	}
 
-	private static void loadMacLibraries() {
+	private static void loadMacLibraries(String... lib) {
 		// copy gsl libs and load gsl4j library
 		try {
 			copyToLocation("/usr/local/lib", "libgsl.25.dylib");
@@ -46,7 +46,7 @@ public class NativeLibraryLoader {
 	}
 
 	// linux
-	private static void loadLinuxLibraries() {
+	private static void loadLinuxLibraries(String... lib) {
 		// copy gsl libs and load gsl4j library
 		try {
 			copyToLocation("/usr/local/lib", "libgsl.so.25.0.0");
@@ -58,7 +58,7 @@ public class NativeLibraryLoader {
 	}
 
 	// windows
-	private static void loadWindowsLibraries() {
+	private static void loadWindowsLibraries(String... lib) {
 
 	}
 
