@@ -38,6 +38,14 @@ public interface AlgebraicEntity<T> {
 	 * @return type T
 	 */
 	T addRev(T v) ; // v + this
+	
+	default T plus(T v) {
+		return add(v) ;
+	}
+	
+	default T plus(double v) {
+		return add(v) ;
+	}
 
 	/*-------- subtraction ----------*/
 
@@ -45,6 +53,14 @@ public interface AlgebraicEntity<T> {
 	T subtractRev(double v) ; // v - this
 	T subtract(T v) ;
 	T subtractRev(T v) ;
+	
+	default T minus(double v) {
+		return subtract(v) ;
+	}
+	
+	default T minus(T v) {
+		return subtract(v) ;
+	}
 
 	/*-------- multiplication ----------*/
 
@@ -52,6 +68,22 @@ public interface AlgebraicEntity<T> {
 	T multiplyRev(double v) ;
 	T multiply(T v) ;
 	T multiplyRev(T v) ;
+	
+	default T times(double v) {
+		return multiply(v) ;
+	}
+	
+	default T times(T v) {
+		return multiply(v) ;
+	}
+	
+	default T mul(double v) {
+		return multiply(v) ;
+	}
+	
+	default T mul(T v) {
+		return multiply(v) ;
+	}
 
 	/*-------- division ----------*/
 

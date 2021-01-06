@@ -13,6 +13,8 @@ import java.math.BigInteger;
 import java.text.DateFormat;
 import java.util.Date;
 
+import util4j.complex.Complex;
+
 
 public class FileOutput implements AutoCloseable {
 	private String filename = "";
@@ -185,6 +187,17 @@ public class FileOutput implements AutoCloseable {
 		this.output.print(var3);
 	}
 
+	public final synchronized void print(Complex var1) {
+		this.output.print(var1.toString());
+	}
+
+	public final synchronized void print(Complex var1, int var2) {
+		String var3 = "";
+		var3 = var3 + var1;
+		var3 = setField(var3, var2);
+		this.output.print(var3);
+	}
+
 	public final synchronized void print(int var1) {
 		this.output.print(var1);
 	}
@@ -330,6 +343,15 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void print(Complex[] var1) {
+		int var2 = var1.length;
+
+		for (int var3 = 0; var3 < var2; ++var3) {
+			this.output.print(var1[var3]);
+		}
+
+	}
+
 
 	public final synchronized void print(double[] var1, int var2) {
 		int var3 = var1.length;
@@ -463,6 +485,19 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void print(Complex[] var1, int var2) {
+		int var3 = var1.length;
+
+		for (int var4 = 0; var4 < var3; ++var4) {
+			String var5 = "";
+			var5 = var5 + var1[var4];
+			var5 = setField(var5, var2);
+			this.output.print(var5);
+		}
+
+	}
+
+
 
 	public final synchronized void dateAndTime() {
 		Date var1 = new Date();
@@ -512,6 +547,13 @@ public class FileOutput implements AutoCloseable {
 		this.output.print(var1.toString());
 		this.output.print(" ");
 	}
+
+	public final synchronized void printsp(Complex var1) {
+		this.output.print(var1.toString());
+		this.output.print(" ");
+	}
+
+
 
 	public final synchronized void printsp(int var1) {
 		this.output.print(var1);
@@ -652,6 +694,18 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void printsp(Complex[] var1) {
+		int var2 = var1.length;
+
+		for (int var3 = 0; var3 < var2; ++var3) {
+			this.output.print(var1[var3]);
+			this.output.print(" ");
+		}
+
+	}
+
+
+
 
 	public final synchronized void dateAndTimesp() {
 		Date var1 = new Date();
@@ -698,6 +752,12 @@ public class FileOutput implements AutoCloseable {
 	public final synchronized void println(BigInteger var1) {
 		this.output.println(var1.toString());
 	}
+
+	public final synchronized void println(Complex var1) {
+		this.output.println(var1.toString());
+	}
+
+
 
 	public final synchronized void println(int var1) {
 		this.output.println(var1);
@@ -822,6 +882,16 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void println(Complex[] var1) {
+		int var2 = var1.length;
+
+		for (int var3 = 0; var3 < var2; ++var3) {
+			this.output.println(var1[var3]);
+		}
+
+	}
+
+
 
 	public final synchronized void dateAndTimeln() {
 		Date var1 = new Date();
@@ -919,6 +989,22 @@ public class FileOutput implements AutoCloseable {
 		this.output.print(var3);
 		this.output.print("\t");
 	}
+
+	public final synchronized void printtab(Complex var1) {
+		this.output.print(var1.toString());
+		this.output.print("\t");
+	}
+
+
+
+	public final synchronized void printtab(Complex var1, int var2) {
+		String var3 = "";
+		var3 = var3 + var1;
+		var3 = setField(var3, var2);
+		this.output.print(var3);
+		this.output.print("\t");
+	}
+
 
 	public final synchronized void printtab(int var1) {
 		this.output.print(var1);
@@ -1132,6 +1218,21 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void printtab(Complex[] var1, int var2) {
+		int var3 = var1.length;
+
+		for (int var4 = 0; var4 < var3; ++var4) {
+			String var5 = "";
+			var5 = var5 + var1[var4];
+			var5 = setField(var5, var2);
+			this.output.print(var5);
+			this.output.print("\t");
+		}
+
+	}
+
+
+
 	public final synchronized void printtab(double[] var1) {
 		int var2 = var1.length;
 
@@ -1222,6 +1323,18 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void printtab(Complex[] var1) {
+		int var2 = var1.length;
+
+		for (int var3 = 0; var3 < var2; ++var3) {
+			this.output.print(var1[var3]);
+			this.output.print("\t");
+		}
+
+	}
+
+
+
 	public final synchronized void dateAndTimetab() {
 		Date var1 = new Date();
 		String var2 = DateFormat.getDateInstance().format(var1);
@@ -1272,6 +1385,12 @@ public class FileOutput implements AutoCloseable {
 		this.output.print(var1.toString());
 		this.output.print(",");
 	}
+
+	public final synchronized void printcomma(Complex var1) {
+		this.output.print(var1.toString());
+		this.output.print(",");
+	}
+
 
 	public final synchronized void printcomma(int var1) {
 		this.output.print(var1);
@@ -1412,6 +1531,18 @@ public class FileOutput implements AutoCloseable {
 
 	}
 
+	public final synchronized void printcomma(Complex[] var1) {
+		int var2 = var1.length;
+
+		for (int var3 = 0; var3 < var2; ++var3) {
+			this.output.print(var1[var3]);
+			this.output.print(",");
+		}
+
+	}
+
+
+
 	public final synchronized void dateAndTimecomma() {
 		Date var1 = new Date();
 		String var2 = DateFormat.getDateInstance().format(var1);
@@ -1462,6 +1593,12 @@ public class FileOutput implements AutoCloseable {
 		this.output.print(var1.toString());
 		this.output.print(";");
 	}
+
+	public final synchronized void printsc(Complex var1) {
+		this.output.print(var1.toString());
+		this.output.print(";");
+	}
+
 
 	public final synchronized void printsc(int var1) {
 		this.output.print(var1);
@@ -1601,6 +1738,17 @@ public class FileOutput implements AutoCloseable {
 		}
 
 	}
+
+	public final synchronized void printsc(Complex[] var1) {
+		int var2 = var1.length;
+
+		for (int var3 = 0; var3 < var2; ++var3) {
+			this.output.print(var1[var3]);
+			this.output.print(";");
+		}
+
+	}
+
 
 	public final synchronized void dateAndTimesc() {
 		Date var1 = new Date();
@@ -2102,6 +2250,48 @@ public class FileOutput implements AutoCloseable {
 		var2.close();
 	}
 
+	public static void printArrayToText(Complex[][] var0) {
+		String var1 = "ArrayToText.txt";
+		printArrayToText(var1, var0);
+	}
+
+	public static void printArrayToText(String var0, Complex[][] var1) {
+		FileOutput var2 = new FileOutput(var0, 'n');
+		var2.dateAndTimeln(var0);
+		int var3 = var1.length;
+
+		for (int var5 = 0; var5 < var3; ++var5) {
+			int var7 = var1[var5].length;
+
+			for (int var6 = 0; var6 < var7; ++var6) {
+				var2.printtab(var1[var5][var6]);
+			}
+
+			var2.println();
+		}
+
+		var2.println("End of file.");
+		var2.close();
+	}
+
+	public static void printArrayToText(Complex[] var0) {
+		String var1 = "ArrayToText.txt";
+		printArrayToText(var1, var0);
+	}
+
+	public static void printArrayToText(String var0, Complex[] var1) {
+		FileOutput var2 = new FileOutput(var0, 'n');
+		var2.dateAndTimeln(var0);
+		int var3 = var1.length;
+
+		for (int var4 = 0; var4 < var3; ++var4) {
+			var2.printtab(var1[var4]);
+		}
+
+		var2.println();
+		var2.println("End of file.");
+		var2.close();
+	}
 
 	private static String setField(String var0, int var1) {
 		char var2 = ' ';
@@ -2161,7 +2351,7 @@ public class FileOutput implements AutoCloseable {
 			if (var5.exists()) {
 				var2 = deleteFile(var1);
 				if (!var2) {
-					System.out.println("Class FileInput: method renameFile failed to delete the file " + var1);
+					System.out.println("Class FileOutput: method renameFile failed to delete the file " + var1);
 					return 2;
 				}
 			}
@@ -2169,7 +2359,7 @@ public class FileOutput implements AutoCloseable {
 			var2 = var4.renameTo(var5);
 			if (!var2) {
 				System.out.println(
-						"Class FileInput: method renameFile failed to rename the file " + var0 + " to " + var1);
+						"Class FileOutput: method renameFile failed to rename the file " + var0 + " to " + var1);
 				return 3;
 			} else {
 				return var3;

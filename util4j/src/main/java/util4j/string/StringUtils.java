@@ -71,7 +71,7 @@ public class StringUtils {
 		return sb.toString() ;
 	}
 
-	public static String join(List<Object> vals, String c) {
+	public static String join(List<?> vals, String c) {
 		StringBuilder sb = new StringBuilder() ;
 		int size = vals.size() ;
 		for(int i=0; i<size-1; i++) {
@@ -91,7 +91,7 @@ public class StringUtils {
 		return sb.toString() ;
 	}
 
-	public static String join(Map<String, ? extends Object> vals, String c, String keyValueSeparator) {
+	public static String join(Map<String, ?> vals, String c, String keyValueSeparator) {
 		StringBuilder sb = new StringBuilder() ;
 		Set<String> ents = vals.keySet() ;
 		List<String> entries = new LinkedList<>() ;
@@ -130,7 +130,7 @@ public class StringUtils {
 //	    System.out.println(result);
 
 	    List<String> names = Arrays.asList("John", "Jane", "Adam", "Tom");
-	    String result = join(names, ',') ;
+	    String result = join(names, " , ") ;
 	    System.out.println(result);
 	}
 

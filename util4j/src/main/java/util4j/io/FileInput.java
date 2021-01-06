@@ -9,6 +9,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
+import util4j.complex.Complex;
+
 
 public class FileInput implements AutoCloseable {
 	protected String fileName = " ";
@@ -259,21 +261,21 @@ public class FileInput implements AutoCloseable {
 		return var2;
 	}
 
-//	public final synchronized Complex readComplex() {
-//		this.inputType = true;
-//		String var1 = "";
-//		Complex var2 = null;
-//		if (!this.testFullLineT) {
-//			this.enterLine();
-//		}
-//
-//		var1 = this.nextWord();
-//		if (!this.eof) {
-//			var2 = Complex.parseComplex(var1.trim());
-//		}
-//
-//		return var2;
-//	}
+	public final synchronized Complex readComplex() {
+		this.inputType = true;
+		String var1 = "";
+		Complex var2 = null;
+		if (!this.testFullLineT) {
+			this.enterLine();
+		}
+
+		var1 = this.nextWord();
+		if (!this.eof) {
+			var2 = Complex.parseComplex(var1.trim());
+		}
+
+		return var2;
+	}
 
 
 	public final synchronized boolean readBoolean() {
