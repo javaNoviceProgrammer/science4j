@@ -11,15 +11,15 @@ public class OS {
 	
 	Runtime runtime ;
 	String workingDir ;
+	boolean logCommands = false ;
 	
 	public OS(String workingDir) {
-		this.workingDir = workingDir ;
+		this.workingDir = System.getProperty("user.dir") ;
 		this.runtime = Runtime.getRuntime() ;
 		
 		// change to working directory
 		try {
 			cd(workingDir);
-			System.out.println(pwd());
 		} catch (IOException e) {
 			System.err.println("Could not access the working directory...");
 		}
@@ -49,8 +49,28 @@ public class OS {
 		return lines ;
 	}
 	
+	public void logCommands(boolean flag) {
+		this.logCommands = flag ;
+	}
+	
 	private void logCommand(String command) {
-		System.out.println("command = " + command);
+		if(this.logCommands)
+			System.out.println("command = " + command);
+	}
+	
+	private String checkDir(String directory) {
+		if(directory.charAt(0)=='.') {
+			return workingDir + File.separator + directory.substring(2) ;
+		}
+		else if(directory.charAt(0)=='~') {
+			return System.getProperty("user.home") + File.separator + directory.substring(2) ;
+		}
+		else if(directory.charAt(0)=='/') {
+			return directory ;
+		}
+		else {
+			return workingDir + File.separator + directory ;
+		}
 	}
 	
 	public void exec(String command) throws IOException {
@@ -58,7 +78,7 @@ public class OS {
 	}
 	
 	public String mkdir(String directory) throws IOException {
-		String command = "mkdir " + directory ;
+		String command = "mkdir " + checkDir(directory) ;
 		runtime.exec(command) ;
 		return (workingDir+File.separator+directory) ;
 	}
@@ -73,13 +93,21 @@ public class OS {
 	public String pwd() throws IOException {
 		String command = formCommand("pwd") ;
 		logCommand(command);
-		Process process = runtime.exec(command) ;
-		return getStdout(process).get(0) ;
+//		Process process = runtime.exec(command) ;
+//		return getStdout(process).get(0) ;
+		return workingDir ;
 	}
 	
-	void cd(String directory) throws IOException {
-		String command = "cd " + directory ;
-		exec(command);
+	public void cd(String directory) throws IOException {
+		if(directory.charAt(0)=='.') {
+			workingDir = workingDir + File.separator + directory.substring(2) ;
+		}
+		else if(directory.charAt(0)=='~') {
+			workingDir = System.getProperty("user.home") + File.separator + directory.substring(2) ;
+		}
+		else {
+			workingDir = directory ;
+		}
 	}
 	
 //	public List<String> getAllCommandsStartingWith(String start) throws IOException {
@@ -90,6 +118,7 @@ public class OS {
 	
 	public List<String> history() throws IOException {
 		String command = "brew --help" ;
+		logCommand(command);
 		Process process = runtime.exec(command) ;
 		return getStdout(process) ;
 	}
