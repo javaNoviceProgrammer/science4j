@@ -116,11 +116,11 @@ public class Bash {
 //		return getStdout(process) ;
 //	}
 	
-	public List<String> history() throws IOException {
-		String command = "brew --help" ;
-		logCommand(command);
-		Process process = runtime.exec(command) ;
-		return getStdout(process) ;
-	}
+//	public List<String> history() throws IOException {
+//		String command = "brew --help" ;
+//		logCommand(command);
+//		Process process = runtime.exec(command) ;
+//		return getStdout(process) ;
+//	}
 
 }
