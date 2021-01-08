@@ -532,5 +532,4 @@ public final class Complex implements Serializable, ComplexNumber {
 		return ofRect(-re, -im) ;
 	}
 
-
 }

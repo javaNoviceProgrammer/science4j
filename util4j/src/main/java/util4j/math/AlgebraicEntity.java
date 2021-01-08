@@ -7,7 +7,12 @@ package util4j.math;
  * @since 1.0
  * @param <T> Class subject to algebraic operations
  */
-public interface AlgebraicEntity<T> {
+public interface AlgebraicEntity<T extends AlgebraicEntity<T>> {
+	
+	/*-------- identity ----------*/
+	
+//	T addIdentity() ;
+//	T mulIdentity() ;
 
 	/*-------- addition ----------*/
 
@@ -23,7 +28,10 @@ public interface AlgebraicEntity<T> {
 	 * @param v double value
 	 * @return type T
 	 */
-	T addRev(double v) ; // v + this
+//	T addRev(double v) ; // v + this
+	default T addRev(double v) { // v + this
+		return add(v) ;
+	}
 
 	/**
 	 * Addition of a type T (algebraic entity) to the algebraic entity: this + v
@@ -37,7 +45,10 @@ public interface AlgebraicEntity<T> {
 	 * @param v double value
 	 * @return type T
 	 */
-	T addRev(T v) ; // v + this
+//	T addRev(T v) ; // v + this
+	default T addRev(T v) { // v + this
+		return add(v) ;
+	}
 	
 	default T plus(T v) {
 		return add(v) ;
@@ -50,9 +61,19 @@ public interface AlgebraicEntity<T> {
 	/*-------- subtraction ----------*/
 
 	T subtract(double v) ; // this - v
-	T subtractRev(double v) ; // v - this
+	
+//	T subtractRev(double v) ; // v - this
+	default T subtractRev(double v) {
+		return multiply(-1.0).add(v) ;
+	}
+	
 	T subtract(T v) ;
-	T subtractRev(T v) ;
+	
+//	T subtractRev(T v) ;
+	
+	default T subtractRev(T v) {
+		return multiply(-1.0).add(v) ;
+	}
 	
 	default T minus(double v) {
 		return subtract(v) ;
@@ -65,9 +86,18 @@ public interface AlgebraicEntity<T> {
 	/*-------- multiplication ----------*/
 
 	T multiply(double v) ;
-	T multiplyRev(double v) ;
+	
+//	T multiplyRev(double v) ;
+	default T multiplyRev(double v) {
+		return multiply(v) ;
+	}
+	
 	T multiply(T v) ;
-	T multiplyRev(T v) ;
+	
+//	T multiplyRev(T v) ;
+	default T multiplyRev(T v) {
+		return multiply(v) ;
+	}
 	
 	default T times(double v) {
 		return multiply(v) ;
@@ -88,9 +118,20 @@ public interface AlgebraicEntity<T> {
 	/*-------- division ----------*/
 
 	T divide(double v) ;
+	
 	T divideRev(double v) ;
+	
 	T divide(T v) ;
+	
 	T divideRev(T v) ;
+	
+	default T over(double v) {
+		return divide(v) ;
+	}
+	
+	default T over(T v) {
+		return divide(v) ;
+	}
 
 	/*-------- negation ----------*/
 
