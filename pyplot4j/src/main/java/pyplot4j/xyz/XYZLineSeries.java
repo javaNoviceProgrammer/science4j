@@ -9,7 +9,7 @@ import pyplot4j.style.LineStyle;
 import pyplot4j.style.Marker;
 
 
-public class XYZSeries {
+public class XYZLineSeries {
 	
 	// data
 	double[] x ;
@@ -49,7 +49,7 @@ public class XYZSeries {
 	double zs = 0.0 ;
 	
 	
-	public XYZSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+	public XYZLineSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.z = z ;
@@ -65,7 +65,7 @@ public class XYZSeries {
 		this.linewidth = linewidth ;
 	}
 	
-	public XYZSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+	public XYZLineSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.z = z ;
@@ -81,171 +81,171 @@ public class XYZSeries {
 		this.linewidth = linewidth ;
 	}
 
-	public XYZSeries(double[] x, double[] y, double[] z) {
+	public XYZLineSeries(double[] x, double[] y, double[] z) {
 		this.x = x ;
 		this.y = y ;
 		this.z = z ;
 	}
 
-	public XYZSeries() {
+	public XYZLineSeries() {
 
 	}
 
-	public XYZSeries setXData(double[] x) {
+	public XYZLineSeries setXData(double[] x) {
 		this.x = x ;
 		return this ;
 	}
 
-	public XYZSeries setYData(double[] y) {
+	public XYZLineSeries setYData(double[] y) {
 		this.y = y ;
 		return this ;
 	}
 	
-	public XYZSeries setZData(double[] z) {
+	public XYZLineSeries setZData(double[] z) {
 		this.z = z ;
 		return this ;
 	}
 
-	public XYZSeries setXvar(String xvar) {
+	public XYZLineSeries setXvar(String xvar) {
 		this.xvar = (xvar!=null) ? xvar.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries setYvar(String yvar) {
+	public XYZLineSeries setYvar(String yvar) {
 		this.yvar = (yvar!=null) ? yvar.trim() : null ;
 		return this ;
 	}
 	
-	public XYZSeries setZvar(String zvar) {
+	public XYZLineSeries setZvar(String zvar) {
 		this.zvar = (zvar!=null) ? zvar.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries color(String color) {
+	public XYZLineSeries color(String color) {
 		this.color = (color!=null) ? color.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries color(Color color) {
+	public XYZLineSeries color(Color color) {
 		this.color = (color!=null) ? color.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries marker(String marker) {
+	public XYZLineSeries marker(String marker) {
 		this.marker = (marker!=null) ? marker.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries marker(Marker marker) {
+	public XYZLineSeries marker(Marker marker) {
 		this.marker = (marker!=null) ? marker.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries markerSize(double markerSize) {
+	public XYZLineSeries markerSize(double markerSize) {
 		this.markerSize = markerSize ;
 		return this ;
 	}
 
-	public XYZSeries markerEdgeColor(String markerEdgeColor) {
+	public XYZLineSeries markerEdgeColor(String markerEdgeColor) {
 		this.markerEdgeColor = (markerEdgeColor!=null) ? markerEdgeColor.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries markerEdgeColor(Color markerEdgeColor) {
+	public XYZLineSeries markerEdgeColor(Color markerEdgeColor) {
 		this.markerEdgeColor = (markerEdgeColor!=null) ? markerEdgeColor.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries markerEdgeWidth(double markerEdgeWidth) {
+	public XYZLineSeries markerEdgeWidth(double markerEdgeWidth) {
 		this.markerEdgeWidth = markerEdgeWidth ;
 		return this ;
 	}
 
-	public XYZSeries markerFaceColor(String markerFaceColor) {
+	public XYZLineSeries markerFaceColor(String markerFaceColor) {
 		this.markerFaceColor = (markerFaceColor!=null) ? markerFaceColor.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries markerFaceColor(Color markerFaceColor) {
+	public XYZLineSeries markerFaceColor(Color markerFaceColor) {
 		this.markerFaceColor = (markerFaceColor!=null) ? markerFaceColor.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries linestyle(String linestyle) {
+	public XYZLineSeries linestyle(String linestyle) {
 		this.linestyle = (linestyle!=null) ? linestyle.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries linestyle(LineStyle linestyle) {
+	public XYZLineSeries linestyle(LineStyle linestyle) {
 		this.linestyle = (linestyle!=null) ? linestyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries linewidth(double linewidth) {
+	public XYZLineSeries linewidth(double linewidth) {
 		this.linewidth = linewidth ;
 		return this ;
 	}
 
-	public XYZSeries label(String label) {
+	public XYZLineSeries label(String label) {
 		this.label = (label!=null) ? label.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries fillstyle(String fillStyle) {
+	public XYZLineSeries fillstyle(String fillStyle) {
 		this.fillStyle = (fillStyle!=null) ? fillStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries fillstyle(FillStyle fillStyle) {
+	public XYZLineSeries fillstyle(FillStyle fillStyle) {
 		this.fillStyle = (fillStyle!=null) ? fillStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries drawstyle(String drawStyle) {
+	public XYZLineSeries drawstyle(String drawStyle) {
 		this.drawStyle = (drawStyle!=null) ? drawStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries drawstyle(DrawStyle drawStyle) {
+	public XYZLineSeries drawstyle(DrawStyle drawStyle) {
 		this.drawStyle = (drawStyle!=null) ? drawStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries solidCapStyle(String capStyle) {
+	public XYZLineSeries solidCapStyle(String capStyle) {
 		this.solidCapStyle = (capStyle!=null) ? capStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries solidCapStyle(CapStyle capStyle) {
+	public XYZLineSeries solidCapStyle(CapStyle capStyle) {
 		this.solidCapStyle = (capStyle!=null) ? capStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries solidJoinStyle(String joinStyle) {
+	public XYZLineSeries solidJoinStyle(String joinStyle) {
 		this.solidJoinStyle = (joinStyle!=null) ? joinStyle.trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries solidJoinStyle(JoinStyle joinStyle) {
+	public XYZLineSeries solidJoinStyle(JoinStyle joinStyle) {
 		this.solidJoinStyle = (joinStyle!=null) ? joinStyle.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZSeries semilogx() {
+	public XYZLineSeries semilogx() {
 		semilogx = true ;
 		semilogy = false ;
 		loglog = false ;
 		return this ;
 	}
 
-	public XYZSeries semilogy() {
+	public XYZLineSeries semilogy() {
 		semilogx = false ;
 		semilogy = true ;
 		loglog = false ;
 		return this ;
 	}
 
-	public XYZSeries loglog() {
+	public XYZLineSeries loglog() {
 		semilogx = false ;
 		semilogy = false ;
 		loglog = true ;

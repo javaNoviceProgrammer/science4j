@@ -53,7 +53,7 @@ public class XYZLinePlot {
 	boolean tightLayout = false ;
 	boolean useTkAgg = false ;
 	// data
-	ArrayList<XYZSeries> xyzSeriesCollection ;
+	ArrayList<XYZLineSeries> xyzSeriesCollection ;
 	int count = 1 ;
 	static int id = 0 ;
 	// header
@@ -71,62 +71,62 @@ public class XYZLinePlot {
 		this(null) ;
 	}
 
-	public XYZSeries plot(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZLineSeries plot(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries plot(double[] x, double[] y, double[] z) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count,  null, null, 0, null, 2, null) ;
+	public XYZLineSeries plot(double[] x, double[] y, double[] z) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count,  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries semilogx(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZLineSeries semilogx(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.semilogx() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries semilogx(double[] x, double[] y, double[] z) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+	public XYZLineSeries semilogx(double[] x, double[] y, double[] z) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.semilogx() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries semilogy(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZLineSeries semilogy(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries semilogy(double[] x, double[] y, double[] z) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+	public XYZLineSeries semilogy(double[] x, double[] y, double[] z) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries loglog(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZLineSeries loglog(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.loglog() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZSeries loglog(double[] x, double[] y, double[] z) {
-		XYZSeries series = new XYZSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+	public XYZLineSeries loglog(double[] x, double[] y, double[] z) {
+		XYZLineSeries series = new XYZLineSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.loglog() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
@@ -134,24 +134,24 @@ public class XYZLinePlot {
 	}
 	
 	// XY plot at a given z location
-	public XYZSeries plotXY(double[] x, double[] y, double zloc) {
-		XYZSeries series = new XYZSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
+	public XYZLineSeries plotXY(double[] x, double[] y, double zloc) {
+		XYZLineSeries series = new XYZLineSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 	
 	// XZ plot at a given y location
-	public XYZSeries plotXZ(double[] x, double[] z, double yloc) {
-		XYZSeries series = new XYZSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
+	public XYZLineSeries plotXZ(double[] x, double[] z, double yloc) {
+		XYZLineSeries series = new XYZLineSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 	
 	// YZ plot at a given y location
-	public XYZSeries plotYZ(double[] y, double[] z, double xloc) {
-		XYZSeries series = new XYZSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
+	public XYZLineSeries plotYZ(double[] y, double[] z, double xloc) {
+		XYZLineSeries series = new XYZLineSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
@@ -367,7 +367,7 @@ public class XYZLinePlot {
 			fo.println();
 		}
 		// for each xy series, write the data
-		for(XYZSeries series: xyzSeriesCollection) {
+		for(XYZLineSeries series: xyzSeriesCollection) {
 			// print x
 			fo.print(series.xvar + " = [");
 			fo.printcomma(series.x);
