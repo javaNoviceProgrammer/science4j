@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class OS {
+public class Bash {
 	
 	Runtime runtime ;
 	String workingDir ;
 	boolean logCommands = false ;
 	
-	public OS(String workingDir) {
+	public Bash(String workingDir) {
 		this.workingDir = System.getProperty("user.dir") ;
 		this.runtime = Runtime.getRuntime() ;
 		
