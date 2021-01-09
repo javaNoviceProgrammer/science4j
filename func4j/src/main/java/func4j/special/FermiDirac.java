@@ -1,0 +1,28 @@
+package func4j.special;
+
+import util4j.natives.NativeLibraryLoader;
+
+public class FermiDirac {
+
+	static {
+		NativeLibraryLoader.loadLibraries("/libfunc4j_c");
+	}
+
+	private FermiDirac() {
+
+	}
+
+	//Complete Fermi-Dirac Integrals
+	public static native double fermiDiracM1(double x) ;
+	public static native double fermiDriac0(double x) ;
+	public static native double fermiDirac1(double x) ;
+	public static native double fermiDirac2(double x) ;
+	public static native double fermiDiracInt(int n, double x) ;
+	public static native double fermiDiracMhalf(double x) ;
+	public static native double fermiDiractHalf(double x) ;
+	public static native double fermiDirac3half(double x) ;
+
+	// Incomplete Fermi-Dirac Integrals
+	public static native double fermiDiractIncomplete0(double x, double b) ;
+
+}
