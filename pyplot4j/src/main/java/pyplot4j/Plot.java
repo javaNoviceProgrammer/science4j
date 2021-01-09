@@ -11,9 +11,9 @@ import java.util.List;
 import pyplot4j.contour.ContourSeries;
 import pyplot4j.contour.MeshGrid;
 import pyplot4j.style.LegendLocation;
-import pyplot4j.util.FileOutput;
-import pyplot4j.util.TerminalExecutor;
 import pyplot4j.xy.XYSeries;
+import util4j.io.FileOutput;
+import util4j.os.TerminalExecutor;
 
 
 public class Plot {

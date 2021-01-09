@@ -8,8 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import pyplot4j.util.FileOutput;
-import pyplot4j.util.TerminalExecutor;
+import util4j.io.FileOutput;
+import util4j.os.TerminalExecutor;
+
 
 
 public class XYSubPlot {

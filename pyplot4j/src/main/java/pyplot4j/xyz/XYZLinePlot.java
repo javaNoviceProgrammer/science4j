@@ -11,8 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import pyplot4j.style.LegendLocation;
-import pyplot4j.util.FileOutput;
-import pyplot4j.util.TerminalExecutor;
+import util4j.io.FileOutput;
+import util4j.os.TerminalExecutor;
+
 
 
 // mplot3d

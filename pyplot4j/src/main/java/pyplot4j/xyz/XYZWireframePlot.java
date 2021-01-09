@@ -12,8 +12,9 @@ import java.util.Arrays;
 
 import pyplot4j.contour.MeshGrid;
 import pyplot4j.style.LegendLocation;
-import pyplot4j.util.FileOutput;
-import pyplot4j.util.TerminalExecutor;
+import util4j.io.FileOutput;
+import util4j.os.TerminalExecutor;
+
 
 /**
  * Axes3D.plot_wireframe(X, Y, Z, *args, **kwargs)
