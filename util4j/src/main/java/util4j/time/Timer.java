@@ -1,15 +1,19 @@
 package util4j.time;
 
+import java.util.concurrent.TimeUnit;
+
 public class Timer {
 
 	long startTime, endTime, elapseTime ;
 
 	public void start() {
-		startTime = System.currentTimeMillis() ;
+//		startTime = System.currentTimeMillis() ;
+		startTime = System.nanoTime() ;
 	}
 
 	public void stop() {
-		endTime = System.currentTimeMillis() ;
+//		endTime = System.currentTimeMillis() ;
+		endTime = System.nanoTime() ;
 		elapseTime = endTime - startTime ;
 	}
 
@@ -20,7 +24,31 @@ public class Timer {
 	}
 
 	public void show() {
-		System.out.println("Timer duration = " + elapseTime + " ms");
+		System.out.println("Timer duration = " + (elapseTime/1e6) + " ms");
+	}
+	
+	public void show(TimeUnit unit) {
+		switch (unit) {
+		case NANOSECONDS:
+			System.out.println("Timer duration = " + elapseTime + " ns");
+			break;
+		case MICROSECONDS:
+			System.out.println("Timer duration = " + (elapseTime/1e3) + " us");
+			break;
+		case MILLISECONDS:
+			System.out.println("Timer duration = " + (elapseTime/1e6) + " ms");
+			break;
+		case SECONDS:
+			System.out.println("Timer duration = " + (elapseTime/1e9) + " sec");
+			break;
+		case MINUTES:
+			System.out.println("Timer duration = " + (elapseTime/1e9/60.0) + " sec");
+			break;
+		default:
+			System.out.println("Timer duration = " + (elapseTime/1e6) + " ms");
+			break;
+		}
+		
 	}
 
 
