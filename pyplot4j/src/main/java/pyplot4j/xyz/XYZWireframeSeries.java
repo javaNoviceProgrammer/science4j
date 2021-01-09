@@ -1,5 +1,10 @@
 package pyplot4j.xyz;
 
+import static java.lang.String.format;
+
+import java.util.Arrays;
+
+import pyplot4j.contour.MeshGrid;
 import pyplot4j.style.CapStyle;
 import pyplot4j.style.Color;
 import pyplot4j.style.DrawStyle;
@@ -14,10 +19,12 @@ public class XYZWireframeSeries {
 	// data
 	double[] x ;
 	double[] y ;
-	double[] z ;
+	double[][] z ;
 	String xvar ;
 	String yvar ;
 	String zvar ;
+	// meshgrid function
+	MeshGrid func ;
 	// basic properties
 	String label ;
 	String color ;
@@ -56,7 +63,7 @@ public class XYZWireframeSeries {
 	int ccount = 50 ;
 	
 	
-	public XYZWireframeSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+	public XYZWireframeSeries(double[] x, double[] y, double[][] z, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.z = z ;
@@ -72,7 +79,21 @@ public class XYZWireframeSeries {
 		this.linewidth = linewidth ;
 	}
 	
-	public XYZWireframeSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+	public XYZWireframeSeries(double[] x, double[] y, MeshGrid func, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+		this(x, y, func) ;
+		this.xvar = (xvar!=null)? xvar.trim() : null ;
+		this.yvar = (yvar!=null)? yvar.trim() : null ;
+		this.zvar = (zvar!=null)? zvar.trim() : null ;
+		this.zdir = (zdir!=null)? zdir.trim() : null ;
+		this.color = (color!=null)? color.trim() : null ;
+		this.label = (label!=null)? label.trim() : null ;
+		this.marker = (marker!=null)? marker.trim() : null ;
+		this.markerSize = markerSize ;
+		this.linestyle = (linestyle!=null)? linestyle.trim() : null ;
+		this.linewidth = linewidth ;
+	}
+	
+	public XYZWireframeSeries(double[] x, double[] y, double[][] z, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
 		this.x = x ;
 		this.y = y ;
 		this.z = z ;
@@ -87,11 +108,35 @@ public class XYZWireframeSeries {
 		this.linestyle = (linestyle!=null)? linestyle.trim() : null ;
 		this.linewidth = linewidth ;
 	}
+	
+	public XYZWireframeSeries(double[] x, double[] y, MeshGrid func, String xvar, String yvar, String zvar, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
+		this(x, y, func) ;
+		this.xvar = (xvar!=null)? xvar.trim() : null ;
+		this.yvar = (yvar!=null)? yvar.trim() : null ;
+		this.zvar = (zvar!=null)? zvar.trim() : null ;
+		this.zdir = "z" ;
+		this.color = (color!=null)? color.trim() : null ;
+		this.label = (label!=null)? label.trim() : null ;
+		this.marker = (marker!=null)? marker.trim() : null ;
+		this.markerSize = markerSize ;
+		this.linestyle = (linestyle!=null)? linestyle.trim() : null ;
+		this.linewidth = linewidth ;
+	}
 
-	public XYZWireframeSeries(double[] x, double[] y, double[] z) {
+	public XYZWireframeSeries(double[] x, double[] y, double[][] z) {
 		this.x = x ;
 		this.y = y ;
 		this.z = z ;
+	}
+	
+	public XYZWireframeSeries(double[] x, double[] y, MeshGrid func) {
+		this.x = x ;
+		this.y = y ;
+		this.func = func ;
+		z = new double[y.length][x.length] ;
+		for(int i=0; i<y.length; i++)
+			for(int j=0; j<x.length; j++)
+				z[i][j] = func.value(x[j], y[i]) ;
 	}
 
 	public XYZWireframeSeries() {
@@ -108,7 +153,7 @@ public class XYZWireframeSeries {
 		return this ;
 	}
 	
-	public XYZWireframeSeries setZData(double[] z) {
+	public XYZWireframeSeries setZData(double[][] z) {
 		this.z = z ;
 		return this ;
 	}
@@ -271,19 +316,22 @@ public class XYZWireframeSeries {
 
 	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
+		sb.append(format("%s, %s = np.meshgrid(%s, %s);\n", xvar.toUpperCase(), yvar.toUpperCase(), xvar, yvar)) ;
+		sb.append(format("%s = np.array(%s);\n", zvar.toUpperCase(), Arrays.deepToString(z))) ;
 		sb.append("plt.gca(projection='3d').plot_wireframe(") ;
 		if(xvar == null)
 			throw new IllegalArgumentException("x variable cannot be NULL") ;
 		else
-			sb.append(xvar+", ") ;
+			sb.append(xvar.toUpperCase()+", ") ;
 		if(yvar == null)
 			throw new IllegalArgumentException("x variable cannot be NULL") ;
 		else
-			sb.append(yvar+", ") ;
+			sb.append(yvar.toUpperCase()+", ") ;
 		if(zvar == null)
 			throw new IllegalArgumentException("z variable cannot be NULL") ;
 		else
-			sb.append(zvar) ;
+			sb.append(zvar.toUpperCase()) ;
+
 		if(rstride > 0 ) {
 			sb.append(", ") ;
 			sb.append("rstride=" + rstride) ;
@@ -300,10 +348,10 @@ public class XYZWireframeSeries {
 			sb.append(", ") ;
 			sb.append("ccount=" + ccount) ;
 		}
-		if(zdir != null) {
-			sb.append(", ") ;
-			sb.append("zdir='" + zdir + "'") ;
-		}
+//		if(zdir != null) {
+//			sb.append(", ") ;
+//			sb.append("zdir='" + zdir + "'") ;
+//		}
 		if(size > 0) {
 			sb.append(", ") ;
 			sb.append("s=" + size) ;

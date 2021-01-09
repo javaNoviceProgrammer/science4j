@@ -35,12 +35,14 @@ public class XYZLinePlot {
 	String title = null ;
 	String xlabel = null ;
 	String ylabel = null ;
+	String zlabel = null ;
 	boolean grid = false ;
 	boolean cla = false ;
 	String gridWhich = "both" ;
 	String gridAxis = "both" ;
 	String xlim = null ;
 	String ylim = null ;
+	String zlim = null ;
 	// legend
 	boolean legend = false ;
 	String legendLocation ;
@@ -164,6 +166,11 @@ public class XYZLinePlot {
 
 	public XYZLinePlot ylabel(String ylabel) {
 		this.ylabel = ylabel ;
+		return this ;
+	}
+	
+	public XYZLinePlot zlabel(String zlabel) {
+		this.zlabel = zlabel ;
 		return this ;
 	}
 
@@ -393,6 +400,8 @@ public class XYZLinePlot {
 			fo.println(format("plt.xlabel('%s')", xlabel)) ;
 		if(ylabel != null)
 			fo.println(format("plt.ylabel('%s')", ylabel)) ;
+		if(zlabel != null)
+			fo.println(format("plt.gca(projection='3d').set_zlabel('%s')", zlabel)) ;
 		if(xlim != null)
 			fo.println(format("plt.xlim(%s)", xlim));
 		if(ylim != null)

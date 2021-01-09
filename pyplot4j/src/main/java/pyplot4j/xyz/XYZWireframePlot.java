@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import pyplot4j.contour.MeshGrid;
 import pyplot4j.style.LegendLocation;
 import pyplot4j.util.FileOutput;
 import pyplot4j.util.TerminalExecutor;
@@ -26,6 +27,7 @@ public class XYZWireframePlot {
 	String title = null ;
 	String xlabel = null ;
 	String ylabel = null ;
+	String zlabel = null ;
 	boolean grid = false ;
 	boolean cla = false ;
 	String gridWhich = "both" ;
@@ -63,21 +65,28 @@ public class XYZWireframePlot {
 		this(null) ;
 	}
 
-	public XYZWireframeSeries plot(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+	public XYZWireframeSeries plot(double[] x, double[] y, double[][] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZWireframeSeries plot(double[] x, double[] y, double[] z) {
+	public XYZWireframeSeries plot(double[] x, double[] y, double[][] z) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count,  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
+	
+	public XYZWireframeSeries plot(double[] x, double[] y, MeshGrid func) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, func, "x"+count, "y"+count, "z"+count,  null, null, 0, null, 2, null) ;
+		xyzSeriesCollection.add(series) ;
+		++count ;
+		return series ;
+	}
 
-	public XYZWireframeSeries semilogx(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+	public XYZWireframeSeries semilogx(double[] x, double[] y, double[][] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.semilogx() ;
 		xyzSeriesCollection.add(series) ;
@@ -85,7 +94,7 @@ public class XYZWireframePlot {
 		return series ;
 	}
 
-	public XYZWireframeSeries semilogx(double[] x, double[] y, double[] z) {
+	public XYZWireframeSeries semilogx(double[] x, double[] y, double[][] z) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.semilogx() ;
 		xyzSeriesCollection.add(series) ;
@@ -93,7 +102,7 @@ public class XYZWireframePlot {
 		return series ;
 	}
 
-	public XYZWireframeSeries semilogy(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+	public XYZWireframeSeries semilogy(double[] x, double[] y, double[][] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
@@ -101,7 +110,7 @@ public class XYZWireframePlot {
 		return series ;
 	}
 
-	public XYZWireframeSeries semilogy(double[] x, double[] y, double[] z) {
+	public XYZWireframeSeries semilogy(double[] x, double[] y, double[][] z) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
@@ -109,7 +118,7 @@ public class XYZWireframePlot {
 		return series ;
 	}
 
-	public XYZWireframeSeries loglog(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+	public XYZWireframeSeries loglog(double[] x, double[] y, double[][] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.loglog() ;
 		xyzSeriesCollection.add(series) ;
@@ -117,7 +126,7 @@ public class XYZWireframePlot {
 		return series ;
 	}
 
-	public XYZWireframeSeries loglog(double[] x, double[] y, double[] z) {
+	public XYZWireframeSeries loglog(double[] x, double[] y, double[][] z) {
 		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.loglog() ;
 		xyzSeriesCollection.add(series) ;
@@ -125,29 +134,29 @@ public class XYZWireframePlot {
 		return series ;
 	}
 	
-	// XY plot at a given z location
-	public XYZWireframeSeries plotXY(double[] x, double[] y, double zloc) {
-		XYZWireframeSeries series = new XYZWireframeSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
-		xyzSeriesCollection.add(series) ;
-		++count ;
-		return series ;
-	}
-	
-	// XZ plot at a given y location
-	public XYZWireframeSeries plotXZ(double[] x, double[] z, double yloc) {
-		XYZWireframeSeries series = new XYZWireframeSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
-		xyzSeriesCollection.add(series) ;
-		++count ;
-		return series ;
-	}
-	
-	// YZ plot at a given y location
-	public XYZWireframeSeries plotYZ(double[] y, double[] z, double xloc) {
-		XYZWireframeSeries series = new XYZWireframeSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
-		xyzSeriesCollection.add(series) ;
-		++count ;
-		return series ;
-	}
+//	// XY plot at a given z location
+//	public XYZWireframeSeries plotXY(double[] x, double[] y, double zloc) {
+//		XYZWireframeSeries series = new XYZWireframeSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
+//		xyzSeriesCollection.add(series) ;
+//		++count ;
+//		return series ;
+//	}
+//	
+//	// XZ plot at a given y location
+//	public XYZWireframeSeries plotXZ(double[] x, double[] z, double yloc) {
+//		XYZWireframeSeries series = new XYZWireframeSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
+//		xyzSeriesCollection.add(series) ;
+//		++count ;
+//		return series ;
+//	}
+//	
+//	// YZ plot at a given y location
+//	public XYZWireframeSeries plotYZ(double[] y, double[] z, double xloc) {
+//		XYZWireframeSeries series = new XYZWireframeSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
+//		xyzSeriesCollection.add(series) ;
+//		++count ;
+//		return series ;
+//	}
 
 	public XYZWireframePlot xlabel(String xlabel) {
 		this.xlabel = xlabel ;
@@ -156,6 +165,11 @@ public class XYZWireframePlot {
 
 	public XYZWireframePlot ylabel(String ylabel) {
 		this.ylabel = ylabel ;
+		return this ;
+	}
+	
+	public XYZWireframePlot zlabel(String zlabel) {
+		this.zlabel = zlabel ;
 		return this ;
 	}
 
@@ -351,6 +365,7 @@ public class XYZWireframePlot {
 
 	void pythonCode(FileOutput fo) {
 		if(!isSubplot) {
+			fo.println("import numpy as np") ;
 //			fo.println("from sys import platform as sys_pf") ;
 //			fo.println("if sys_pf == 'darwin':") ;
 			fo.println("import matplotlib") ;
@@ -358,7 +373,6 @@ public class XYZWireframePlot {
 //			if(useTkAgg) {
 //				fo.println("\tmatplotlib.use('TkAgg')") ;
 //			}
-			fo.println("import numpy as np") ;
 			fo.println("import matplotlib.pyplot as plt");
 			if(fontSize>0.0) {
 				fo.println(format("plt.rcParams['font.size']=%f", fontSize));
@@ -378,10 +392,10 @@ public class XYZWireframePlot {
 			fo.print("];") ;
 			fo.println();
 			// print z
-			fo.print(series.zvar + " = [");
-			fo.printcomma(series.z);
-			fo.print("];") ;
-			fo.println();
+//			fo.print(series.zvar + " = [");
+//			fo.printcomma(series.z);
+//			fo.print("];") ;
+//			fo.println();
 			// plot
 			fo.println(series.toString());
 		}
@@ -392,6 +406,8 @@ public class XYZWireframePlot {
 			fo.println(format("plt.xlabel('%s')", xlabel)) ;
 		if(ylabel != null)
 			fo.println(format("plt.ylabel('%s')", ylabel)) ;
+		if(zlabel != null)
+			fo.println(format("plt.gca(projection='3d').set_zlabel('%s')", zlabel)) ;
 		if(xlim != null)
 			fo.println(format("plt.xlim(%s)", xlim));
 		if(ylim != null)
