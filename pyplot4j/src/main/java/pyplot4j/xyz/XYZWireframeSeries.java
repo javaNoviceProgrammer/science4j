@@ -283,7 +283,7 @@ public class XYZWireframeSeries {
 		if(zvar == null)
 			throw new IllegalArgumentException("z variable cannot be NULL") ;
 		else
-			sb.append("zs=" + zvar) ;
+			sb.append(zvar) ;
 		if(rstride > 0 ) {
 			sb.append(", ") ;
 			sb.append("rstride=" + rstride) ;

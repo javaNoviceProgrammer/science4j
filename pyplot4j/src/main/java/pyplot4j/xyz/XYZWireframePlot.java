@@ -85,40 +85,40 @@ public class XYZWireframePlot {
 		return series ;
 	}
 
-	public XYZScatterSeries semilogx(double[] x, double[] y, double[] z) {
-		XYZScatterSeries series = new XYZScatterSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+	public XYZWireframeSeries semilogx(double[] x, double[] y, double[] z) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.semilogx() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZScatterSeries semilogy(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZScatterSeries series = new XYZScatterSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZWireframeSeries semilogy(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZScatterSeries semilogy(double[] x, double[] y, double[] z) {
-		XYZScatterSeries series = new XYZScatterSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+	public XYZWireframeSeries semilogy(double[] x, double[] y, double[] z) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.semilogy() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZScatterSeries loglog(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
-		XYZScatterSeries series = new XYZScatterSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
+	public XYZWireframeSeries loglog(double[] x, double[] y, double[] z, String color, String marker, int markerSize, String linestyle, int linewidth, String label) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, color, marker, markerSize, linestyle, linewidth, label) ;
 		series.loglog() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZScatterSeries loglog(double[] x, double[] y, double[] z) {
-		XYZScatterSeries series = new XYZScatterSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
+	public XYZWireframeSeries loglog(double[] x, double[] y, double[] z) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, z, "x"+count, "y"+count, "z"+count, null, null, 0, null, 2, null) ;
 		series.loglog() ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
@@ -126,121 +126,121 @@ public class XYZWireframePlot {
 	}
 	
 	// XY plot at a given z location
-	public XYZScatterSeries plotXY(double[] x, double[] y, double zloc) {
-		XYZScatterSeries series = new XYZScatterSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
+	public XYZWireframeSeries plotXY(double[] x, double[] y, double zloc) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, y, new double[] {zloc}, "x"+count, "y"+count, "z"+count, "z",  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 	
 	// XZ plot at a given y location
-	public XYZScatterSeries plotXZ(double[] x, double[] z, double yloc) {
-		XYZScatterSeries series = new XYZScatterSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
+	public XYZWireframeSeries plotXZ(double[] x, double[] z, double yloc) {
+		XYZWireframeSeries series = new XYZWireframeSeries(x, z, new double[] {yloc}, "x"+count, "y"+count, "z"+count, "y",  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 	
 	// YZ plot at a given y location
-	public XYZScatterSeries plotYZ(double[] y, double[] z, double xloc) {
-		XYZScatterSeries series = new XYZScatterSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
+	public XYZWireframeSeries plotYZ(double[] y, double[] z, double xloc) {
+		XYZWireframeSeries series = new XYZWireframeSeries(y, z, new double[] {xloc}, "x"+count, "y"+count, "z"+count, "x",  null, null, 0, null, 2, null) ;
 		xyzSeriesCollection.add(series) ;
 		++count ;
 		return series ;
 	}
 
-	public XYZScatterPlot xlabel(String xlabel) {
+	public XYZWireframePlot xlabel(String xlabel) {
 		this.xlabel = xlabel ;
 		return this ;
 	}
 
-	public XYZScatterPlot ylabel(String ylabel) {
+	public XYZWireframePlot ylabel(String ylabel) {
 		this.ylabel = ylabel ;
 		return this ;
 	}
 
-	public XYZScatterPlot title(String title) {
+	public XYZWireframePlot title(String title) {
 		this.title = title ;
 		return this ;
 	}
 
-	public XYZScatterPlot xlim(double xmin, double xmax) {
+	public XYZWireframePlot xlim(double xmin, double xmax) {
 		this.xlim = format("[%f, %f]", xmin, xmax) ;
 		return this ;
 	}
 
-	public XYZScatterPlot ylim(double ymin, double ymax) {
+	public XYZWireframePlot ylim(double ymin, double ymax) {
 		this.ylim = format("[%f, %f]", ymin, ymax) ;
 		return this ;
 	}
 
-	public XYZScatterPlot grid(boolean on, String which, String axis) {
+	public XYZWireframePlot grid(boolean on, String which, String axis) {
 		this.grid = on ;
 		this.gridWhich = which ;
 		this.gridAxis = axis ;
 		return this ;
 	}
 
-	public XYZScatterPlot grid(boolean on) {
+	public XYZWireframePlot grid(boolean on) {
 		this.grid = on ;
 		this.gridWhich = "both" ;
 		this.gridAxis = "both" ;
 		return this ;
 	}
 
-	public XYZScatterPlot legend(boolean on) {
+	public XYZWireframePlot legend(boolean on) {
 		this.legend = on ;
 		return this ;
 	}
 
-	public XYZScatterPlot legend(boolean on, String loc) {
+	public XYZWireframePlot legend(boolean on, String loc) {
 		this.legend = on ;
 		this.legendLocation = (loc!=null) ? loc.trim() : null ;
 		return this ;
 	}
 
-	public XYZScatterPlot legend(boolean on, LegendLocation loc) {
+	public XYZWireframePlot legend(boolean on, LegendLocation loc) {
 		this.legend = on ;
 		this.legendLocation = (loc!=null) ? loc.toString().trim() : null ;
 		return this ;
 	}
 
-	public XYZScatterPlot xticks(double... xticks) {
+	public XYZWireframePlot xticks(double... xticks) {
 		this.xticks = (xticks!=null) ? xticks : null ;
 		return this ;
 	}
 
-	public XYZScatterPlot xticks(String... xlabels) {
+	public XYZWireframePlot xticks(String... xlabels) {
 		this.xtickLabels = (xlabels!=null) ? xlabels : null ;
 		return this ;
 	}
 
-	public XYZScatterPlot yticks(double... yticks) {
+	public XYZWireframePlot yticks(double... yticks) {
 		this.yticks = (yticks!=null) ? yticks : null ;
 		return this ;
 	}
 
-	public XYZScatterPlot yticks(String... ylabels) {
+	public XYZWireframePlot yticks(String... ylabels) {
 		this.ytickLabels = (ylabels!=null) ? ylabels : null ;
 		return this ;
 	}
 
-	public XYZScatterPlot tightLayout() {
+	public XYZWireframePlot tightLayout() {
 		this.tightLayout = true ;
 		return this ;
 	}
 
-	public XYZScatterPlot cla() {
+	public XYZWireframePlot cla() {
 		this.cla = true ;
 		return this ;
 	}
 	
-	public XYZScatterPlot fontSize(double fontSize) {
+	public XYZWireframePlot fontSize(double fontSize) {
 		this.fontSize = fontSize ;
 		return this ;
 	}
 	
-	public XYZScatterPlot backend(String backend) {
+	public XYZWireframePlot backend(String backend) {
 		this.backend = backend.trim() ;
 		return this ;
 	}
@@ -366,7 +366,7 @@ public class XYZWireframePlot {
 			fo.println();
 		}
 		// for each xy series, write the data
-		for(XYZScatterSeries series: xyzSeriesCollection) {
+		for(XYZWireframeSeries series: xyzSeriesCollection) {
 			// print x
 			fo.print(series.xvar + " = [");
 			fo.printcomma(series.x);
