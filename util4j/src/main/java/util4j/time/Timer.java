@@ -4,23 +4,23 @@ import java.util.concurrent.TimeUnit;
 
 public class Timer {
 
-	long startTime, endTime, elapseTime ;
+	long startTime ;
+	long endTime ;
+	long elapseTime ;
 
 	public void start() {
-//		startTime = System.currentTimeMillis() ;
 		startTime = System.nanoTime() ;
 	}
 
 	public void stop() {
-//		endTime = System.currentTimeMillis() ;
 		endTime = System.nanoTime() ;
 		elapseTime = endTime - startTime ;
 	}
 
 	public void reset() {
-		startTime = 0 ;
-		endTime = 0 ;
-		elapseTime = 0 ;
+		startTime = 0L ;
+		endTime = 0L ;
+		elapseTime = 0L ;
 	}
 
 	public void show() {
