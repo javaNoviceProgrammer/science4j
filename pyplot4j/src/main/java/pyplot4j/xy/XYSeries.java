@@ -150,7 +150,7 @@ public class XYSeries {
 	}
 
 	public XYSeries label(String label) {
-		this.label = (label!=null) ? label.trim() : null ;
+		this.label = (label!=null) ? label.trim().replaceAll("'", "\\\\'") : null ;
 		return this ;
 	}
 

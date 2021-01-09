@@ -48,7 +48,7 @@ public class XYPlot {
 
 
 	public XYPlot(String title) {
-		this.title = title ;
+		this.title = (title!=null) ? title.trim().replaceAll("'", "\\\\'") : null ;
 		xySeriesCollection = new ArrayList<>() ;
 	}
 
@@ -119,12 +119,12 @@ public class XYPlot {
 	}
 
 	public XYPlot xlabel(String xlabel) {
-		this.xlabel = xlabel ;
+		this.xlabel = xlabel.trim().replaceAll("'", "\\\\'") ;
 		return this ;
 	}
 
 	public XYPlot ylabel(String ylabel) {
-		this.ylabel = ylabel ;
+		this.ylabel = ylabel.trim().replaceAll("'", "\\\\'") ;
 		return this ;
 	}
 
