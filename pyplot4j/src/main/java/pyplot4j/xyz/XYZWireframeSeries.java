@@ -49,6 +49,11 @@ public class XYZWireframeSeries {
 	// zdir
 	String zdir ;
 	double zs = 0.0 ;
+	// strides
+	double rstride = -1.0 ;
+	double cstride = -1.0 ;
+	int rcount = 50 ;
+	int ccount = 50 ;
 	
 	
 	public XYZWireframeSeries(double[] x, double[] y, double[] z, String xvar, String yvar, String zvar, String zdir, String color, String marker, double markerSize, String linestyle, double linewidth, String label) {
@@ -266,7 +271,7 @@ public class XYZWireframeSeries {
 
 	String getPythonCode() {
 		StringBuilder sb = new StringBuilder() ;
-		sb.append("plt.gca(projection='3d').scatter(") ;
+		sb.append("plt.gca(projection='3d').plot_wireframe(") ;
 		if(xvar == null)
 			throw new IllegalArgumentException("x variable cannot be NULL") ;
 		else
@@ -279,6 +284,22 @@ public class XYZWireframeSeries {
 			throw new IllegalArgumentException("z variable cannot be NULL") ;
 		else
 			sb.append("zs=" + zvar) ;
+		if(rstride > 0 ) {
+			sb.append(", ") ;
+			sb.append("rstride=" + rstride) ;
+		}
+		if(cstride > 0 ) {
+			sb.append(", ") ;
+			sb.append("cstride=" + cstride) ;
+		}
+		if(rcount > 0 ) {
+			sb.append(", ") ;
+			sb.append("rcount=" + rcount) ;
+		}
+		if(ccount > 0 ) {
+			sb.append(", ") ;
+			sb.append("ccount=" + ccount) ;
+		}
 		if(zdir != null) {
 			sb.append(", ") ;
 			sb.append("zdir='" + zdir + "'") ;
