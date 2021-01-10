@@ -41,5 +41,10 @@ public interface ComplexMathFunction {
 		ComplexNumber w = value(z)  ;
 		return new double[] {w.re(), w.im()} ;
 	}
+	
+	default ComplexMathFunction compose(ComplexMathFunction func) {
+		return x -> value(func.value(x)) ;
+	}
+	
 
 }

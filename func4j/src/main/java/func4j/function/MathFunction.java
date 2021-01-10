@@ -62,7 +62,7 @@ public interface MathFunction {
 	default MathFunction compose(MathFunction func) {
 		return x -> value(func.value(x)) ;
 	}
-
+	
 	default MathFunction deriv() {
 		return x -> NumericalDiff.central(this, x, 0.1) ;
 	}
