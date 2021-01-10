@@ -12,7 +12,7 @@ public class Dawson {
 
 	}
 
-	public static native double dawson(double x) ;
+	public static native double dawson(double x) ; // in Mathematica: DawsonF(x)
 
 
 }
