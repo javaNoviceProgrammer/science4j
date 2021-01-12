@@ -1,5 +1,9 @@
 package func4j.integration;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 import util4j.natives.NativeLibraryLoader;
 
 /**
@@ -35,7 +39,7 @@ public class Integral1D {
 	IntegralFunction1D func ;
 	double absErr = 1e-10 ;
 	double relErr = 1e-10 ;
-	int maxNumberOfIntervals = 100 ;
+	int maxNumberOfIntervals = 1000 ;
 
 //	public native void allocateWorkspace() ;
 //	public native void freeWorkspace() ;
@@ -81,6 +85,10 @@ public class Integral1D {
 
 	public void setIntegralFunction(IntegralFunction1D func) {
 		this.func = func ;
+	}
+	
+	public void setMaxIterations(int iterations) {
+		this.maxNumberOfIntervals = iterations ;
 	}
 
 	// QNG non-adaptive Gauss-Kronrod integration over (a,b) interval
@@ -262,6 +270,19 @@ public class Integral1D {
 	public native double[] qagilWithError(double b) ;
 
 	// QAWC adaptive integration for Cauchy principal values
+	/**
+	 * Adaptive integration for Cauchy principal values
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * W - weight function with integrand <br>
+	 * C - Cauchy principal value
+	 * 
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @return
+	 */
 	public native double qawc(double a, double b, double c) ;
 	public native double[] qawcWithError(double a, double b, double c) ;
 
@@ -276,14 +297,49 @@ public class Integral1D {
 	// QAWO adaptive integration for oscillatory functions
 	public static final int GSL_INTEG_COSINE = 0 ;
 	public static final int GSL_INTEG_SINE = 1 ;
+	/**
+	 * Adaptive integration for oscillatory functions
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * W - weight function with integrand <br>
+	 * O - oscillatory weight function, cos or sin <br>
+	 * 
+	 * @param a
+	 * @param b
+	 * @param choice
+	 * @param omega
+	 * @return
+	 */
 	public native double qawo(double a, double b, int choice, double omega) ;
 	public native double[] qawoWithError(double a, double b, int choice, double omega) ;
 
 	// QAWF adaptive integration for Fourier integrals
+	/**
+	 * Adaptive integration for Fourier integrals
+	 * <br>
+	 * Q - quadrature routine <br>
+	 * A - adaptive integrator <br>
+	 * W - weight function with integrand <br>
+	 * F - Fourier integral <br>
+	 * 
+	 * @param a
+	 * @param choice
+	 * @param omega
+	 * @return
+	 */
 	public native double qawf(double a, int choice, double omega) ;
 	public native double[] qawfWithError(double a, int choice, double omega) ;
 
 	// CQUAD doubly-adaptive integration
+	/**
+	 * Doubly-adaptive integration.
+	 * The underlying algorithm uses a doubly-adaptive scheme in which Clenshaw-Curtis quadrature rules of increasing degree are used to compute the integral in each interval.
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double cquad(double a, double b) ;
 	public native double[] cquadWithError(double a, double b) ;
 
@@ -310,4 +366,15 @@ public class Integral1D {
 	public native double[] qfixedPoints(double a, double b, int numPoints, int type, double alpha, double beta) ;
 	public native double[] qfixedWeights(double a, double b, int numPoints, int type, double alpha, double beta) ;
 
+	// open PDF documentation
+	public void help() {
+		try {
+			System.out.println("opening PDF document...");
+			File pdf = new File(ClassLoader.getSystemResource("gsl_integration.pdf").getFile()) ;
+			Desktop.getDesktop().open(pdf);
+		} catch (IOException e) {
+			System.err.println("could not open PDF document...");
+		}
+	}
+	
 }

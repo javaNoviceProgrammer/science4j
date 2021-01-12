@@ -675,14 +675,15 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qagilWithError
  * Signature: (DDD)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qawc
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jdouble c) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jdouble c) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -698,23 +699,24 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qawc
  * Signature: (DDD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawcWithError
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jdouble c) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jdouble c) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
 	gsl_integration_workspace *w = gsl_integration_workspace_alloc(limit) ;
 	gsl_integration_qawc(&F, a, b, c, epsabs, epsrel, limit, w, &result, &abserr) ;
 	gsl_integration_workspace_free(w) ;
-	jdoubleArray jresult = env -> NewDoubleArray(2) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {result, abserr} ;
-	env -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
 	return jresult ;
 }
 
@@ -724,14 +726,15 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawcWithError
  * Signature: (DDIDD)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qaws
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint type, jdouble alpha, jdouble beta) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint type, jdouble alpha, jdouble beta) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -766,14 +769,15 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qaws
  * Signature: (DDIDD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawsWithError
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint type, jdouble alpha, jdouble beta) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint type, jdouble alpha, jdouble beta) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -799,9 +803,9 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawsWithError
 	gsl_integration_qaws(&F, a, b, table, epsabs, epsrel, limit, w, &result, &abserr) ;
 	gsl_integration_workspace_free(w) ;
 	gsl_integration_qaws_table_free(table) ;
-	jdoubleArray jresult = env -> NewDoubleArray(2) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {result, abserr} ;
-	env -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
 	return jresult ;
 }
 
@@ -811,14 +815,15 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawsWithError
  * Signature: (DDID)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qawo
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint choice, jdouble omega) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint choice, jdouble omega) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -843,14 +848,15 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qawo
  * Signature: (DDID)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawoWithError
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint choice, jdouble omega) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint choice, jdouble omega) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -866,9 +872,9 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawoWithError
 	gsl_integration_qawo(&F, a, epsabs, epsrel, limit, w, table, &result, &abserr) ;
 	gsl_integration_workspace_free(w) ;
 	gsl_integration_qawo_table_free(table) ;
-	jdoubleArray jresult = env -> NewDoubleArray(2) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {result, abserr} ;
-	env -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
 	return jresult ;
 }
 
@@ -878,13 +884,14 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawoWithError
  * Signature: (DID)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qawf
-  (JNIEnv *env, jobject Integral1D, jdouble a, jint choice, jdouble omega) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jint choice, jdouble omega) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -911,13 +918,14 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qawf
  * Signature: (DID)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawfWithError
-  (JNIEnv *env, jobject Integral1D, jdouble a, jint choice, jdouble omega) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jint choice, jdouble omega) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -935,9 +943,9 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawfWithError
 	gsl_integration_workspace_free(w) ;
 	gsl_integration_workspace_free(cycle_w) ;
 	gsl_integration_qawo_table_free(table) ;
-	jdoubleArray jresult = env -> NewDoubleArray(2) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {result, abserr} ;
-	env -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
 	return jresult ;
 }
 
@@ -947,15 +955,16 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qawfWithError
  * Signature: (DD)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_cquad
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
 	size_t nevals ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -971,24 +980,25 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_cquad
  * Signature: (DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_cquadWithError
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	jdouble result ;
 	jdouble abserr ;
 	size_t nevals ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
 	gsl_integration_cquad_workspace *w = gsl_integration_cquad_workspace_alloc(limit) ;
 	gsl_integration_cquad(&F, a, b, epsabs, epsrel, w, &result, &abserr, &nevals) ;
 	gsl_integration_cquad_workspace_free(w) ;
-	jdoubleArray jresult = env -> NewDoubleArray(3) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(3) ;
 	jdouble buf[] = {result, abserr, (jdouble)nevals} ;
-	env -> SetDoubleArrayRegion(jresult, 0, 3, buf) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 3, buf) ;
 	return jresult ;
 }
 
