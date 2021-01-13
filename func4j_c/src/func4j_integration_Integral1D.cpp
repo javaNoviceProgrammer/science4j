@@ -1009,16 +1009,17 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_cquadWithError
  * Signature: (DD)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_romberg
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	if(limit>20)
 		limit = 20 ;
 	jdouble result ;
 	size_t nevals ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -1034,25 +1035,26 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_romberg
  * Signature: (DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_rombergDetailed
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b) {
-	jdouble epsabs = env -> GetDoubleField(Integral1D, abserr_id) ;
-	jdouble epsrel = env -> GetDoubleField(Integral1D, relerr_id) ;
-	jint max_num_intervals = env -> GetIntField(Integral1D, max_num_interval_id) ;
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b) {
+	jdouble epsabs = jvm -> GetDoubleField(Integral1D_obj, abserr_id) ;
+	jdouble epsrel = jvm -> GetDoubleField(Integral1D_obj, relerr_id) ;
+	jint max_num_intervals = jvm -> GetIntField(Integral1D_obj, max_num_interval_id) ;
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) max_num_intervals ;
 	if(limit>20)
 		limit = 20 ;
 	jdouble result ;
 	size_t nevals ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
 	gsl_integration_romberg_workspace *w = gsl_integration_romberg_alloc(limit) ;
 	gsl_integration_romberg(&F, a, b, epsabs, epsrel, &result, &nevals, w) ;
 	gsl_integration_romberg_free(w) ;
-	jdoubleArray jresult = env -> NewDoubleArray(2) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[] = {result, (jdouble)nevals} ;
-	env -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
 	return jresult ;
 }
 
@@ -1064,9 +1066,10 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_rombergDetaile
  * Signature: (DDI)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_glfixed
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint numPoints) {
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint numPoints) {
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) numPoints ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -1103,10 +1106,11 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_glfixedPointAn
  * Signature: (DDIIDD)D
  */
 JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qfixed
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint numPoints, jint jtype, jdouble alpha, jdouble beta) {
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint numPoints, jint jtype, jdouble alpha, jdouble beta) {
+	jobject integral_func_1d_obj = jvm -> GetObjectField(Integral1D_obj, integral1d_func_id) ;
 	size_t limit = (size_t) numPoints ;
 	jdouble result ;
-	jparams p = {env, Integral1D} ;
+	jparams p = {jvm, integral_func_1d_obj} ;
 	gsl_function F ;
 	F.function = &f ;
 	F.params = &p ;
@@ -1140,7 +1144,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_integration_Integral1D_qfixed
  * Signature: (DDIIDD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qfixedPoints
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint numPoints, jint jtype, jdouble alpha, jdouble beta) {
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint numPoints, jint jtype, jdouble alpha, jdouble beta) {
 	size_t limit = (size_t) numPoints ;
 	jdouble* result ;
 	gsl_integration_fixed_workspace *w ;
@@ -1164,8 +1168,8 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qfixedPoints
 		w = gsl_integration_fixed_alloc(gsl_integration_fixed_chebyshev2, limit, a, b, alpha, beta) ;
 	result = gsl_integration_fixed_nodes(w) ;
 	gsl_integration_fixed_free(w) ;
-	jdoubleArray jresult = env -> NewDoubleArray(numPoints) ;
-	env -> SetDoubleArrayRegion(jresult, 0, numPoints, result) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(numPoints) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, numPoints, result) ;
 	return jresult ;
 }
 
@@ -1175,7 +1179,7 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qfixedPoints
  * Signature: (DDIIDD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qfixedWeights
-  (JNIEnv *env, jobject Integral1D, jdouble a, jdouble b, jint numPoints, jint jtype, jdouble alpha, jdouble beta) {
+  (JNIEnv *jvm, jobject Integral1D_obj, jdouble a, jdouble b, jint numPoints, jint jtype, jdouble alpha, jdouble beta) {
 	size_t limit = (size_t) numPoints ;
 	jdouble* result ;
 	gsl_integration_fixed_workspace *w ;
@@ -1199,8 +1203,8 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_integration_Integral1D_qfixedWeights
 		w = gsl_integration_fixed_alloc(gsl_integration_fixed_chebyshev2, limit, a, b, alpha, beta) ;
 	result = gsl_integration_fixed_weights(w) ;
 	gsl_integration_fixed_free(w) ;
-	jdoubleArray jresult = env -> NewDoubleArray(numPoints) ;
-	env -> SetDoubleArrayRegion(jresult, 0, numPoints, result) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(numPoints) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, numPoints, result) ;
 	return jresult ;
 }
 

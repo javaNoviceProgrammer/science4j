@@ -344,10 +344,31 @@ public class Integral1D {
 	public native double[] cquadWithError(double a, double b) ;
 
 	// Romberg integration
+	/**
+	 * The Romberg integration method estimates the definite integral 
+	 * by applying Richardson extrapolation on the trapezoidal rule, using equally spaced points with spacing
+	 * hk = (b-a)^2 k for k = 1,..., n. For each k, Richardson extrapolation is used k-1 times on previous approximations to improve the order of accuracy as much as possible. Romberg integration typically works well (and converges quickly) for smooth integrands with no singularities in the interval or at the end points.
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
 	public native double romberg(double a, double b) ;
 	public native double[] rombergDetailed(double a, double b) ;
 
 	// Gauss-Legendre integration
+	/**
+	 * The fixed-order Gauss-Legendre integration routines are provided for fast integration of 
+	 * smooth functions with known polynomial order. The n-point Gauss-Legendre rule is exact for 
+	 * polynomials of order 2n-1 or less. For example, these rules are useful when integrating basis 
+	 * functions to form mass matrices for the Galerkin method. Unlike other numerical integration 
+	 * routines within the library, these routines do not accept absolute or relative error bounds.
+	 * 
+	 * @param a
+	 * @param b
+	 * @param numPoints
+	 * @return
+	 */
 	public native double glfixed(double a, double b, int numPoints) ;
 	public native double[] glfixedPointAndWeight(double a, double b, int numPoints, int index) ;
 
@@ -362,6 +383,21 @@ public class Integral1D {
 	public static final int FIXED_RATIONAL = 9 ;
 	public static final int FIXED_CHEBYSHEV2 = 10 ;
 
+	/**
+	 * The routines in this section approximate an integral by the sum where f(x) is the function to 
+	 * be integrated and w(x) is a weighting function. The n weights wi and nodes xi are carefully 
+	 * chosen so that the result is exact when f(x) is a polynomial of degree 2n-1 or less. Once the 
+	 * user chooses the order n and weighting function w(x), the weights wi and nodes xi can be 
+	 * precomputed and used to efficiently evaluate integrals for any number of functions f(x).
+	 * 
+	 * @param a
+	 * @param b
+	 * @param numPoints
+	 * @param type
+	 * @param alpha
+	 * @param beta
+	 * @return
+	 */
 	public native double qfixed(double a, double b, int numPoints, int type, double alpha, double beta) ;
 	public native double[] qfixedPoints(double a, double b, int numPoints, int type, double alpha, double beta) ;
 	public native double[] qfixedWeights(double a, double b, int numPoints, int type, double alpha, double beta) ;
