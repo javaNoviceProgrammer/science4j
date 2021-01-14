@@ -8,8 +8,9 @@
 	<description>Functions for science4j project</description>
 	
 	<properties>
-		<maven.compiler.source>15</maven.compiler.source>
-		<maven.compiler.target>15</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.home>/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home</java.home>
 	</properties>
 	
 	<dependencies>
@@ -43,6 +44,7 @@
 				<version>3.2.0</version>
 				<configuration>
 					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+					<failOnError>false</failOnError>
 				</configuration>
 				<executions>
 					<execution>

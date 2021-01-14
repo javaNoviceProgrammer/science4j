@@ -7,8 +7,8 @@
   <description>This project includes utility classes for the science4j projects. </description>
 
   <properties>
-  	<maven.compiler.source>15</maven.compiler.source>
-  	<maven.compiler.target>15</maven.compiler.target>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   
   
@@ -35,6 +35,7 @@
 				<version>3.2.0</version>
 				<configuration>
 					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+					<failOnError>false</failOnError>
 				</configuration>
 				<executions>
 					<execution>
