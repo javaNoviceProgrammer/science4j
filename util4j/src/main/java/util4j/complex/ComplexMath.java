@@ -1,7 +1,7 @@
 package util4j.complex;
 
 import util4j.natives.NativeLibraryLoader;
-
+import static java.lang.Math.PI;
 
 /**
  * The functions described in this class provide support for complex numbers.
@@ -38,6 +38,10 @@ public final class ComplexMath {
 	 * @return double value : arg angle of complex number.
 	 */
 	public static native double arg(double re, double im) ;
+	
+	public static double argDeg(double re, double im) {
+		return arg(re, im) * 180.0/PI ;
+	}
 
 	/**
 	 * Same as {@link #arg(double, double)}, but takes a {@link ComplexNumber} ;
@@ -46,6 +50,10 @@ public final class ComplexMath {
 	 */
 	public static double arg(ComplexNumber z) {
 		return arg(z.re(), z.im()) ;
+	}
+	
+	public static double argDeg(ComplexNumber z) {
+		return argDeg(z.re(), z.im()) ;
 	}
 
 	/**

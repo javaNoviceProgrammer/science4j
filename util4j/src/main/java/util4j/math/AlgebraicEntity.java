@@ -11,8 +11,8 @@ public interface AlgebraicEntity<T extends AlgebraicEntity<T>> {
 	
 	/*-------- identity ----------*/
 	
-//	T addIdentity() ;
-//	T mulIdentity() ;
+//	T zero() ; // addition & subtraction identity
+//	T one() ;  // multiplication identity
 
 	/*-------- addition ----------*/
 

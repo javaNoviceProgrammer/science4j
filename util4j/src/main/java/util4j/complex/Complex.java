@@ -143,6 +143,10 @@ public final class Complex implements Serializable, ComplexNumber {
 			throw new IllegalArgumentException("Number of array elements must be exactly 2") ;
 		return ofPolarDegree(magAndPhaseDegree[0], magAndPhaseDegree[1]) ;
 	}
+	
+	public Complex copy() {
+		return Complex.of(this) ;
+	}
 
 	/**
 	 * Real part of z: Re(z)
