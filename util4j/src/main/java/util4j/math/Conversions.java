@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import util4j.complex.Complex;
-import util4j.complex.ComplexErrorProp;
-import util4j.complex.ComplexMath;
-import util4j.complex.Phasor;
+
 
 public class Conversions {
 	
@@ -1610,21 +1608,7 @@ public class Conversions {
 		return var0.toString().trim();
 	}
 
-	public static Phasor convert_Complex_to_Phasor(Complex var0) {
-		double var1 = var0.abs();
-		double var3 = ComplexMath.arg(var0) ;
-		return new Phasor(var1, var3);
-	}
-
 	public static String convert_Complex_to_String(Complex var0) {
-		return var0.toString().trim();
-	}
-
-	public static Complex convert_Phasor_to_Complex(Phasor var0) {
-		return var0.toComplex();
-	}
-
-	public static String convert_Phasor_to_String(Phasor var0) {
 		return var0.toString().trim();
 	}
 
@@ -2944,185 +2928,6 @@ public class Conversions {
 		}
 	}
 
-	public static ComplexErrorProp[] copy(ComplexErrorProp[] var0) {
-		if (var0 == null) {
-			return null;
-		} else {
-			int var1 = var0.length;
-			ComplexErrorProp[] var2 = new ComplexErrorProp[var1];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				var2[var3] = var0[var3].copy();
-			}
-
-			return var2;
-		}
-	}
-
-	public static ComplexErrorProp[][] copy(ComplexErrorProp[][] var0) {
-		if (var0 == null) {
-			return (ComplexErrorProp[][]) null;
-		} else {
-			int var1 = var0.length;
-			ComplexErrorProp[][] var2 = new ComplexErrorProp[var1][];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				int var4 = var0[var3].length;
-				var2[var3] = new ComplexErrorProp[var4];
-
-				for (int var5 = 0; var5 < var4; ++var5) {
-					var2[var3][var5] = var0[var3][var5].copy();
-				}
-			}
-
-			return var2;
-		}
-	}
-
-	public static ComplexErrorProp[][][] copy(ComplexErrorProp[][][] var0) {
-		if (var0 == null) {
-			return (ComplexErrorProp[][][]) null;
-		} else {
-			int var1 = var0.length;
-			ComplexErrorProp[][][] var2 = new ComplexErrorProp[var1][][];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				int var4 = var0[var3].length;
-				var2[var3] = new ComplexErrorProp[var4][];
-
-				for (int var5 = 0; var5 < var4; ++var5) {
-					int var6 = var0[var3][var5].length;
-					var2[var3][var5] = new ComplexErrorProp[var6];
-
-					for (int var7 = 0; var7 < var6; ++var7) {
-						var2[var3][var5][var7] = var0[var3][var5][var7].copy();
-					}
-				}
-			}
-
-			return var2;
-		}
-	}
-
-	public static ComplexErrorProp[][][][] copy(ComplexErrorProp[][][][] var0) {
-		if (var0 == null) {
-			return (ComplexErrorProp[][][][]) null;
-		} else {
-			int var1 = var0.length;
-			ComplexErrorProp[][][][] var2 = new ComplexErrorProp[var1][][][];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				int var4 = var0[var3].length;
-				var2[var3] = new ComplexErrorProp[var4][][];
-
-				for (int var5 = 0; var5 < var4; ++var5) {
-					int var6 = var0[var3][var5].length;
-					var2[var3][var5] = new ComplexErrorProp[var6][];
-
-					for (int var7 = 0; var7 < var6; ++var7) {
-						int var8 = var0[var3][var5][var7].length;
-						var2[var3][var5][var7] = new ComplexErrorProp[var8];
-
-						for (int var9 = 0; var9 < var8; ++var9) {
-							var2[var3][var5][var7][var9] = var0[var3][var5][var7][var9].copy();
-						}
-					}
-				}
-			}
-
-			return var2;
-		}
-	}
-
-	public static Phasor[] copy(Phasor[] var0) {
-		if (var0 == null) {
-			return null;
-		} else {
-			int var1 = var0.length;
-			Phasor[] var2 = new Phasor[var1];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				var2[var3] = var0[var3].copy();
-			}
-
-			return var2;
-		}
-	}
-
-	public static Phasor[][] copy(Phasor[][] var0) {
-		if (var0 == null) {
-			return (Phasor[][]) null;
-		} else {
-			int var1 = var0.length;
-			Phasor[][] var2 = new Phasor[var1][];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				int var4 = var0[var3].length;
-				var2[var3] = new Phasor[var4];
-
-				for (int var5 = 0; var5 < var4; ++var5) {
-					var2[var3][var5] = var0[var3][var5].copy();
-				}
-			}
-
-			return var2;
-		}
-	}
-
-	public static Phasor[][][] copy(Phasor[][][] var0) {
-		if (var0 == null) {
-			return (Phasor[][][]) null;
-		} else {
-			int var1 = var0.length;
-			Phasor[][][] var2 = new Phasor[var1][][];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				int var4 = var0[var3].length;
-				var2[var3] = new Phasor[var4][];
-
-				for (int var5 = 0; var5 < var4; ++var5) {
-					int var6 = var0[var3][var5].length;
-					var2[var3][var5] = new Phasor[var6];
-
-					for (int var7 = 0; var7 < var6; ++var7) {
-						var2[var3][var5][var7] = var0[var3][var5][var7].copy();
-					}
-				}
-			}
-
-			return var2;
-		}
-	}
-
-	public static Phasor[][][][] copy(Phasor[][][][] var0) {
-		if (var0 == null) {
-			return (Phasor[][][][]) null;
-		} else {
-			int var1 = var0.length;
-			Phasor[][][][] var2 = new Phasor[var1][][][];
-
-			for (int var3 = 0; var3 < var1; ++var3) {
-				int var4 = var0[var3].length;
-				var2[var3] = new Phasor[var4][][];
-
-				for (int var5 = 0; var5 < var4; ++var5) {
-					int var6 = var0[var3][var5].length;
-					var2[var3][var5] = new Phasor[var6][];
-
-					for (int var7 = 0; var7 < var6; ++var7) {
-						int var8 = var0[var3][var5][var7].length;
-						var2[var3][var5][var7] = new Phasor[var8];
-
-						for (int var9 = 0; var9 < var8; ++var9) {
-							var2[var3][var5][var7][var9] = var0[var3][var5][var7][var9].copy();
-						}
-					}
-				}
-			}
-
-			return var2;
-		}
-	}
 
 	public static short[] copy(short[] var0) {
 		if (var0 == null) {

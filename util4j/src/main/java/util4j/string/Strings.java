@@ -3,7 +3,7 @@ package util4j.string;
 import java.util.ArrayList;
 
 public class Strings {
-	
+
 	private String enteredString = null;
 	private int nEntered = 0;
 	private String editedString = null;
@@ -18,45 +18,41 @@ public class Strings {
 	private int nPrincipalTokens = 0;
 	private int[] principalTokenInitialIndices = null;
 	private int[] principalTokenFinalIndices = null;
-	private String[] symbolsA = new String[]{"À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í", "Î",
-			"Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã", "ä",
-			"å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù", "ú",
-			"û", "ü", "ý", "þ", "ÿ", "Œ", "œ", "Š", "š", "Ÿ", "ƒ"};
-	private String[] replSymbolsA = new String[]{"A", "A", "A", "A", "A", "A", "AE", "C", "E", "E", "E", "E", "I", "I",
-			"I", "I", "DH", "N", "O", "O", "O", "O", "O", "O", "U", "U", "U", "U", "Y", "TH", "ss", "a", "a", "a", "a",
-			"a", "a", "ae", "c", "e", "e", "e", "e", "i", "i", "i", "i", "dh", "n", "o", "o", "o", "o", "o", "o", "u",
-			"u", "u", "u", "y", "th", "y", "OE", "oe", "s", "s", "y", "f"};
-	private String[] htmlNamesA = new String[]{"&Agrave;", "&Aacute;", "&Acirc;", "&Atilde;", "&Auml;", "&Aring;",
+	private String[] symbolsA = new String[] { "À", "Á", "Â", "Ã", "Ä", "Å", "Æ", "Ç", "È", "É", "Ê", "Ë", "Ì", "Í",
+			"Î", "Ï", "Ð", "Ñ", "Ò", "Ó", "Ô", "Õ", "Ö", "Ø", "Ù", "Ú", "Û", "Ü", "Ý", "Þ", "ß", "à", "á", "â", "ã",
+			"ä", "å", "æ", "ç", "è", "é", "ê", "ë", "ì", "í", "î", "ï", "ð", "ñ", "ò", "ó", "ô", "õ", "ö", "ø", "ù",
+			"ú", "û", "ü", "ý", "þ", "ÿ", "Œ", "œ", "Š", "š", "Ÿ", "ƒ" };
+	private String[] replSymbolsA = new String[] { "A", "A", "A", "A", "A", "A", "AE", "C", "E", "E", "E", "E", "I",
+			"I", "I", "I", "DH", "N", "O", "O", "O", "O", "O", "O", "U", "U", "U", "U", "Y", "TH", "ss", "a", "a", "a",
+			"a", "a", "a", "ae", "c", "e", "e", "e", "e", "i", "i", "i", "i", "dh", "n", "o", "o", "o", "o", "o", "o",
+			"u", "u", "u", "u", "y", "th", "y", "OE", "oe", "s", "s", "y", "f" };
+	private String[] htmlNamesA = new String[] { "&Agrave;", "&Aacute;", "&Acirc;", "&Atilde;", "&Auml;", "&Aring;",
 			"&AElig;", "&Ccedil;", "&Egrave;", "&Eacute;", "&Ecirc;", "&Euml;", "&Igrave;", "&Iacute;", "&Icirc;",
 			"&Iuml;", "&ETH;", "&Ntilde;", "&Ograve;", "&Oacute;", "&Ocirc;", "&Otilde;", "&Ouml;", "&Oslash;",
 			"&Ugrave;", "&Uacute;", "&Ucirc;", "&Uuml;", "&Yacute;", "&THORN;", "&szlig;", "&agrave;", "&aacute;",
 			"&acirc;", "&atilde;", "&auml;", "&aring;", "&aelig;", "&ccedil;", "&egrave;", "&eacute;", "&ecirc;",
 			"&euml;", "&igrave;", "&iacute;", "&icirc;", "&iuml;", "&eth;", "&ntilde;", "&ograve;", "&oacute;",
 			"&ocirc;", "&otilde;", "&ouml;", "&oslash;", "&ugrave;", "&uacute;", "&ucirc;", "&uuml;", "&yacute;",
-			"&thorn;", "&yuml;", "&OE;", "&oe;", "&Scaron;", "&scaron;", "&Ydia;", "&fhook;"};
-	private String[] htmlNumbersA = new String[]{"&#192;", "&#193;", "&#194;", "&#195;", "&#196;", "&#197;", "&#198;",
+			"&thorn;", "&yuml;", "&OE;", "&oe;", "&Scaron;", "&scaron;", "&Ydia;", "&fhook;" };
+	private String[] htmlNumbersA = new String[] { "&#192;", "&#193;", "&#194;", "&#195;", "&#196;", "&#197;", "&#198;",
 			"&#199;", "&#200;", "&#201;", "&#202;", "&#203;", "&#204;", "&#205;", "&#206;", "&#207;", "&#208;",
 			"&#209;", "&#210;", "&#211;", "&#212;", "&#213;", "&#214;", "&#216;", "&#217;", "&#218;", "&#219;",
 			"&#220;", "&#221;", "&#222;", "&#223;", "&#224;", "&#225;", "&#226;", "&#227;", "&#228;", "&#229;",
 			"&#230;", "&#231;", "&#232;", "&#233;", "&#234;", "&#235;", "&#236;", "&#237;", "&#238;", "&#239;",
 			"&#240;", "&#241;", "&#242;", "&#243;", "&#244;", "&#245;", "&#246;", "&#248;", "&#249;", "&#250;",
 			"&#251;", "&#252;", "&#253;", "&#254;", "&#255;", "&#338;", "&#339;", "&#352;", "&#353;", "&#376;",
-			"&#402;"};
-	private int[] decNumbersA = new int[]{192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206,
+			"&#402;" };
+	private int[] decNumbersA = new int[] { 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206,
 			207, 208, 209, 210, 211, 212, 213, 214, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228,
 			229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 248, 249, 250,
-			251, 252, 253, 254, 255, 338, 339, 352, 353, 376, 402};
+			251, 252, 253, 254, 255, 338, 339, 352, 353, 376, 402 };
 	private int nSymbolsA;
 	private String[] symbolQ;
 	private String[] htmlNamesQ;
 	private String[] htmlNumbersQ;
 	private int[] decNumbersQ;
 	private int nSymbolsQ;
-	private String[] symbolsSQ;
-	private String[] htmlNamesSQ;
 	private String[] htmlNumbersSQ;
-	private int[] decNumbersSQ;
-	private int nSymbolsSQ;
 	private String[] symbolsD;
 	private String[] htmlNamesD;
 	private String[] htmlNumbersD;
@@ -71,37 +67,33 @@ public class Strings {
 
 	public Strings(String var1) {
 		this.nSymbolsA = this.symbolsA.length;
-		this.symbolQ = new String[]{"\"", "'", "‚", "„", "‹", "‘", "’", "“", "”", "›", "«", "»", "‘", "’", "‚", "“",
-				"”", "„"};
-		this.htmlNamesQ = new String[]{"&quot;", "&none", "&sbquo;", "&dbquo;", "&lsaquo;", "&lsquo;", "&rsquo;",
+		this.symbolQ = new String[] { "\"", "'", "‚", "„", "‹", "‘", "’", "“", "”", "›", "«", "»", "‘", "’", "‚", "“",
+				"”", "„" };
+		this.htmlNamesQ = new String[] { "&quot;", "&none", "&sbquo;", "&dbquo;", "&lsaquo;", "&lsquo;", "&rsquo;",
 				"&ldquo;", "&rdquo;", "&rsaquo;", "&laquo;", "&raquo;", "&none;", "&none;", "&none;", "&none;",
-				"&none;", "&none;"};
-		this.htmlNumbersQ = new String[]{"&#34;", "&#39;", "&#130;", "&#132;", "&#139;", "&#145;", "&#146;", "&#147;",
+				"&none;", "&none;" };
+		this.htmlNumbersQ = new String[] { "&#34;", "&#39;", "&#130;", "&#132;", "&#139;", "&#145;", "&#146;", "&#147;",
 				"&#148;", "&#155;", "&#171;", "&#187;", "&#8216;", "&#8217;", "&#8218;", "&#8220;", "&#8221;",
-				"&#8222;"};
-		this.decNumbersQ = new int[]{34, 39, 130, 132, 139, 145, 146, 147, 148, 155, 171, 187, 8216, 8217, 8218, 8220,
-				8221, 8222};
+				"&#8222;" };
+		this.decNumbersQ = new int[] { 34, 39, 130, 132, 139, 145, 146, 147, 148, 155, 171, 187, 8216, 8217, 8218, 8220,
+				8221, 8222 };
 		this.nSymbolsQ = this.symbolQ.length;
-		this.symbolsSQ = new String[]{"'", "‘", "’", "‘", "’"};
-		this.htmlNamesSQ = new String[]{"'", "&lsquo;", "&rsquo;", "&none;", "&none;"};
-		this.htmlNumbersSQ = new String[]{"&#39;", "&#145;", "&#146;", "&#8216;", "&#8217;"};
-		this.decNumbersSQ = new int[]{39, 145, 146, 8216, 8217};
-		this.nSymbolsSQ = this.symbolsSQ.length;
-		this.symbolsD = new String[]{"-", "–", "—", "–", "—", "–", "—"};
-		this.htmlNamesD = new String[]{"&none;", "&ndash;", "&mdash;", "–", "&oline;", "&none;", "&none;"};
-		this.htmlNumbersD = new String[]{"&#45;", "&#150;", "&#151;", "&#8213;", "&#8254;", "&#8211;", "&#8212;"};
-		this.decNumbersD = new int[]{45, 150, 151, 8213, 8254, 8211, 8212};
+		this.htmlNumbersSQ = new String[] { "&#39;", "&#145;", "&#146;", "&#8216;", "&#8217;" };
+		this.symbolsD = new String[] { "-", "–", "—", "–", "—", "–", "—" };
+		this.htmlNamesD = new String[] { "&none;", "&ndash;", "&mdash;", "–", "&oline;", "&none;", "&none;" };
+		this.htmlNumbersD = new String[] { "&#45;", "&#150;", "&#151;", "&#8213;", "&#8254;", "&#8211;", "&#8212;" };
+		this.decNumbersD = new int[] { 45, 150, 151, 8213, 8254, 8211, 8212 };
 		this.nSymbolsD = this.symbolsD.length;
-		this.articles = new String[]{"a", "an", "the"};
+		this.articles = new String[] { "a", "an", "the" };
 		this.nArticles = this.articles.length;
-		this.prepositions = new String[]{"about", "above", "across", "after", "against", "along", "among", "around",
+		this.prepositions = new String[] { "about", "above", "across", "after", "against", "along", "among", "around",
 				"at", "before", "behind", "below", "beneath", "beside", "between", "beyond", "but", "by", "despite",
 				"down", "during", "except", "for", "from", "in", "inside", "into", "like", "near", "of", "off", "on",
 				"onto", "out", "outside", "over", "past", "since", "through", "throughout", "till", "to", "toward",
-				"under", "underneath", "until", "up", "upon", "with", "within", "without"};
+				"under", "underneath", "until", "up", "upon", "with", "within", "without" };
 		this.nPrepositions = this.prepositions.length;
-		this.conjunctions = new String[]{"and", "&amp", "&", "but", "or", "nor", "for", "so", "yet", "not", "only",
-				"also", "either", "neither", "although", "because", "since", "unless", "until", "while"};
+		this.conjunctions = new String[] { "and", "&amp", "&", "but", "or", "nor", "for", "so", "yet", "not", "only",
+				"also", "either", "neither", "although", "because", "since", "unless", "until", "while" };
 		this.nConjunctions = this.conjunctions.length;
 		this.enteredString = var1;
 		this.editedString = var1;
@@ -111,37 +103,33 @@ public class Strings {
 
 	public Strings() {
 		this.nSymbolsA = this.symbolsA.length;
-		this.symbolQ = new String[]{"\"", "'", "‚", "„", "‹", "‘", "’", "“", "”", "›", "«", "»", "‘", "’", "‚", "“",
-				"”", "„"};
-		this.htmlNamesQ = new String[]{"&quot;", "&none", "&sbquo;", "&dbquo;", "&lsaquo;", "&lsquo;", "&rsquo;",
+		this.symbolQ = new String[] { "\"", "'", "‚", "„", "‹", "‘", "’", "“", "”", "›", "«", "»", "‘", "’", "‚", "“",
+				"”", "„" };
+		this.htmlNamesQ = new String[] { "&quot;", "&none", "&sbquo;", "&dbquo;", "&lsaquo;", "&lsquo;", "&rsquo;",
 				"&ldquo;", "&rdquo;", "&rsaquo;", "&laquo;", "&raquo;", "&none;", "&none;", "&none;", "&none;",
-				"&none;", "&none;"};
-		this.htmlNumbersQ = new String[]{"&#34;", "&#39;", "&#130;", "&#132;", "&#139;", "&#145;", "&#146;", "&#147;",
+				"&none;", "&none;" };
+		this.htmlNumbersQ = new String[] { "&#34;", "&#39;", "&#130;", "&#132;", "&#139;", "&#145;", "&#146;", "&#147;",
 				"&#148;", "&#155;", "&#171;", "&#187;", "&#8216;", "&#8217;", "&#8218;", "&#8220;", "&#8221;",
-				"&#8222;"};
-		this.decNumbersQ = new int[]{34, 39, 130, 132, 139, 145, 146, 147, 148, 155, 171, 187, 8216, 8217, 8218, 8220,
-				8221, 8222};
+				"&#8222;" };
+		this.decNumbersQ = new int[] { 34, 39, 130, 132, 139, 145, 146, 147, 148, 155, 171, 187, 8216, 8217, 8218, 8220,
+				8221, 8222 };
 		this.nSymbolsQ = this.symbolQ.length;
-		this.symbolsSQ = new String[]{"'", "‘", "’", "‘", "’"};
-		this.htmlNamesSQ = new String[]{"'", "&lsquo;", "&rsquo;", "&none;", "&none;"};
-		this.htmlNumbersSQ = new String[]{"&#39;", "&#145;", "&#146;", "&#8216;", "&#8217;"};
-		this.decNumbersSQ = new int[]{39, 145, 146, 8216, 8217};
-		this.nSymbolsSQ = this.symbolsSQ.length;
-		this.symbolsD = new String[]{"-", "–", "—", "–", "—", "–", "—"};
-		this.htmlNamesD = new String[]{"&none;", "&ndash;", "&mdash;", "–", "&oline;", "&none;", "&none;"};
-		this.htmlNumbersD = new String[]{"&#45;", "&#150;", "&#151;", "&#8213;", "&#8254;", "&#8211;", "&#8212;"};
-		this.decNumbersD = new int[]{45, 150, 151, 8213, 8254, 8211, 8212};
+		this.htmlNumbersSQ = new String[] { "&#39;", "&#145;", "&#146;", "&#8216;", "&#8217;" };
+		this.symbolsD = new String[] { "-", "–", "—", "–", "—", "–", "—" };
+		this.htmlNamesD = new String[] { "&none;", "&ndash;", "&mdash;", "–", "&oline;", "&none;", "&none;" };
+		this.htmlNumbersD = new String[] { "&#45;", "&#150;", "&#151;", "&#8213;", "&#8254;", "&#8211;", "&#8212;" };
+		this.decNumbersD = new int[] { 45, 150, 151, 8213, 8254, 8211, 8212 };
 		this.nSymbolsD = this.symbolsD.length;
-		this.articles = new String[]{"a", "an", "the"};
+		this.articles = new String[] { "a", "an", "the" };
 		this.nArticles = this.articles.length;
-		this.prepositions = new String[]{"about", "above", "across", "after", "against", "along", "among", "around",
+		this.prepositions = new String[] { "about", "above", "across", "after", "against", "along", "among", "around",
 				"at", "before", "behind", "below", "beneath", "beside", "between", "beyond", "but", "by", "despite",
 				"down", "during", "except", "for", "from", "in", "inside", "into", "like", "near", "of", "off", "on",
 				"onto", "out", "outside", "over", "past", "since", "through", "throughout", "till", "to", "toward",
-				"under", "underneath", "until", "up", "upon", "with", "within", "without"};
+				"under", "underneath", "until", "up", "upon", "with", "within", "without" };
 		this.nPrepositions = this.prepositions.length;
-		this.conjunctions = new String[]{"and", "&amp", "&", "but", "or", "nor", "for", "so", "yet", "not", "only",
-				"also", "either", "neither", "although", "because", "since", "unless", "until", "while"};
+		this.conjunctions = new String[] { "and", "&amp", "&", "but", "or", "nor", "for", "so", "yet", "not", "only",
+				"also", "either", "neither", "although", "because", "since", "unless", "until", "while" };
 		this.nConjunctions = this.conjunctions.length;
 	}
 
@@ -190,8 +178,6 @@ public class Strings {
 	public String toAllTitleCase() {
 		this.editedString = this.editedString.toLowerCase();
 		this.tokens();
-		boolean var1 = false;
-
 		for (int var2 = 0; var2 < this.nTokens; ++var2) {
 			int var3 = this.tokenInitialIndices[var2];
 			if (Chars.isQuotationMark(this.editedString.charAt(var3)) && var3 < this.nEdited) {
@@ -214,8 +200,6 @@ public class Strings {
 	public String toTitleCase() {
 		this.editedString = this.editedString.toLowerCase();
 		this.principalTokens();
-		boolean var1 = false;
-
 		for (int var2 = 0; var2 < this.nPrincipalTokens; ++var2) {
 			int var3 = this.principalTokenInitialIndices[var2];
 			if (Chars.isQuotationMark(this.editedString.charAt(var3)) && var3 < this.nEdited) {
@@ -239,7 +223,6 @@ public class Strings {
 		this.editedString = this.editedString.toLowerCase();
 		this.tokens();
 		int var1 = this.tokenInitialIndices[0];
-		boolean var2 = true;
 		if (Chars.isQuotationMark(this.editedString.charAt(var1)) && var1 < this.nEdited) {
 			++var1;
 		}
@@ -276,9 +259,6 @@ public class Strings {
 
 	public boolean[] whiteSpaces() {
 		this.whiteSpaces = new boolean[this.nEdited];
-		boolean var1 = true;
-		boolean var2 = true;
-
 		for (int var3 = 0; var3 < this.nEdited; ++var3) {
 			this.whiteSpaces[var3] = false;
 			if (Character.isWhitespace(this.editedString.charAt(var3))) {
@@ -296,7 +276,7 @@ public class Strings {
 
 	public String[] tokens() {
 		this.whiteSpaces();
-		ArrayList var1 = new ArrayList();
+		ArrayList<Integer> var1 = new ArrayList<>();
 		boolean var2 = true;
 		boolean var3 = false;
 
@@ -316,7 +296,7 @@ public class Strings {
 		}
 
 		var4 = var1.size();
-		if (var4%2==1) {
+		if (var4 % 2 == 1) {
 			var1.add(this.nEdited);
 			++var4;
 		}
@@ -377,7 +357,7 @@ public class Strings {
 			this.tokens();
 		}
 
-		ArrayList var1 = new ArrayList();
+		ArrayList<Integer> var1 = new ArrayList<>();
 		var1.add(0);
 
 		int var2;
@@ -441,7 +421,7 @@ public class Strings {
 			this.tokens();
 		}
 
-		ArrayList var1 = new ArrayList();
+		ArrayList<Integer> var1 = new ArrayList<>();
 
 		int var2;
 		for (var2 = 0; var2 < this.nTokens; ++var2) {
@@ -520,9 +500,6 @@ public class Strings {
 	public String removeAccents() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -588,9 +565,6 @@ public class Strings {
 	public String quotationMarksToHtmlNumbers() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		for (var5 = 0; var5 < this.nSymbolsQ; ++var5) {
 			for (var2 = true; var2; var2 = false) {
@@ -660,9 +634,6 @@ public class Strings {
 	public String accentsToHtmlNumbers() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		for (var5 = 0; var5 < this.nSymbolsA; ++var5) {
 			for (var2 = true; var2; var2 = false) {
@@ -710,9 +681,6 @@ public class Strings {
 	public String dashesToHtmlNumbers() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		for (var5 = 0; var5 < this.nSymbolsD; ++var5) {
 			for (var2 = true; var2; var2 = false) {
@@ -760,9 +728,6 @@ public class Strings {
 	public String accentsToDec() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -819,9 +784,6 @@ public class Strings {
 	public String dashesToDec() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -878,9 +840,6 @@ public class Strings {
 	public String quotationMarksToDec() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -989,9 +948,6 @@ public class Strings {
 	public String replaceDashesWithSpaces() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -1057,9 +1013,6 @@ public class Strings {
 	public String removeQuotationMarks() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -1125,9 +1078,6 @@ public class Strings {
 	public String replaceQuotationMarksBySpaces() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -1188,9 +1138,6 @@ public class Strings {
 	public String replaceQuotationMarksWithSpaces() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -1256,15 +1203,12 @@ public class Strings {
 	public String removeQuotationMarksPlus() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		char var6;
 		int var8;
 		int var9;
 		String var10;
-		label128 : for (var5 = 0; var5 < this.nSymbolsQ; ++var5) {
+		label128: for (var5 = 0; var5 < this.nSymbolsQ; ++var5) {
 			var2 = true;
 
 			while (true) {
@@ -1298,7 +1242,7 @@ public class Strings {
 			}
 		}
 
-		label102 : for (var5 = 0; var5 < this.nSymbolsQ; ++var5) {
+		label102: for (var5 = 0; var5 < this.nSymbolsQ; ++var5) {
 			var2 = true;
 
 			while (true) {
@@ -1361,9 +1305,6 @@ public class Strings {
 	public String removeDashes() {
 		String var1 = this.editedString;
 		boolean var2 = true;
-		boolean var3 = true;
-		boolean var4 = true;
-
 		int var5;
 		String var6;
 		int var7;
@@ -1449,8 +1390,7 @@ public class Strings {
 			}
 		}
 
-		String[] var8 = new String[]{"&ndash;", "&mdash;", "&oline;"};
-		boolean var9 = true;
+		String[] var8 = new String[] { "&ndash;", "&mdash;", "&oline;" };
 		var6 = -1;
 
 		int var7;
@@ -1479,7 +1419,6 @@ public class Strings {
 			var2 = var6;
 		}
 
-		var9 = true;
 		var6 = -1;
 
 		for (var7 = 0; var7 < this.nSymbolsD; ++var7) {
@@ -1514,7 +1453,7 @@ public class Strings {
 
 	public boolean nearlyEquals(String var1, double var2) {
 		boolean var4 = false;
-		String[] var5 = new String[]{this.editedString, var1};
+		String[] var5 = new String[] { this.editedString, var1 };
 		if (var5[0].equalsIgnoreCase(var5[1])) {
 			var4 = true;
 		} else {

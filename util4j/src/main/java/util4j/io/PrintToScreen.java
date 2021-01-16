@@ -7,8 +7,9 @@ import java.util.ArrayList;
 import util4j.complex.Complex;
 import util4j.math.Fmath;
 
+
 public class PrintToScreen {
-	
+
 	public static void print(ArrayList<?> var0) {
 		if (var0 == null) {
 			System.out.println("null array entered in PrintToScreen");
@@ -262,44 +263,12 @@ public class PrintToScreen {
 
 	}
 
-	public static void print(Double[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			ArrayMaths var2 = new ArrayMaths(var0);
-			var2 = var2.truncate(var1);
-			Double[] var3 = var2.array_as_Double();
-
-			for (int var4 = 0; var4 < var0.length; ++var4) {
-				System.out.print(var3[var4] + "   ");
-			}
-
-			System.out.println();
-		}
-
-	}
-
 	public static void println(Double[] var0) {
 		if (var0 == null) {
 			System.out.println("null array entered in PrintToScreen");
 		} else {
 			for (int var1 = 0; var1 < var0.length; ++var1) {
 				System.out.println(var0[var1] + "   ");
-			}
-		}
-
-	}
-
-	public static void println(Double[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			ArrayMaths var2 = new ArrayMaths(var0);
-			var2 = var2.truncate(var1);
-			Double[] var3 = var2.array_as_Double();
-
-			for (int var4 = 0; var4 < var0.length; ++var4) {
-				System.out.println(var3[var4] + "   ");
 			}
 		}
 
@@ -318,44 +287,12 @@ public class PrintToScreen {
 
 	}
 
-	public static void print(Float[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			ArrayMaths var2 = new ArrayMaths(var0);
-			var2 = var2.truncate(var1);
-			Float[] var3 = var2.array_as_Float();
-
-			for (int var4 = 0; var4 < var0.length; ++var4) {
-				System.out.print(var3[var4] + "   ");
-			}
-
-			System.out.println();
-		}
-
-	}
-
 	public static void println(Float[] var0) {
 		if (var0 == null) {
 			System.out.println("null array entered in PrintToScreen");
 		} else {
 			for (int var1 = 0; var1 < var0.length; ++var1) {
 				System.out.println(var0[var1] + "   ");
-			}
-		}
-
-	}
-
-	public static void println(Float[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			ArrayMaths var2 = new ArrayMaths(var0);
-			var2 = var2.truncate(var1);
-			Float[] var3 = var2.array_as_Float();
-
-			for (int var4 = 0; var4 < var0.length; ++var4) {
-				System.out.println(var3[var4] + "   ");
 			}
 		}
 
@@ -518,84 +455,12 @@ public class PrintToScreen {
 
 	}
 
-	public static void print(Complex[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				System.out.print(Complex.truncate(var0[var2], var1) + "   ");
-			}
-
-			System.out.println();
-		}
-
-	}
-
 	public static void println(Complex[] var0) {
 		if (var0 == null) {
 			System.out.println("null array entered in PrintToScreen");
 		} else {
 			for (int var1 = 0; var1 < var0.length; ++var1) {
 				System.out.println(var0[var1] + "   ");
-			}
-		}
-
-	}
-
-	public static void println(Complex[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				System.out.println(Complex.truncate(var0[var2], var1) + "   ");
-			}
-		}
-
-	}
-
-	public static void print(Phasor[] var0) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var1 = 0; var1 < var0.length; ++var1) {
-				System.out.print(var0[var1] + "   ");
-			}
-
-			System.out.println();
-		}
-
-	}
-
-	public static void print(Phasor[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				System.out.print(Phasor.truncate(var0[var2], var1) + "   ");
-			}
-
-			System.out.println();
-		}
-
-	}
-
-	public static void println(Phasor[] var0) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var1 = 0; var1 < var0.length; ++var1) {
-				System.out.println(var0[var1] + "   ");
-			}
-		}
-
-	}
-
-	public static void println(Phasor[] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				System.out.println(Phasor.truncate(var0[var2], var1) + "   ");
 			}
 		}
 
@@ -783,34 +648,12 @@ public class PrintToScreen {
 
 	}
 
-	public static void print(Double[][] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				print(var0[var2], var1);
-			}
-		}
-
-	}
-
 	public static void print(Float[][] var0) {
 		if (var0 == null) {
 			System.out.println("null array entered in PrintToScreen");
 		} else {
 			for (int var1 = 0; var1 < var0.length; ++var1) {
 				print(var0[var1]);
-			}
-		}
-
-	}
-
-	public static void print(Float[][] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				print(var0[var2], var1);
 			}
 		}
 
@@ -877,59 +720,6 @@ public class PrintToScreen {
 		} else {
 			for (int var1 = 0; var1 < var0.length; ++var1) {
 				print(var0[var1]);
-			}
-		}
-
-	}
-
-	public static void print(Complex[][] var0) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var1 = 0; var1 < var0.length; ++var1) {
-				Complex.print(var0[var1]);
-			}
-		}
-
-	}
-
-	public static void print(Complex[][] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var2 = 0; var2 < var0.length; ++var2) {
-				print(var0[var2], var1);
-			}
-		}
-
-	}
-
-	public static void print(Phasor[][] var0) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			for (int var1 = 0; var1 < var0.length; ++var1) {
-				Phasor.print(var0[var1]);
-			}
-		}
-
-	}
-
-	public static void print(Phasor[][] var0, int var1) {
-		if (var0 == null) {
-			System.out.println("null array entered in PrintToScreen");
-		} else {
-			Phasor[][] var2 = Conv.copy(var0);
-
-			int var3;
-			for (var3 = 0; var3 < var2.length; ++var3) {
-				for (int var4 = 0; var4 < var2[var3].length; ++var4) {
-					var2[var3][var4] = Phasor.truncate(var2[var3][var4], var1);
-				}
-			}
-
-			for (var3 = 0; var3 < var0.length; ++var3) {
-				Phasor.print(var2[var3]);
 			}
 		}
 

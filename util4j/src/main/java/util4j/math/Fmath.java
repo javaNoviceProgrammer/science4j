@@ -32,7 +32,7 @@ public class Fmath {
 	public static final double EULER_CONSTANT_GAMMA = 0.5772156649015627D;
 	public static final double PI = 3.141592653589793D;
 	public static final double E = 2.718281828459045D;
-	private static final Map<Object, Object> integers = new HashMap();
+	private static final Map<Object, Object> integers = new HashMap<Object, Object>();
 
 	public static double log10(double var0) {
 		return Math.log(var0) / Math.log(10.0D);
@@ -1903,7 +1903,7 @@ public class Fmath {
 	public static int[] indicesOf(double[] var0, double var1) {
 		int[] var3 = null;
 		int var4 = 0;
-		ArrayList var5 = new ArrayList();
+		ArrayList<Integer> var5 = new ArrayList<>();
 
 		int var6;
 		for (var6 = 0; var6 < var0.length; ++var6) {
@@ -1927,7 +1927,7 @@ public class Fmath {
 	public static int[] indicesOf(float[] var0, float var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -1951,7 +1951,7 @@ public class Fmath {
 	public static int[] indicesOf(long[] var0, long var1) {
 		int[] var3 = null;
 		int var4 = 0;
-		ArrayList var5 = new ArrayList();
+		ArrayList<Integer> var5 = new ArrayList<>();
 
 		int var6;
 		for (var6 = 0; var6 < var0.length; ++var6) {
@@ -1975,7 +1975,7 @@ public class Fmath {
 	public static int[] indicesOf(int[] var0, int var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -1999,7 +1999,7 @@ public class Fmath {
 	public static int[] indicesOf(short[] var0, short var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -2023,7 +2023,7 @@ public class Fmath {
 	public static int[] indicesOf(byte[] var0, byte var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -2047,7 +2047,7 @@ public class Fmath {
 	public static int[] indicesOf(char[] var0, char var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -2071,7 +2071,7 @@ public class Fmath {
 	public static int[] indicesOf(String[] var0, String var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -2095,7 +2095,7 @@ public class Fmath {
 	public static int[] indicesOf(Object[] var0, Object var1) {
 		int[] var2 = null;
 		int var3 = 0;
-		ArrayList var4 = new ArrayList();
+		ArrayList<Integer> var4 = new ArrayList<>();
 
 		int var5;
 		for (var5 = 0; var5 < var0.length; ++var5) {
@@ -2510,7 +2510,6 @@ public class Fmath {
 
 	public static int nearestLowerElementValue(int[] var0, int var1) {
 		int var2 = 0;
-		boolean var3 = false;
 		int var4 = 0;
 		int var5 = 0;
 		boolean var6 = true;
@@ -2548,7 +2547,6 @@ public class Fmath {
 
 	public static int nearestLowerElementIndex(int[] var0, int var1) {
 		int var2 = 0;
-		boolean var3 = false;
 		int var4 = 0;
 		int var5 = 0;
 		boolean var6 = true;
@@ -2588,7 +2586,6 @@ public class Fmath {
 
 	public static int nearestHigherElementValue(int[] var0, int var1) {
 		int var2 = 0;
-		boolean var3 = false;
 		int var4 = 0;
 		int var5 = 0;
 		boolean var6 = true;
@@ -2626,7 +2623,6 @@ public class Fmath {
 
 	public static int nearestHigherElementIndex(int[] var0, int var1) {
 		int var2 = 0;
-		boolean var3 = false;
 		int var4 = 0;
 		int var5 = 0;
 		boolean var6 = true;
@@ -3249,11 +3245,11 @@ public class Fmath {
 	}
 
 	public static Vector<Object> selectSortVector(double[] var0) {
-		ArrayList var1 = selectSortArrayList(var0);
-		Vector var2 = null;
+		ArrayList<?> var1 = selectSortArrayList(var0);
+		Vector<Object> var2 = null;
 		if (var1 != null) {
 			int var3 = var1.size();
-			var2 = new Vector(var3);
+			var2 = new Vector<Object>(var3);
 
 			for (int var4 = 0; var4 < var3; ++var4) {
 				var2.addElement(var1.get(var4));
@@ -3264,11 +3260,9 @@ public class Fmath {
 	}
 
 	public static ArrayList<Object> selectSortArrayList(double[] var0) {
-		boolean var1 = false;
 		int var2 = -1;
 		int var3 = var0.length;
 		double var4 = 0.0D;
-		boolean var6 = false;
 		double[] var7 = new double[var3];
 		int[] var8 = new int[var3];
 
@@ -3295,7 +3289,7 @@ public class Fmath {
 			var8[var2] = var11;
 		}
 
-		ArrayList var12 = new ArrayList();
+		ArrayList<Object> var12 = new ArrayList<>();
 		var12.add(var0);
 		var12.add(var7);
 		var12.add(var8);
@@ -3303,7 +3297,6 @@ public class Fmath {
 	}
 
 	public static double[] selectionSort(double[] var0) {
-		boolean var1 = false;
 		int var2 = -1;
 		int var3 = var0.length;
 		double var4 = 0.0D;
@@ -3333,7 +3326,6 @@ public class Fmath {
 	}
 
 	public static float[] selectionSort(float[] var0) {
-		boolean var1 = false;
 		int var2 = -1;
 		int var3 = var0.length;
 		float var4 = 0.0F;
@@ -3363,10 +3355,8 @@ public class Fmath {
 	}
 
 	public static int[] selectionSort(int[] var0) {
-		boolean var1 = false;
 		int var2 = -1;
 		int var3 = var0.length;
-		boolean var4 = false;
 		int[] var5 = new int[var3];
 
 		int var6;
@@ -3393,7 +3383,6 @@ public class Fmath {
 	}
 
 	public static long[] selectionSort(long[] var0) {
-		boolean var1 = false;
 		int var2 = -1;
 		int var3 = var0.length;
 		long var4 = 0L;
@@ -3423,11 +3412,9 @@ public class Fmath {
 	}
 
 	public static void selectionSort(double[] var0, double[] var1, int[] var2) {
-		boolean var3 = false;
 		int var4 = -1;
 		int var5 = var0.length;
 		double var6 = 0.0D;
-		boolean var8 = false;
 
 		int var9;
 		for (var9 = 0; var9 < var5; var2[var9] = var9++) {
@@ -3455,7 +3442,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(double[] var0, double[] var1, double[] var2, double[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3506,7 +3492,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(float[] var0, float[] var1, float[] var2, float[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3557,7 +3542,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(long[] var0, long[] var1, long[] var2, long[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3608,7 +3592,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(int[] var0, int[] var1, int[] var2, int[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3626,8 +3609,6 @@ public class Fmath {
 					throw new IllegalArgumentException("The fourth argument array, dd, (length = " + var9
 							+ ") should be at least as long as the second argument array, bb, (length = " + var7 + ")");
 				} else {
-					boolean var10 = false;
-					boolean var11 = false;
 
 					int var12;
 					for (var12 = 0; var12 < var6; ++var12) {
@@ -3659,7 +3640,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(double[] var0, long[] var1, double[] var2, long[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3710,7 +3690,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(long[] var0, double[] var1, long[] var2, double[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3761,7 +3740,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(double[] var0, int[] var1, double[] var2, int[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3780,7 +3758,6 @@ public class Fmath {
 							+ ") should be at least as long as the second argument array, bb, (length = " + var7 + ")");
 				} else {
 					double var10 = 0.0D;
-					boolean var12 = false;
 
 					int var13;
 					for (var13 = 0; var13 < var6; ++var13) {
@@ -3812,7 +3789,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(int[] var0, double[] var1, int[] var2, double[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3830,7 +3806,6 @@ public class Fmath {
 					throw new IllegalArgumentException("The fourth argument array, dd, (length = " + var9
 							+ ") should be at least as long as the second argument array, bb, (length = " + var7 + ")");
 				} else {
-					boolean var10 = false;
 					double var11 = 0.0D;
 
 					int var13;
@@ -3863,7 +3838,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(long[] var0, int[] var1, long[] var2, int[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3882,7 +3856,6 @@ public class Fmath {
 							+ ") should be at least as long as the second argument array, bb, (length = " + var7 + ")");
 				} else {
 					long var10 = 0L;
-					boolean var12 = false;
 
 					int var13;
 					for (var13 = 0; var13 < var6; ++var13) {
@@ -3914,7 +3887,6 @@ public class Fmath {
 	}
 
 	public static void selectionSort(int[] var0, long[] var1, int[] var2, long[] var3) {
-		boolean var4 = false;
 		int var5 = -1;
 		int var6 = var0.length;
 		int var7 = var1.length;
@@ -3932,7 +3904,6 @@ public class Fmath {
 					throw new IllegalArgumentException("The fourth argument array, dd, (length = " + var9
 							+ ") should be at least as long as the second argument array, bb, (length = " + var7 + ")");
 				} else {
-					boolean var10 = false;
 					long var11 = 0L;
 
 					int var13;
@@ -3965,7 +3936,6 @@ public class Fmath {
 	}
 
 	public static void selectSort(double[] var0, double[] var1, int[] var2) {
-		boolean var3 = false;
 		int var4 = -1;
 		int var5 = var0.length;
 		int var6 = var1.length;
@@ -3979,8 +3949,7 @@ public class Fmath {
 						+ ") should be at least as long as the first argument array, aa, (length = " + var5 + ")");
 			} else {
 				double var8 = 0.0D;
-				boolean var10 = false;
-
+				
 				int var11;
 				for (var11 = 0; var11 < var5; var2[var11] = var11++) {
 					var1[var11] = var0[var11];
