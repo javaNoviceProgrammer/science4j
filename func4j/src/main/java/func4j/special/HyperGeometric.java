@@ -1,6 +1,6 @@
 package func4j.special;
 
-import util4j.natives.NativeLibraryLoader;
+import func4j.natives.NativeLibraryLoader;
 
 /**
  * Hypergeometric functions are described in Abramowitz {@literal &} Stegun, Chapters 13 and 15. These functions are declared in the header file {@code gsl_sf_hyperg.h}.

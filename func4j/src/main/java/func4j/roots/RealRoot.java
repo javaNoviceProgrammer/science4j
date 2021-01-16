@@ -5,7 +5,7 @@ import java.util.List;
 
 import func4j.diff.NumericalDiff;
 import func4j.function.MathFunction;
-import util4j.natives.NativeLibraryLoader;
+import func4j.natives.NativeLibraryLoader;
 
 
 /**

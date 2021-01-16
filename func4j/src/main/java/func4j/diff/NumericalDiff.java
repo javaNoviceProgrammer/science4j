@@ -1,7 +1,7 @@
 package func4j.diff;
 
 import func4j.function.MathFunction;
-import util4j.natives.NativeLibraryLoader;
+import func4j.natives.NativeLibraryLoader;
 
 /**
  * The functions described in this chapter compute numerical derivatives by finite

@@ -11,9 +11,10 @@
 	<description>A simple interface for calling matplotlib.pyplot from python</description>
 
 	<properties>
-		<maven.compiler.source>15</maven.compiler.source>
-		<maven.compiler.target>15</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.home>/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home</java.home>
 	</properties>
 
 	<build>
@@ -39,6 +40,7 @@
 				<version>3.2.0</version>
 				<configuration>
 					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
+					<failOnError>false</failOnError>
 				</configuration>
 				<executions>
 					<execution>

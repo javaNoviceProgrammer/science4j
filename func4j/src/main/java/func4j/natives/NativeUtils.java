@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package util4j.natives;
+package func4j.natives;
 
 import java.io.*;
 import java.nio.file.FileSystemNotFoundException;
@@ -94,7 +94,7 @@ public class NativeUtils {
         }
 
         File temp = new File(temporaryDir, filename);
-        
+
         try (InputStream is = NativeUtils.class.getResourceAsStream(path)) {
             Files.copy(is, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
