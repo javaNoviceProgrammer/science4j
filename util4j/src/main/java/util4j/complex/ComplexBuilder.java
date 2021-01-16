@@ -420,4 +420,14 @@ public class ComplexBuilder implements Serializable, ComplexNumber {
 		return this ;
 	}
 
+	@Override
+	public ComplexNumber zero() {
+		return ComplexBuilder.valueOf(0.0) ;
+	}
+
+	@Override
+	public ComplexNumber one() {
+		return ComplexBuilder.valueOf(1.0) ;
+	}
+
 }

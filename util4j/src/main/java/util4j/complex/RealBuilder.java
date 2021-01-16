@@ -437,4 +437,14 @@ public class RealBuilder implements Serializable, RealNumber {
 		return this ;
 	}
 
+	@Override
+	public ComplexNumber zero() {
+		return RealBuilder.valueOf(0.0) ;
+	}
+
+	@Override
+	public ComplexNumber one() {
+		return RealBuilder.valueOf(1.0) ;
+	}
+
 }

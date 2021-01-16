@@ -536,4 +536,14 @@ public final class Complex implements Serializable, ComplexNumber {
 		return ofRect(-re, -im) ;
 	}
 
+	@Override
+	public ComplexNumber zero() {
+		return Complex.ofRect(0.0, 0.0) ;
+	}
+
+	@Override
+	public ComplexNumber one() {
+		return Complex.ofRect(1.0, 0.0) ;
+	}
+
 }

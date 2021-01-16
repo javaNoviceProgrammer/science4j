@@ -415,5 +415,15 @@ public final class Real implements Serializable, RealNumber {
 		return new Real(-x) ;
 	}
 
+	@Override
+	public ComplexNumber zero() {
+		return Real.of(0.0) ;
+	}
+
+	@Override
+	public ComplexNumber one() {
+		return Real.of(1.0) ;
+	}
+
 
 }
