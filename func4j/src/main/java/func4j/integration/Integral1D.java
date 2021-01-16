@@ -403,7 +403,7 @@ public class Integral1D {
 	public native double[] qfixedWeights(double a, double b, int numPoints, int type, double alpha, double beta) ;
 
 	// open PDF documentation
-	public void help() {
+	public static void help() {
 		try {
 			System.out.println("opening PDF document...");
 			File pdf = new File(ClassLoader.getSystemResource("gsl_integration.pdf").getFile()) ;
