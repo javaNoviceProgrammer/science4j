@@ -47,7 +47,7 @@ public class TestFunction {
 		}; // x*y^2
 
 //		MultiVariateMathFunction dfunc = func.deriv(0).deriv(1) ;
-		var dfunc = func.deriv(0).deriv(1) ;
+		MultiVariateMathFunction dfunc = func.deriv(0).deriv(1) ;
 		System.out.println(dfunc.value(1.0, -2.0));
 
 		MultiVariateMathFunction dfunc2 = func.deriv(1).deriv(0) ;
@@ -65,7 +65,7 @@ public class TestFunction {
 		MultiVariateMathFunction elem = func.get(0)  ;
 		System.out.println(elem.value(3.0, 2.0, 3.0)) ;
 		
-		var elem2 = func.get(0)  ;
+		MultiVariateMathFunction elem2 = func.get(0)  ;
 		System.out.println(elem2.value(3.0, 2.0, 3.0)) ;
 	}
 

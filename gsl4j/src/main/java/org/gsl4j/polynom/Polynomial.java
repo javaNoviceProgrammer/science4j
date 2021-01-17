@@ -239,9 +239,9 @@ public class Polynomial implements Serializable {
 			if (root.im() > 1e-5) {
 //				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
 //				p = p.multiply(x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()) ) ;
-				var p0 = x.multiply(x) ;
-				var p1 = x.multiply(2*root.re()) ;
-				var p2 = ComplexMath.abs2(root.re(), root.im()) ;
+				Polynomial p0 = x.multiply(x) ;
+				Polynomial p1 = x.multiply(2*root.re()) ;
+				double p2 = ComplexMath.abs2(root.re(), root.im()) ;
 				p = p.multiply(p0.subtract(p1).add(p2)) ;
 			}
 		}
@@ -259,9 +259,9 @@ public class Polynomial implements Serializable {
 		for (Complex root : roots) {
 			if (root.im() > 1e-5) {
 //				p = p * (x * x - 2 * root.re() * x + ComplexMath.abs2(root.re(), root.im()));
-				var p0 = x.multiply(x) ;
-				var p1 = x.multiply(2*root.re()) ;
-				var p2 = ComplexMath.abs2(root.re(), root.im()) ;
+				Polynomial p0 = x.multiply(x) ;
+				Polynomial p1 = x.multiply(2*root.re()) ;
+				double p2 = ComplexMath.abs2(root.re(), root.im()) ;
 				p = p.multiply(p0.subtract(p1).add(p2)) ;
 			}
 		}
