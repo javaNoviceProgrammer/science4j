@@ -1,11 +1,18 @@
 package func4j.roots;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 import func4j.diff.NumericalDiff;
 import func4j.function.MathFunction;
 import func4j.natives.NativeLibraryLoader;
+import func4j.special.SpecialFuncs;
 
 
 /**
@@ -467,6 +474,26 @@ public class RealRoot {
 			}
 		}
 		return roots ;
+	}
+	
+	
+	
+	
+	
+	// open PDF documentation
+	public static void help() {
+		try {
+	        String inputPdf = "doc/gsl_root_finding.pdf";
+	        Path tempOutput = Files.createTempFile("gsl_root_finding", ".pdf");
+	        tempOutput.toFile().deleteOnExit();
+	        try (InputStream is = SpecialFuncs.class.getClassLoader().getResourceAsStream(inputPdf)) {
+	            Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+	        }
+	        Desktop.getDesktop().open(tempOutput.toFile());
+			
+		} catch (IOException e) {
+			System.err.println("could not open PDF document...");
+		}
 	}
 
 

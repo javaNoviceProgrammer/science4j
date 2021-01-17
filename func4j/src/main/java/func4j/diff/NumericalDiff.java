@@ -1,7 +1,15 @@
 package func4j.diff;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
 import func4j.function.MathFunction;
 import func4j.natives.NativeLibraryLoader;
+import func4j.special.SpecialFuncs;
 
 /**
  * The functions described in this chapter compute numerical derivatives by finite
@@ -25,7 +33,7 @@ public class NumericalDiff {
 	}
 
 	private static native void initIDs() ;
-
+	
 	/**
 	 * This function computes the numerical derivative of the function f at the point x using an adaptive central difference algorithm with a step-size of h. The derivative is returned in result and an estimate of its absolute error is returned in abserr.
 	 * <br>The initial value of h is used to estimate an optimal step-size, based on the scaling of the truncation error and round-off error in the derivative calculation. The derivative is computed using a 5-point rule for equally spaced abscissae at x - h, x - h/2, x, x + h/2, x+h, with an error estimate taken from the difference between the 5-point rule and the corresponding 3-point rule x-h, x, x+h. Note that the value of the function at x does not contribute to the derivative calculation, so only 4-points are actually used.
@@ -115,5 +123,23 @@ public class NumericalDiff {
 	 * @return {@code double[]} : derivative and its error at point x
 	 */
 	public static native double[] backwardWithError(MathFunction func, double x, double h) ;
+	
+	
+	
+	// open PDF documentation
+	public static void help() {
+		try {
+	        String inputPdf = "doc/gsl_numerical_differentiation.pdf";
+	        Path tempOutput = Files.createTempFile("gsl_numerical_differentiation", ".pdf");
+	        tempOutput.toFile().deleteOnExit();
+	        try (InputStream is = SpecialFuncs.class.getClassLoader().getResourceAsStream(inputPdf)) {
+	            Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+	        }
+	        Desktop.getDesktop().open(tempOutput.toFile());
+			
+		} catch (IOException e) {
+			System.err.println("could not open PDF document...");
+		}
+	}
 
 }
