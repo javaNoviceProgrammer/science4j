@@ -410,7 +410,7 @@ public class Integral1D {
 	// open PDF documentation
 	public static void help() {
 		try {
-	        String inputPdf = "gsl_integration.pdf";
+	        String inputPdf = "doc/gsl_integration.pdf";
 	        Path tempOutput = Files.createTempFile("gsl_integration", ".pdf");
 	        tempOutput.toFile().deleteOnExit();
 	        try (InputStream is = SpecialFuncs.class.getClassLoader().getResourceAsStream(inputPdf)) {

@@ -16,7 +16,7 @@ public class SpecialFuncs {
 	// open PDF documentation
 	public static void help() {
 		try {
-	        String inputPdf = "gsl_special_functions.pdf";
+	        String inputPdf = "doc/gsl_special_functions.pdf";
 	        Path tempOutput = Files.createTempFile("gsl_special_functions", ".pdf");
 	        tempOutput.toFile().deleteOnExit();
 	        try (InputStream is = SpecialFuncs.class.getClassLoader().getResourceAsStream(inputPdf)) {
