@@ -1,5 +1,7 @@
 package func4j.integration;
 
+import func4j.function.MultiVariateMathFunction;
+
 /**
  *
  * @author Meisam
@@ -7,7 +9,7 @@ package func4j.integration;
  *
  */
 @FunctionalInterface
-public interface IntegralFunctionND {
+public interface IntegralFunctionND extends MultiVariateMathFunction {
 
 	/**
 	 *
