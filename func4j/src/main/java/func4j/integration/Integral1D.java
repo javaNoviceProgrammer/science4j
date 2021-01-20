@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+import func4j.integration.domain.IntegralDomain1D;
 import func4j.natives.NativeLibraryLoader;
 import func4j.special.SpecialFuncs;
 
@@ -42,6 +43,7 @@ public class Integral1D {
 	private static native void initFieldIDs() ;
 
 	IntegralFunction1D func ;
+	IntegralDomain1D domain ;
 	double absErr = 1e-10 ;
 	double relErr = 1e-10 ;
 	int maxNumberOfIntervals = 1000 ;
@@ -66,6 +68,7 @@ public class Integral1D {
 	 */
 	public Integral1D() {
 		this.func = null ;
+		this.domain = null ;
 	}
 
 	/**
@@ -87,10 +90,20 @@ public class Integral1D {
 	public Integral1D(IntegralFunction1D func) {
 		this.func = func ;
 	}
+	
+	public Integral1D(IntegralFunction1D func, IntegralDomain1D domain) {
+		this.func = func ;
+		this.domain = domain ;
+	}
 
 	public void setIntegralFunction(IntegralFunction1D func) {
 		this.func = func ;
 	}
+	
+	public void setIntegralDomain(IntegralDomain1D domain) {
+		this.domain = domain ;
+	}
+
 	
 	public void setMaxIterations(int iterations) {
 		this.maxNumberOfIntervals = iterations ;
@@ -109,6 +122,14 @@ public class Integral1D {
 	 * @return numerical integration
 	 */
 	public native double qng(double a, double b) ;
+	
+	public double qng(IntegralDomain1D domain) {
+		return qng(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qng() {
+		return qng(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	/**
 	 * Same as {@link #qng(double, double)}, but also returns the integration error and the number of evaluations.
@@ -121,6 +142,14 @@ public class Integral1D {
 	 * @return [numerical integration, abs error, nevals]
 	 */
 	public native double[] qngDetailed(double a, double b) ;
+	
+	public double[] qngDetailed(IntegralDomain1D domain) {
+		return qngDetailed(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double[] qngDetailed() {
+		return qngDetailed(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	// QAG adaptive integration over (a,b) interval
 	/**
@@ -135,6 +164,22 @@ public class Integral1D {
 	 */
 	public native double qagGauss15(double a, double b) ;
 	public native double[] qagGauss15withError(double a, double b) ;
+	
+	public double qagGauss15(IntegralDomain1D domain) {
+		return qagGauss15(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double[] qagGauss15withError(IntegralDomain1D domain) {
+		return qagGauss15withError(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qagGauss15() {
+		return qagGauss15(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double[] qagGauss15withError() {
+		return qagGauss15withError(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	/**
 	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
