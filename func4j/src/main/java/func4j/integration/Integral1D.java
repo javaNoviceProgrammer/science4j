@@ -100,7 +100,7 @@ public class Integral1D {
 		this.func = func ;
 	}
 	
-	public void setIntegralDomain(IntegralDomain1D domain) {
+	public void setDomain(IntegralDomain1D domain) {
 		this.domain = domain ;
 	}
 
@@ -193,6 +193,14 @@ public class Integral1D {
 	 */
 	public native double qagGauss21(double a, double b) ;
 	public native double[] qagGauss21withError(double a, double b) ;
+	
+	public double qagGauss21(IntegralDomain1D domain) {
+		return qagGauss21(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qagGauss21() {
+		return qagGauss21(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	/**
 	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
@@ -206,6 +214,14 @@ public class Integral1D {
 	 */
 	public native double qagGauss31(double a, double b) ;
 	public native double[] qagGauss31withError(double a, double b) ;
+	
+	public double qagGauss31(IntegralDomain1D domain) {
+		return qagGauss31(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qagGauss31() {
+		return qagGauss31(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	/**
 	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
@@ -219,6 +235,14 @@ public class Integral1D {
 	 */
 	public native double qagGauss41(double a, double b) ;
 	public native double[] qagGauss41withError(double a, double b) ;
+	
+	public double qagGauss41(IntegralDomain1D domain) {
+		return qagGauss41(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qagGauss41() {
+		return qagGauss41(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	/**
 	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
@@ -232,6 +256,14 @@ public class Integral1D {
 	 */
 	public native double qagGauss51(double a, double b) ;
 	public native double[] qagGauss51withError(double a, double b) ;
+	
+	public double qagGauss51(IntegralDomain1D domain) {
+		return qagGauss51(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qagGauss51() {
+		return qagGauss51(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	/**
 	 * This function applies an integration rule adaptively until an estimate of the integral of f over (a,b) is achieved within the desired absolute and relative error limits, epsabs and epsrel. The function returns the final approximation, result, and an estimate of the absolute error, abserr.
@@ -245,6 +277,14 @@ public class Integral1D {
 	 */
 	public native double qagGauss61(double a, double b) ;
 	public native double[] qagGauss61withError(double a, double b) ;
+	
+	public double qagGauss61(IntegralDomain1D domain) {
+		return qagGauss61(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double qagGauss61() {
+		return qagGauss61(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	// QAGS adaptive integration with singularities over (a,b) interval
 	/**
@@ -261,6 +301,10 @@ public class Integral1D {
 	 */
 	public native double qags(double a, double b) ;
 	public native double[] qagsWithError(double a, double b) ;
+	
+	public double qags(IntegralDomain1D domain) {
+		return qags(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	// QAGP adaptive integration with known singular points
 	/**
@@ -278,6 +322,14 @@ public class Integral1D {
 	 */
 	public native double qagp(double a, double b, double[] breakPoints) ;
 	public native double[] qagpWithError(double a, double b, double[] breakPoints) ;
+	
+	public double qagp(IntegralDomain1D domain, double[] breakPoints) {
+		return qagp(domain.var1Min(), domain.var1Max(), breakPoints) ;
+	}
+	
+	public double qagp(double[] breakPoints) {
+		return qagp(domain.var1Min(), domain.var1Max(), breakPoints) ;
+	}
 
 	// QAGI adaptive integration on infinite intervals
 	/**
@@ -306,6 +358,10 @@ public class Integral1D {
 	public native double qagiu(double a) ;
 	public native double[] qagiuWithError(double a) ;
 	
+	public double qagiu(IntegralDomain1D domain) {
+		return qagiu(domain.var1Min()) ;  // only use lower bound
+	}
+	
 	/**
 	 * Adaptive integration on semi-infinite intervals [-inf, a]
 	 * <br>
@@ -318,6 +374,10 @@ public class Integral1D {
 	 */
 	public native double qagil(double b) ;
 	public native double[] qagilWithError(double b) ;
+	
+	public double qagil(IntegralDomain1D domain) {
+		return qagil(domain.var1Max()) ; // only use upper bound
+	}
 
 	// QAWC adaptive integration for Cauchy principal values
 	/**
@@ -335,15 +395,24 @@ public class Integral1D {
 	 */
 	public native double qawc(double a, double b, double c) ;
 	public native double[] qawcWithError(double a, double b, double c) ;
+	
+	public double qawc(IntegralDomain1D domain, double c) {
+		return qawc(domain.var1Min(), domain.var1Max(), c) ;
+	}
 
 	// QAWS adaptive integration for singular functions
 	public static final int WEIGHT_FUNC_TYPE_I = 100 ;
 	public static final int WEIGHT_FUNC_TYPE_II = 101 ;
 	public static final int WEIGHT_FUNC_TYPE_III = 102 ;
 	public static final int WEIGHT_FUNC_TYPE_IV = 103 ;
+	
 	public native double qaws(double a, double b, int weightFuncType, double alpha, double beta) ;
 	public native double[] qawsWithError(double a, double b, int weightFuncType, double alpha, double beta) ;
 
+	public double qaws(IntegralDomain1D domain, int weightFuncType, double alpha, double beta) {
+		return qaws(domain.var1Min(), domain.var1Max(), weightFuncType, alpha, beta) ;
+	}
+	
 	// QAWO adaptive integration for oscillatory functions
 	public static final int GSL_INTEG_COSINE = 0 ;
 	public static final int GSL_INTEG_SINE = 1 ;
@@ -363,6 +432,10 @@ public class Integral1D {
 	 */
 	public native double qawo(double a, double b, int choice, double omega) ;
 	public native double[] qawoWithError(double a, double b, int choice, double omega) ;
+	
+	public double qawo(IntegralDomain1D domain, int choice, double omega) {
+		return qawo(domain.var1Min(), domain.var1Max(), choice, omega) ;
+	}
 
 	// QAWF adaptive integration for Fourier integrals
 	/**
@@ -392,6 +465,14 @@ public class Integral1D {
 	 */
 	public native double cquad(double a, double b) ;
 	public native double[] cquadWithError(double a, double b) ;
+	
+	public double cquad(IntegralDomain1D domain) {
+		return cquad(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double cquad() {
+		return cquad(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	// Romberg integration
 	/**
@@ -405,6 +486,14 @@ public class Integral1D {
 	 */
 	public native double romberg(double a, double b) ;
 	public native double[] rombergDetailed(double a, double b) ;
+	
+	public double romberg(IntegralDomain1D domain) {
+		return romberg(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double romberg() {
+		return romberg(domain.var1Min(), domain.var1Max()) ;
+	}
 
 	// Gauss-Legendre integration
 	/**
