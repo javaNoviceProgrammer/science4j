@@ -7,6 +7,7 @@ public class Integral2D {
 	
 	IntegralFunction2D func2d ;
 	IntegralDomain2D domain ;
+
 	
 	public Integral2D(IntegralFunction2D func, IntegralDomain2D domain) {
 		this.func2d = func ;

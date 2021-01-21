@@ -96,7 +96,7 @@ public class Integral1D {
 		this.domain = domain ;
 	}
 
-	public void setIntegralFunction(IntegralFunction1D func) {
+	public void setFunction(IntegralFunction1D func) {
 		this.func = func ;
 	}
 	
@@ -198,8 +198,16 @@ public class Integral1D {
 		return qagGauss21(domain.var1Min(), domain.var1Max()) ;
 	}
 	
+	public double[] qagGauss21withError(IntegralDomain1D domain) {
+		return qagGauss21withError(domain.var1Min(), domain.var1Max()) ;
+	}
+	
 	public double qagGauss21() {
 		return qagGauss21(domain.var1Min(), domain.var1Max()) ;
+	}
+	
+	public double[] qagGauss21withError() {
+		return qagGauss21withError(domain.var1Min(), domain.var1Max()) ;
 	}
 
 	/**
