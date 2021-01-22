@@ -16,7 +16,7 @@ import ode4j.natives.NativeLibraryLoader;
 public class OdeSystemSolver {
 
 	static {
-		NativeLibraryLoader.loadLibraries();
+		NativeLibraryLoader.loadLibraries("/libode4j_c");
 		initIDs() ;
 	}
 
