@@ -12,7 +12,7 @@ extern "C" {
  * Method:    ai
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_ai
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_ai__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -20,7 +20,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_ai
  * Method:    aiScaled
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiScaled
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiScaled__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -28,7 +28,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiScaled
  * Method:    aiDeriv
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDeriv
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDeriv__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -36,7 +36,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDeriv
  * Method:    aiDerivScaled
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDerivScaled
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDerivScaled__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -102,6 +102,38 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biZero
  */
 JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDerivZero
   (JNIEnv *, jclass, jint);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    ai
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_ai__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    aiScaled
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_aiScaled__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    aiDeriv
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_aiDeriv__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    aiDerivScaled
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_aiDerivScaled__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
 
 #ifdef __cplusplus
 }
