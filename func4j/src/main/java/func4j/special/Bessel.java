@@ -72,5 +72,29 @@ public class Bessel {
 	// Regular Cylindrical Bessel Functions --> from amos
 	public static native double[] Jn(int n, double re, double im) ;
 	public static native double[] Jv(double v, double re, double im) ;
+	
+	/**
+	 *  Purpose: Compute Bessel functions Jv(z) and its derivative with a complex argument and a large order <br>
+	 *  Input:   v --- Order of Jv(z) , z --- Complex argument <br>
+	 *  Output:  Jv(z), Jv'(z) <br>
+	 *  
+	 * @param v
+	 * @param re
+	 * @param im
+	 * @return
+	 */
+	public static native double[] JvAndJvDeriv(double v, double re, double im) ;
+	
+	/**
+	 *  Purpose: Compute Bessel functions Yv(z) and its derivative with a complex argument and a large order <br>
+	 *  Input:   v --- Order of Yv(z) , z --- Complex argument <br>
+	 *  Output:  Yv(z) , Yv'(z) <br>
+	 *  
+	 * @param v
+	 * @param re
+	 * @param im
+	 * @return
+	 */
+	public static native double[] YvAndYvDeriv(double v, double re, double im) ;
 
 }

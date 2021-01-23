@@ -303,6 +303,22 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jn__IDD
 JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jv__DDD
   (JNIEnv *, jclass, jdouble, jdouble, jdouble);
 
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    JvAndJvDeriv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_JvAndJvDeriv
+  (JNIEnv *, jclass, jdouble, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    YvAndYvDeriv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_YvAndYvDeriv
+  (JNIEnv *, jclass, jdouble, jdouble, jdouble);
+
 #ifdef __cplusplus
 }
 #endif

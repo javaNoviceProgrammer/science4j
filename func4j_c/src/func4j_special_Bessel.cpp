@@ -8,6 +8,7 @@
 
 #include "../headers/func4j_special_Bessel.h"
 #include "../amos/amos_functions.h"
+#include "../fortran/specfunc.h"
 #include <gsl/gsl_sf_bessel.h>
 
 
@@ -437,6 +438,44 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jv__DDD
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[2] = {result_re, result_im} ;
 	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    JvAndJvDeriv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_JvAndJvDeriv
+  (JNIEnv *jvm, jclass Bessel_class, jdouble v, jdouble re, jdouble im) {
+	jdouble Z[] = {re, im} ;
+	jdouble CBJV[2] ;
+	jdouble CDJV[2] ;
+	jdouble CBYV[2] ;
+	jdouble CDYV[2] ;
+	cjylv_(v, Z, CBJV, CDJV, CBYV, CDYV) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(4) ;
+	jdouble buf[4] = {CBJV[0], CBJV[1], CDJV[0], CDJV[1]} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 4, buf) ;
+	return jresult ;
+}
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    YvAndYvDeriv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_YvAndYvDeriv
+  (JNIEnv *jvm, jclass Bessel_class, jdouble v, jdouble re, jdouble im) {
+	jdouble Z[] = {re, im} ;
+	jdouble CBJV[2] ;
+	jdouble CDJV[2] ;
+	jdouble CBYV[2] ;
+	jdouble CDYV[2] ;
+	cjylv_(v, Z, CBJV, CDJV, CBYV, CDYV) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(4) ;
+	jdouble buf[4] = {CBYV[0], CBYV[1], CDYV[0], CDYV[1]} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 4, buf) ;
 	return jresult ;
 }
 
