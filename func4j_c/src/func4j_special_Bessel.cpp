@@ -7,7 +7,7 @@
 
 
 #include "../headers/func4j_special_Bessel.h"
-
+#include "../amos/amos_functions.h"
 #include <gsl/gsl_sf_bessel.h>
 
 
@@ -36,7 +36,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_J1
  * Method:    Jn
  * Signature: (ID)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Jn
+JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Jn__ID
   (JNIEnv *env, jclass besselClass, jint n, jdouble x) {
 	return gsl_sf_bessel_Jn(n, x) ;
 }
@@ -404,5 +404,40 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_zeroJv
 	return gsl_sf_bessel_zero_Jnu(nu, n) ;
 }
 
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    Jn
+ * Signature: (IDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jn__IDD
+  (JNIEnv *jvm, jclass Bessel_class, jint n, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint KODE {1}, N {1} ;
+	jint NZ, IERR ;
+	jdouble order = n ;
+	zbesj_(re, im, order, KODE, N, result_re, result_im, NZ, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    Jv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jv__DDD
+  (JNIEnv *jvm, jclass Bessel_class, jdouble v, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint KODE {1}, N {1} ;
+	jint NZ, IERR ;
+	zbesj_(re, im, v, KODE, N, result_re, result_im, NZ, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
 
 

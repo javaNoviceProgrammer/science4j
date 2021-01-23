@@ -11,4 +11,5 @@ extern "C" void zairy_(double& ZR, double& ZI, int& ID, int& KODE, double& AIR, 
 // Airy function (zbiry.f)
 extern "C" void zbiry_(double& ZR, double& ZI, int& ID, int& KODE, double& BIR, double& BII, int& IERR) ;
 
-
+// BesselJ function (zbesj.f)
+extern "C" void zbesj_(double& ZR, double& ZI, double& FNU, int& KODE, int& N, double& CYR, double& CYI, int& NZ, int& IERR) ;
