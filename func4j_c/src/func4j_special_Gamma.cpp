@@ -26,7 +26,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_gamma
  * Method:    lngamma
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_lngamma
+JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_lngamma__D
   (JNIEnv *env, jclass Gamma, jdouble x) {
 	return gsl_sf_lngamma(x) ;
 }
@@ -258,5 +258,13 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_betaIncomplete
   (JNIEnv *env, jclass Gamma, jdouble a, jdouble b, jdouble x) {
 	return gsl_sf_beta_inc(a, b, x) ;
 }
+
+/*
+ * Class:     func4j_special_Gamma
+ * Method:    lngamma
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Gamma_lngamma__DD
+  (JNIEnv *jvm, jclass Gamma_class, jdouble re, jdouble im) ;
 
 

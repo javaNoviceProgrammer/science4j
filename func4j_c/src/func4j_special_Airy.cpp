@@ -76,7 +76,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDerivZero
  * Method:    bi
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_bi
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_bi__D
   (JNIEnv *env, jclass airyClass, jdouble x) {
 	return gsl_sf_airy_Bi(x, GSL_PREC_DOUBLE) ;
 }
@@ -86,7 +86,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_bi
  * Method:    biScaled
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biScaled
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biScaled__D
   (JNIEnv *env, jclass airyClass, jdouble x) {
 	return gsl_sf_airy_Bi_scaled(x, GSL_PREC_DOUBLE) ;
 }
@@ -96,7 +96,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biScaled
  * Method:    biDeriv
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDeriv
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDeriv__D
   (JNIEnv *env, jclass airyClass, jdouble x) {
 	return gsl_sf_airy_Bi_deriv(x, GSL_PREC_DOUBLE) ;
 }
@@ -106,7 +106,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDeriv
  * Method:    biDerivScaled
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDerivScaled
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDerivScaled__D
   (JNIEnv *env, jclass airyClass, jdouble x) {
 	return gsl_sf_airy_Bi_deriv_scaled(x, GSL_PREC_DOUBLE) ;
 }
@@ -198,6 +198,79 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_aiDerivScaled__DD
 	jint KODE {2} ;
 	jint NZ, IERR ;
 	zairy_(re, im, ID, KODE, result_re, result_im, NZ, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
+
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    bi
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_bi__DD
+  (JNIEnv *jvm, jclass Airy_class, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint ID {0} ;
+	jint KODE {1} ;
+	jint IERR ;
+	zbiry_(re, im, ID, KODE, result_re, result_im, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    biScaled
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_biScaled__DD
+  (JNIEnv *jvm, jclass Airy_class, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint ID {0} ;
+	jint KODE {2} ;
+	jint IERR ;
+	zbiry_(re, im, ID, KODE, result_re, result_im, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    biDeriv
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_biDeriv__DD
+  (JNIEnv *jvm, jclass Airy_class, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint ID {1} ;
+	jint KODE {1} ;
+	jint IERR ;
+	zbiry_(re, im, ID, KODE, result_re, result_im, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    biDerivScaled
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_biDerivScaled__DD
+  (JNIEnv *jvm, jclass Airy_class, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint ID {1} ;
+	jint KODE {2} ;
+	jint IERR ;
+	zbiry_(re, im, ID, KODE, result_re, result_im, IERR) ;
 	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
 	jdouble buf[2] = {result_re, result_im} ;
 	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;

@@ -60,7 +60,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_aiDerivZero
  * Method:    bi
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_bi
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_bi__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -68,7 +68,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_bi
  * Method:    biScaled
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biScaled
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biScaled__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -76,7 +76,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biScaled
  * Method:    biDeriv
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDeriv
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDeriv__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -84,7 +84,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDeriv
  * Method:    biDerivScaled
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDerivScaled
+JNIEXPORT jdouble JNICALL Java_func4j_special_Airy_biDerivScaled__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -133,6 +133,38 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_aiDeriv__DD
  * Signature: (DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_aiDerivScaled__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    bi
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_bi__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    biScaled
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_biScaled__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    biDeriv
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_biDeriv__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Airy
+ * Method:    biDerivScaled
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Airy_biDerivScaled__DD
   (JNIEnv *, jclass, jdouble, jdouble);
 
 #ifdef __cplusplus
