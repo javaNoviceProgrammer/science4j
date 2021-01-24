@@ -16,3 +16,12 @@ extern "C" void zbesj_(double& ZR, double& ZI, double& FNU, int& KODE, int& N, d
 
 // BesselY function (zbesy.f)
 extern "C" void zbesy_(double& ZR, double& ZI, double& FNU, int& KODE, int& N, double& CYR, double& CYI, int& NZ, double* CWRKR, double* CWRKI, int& IERR) ;
+
+// BesselI function (zbesi.f)
+extern "C" void zbesi_(double& ZR, double& ZI, double& FNU, int& KODE, int& N, double& CYR, double& CYI, int& NZ, int& IERR) ;
+
+// BesselK function (zbesk.f)
+extern "C" void zbesk_(double& ZR, double& ZI, double& FNU, int& KODE, int& N, double& CYR, double& CYI, int& NZ, int& IERR) ;
+
+// BesselH function (zbesk.f)
+extern "C" void zbesh_(double& ZR, double& ZI, double& FNU, int& KODE, int& M, int& N, double& CYR, double& CYI, int& NZ, int& IERR) ;

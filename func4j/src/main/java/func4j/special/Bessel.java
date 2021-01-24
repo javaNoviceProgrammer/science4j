@@ -69,12 +69,6 @@ public class Bessel {
 	public static native double zeroJ1(int n) ;
 	public static native double zeroJv(double v, int n) ;
 	
-	// Regular Cylindrical Bessel Functions --> from amos
-	public static native double[] Jn(int n, double re, double im) ;
-	public static native double[] Jv(double v, double re, double im) ;
-	
-	public static native double[] Yn(int n, double re, double im) ;
-	public static native double[] Yv(double v, double re, double im) ;
 	
 	/**
 	 *  Purpose: Compute Bessel functions Jv(z) and its derivative with a complex argument and a large order <br>
@@ -101,5 +95,36 @@ public class Bessel {
 	 */
 	// --> from scipy
 	public static native double[] YvAndYvDeriv(double v, double re, double im) ;
+	
+	// Regular Cylindrical Bessel Functions --> from amos
+	public static native double[] Jn(int n, double re, double im) ;
+	public static native double[] Jv(double v, double re, double im) ;
+	
+	public static native double[] Yn(int n, double re, double im) ;
+	public static native double[] Yv(double v, double re, double im) ;
+	
+	public static native double[] In(int n, double re, double im) ;
+	public static native double[] Iv(double v, double re, double im) ;
+	
+	public static native double[] Kn(int n, double re, double im) ;
+	public static native double[] Kv(double v, double re, double im) ;
+	
+	public static native double[] Hn(int kind, int n, double re, double im) ;
+	public static native double[] Hv(int kind, double v, double re, double im) ;
+	
+	public static native double[] H1n(int n, double re, double im) ;
+	public static native double[] H1v(double v, double re, double im) ;
+	
+	public static native double[] H2n(int n, double re, double im) ;
+	public static native double[] H2v(double v, double re, double im) ;
+	
+	public static native double[] Hn(int kind, int n, double x) ;
+	public static native double[] Hv(int kind, double v, double x) ;
+	
+	public static native double[] H1n(int n, double x) ;
+	public static native double[] H1v(double v, double x) ;
+	
+	public static native double[] H2n(int n, double x) ;
+	public static native double[] H2v(double v, double x) ;
 
 }
