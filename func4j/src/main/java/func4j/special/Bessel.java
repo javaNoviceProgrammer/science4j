@@ -73,6 +73,9 @@ public class Bessel {
 	public static native double[] Jn(int n, double re, double im) ;
 	public static native double[] Jv(double v, double re, double im) ;
 	
+	public static native double[] Yn(int n, double re, double im) ;
+	public static native double[] Yv(double v, double re, double im) ;
+	
 	/**
 	 *  Purpose: Compute Bessel functions Jv(z) and its derivative with a complex argument and a large order <br>
 	 *  Input:   v --- Order of Jv(z) , z --- Complex argument <br>
@@ -83,6 +86,7 @@ public class Bessel {
 	 * @param im
 	 * @return
 	 */
+	// --> from scipy
 	public static native double[] JvAndJvDeriv(double v, double re, double im) ;
 	
 	/**
@@ -95,6 +99,7 @@ public class Bessel {
 	 * @param im
 	 * @return
 	 */
+	// --> from scipy
 	public static native double[] YvAndYvDeriv(double v, double re, double im) ;
 
 }

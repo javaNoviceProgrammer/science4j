@@ -60,7 +60,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Y1
  * Method:    Yn
  * Signature: (ID)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yn
+JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yn__ID
   (JNIEnv *, jclass, jint, jdouble);
 
 /*
@@ -220,7 +220,7 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jv__D_3D
  * Method:    Yv
  * Signature: (DD)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yv
+JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yv__DD
   (JNIEnv *, jclass, jdouble, jdouble);
 
 /*
@@ -301,6 +301,22 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jn__IDD
  * Signature: (DDD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jv__DDD
+  (JNIEnv *, jclass, jdouble, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    Yn
+ * Signature: (IDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Yn__IDD
+  (JNIEnv *, jclass, jint, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    Yv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Yv__DDD
   (JNIEnv *, jclass, jdouble, jdouble, jdouble);
 
 /*

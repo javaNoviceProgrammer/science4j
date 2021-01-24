@@ -83,7 +83,7 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Y1
  * Method:    Yn
  * Signature: (ID)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yn
+JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yn__ID
   (JNIEnv *env, jclass besselClass, jint n, jdouble x) {
 	return gsl_sf_bessel_Yn(n, x) ;
 }
@@ -320,7 +320,7 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Jv__D_3D
  * Method:    Yv
  * Signature: (DD)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yv
+JNIEXPORT jdouble JNICALL Java_func4j_special_Bessel_Yv__DD
   (JNIEnv *env, jclass besselClass, jdouble nu, jdouble x) {
 	return gsl_sf_bessel_Ynu(nu, x) ;
 }
@@ -479,4 +479,29 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_YvAndYvDeriv
 	return jresult ;
 }
 
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    Yn
+ * Signature: (IDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Yn__IDD
+  (JNIEnv *jvm, jclass Bessel_class, jint n, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint KODE {1}, N {1} ;
+	jint NZ, IERR ;
+	jdouble order = n ;
+	jdouble CWRKR[N], CWRKI[N] ;
+	zbesy_(re, im, order, KODE, N, result_re, result_im, NZ, CWRKR, CWRKI, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
 
+/*
+ * Class:     func4j_special_Bessel
+ * Method:    Yv
+ * Signature: (DDD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Yv__DDD
+  (JNIEnv *jvm, jclass Bessel_class, jdouble v, jdouble re, jdouble im);
