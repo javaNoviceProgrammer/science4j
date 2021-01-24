@@ -504,4 +504,14 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Yn__IDD
  * Signature: (DDD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Bessel_Yv__DDD
-  (JNIEnv *jvm, jclass Bessel_class, jdouble v, jdouble re, jdouble im);
+  (JNIEnv *jvm, jclass Bessel_class, jdouble v, jdouble re, jdouble im) {
+	jdouble result_re, result_im ;
+	jint KODE {1}, N {1} ;
+	jint NZ, IERR ;
+	jdouble CWRKR[N], CWRKI[N] ;
+	zbesy_(re, im, v, KODE, N, result_re, result_im, NZ, CWRKR, CWRKI, IERR) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jdouble buf[2] = {result_re, result_im} ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, buf) ;
+	return jresult ;
+}
