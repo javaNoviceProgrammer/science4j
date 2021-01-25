@@ -7,7 +7,7 @@
 
 
 #include "../headers/func4j_special_Gamma.h"
-
+#include "../scipy/specfunc.h"
 #include <gsl/gsl_sf_gamma.h>
 
 
@@ -16,7 +16,7 @@
  * Method:    gamma
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_gamma
+JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_gamma__D
   (JNIEnv *env, jclass Gamma, jdouble x) {
 	return gsl_sf_gamma(x) ;
 }
@@ -265,6 +265,26 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_betaIncomplete
  * Signature: (DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Gamma_lngamma__DD
-  (JNIEnv *jvm, jclass Gamma_class, jdouble re, jdouble im) ;
+  (JNIEnv *jvm, jclass Gamma_class, jdouble re, jdouble im) {
+	jint KF {0} ;
+	jdouble buf[2] ;
+	cgama_(re, im, KF, buf[0], buf[1]) ;
+	jdoubleArray result = jvm -> NewDoubleArray(2) ;
+	jvm -> SetDoubleArrayRegion(result, 0, 2, buf) ;
+	return result ;
+}
 
-
+/*
+ * Class:     func4j_special_Gamma
+ * Method:    gamma
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Gamma_gamma__DD
+  (JNIEnv *jvm, jclass Gamma_class, jdouble re, jdouble im) {
+	jint KF {1} ;
+	jdouble buf[2] ;
+	cgama_(re, im, KF, buf[0], buf[1]) ;
+	jdoubleArray result = jvm -> NewDoubleArray(2) ;
+	jvm -> SetDoubleArrayRegion(result, 0, 2, buf) ;
+	return result ;
+}

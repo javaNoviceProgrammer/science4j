@@ -48,7 +48,8 @@ public class Gamma {
 	// Incomplete Beta Function --> form GSL
 	public static native double betaIncomplete(double a, double b, double x) ;
 	
-	// for amos
+	// for scipy.special
 	public static native double[] lngamma(double re, double im) ;
+	public static native double[] gamma(double re, double im) ;
 
 }

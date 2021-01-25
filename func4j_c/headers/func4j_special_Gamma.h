@@ -12,7 +12,7 @@ extern "C" {
  * Method:    gamma
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_gamma
+JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_gamma__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -197,6 +197,14 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_Gamma_betaIncomplete
  * Signature: (DD)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Gamma_lngamma__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_Gamma
+ * Method:    gamma
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Gamma_gamma__DD
   (JNIEnv *, jclass, jdouble, jdouble);
 
 #ifdef __cplusplus
