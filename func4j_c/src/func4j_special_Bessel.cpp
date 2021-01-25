@@ -8,7 +8,7 @@
 
 #include "../headers/func4j_special_Bessel.h"
 #include "../amos/amos_functions.h"
-#include "../fortran/specfunc.h"
+#include "../scipy/specfunc.h"
 #include <gsl/gsl_sf_bessel.h>
 
 

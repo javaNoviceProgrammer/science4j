@@ -12,7 +12,7 @@ extern "C" {
  * Method:    erf
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_ErrorFunction_erf
+JNIEXPORT jdouble JNICALL Java_func4j_special_ErrorFunction_erf__D
   (JNIEnv *, jclass, jdouble);
 
 /*
@@ -54,6 +54,30 @@ JNIEXPORT jdouble JNICALL Java_func4j_special_ErrorFunction_erfQ
  */
 JNIEXPORT jdouble JNICALL Java_func4j_special_ErrorFunction_hazard
   (JNIEnv *, jclass, jdouble);
+
+/*
+ * Class:     func4j_special_ErrorFunction
+ * Method:    erf
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_ErrorFunction_erf__DD
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_ErrorFunction
+ * Method:    erfDeriv
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_ErrorFunction_erfDeriv
+  (JNIEnv *, jclass, jdouble, jdouble);
+
+/*
+ * Class:     func4j_special_ErrorFunction
+ * Method:    erfAndDeriv
+ * Signature: (DD)[D
+ */
+JNIEXPORT jdoubleArray JNICALL Java_func4j_special_ErrorFunction_erfAndDeriv
+  (JNIEnv *, jclass, jdouble, jdouble);
 
 #ifdef __cplusplus
 }
