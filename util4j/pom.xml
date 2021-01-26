@@ -65,4 +65,26 @@
 
 	</build>
   
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.jfree</groupId>
+  			<artifactId>jfreechart</artifactId>
+  			<version>1.5.2</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>net.sourceforge.jmatio</groupId>
+  			<artifactId>jmatio</artifactId>
+  			<version>1.0</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>com.orsonpdf</groupId>
+  			<artifactId>orsonpdf</artifactId>
+  			<version>1.9</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.jfree</groupId>
+  			<artifactId>jfreesvg</artifactId>
+  			<version>3.4</version>
+  		</dependency>
+  	</dependencies>
 </project>
