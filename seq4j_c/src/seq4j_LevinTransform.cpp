@@ -42,7 +42,6 @@ JNIEXPORT jdoubleArray JNICALL Java_seq4j_LevinTransform_sumLevinUaccel
 	jint len = jvm -> GetArrayLength(jarray) ;
 	jdouble *array = (jdouble*) jvm -> GetPrimitiveArrayCritical(jarray, nullptr) ;
 	gsl_sum_levin_u_workspace* w = gsl_sum_levin_u_alloc(len) ;
-//	jdouble sum_accel, abserr ;
 	jdouble result[2] ; // {sum_accel, abserr} ;
 	gsl_sum_levin_u_accel(array, len, w, result, result+1) ;
 	gsl_sum_levin_u_free(w) ;
@@ -54,26 +53,43 @@ JNIEXPORT jdoubleArray JNICALL Java_seq4j_LevinTransform_sumLevinUaccel
 
 
 
+///*
+// * Class:     seq4j_LevinTransform
+// * Method:    sumLevinUtruncAccel
+// * Signature: ([D)[D
+// */
+//JNIEXPORT jdoubleArray JNICALL Java_seq4j_LevinTransform_sumLevinUtruncAccel
+//  (JNIEnv *env, jclass LevinTransform, jdoubleArray jarray) {
+//	jint len = env -> GetArrayLength(jarray) ;
+//	jdouble *array = new jdouble[len] ;
+//	env -> GetDoubleArrayRegion(jarray, 0, len, array) ;
+//	gsl_sum_levin_utrunc_workspace *w = gsl_sum_levin_utrunc_alloc(len) ;
+//	jdouble sum_accel, abserr_trunc ;
+//	gsl_sum_levin_utrunc_accel(array, len, w, &sum_accel, &abserr_trunc) ;
+//	delete[] array ;
+//	jdouble buffer[2] = {sum_accel, abserr_trunc} ;
+//	jdoubleArray jresult = env -> NewDoubleArray(2) ;
+//	env -> SetDoubleArrayRegion(jresult, 0, 2, buffer) ;
+//	gsl_sum_levin_utrunc_free(w) ;
+//	return jresult ;
+//}
+
 /*
  * Class:     seq4j_LevinTransform
  * Method:    sumLevinUtruncAccel
  * Signature: ([D)[D
  */
 JNIEXPORT jdoubleArray JNICALL Java_seq4j_LevinTransform_sumLevinUtruncAccel
-  (JNIEnv *env, jclass LevinTransform, jdoubleArray jarray) {
-	jint len = env -> GetArrayLength(jarray) ;
-	jdouble *array = new jdouble[len] ;
-	env -> GetDoubleArrayRegion(jarray, 0, len, array) ;
-	gsl_sum_levin_utrunc_workspace *w = gsl_sum_levin_utrunc_alloc(len) ;
-	jdouble sum_accel, abserr_trunc ;
-	gsl_sum_levin_utrunc_accel(array, len, w, &sum_accel, &abserr_trunc) ;
-	delete[] array ;
-	jdouble buffer[2] = {sum_accel, abserr_trunc} ;
-	jdoubleArray jresult = env -> NewDoubleArray(2) ;
-	env -> SetDoubleArrayRegion(jresult, 0, 2, buffer) ;
+  (JNIEnv *jvm, jclass LevinTransform, jdoubleArray jarray) {
+	jint len = jvm -> GetArrayLength(jarray) ;
+	jdouble *array = (jdouble*) jvm -> GetPrimitiveArrayCritical(jarray, nullptr) ;
+	gsl_sum_levin_utrunc_workspace* w = gsl_sum_levin_utrunc_alloc(len) ;
+	jdouble result[2] ; // {sum_accel, abserr} ;
+	gsl_sum_levin_utrunc_accel(array, len, w, result, result+1) ;
 	gsl_sum_levin_utrunc_free(w) ;
+	jvm -> ReleasePrimitiveArrayCritical(jarray, array, 0) ;
+	jdoubleArray jresult = jvm -> NewDoubleArray(2) ;
+	jvm -> SetDoubleArrayRegion(jresult, 0, 2, result) ;
 	return jresult ;
 }
-
-
 

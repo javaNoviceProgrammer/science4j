@@ -29,6 +29,24 @@ public interface Sequence extends Serializable {
 	 * @return returns a {@code double} value
 	 */
 	double evaluate(int k) ; // defining the function of the sequence k --> a_k
+	
+	default double[] evaluate(int[] k) {
+		int len = k.length ;
+		double[] result = new double[len] ;
+		for(int i=0; i<len; i++) {
+			result[i] = evaluate(i) ;
+		}
+		return result ;
+	}
+	
+	default double[] evaluate(int start, int end) {
+		int len = end-start+1 ;
+		double[] result = new double[len] ;
+		for(int i=0; i<len; i++) {
+			result[i] = evaluate(start+i) ;
+		}
+		return result ;
+	}
 
 	/**
 	 * forward difference of a sequence
