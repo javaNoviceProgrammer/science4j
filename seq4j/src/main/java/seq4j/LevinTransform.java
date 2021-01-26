@@ -1,5 +1,12 @@
 package seq4j;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
 import seq4j.natives.NativeLibraryLoader;
 
 /**
@@ -73,4 +80,20 @@ public class LevinTransform {
 	public static native double[] sumLevinUtruncAccel(double[] array) ;
 
 
+	// open PDF documentation
+	public static void help() {
+		try {
+	        String inputPdf = "doc/levin_transform.pdf";
+	        Path tempOutput = Files.createTempFile("levin_transform", ".pdf");
+	        tempOutput.toFile().deleteOnExit();
+	        try (InputStream is = LevinTransform.class.getClassLoader().getResourceAsStream(inputPdf)) {
+	            Files.copy(is, tempOutput, StandardCopyOption.REPLACE_EXISTING);
+	        }
+	        Desktop.getDesktop().open(tempOutput.toFile());
+			
+		} catch (IOException e) {
+			System.err.println("could not open PDF document...");
+		}
+	}
+	
 }
