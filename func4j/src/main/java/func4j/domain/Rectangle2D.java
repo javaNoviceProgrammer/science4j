@@ -1,4 +1,4 @@
-package func4j.integration.domain;
+package func4j.domain;
 
 public class Rectangle2D implements IntegralDomain2D {
 	

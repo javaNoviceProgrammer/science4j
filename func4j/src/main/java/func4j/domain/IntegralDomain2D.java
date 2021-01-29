@@ -1,4 +1,4 @@
-package func4j.integration.domain;
+package func4j.domain;
 
 public interface IntegralDomain2D extends IntegralDomain1D {
 	

@@ -1,7 +1,7 @@
 package func4j.integration;
 
+import func4j.domain.IntegralDomain2D;
 import func4j.function.MultiVariateMathFunction;
-import func4j.integration.domain.IntegralDomain2D;
 
 public class Integral2D {
 	
