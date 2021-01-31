@@ -476,10 +476,7 @@ public class RealRoot {
 		return roots ;
 	}
 	
-	
-	
-	
-	
+
 	// open PDF documentation
 	public static void help() {
 		try {
