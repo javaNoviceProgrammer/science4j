@@ -12,8 +12,8 @@ public interface VectorMathFunction {
 
 	/**
 	 *
-	 * @param x
-	 * @return
+	 * @param x = [x1, x2, x3, ..., xN]
+	 * @return f(x) = [f1, f2, ...., fN]
 	 */
 	double[] value(double... x) ;
 
