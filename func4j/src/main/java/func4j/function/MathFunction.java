@@ -63,30 +63,80 @@ public interface MathFunction {
 		return x -> value(func.value(x)) ;
 	}
 	
+	/*-------- derivatives ----------*/
+	
 	default MathFunction deriv() {
 		return x -> NumericalDiff.central(this, x, 0.1) ;
+	}
+	
+	default MathFunction deriv(double dx) {
+		return x -> NumericalDiff.central(this, x, dx) ;
 	}
 
 	default MathFunction deriv2() {
 		return x -> NumericalDiff.central(this.deriv(), x, 0.1) ;
 	}
-
-
-
+	
+	default MathFunction deriv2(double dx) {
+		return x -> NumericalDiff.central(this.deriv(), x, dx) ;
+	}
+	
+	default MathFunction deriv3() {
+		return x -> NumericalDiff.central(this.deriv2(), x, 0.1) ;
+	}
+	
+	default MathFunction deriv3(double dx) {
+		return x -> NumericalDiff.central(this.deriv2(), x, dx) ;
+	}
+	
+	default MathFunction deriv4() {
+		return x -> NumericalDiff.central(this.deriv2(), x, 0.1) ;
+	}
+	
+	default MathFunction deriv4(double dx) {
+		return x -> NumericalDiff.central(this.deriv2(), x, dx) ;
+	}
+	
+	default MathFunction deriv(int n) {
+		MathFunction y = x -> value(x) ;
+		for(int i=0; i<n; i++) {
+			y = y.deriv() ;
+		}
+		return y ;
+	}
+	
+	default MathFunction deriv(int n, double dx) {
+		MathFunction y = x -> value(x) ;
+		for(int i=0; i<n; i++) {
+			y = y.deriv(dx) ;
+		}
+		return y ;
+	}
 
 	/*-------- addition ----------*/
 
 	default MathFunction add(double v) { // this + v
 		return x -> value(x) + v ;
 	}
+	
 	default MathFunction addRev(double v) { // v + this
 		return x -> v + value(x) ;
 	}
+	
 	default MathFunction add(MathFunction v) { // this + v
 		return x -> value(x) + v.value(x) ;
 	}
+	
 	default MathFunction addRev(MathFunction v) { // v + this
 		return x -> v.value(x) + value(x) ;
+	}
+	
+	default MathFunction plus(double v) { // this + v
+		return x -> value(x) + v ;
+	}
+	
+	default MathFunction plus(MathFunction v) { // this + v
+		return x -> value(x) + v.value(x) ;
 	}
 
 	/*-------- subtraction ----------*/
@@ -94,14 +144,25 @@ public interface MathFunction {
 	default MathFunction subtract(double v) { // this - v
 		return x -> value(x) - v ;
 	}
+	
 	default MathFunction subtractRev(double v) { // v - this
 		return x -> v - value(x) ;
 	}
+	
 	default MathFunction subtract(MathFunction v) { // this - v
 		return x -> value(x) - v.value(x) ;
 	}
+	
 	default MathFunction subtractRev(MathFunction v) { // v - this
 		return x -> v.value(x) - value(x) ;
+	}
+	
+	default MathFunction minus(double v) { // this - v
+		return x -> value(x) - v ;
+	}
+	
+	default MathFunction minus(MathFunction v) { // this - v
+		return x -> value(x) - v.value(x) ;
 	}
 
 	/*-------- Multiplication ----------*/
@@ -109,14 +170,25 @@ public interface MathFunction {
 	default MathFunction multiply(double v) { // this * v
 		return x -> value(x) * v ;
 	}
+	
 	default MathFunction multiplyRev(double v) { // v * this
 		return x -> v * value(x) ;
 	}
+	
 	default MathFunction multiply(MathFunction v) { // this * v
 		return x -> value(x) * v.value(x) ;
 	}
+	
 	default MathFunction multiplyRev(MathFunction v) { // v * this
 		return x -> v.value(x) * value(x) ;
+	}
+	
+	default MathFunction times(double v) { // this * v
+		return x -> value(x) * v ;
+	}
+	
+	default MathFunction times(MathFunction v) { // this * v
+		return x -> value(x) * v.value(x) ;
 	}
 
 	/*-------- Division ----------*/
@@ -124,14 +196,25 @@ public interface MathFunction {
 	default MathFunction divide(double v) { // this / v
 		return x -> value(x) / v ;
 	}
+	
 	default MathFunction divideRev(double v) { // v / this
 		return x -> v / value(x) ;
 	}
+	
 	default MathFunction divide(MathFunction v) { // this / v
 		return x -> value(x) / v.value(x) ;
 	}
+	
 	default MathFunction divideRev(MathFunction v) { // v / this
 		return x -> v.value(x) / value(x) ;
+	}
+	
+	default MathFunction over(double v) { // this / v
+		return x -> value(x) / v ;
+	}
+	
+	default MathFunction over(MathFunction v) { // this / v
+		return x -> value(x) / v.value(x) ;
 	}
 
 	/*-------- negation ----------*/
