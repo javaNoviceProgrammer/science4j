@@ -1,6 +1,3 @@
-/*
- * Created by JFormDesigner on Tue Feb 02 06:13:43 EST 2021
- */
 
 package pom4j;
 
@@ -14,7 +11,7 @@ import javax.swing.border.*;
 import net.miginfocom.swing.*;
 
 /**
- * @author Meisam Bahadori
+ * @author Meisam
  */
 public class JarInstaller extends JFrame {
 
@@ -32,9 +29,16 @@ public class JarInstaller extends JFrame {
 		String artifactID = textField3.getText() ;
 		String version = textField4.getText() ;
 		// maven command
-		String command = String.format("mvn install:install-file -Dfile=%s -DgroupId=%s "
-				+ "-DartifactId=%s -Dversion=%s -Dpackaging=jar",
-				jarfile, groupID, artifactID, version) ;
+		String command ;
+		if(checkBox1.isSelected()) {
+			command = String.format("mvn org.apache.maven.plugins:maven-install-plugin:2.5.2:install-file "
+					+ "-Dfile=%s", jarfile) ;
+		}
+		else {
+			command = String.format("mvn install:install-file -Dfile=%s -DgroupId=%s "
+					+ "-DartifactId=%s -Dversion=%s -Dpackaging=jar",
+					jarfile, groupID, artifactID, version) ;
+		}
 		// execuate maven
 		try {
 			Process p = Runtime.getRuntime().exec(command) ;
@@ -42,6 +46,7 @@ public class JarInstaller extends JFrame {
 			while(out.hasNextLine()) {
 				textArea1.append(out.nextLine()+"\n");
 			}
+			textArea1.append("\n\n");
 		} catch (IOException e1) {
 			e1.printStackTrace();
 			StackTraceElement[] trace = e1.getStackTrace() ;
@@ -56,6 +61,10 @@ public class JarInstaller extends JFrame {
 		System.exit(0);
 	}
 
+	private void clearMenuItemPressed(ActionEvent e) {
+		textArea1.setText("");
+	}
+
 	private void initComponents() {
 		// JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
 		// Generated using JFormDesigner non-commercial license
@@ -64,12 +73,14 @@ public class JarInstaller extends JFrame {
 		menuItem1 = new JMenuItem();
 		menuItem2 = new JMenuItem();
 		menu2 = new JMenu();
+		menuItem3 = new JMenuItem();
 		menu3 = new JMenu();
 		label1 = new JLabel();
 		textField1 = new JTextField();
 		button1 = new JButton();
 		label2 = new JLabel();
 		textField2 = new JTextField();
+		checkBox1 = new JCheckBox();
 		label3 = new JLabel();
 		textField3 = new JTextField();
 		label4 = new JLabel();
@@ -118,6 +129,11 @@ public class JarInstaller extends JFrame {
 			//======== menu2 ========
 			{
 				menu2.setText("Log");
+
+				//---- menuItem3 ----
+				menuItem3.setText("Clear");
+				menuItem3.addActionListener(e -> clearMenuItemPressed(e));
+				menu2.add(menuItem3);
 			}
 			menuBar1.add(menu2);
 
@@ -142,6 +158,10 @@ public class JarInstaller extends JFrame {
 		label2.setText("Group ID: ");
 		contentPane.add(label2, "cell 0 1");
 		contentPane.add(textField2, "cell 1 1");
+
+		//---- checkBox1 ----
+		checkBox1.setText("has POM");
+		contentPane.add(checkBox1, "cell 2 1");
 
 		//---- label3 ----
 		label3.setText("Artifact ID: ");
@@ -180,12 +200,14 @@ public class JarInstaller extends JFrame {
 	private JMenuItem menuItem1;
 	private JMenuItem menuItem2;
 	private JMenu menu2;
+	private JMenuItem menuItem3;
 	private JMenu menu3;
 	private JLabel label1;
 	private JTextField textField1;
 	private JButton button1;
 	private JLabel label2;
 	private JTextField textField2;
+	private JCheckBox checkBox1;
 	private JLabel label3;
 	private JTextField textField3;
 	private JLabel label4;
