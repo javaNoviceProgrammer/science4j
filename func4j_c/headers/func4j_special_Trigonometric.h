@@ -105,10 +105,10 @@ JNIEXPORT jdoubleArray JNICALL Java_func4j_special_Trigonometric_rectToPolar
 
 /*
  * Class:     func4j_special_Trigonometric
- * Method:    angleRectrictSymm
+ * Method:    angleRestrictSymm
  * Signature: (D)D
  */
-JNIEXPORT jdouble JNICALL Java_func4j_special_Trigonometric_angleRectrictSymm
+JNIEXPORT jdouble JNICALL Java_func4j_special_Trigonometric_angleRestrictSymm
   (JNIEnv *, jclass, jdouble);
 
 /*
