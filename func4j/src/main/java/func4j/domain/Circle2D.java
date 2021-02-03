@@ -10,6 +10,14 @@ public class Circle2D implements IntegralDomain2D {
 		this.ycenter = ycenter ;
 		this.radius = radius ;
 	}
+	
+	public double circumference() {
+		return 2.0 * Math.PI * radius ;
+	}
+	
+	public double area() {
+		return Math.PI * radius*radius ;
+	}
 
 	@Override
 	public double var1Min() {
