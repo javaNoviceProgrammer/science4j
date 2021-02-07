@@ -3,8 +3,10 @@ package func4j.function;
 import java.util.Arrays;
 
 import func4j.diff.NumericalDiff;
+import util4j.chart.MatlabChart;
 import util4j.complex.Real;
 import util4j.complex.RealNumber;
+import util4j.math.MathUtils;
 
 
 /**
@@ -223,5 +225,15 @@ public interface MathFunction {
 		return x -> -value(x) ;
 	}
 
+	/*-------- plot ----------*/
+	
+	default void plot(double xmin, double xmax, int numPoints, boolean systemExit) {
+		MatlabChart fig = new MatlabChart() ;
+		double[] x = MathUtils.linspace(xmin, xmax, numPoints) ;
+		double[] y = value(x) ;
+		fig.plot(x, y);
+		fig.renderPlot();
+		fig.show(systemExit);
+	}
 
 }
