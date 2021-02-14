@@ -12,8 +12,13 @@ public class Tuple3<U1, U2, U3> {
 		this.third = third ;
 	}
 
-	public static <U1, U2, U3> Tuple3<U1, U2, U3> makeTuple3(U1 first, U2 second, U3 third) {
+	public static <U1, U2, U3> Tuple3<U1, U2, U3> makeTuple(U1 first, U2 second, U3 third) {
 		return new Tuple3<U1, U2, U3>(first, second, third) ;
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + first + "," + second + "," + third + ")";
 	}
 	
 }
