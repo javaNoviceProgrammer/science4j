@@ -41,17 +41,4 @@ public class Tuples {
 		return new Tuple6<U1, U2, U3, U4, U5, U6>(first, second, third, forth, fifth, sixth) ;
 	}
 	
-	
-	public static void main(String[] args) {
-		String name = "Hi" ;
-		int id = 23 ;
-		Pair<Integer, String> pair1 = Tuples.makeTuple(id, name) ;
-		System.out.println(pair1);
-		System.out.println(pair1.first);
-		System.out.println(pair1.second);
-		System.out.println(pair1.second.codePointAt(0));
-		System.out.printf("0x%x\n", pair1.second.codePointAt(0)) ;
-		System.out.println(pair1);
-	}
-	
 }
