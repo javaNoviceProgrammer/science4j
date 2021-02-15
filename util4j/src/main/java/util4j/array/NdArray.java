@@ -6,8 +6,8 @@ import util4j.math.AlgebraicEntity;
 
 public class NdArray implements AlgebraicEntity<NdArray> {
 	
-	double[] data ; // can be any dimension, layout: dim1 --> dim2 --> dim3 --> ...
-	Shape shape ;
+	public final double[] data ; // can be any dimensions, layout: dim1 --> dim2 --> dim3 --> ...
+	public final Shape shape ;
 	
 	public NdArray(double[] data, Shape shape) {
 		this.shape = shape ;
@@ -33,6 +33,12 @@ public class NdArray implements AlgebraicEntity<NdArray> {
 	
 	public void set(double value, int... index) {
 		data[shape.index(index)] = value ;
+	}
+	
+	public void setAll(double value) {
+		for(int i=0; i<data.length; i++) {
+			data[i] = value ;
+		}
 	}
 	
 	public Shape shape() {
@@ -97,7 +103,40 @@ public class NdArray implements AlgebraicEntity<NdArray> {
 		public String toString() {
 			return "Shape" + Arrays.toString(size) ;
 		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + dim;
+			result = prime * result + length;
+			result = prime * result + Arrays.hashCode(size);
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Shape other = (Shape) obj;
+			if (dim != other.dim)
+				return false;
+			if (length != other.length)
+				return false;
+			if (!Arrays.equals(size, other.size))
+				return false;
+			return true;
+		}
 		
+	}
+	
+	private void checkShape(NdArray a) {
+		if(!shape.equals(a.shape)) 
+			throw new IllegalArgumentException("Shapes don't match") ;
 	}
 	
 	/*---------- identity -----------------*/
@@ -109,78 +148,115 @@ public class NdArray implements AlgebraicEntity<NdArray> {
 
 	@Override
 	public NdArray one() {
-		return null;
+		NdArray array = new NdArray(shape) ;
+		array.setAll(1.0);
+		return array ;
 	}
 	
 	/*---------- addition -----------------*/
 
 	@Override
 	public NdArray add(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] + v ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray add(NdArray v) {
-		// TODO Auto-generated method stub
-		return null;
+		checkShape(v) ;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] + v.data[i] ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray subtract(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] - v ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray subtract(NdArray v) {
-		// TODO Auto-generated method stub
-		return null;
+		checkShape(v) ;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] - v.data[i] ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray multiply(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] * v ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray multiply(NdArray v) {
-		// TODO Auto-generated method stub
-		return null;
+		checkShape(v) ;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] * v.data[i] ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray divide(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] / v ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray divideRev(double v) {
-		// TODO Auto-generated method stub
-		return null;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = v / data[i] ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray divide(NdArray v) {
-		// TODO Auto-generated method stub
-		return null;
+		checkShape(v) ;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = data[i] / v.data[i] ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray divideRev(NdArray v) {
-		// TODO Auto-generated method stub
-		return null;
+		checkShape(v) ;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = v.data[i] / data[i] ;
+		}
+		return array ;
 	}
 
 	@Override
 	public NdArray negate() {
-		// TODO Auto-generated method stub
-		return null;
+		NdArray array = new NdArray(shape) ;
+		for(int i=0; i<array.data.length; i++) {
+			array.data[i] = -data[i] ;
+		}
+		return array ;
 	}
 	
-	
-	
-
 }
