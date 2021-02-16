@@ -1,7 +1,6 @@
 package func4j.special;
 
 import func4j.natives.NativeLibraryLoader;
-import util4j.array.NdArray;
 
 public class Trigonometric {
 
@@ -97,32 +96,5 @@ public class Trigonometric {
 	 * @return
 	 */
 	public static native double[] cosErr(double x, double dx) ;
-
-	
-	///////////// Array Math //////////////////
-	
-	public static NdArray sin(NdArray a) {
-		NdArray array = new NdArray(a.shape) ;
-		for(int i=0; i<array.data.length; i++) {
-			array.data[i] = Math.sin(a.data[i]) ;
-		}
-		return array ;
-	}
-	
-	public static NdArray cos(NdArray a) {
-		NdArray array = new NdArray(a.shape) ;
-		for(int i=0; i<array.data.length; i++) {
-			array.data[i] = Math.cos(a.data[i]) ;
-		}
-		return array ;
-	}
-	
-	public static NdArray tan(NdArray a) {
-		NdArray array = new NdArray(a.shape) ;
-		for(int i=0; i<array.data.length; i++) {
-			array.data[i] = Math.tan(a.data[i]) ;
-		}
-		return array ;
-	}
 
 }
