@@ -1,8 +1,8 @@
 package ode4j;
 
 import func4j.diff.NumericalDiff;
-//import ode4j.natives.NativeLibraryLoader;
-import util4j.natives.NativeLibraryLoader;
+import ode4j.natives.NativeLibraryLoader;
+//import util4j.natives.NativeLibraryLoader;
 
 /**
  * This class describes functions for solving ordinary differential equation (ODE) initial value problems. The library provides a variety of low-level methods, such as Runge-Kutta and Bulirsch-Stoer routines, and higher-level components for adaptive step-size control. The components can be combined by the user to achieve the desired solution, with full access to any intermediate steps. A driver object can be used as a high level wrapper for easy use of low level functions.
@@ -42,7 +42,7 @@ public class OdeSolver {
 	}
 
 	public OdeSolver(DerivFunction func, double x0, double y0) {
-		this.func = func ;
+		this.func = func ;	
 		this.df_dx = (x,y) -> NumericalDiff.central(t -> func.value(t, y), x, 1e-3) ;
 		this.df_dy = (x,y) -> NumericalDiff.central(t -> func.value(x, t), y, 1e-3) ;
 		this.x0 = x0 ;
