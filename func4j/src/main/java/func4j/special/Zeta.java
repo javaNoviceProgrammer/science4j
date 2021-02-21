@@ -1,6 +1,8 @@
 package func4j.special;
 
-import func4j.natives.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
+
+//import func4j.natives.NativeLibraryLoader;
 
 /**
  * The Riemann zeta function is defined in Abramowitz {@literal &} Stegun, Section 23.2.

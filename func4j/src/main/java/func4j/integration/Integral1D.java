@@ -8,8 +8,9 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
 import func4j.domain.IntegralDomain1D;
-import func4j.natives.NativeLibraryLoader;
+//import func4j.natives.NativeLibraryLoader;
 import func4j.special.SpecialFuncs;
+import util4j.natives.NativeLibraryLoader;
 
 
 /**

@@ -1,6 +1,8 @@
 package func4j.integration;
 
-import func4j.natives.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
+
+//import func4j.natives.NativeLibraryLoader;
 
 public class IntegralND {
 

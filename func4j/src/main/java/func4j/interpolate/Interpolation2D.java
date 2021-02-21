@@ -1,6 +1,8 @@
 package func4j.interpolate;
 
-import func4j.natives.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
+
+//import func4j.natives.NativeLibraryLoader;
 
 /**
  * Given a set of x coordinates x_1,...,x_m and a set of y coordinates y_1,...,y_n, each in increasing order, plus a set of function values z_{ij} for each grid point (x_i,y_j), the routines described in this section compute a continuous interpolation function z(x,y) such that z(x_i,y_j) = z_{ij}.

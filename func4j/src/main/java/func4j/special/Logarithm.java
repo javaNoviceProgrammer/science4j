@@ -1,6 +1,8 @@
 package func4j.special;
 
-import func4j.natives.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
+
+//import func4j.natives.NativeLibraryLoader;
 
 /**
  * Information on the properties of the Logarithm function
