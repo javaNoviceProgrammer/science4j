@@ -65,6 +65,11 @@ public class MathConstants {
 	public static final double PI_4 = 0.78539816339744830961566084582     /* pi/4 */ ;
 
 	/**
+	 * The square of pi, \pi^2
+	 */
+	public static final double PI2 = 9.86960440108936      /* pi */ ;
+	
+	/**
 	 * The square root of pi, \sqrt\pi
 	 */
 	public static final double SQRTPI = 1.77245385090551602729816748334      /* sqrt(pi) */ ;

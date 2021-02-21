@@ -1,6 +1,8 @@
 package seq4j;
 
-import seq4j.natives.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
+
+//import seq4j.natives.NativeLibraryLoader;
 
 public class QuasiRandomSequence {
 

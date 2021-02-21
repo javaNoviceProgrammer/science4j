@@ -7,7 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-import seq4j.natives.NativeLibraryLoader;
+import util4j.natives.NativeLibraryLoader;
+
+//import seq4j.natives.NativeLibraryLoader;
 
 /**
  * The functions described in this class accelerate the convergence of a
