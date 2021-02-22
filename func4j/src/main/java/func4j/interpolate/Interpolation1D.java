@@ -1,8 +1,6 @@
 package func4j.interpolate;
 
-import util4j.natives.NativeLibraryLoader;
-
-//import func4j.natives.NativeLibraryLoader;
+import func4j.natives.NativeLibraryLoader;
 
 /**
  * This chapter describes functions for performing interpolation. The library provides a variety of interpolation methods, including Cubic, Akima, and Steffen splines. The interpolation types are interchangeable, allowing different methods to be used without recompiling. Interpolations can be defined for both normal and periodic boundary conditions. Additional functions are available for computing derivatives and integrals of interpolating functions. Routines are provided for interpolating both one and two dimensional datasets.

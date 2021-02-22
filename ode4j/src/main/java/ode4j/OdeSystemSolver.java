@@ -1,8 +1,7 @@
 package ode4j;
 
 import func4j.diff.NumericalDiff;
-import util4j.natives.NativeLibraryLoader;
-//import ode4j.natives.NativeLibraryLoader;
+import ode4j.natives.NativeLibraryLoader;
 
 
 /**

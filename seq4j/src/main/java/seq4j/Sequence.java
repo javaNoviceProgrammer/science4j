@@ -11,8 +11,6 @@ import java.util.Arrays;
 
 import util4j.math.MathUtils;
 
-
-
 /**
  * Interface representing a real-valued sequence
  *

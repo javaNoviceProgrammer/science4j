@@ -1,8 +1,7 @@
 package func4j.optimize;
 
 import func4j.function.MathFunction;
-import util4j.natives.NativeLibraryLoader;
-//import func4j.natives.NativeLibraryLoader;
+import func4j.natives.NativeLibraryLoader;
 
 /**
  * The minimization algorithms described in this class require an initial interval which is guaranteed to contain a minimum—if a and b are the endpoints of the interval and x is an estimate of the minimum then f(a) {@literal >} f(x) {@literal <} f(b). This ensures that the function has at least one minimum somewhere in the interval. If a valid initial interval is used then these algorithm cannot fail, provided the function is well-behaved.
