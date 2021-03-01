@@ -287,27 +287,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_rkf45___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rkf45, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -375,27 +354,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_rkck___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rkck, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -463,27 +421,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_rk8pd___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rk8pd, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -551,27 +488,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_rk1imp___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rk1imp, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -639,27 +555,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_rk2imp___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rk2imp, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -727,27 +622,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_rk4imp___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_rk4imp, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -815,27 +689,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_bsimp___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_bsimp, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -903,27 +756,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_msadams___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_msadams, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 /*
@@ -991,27 +823,6 @@ JNIEXPORT jdoubleArray JNICALL Java_ode4j_OdeSolver_msbdf___3D
 	env -> ReleasePrimitiveArrayCritical(jx, x, 0) ;
 
 	return jresult ;
-
-//	jint len = env -> GetArrayLength(jx) ;
-//	jdouble *x = new jdouble[len] ;
-//	env -> GetDoubleArrayRegion(jx, 0, len, x) ;
-//	jdouble result[len] ;
-//	jdouble y[1] = {y0} ;
-//	ode_params p = {env, OdeSolver} ;
-//	gsl_odeiv2_system sys = {f_ode, jac, 1, &p};
-//	gsl_odeiv2_driver * d = gsl_odeiv2_driver_alloc_y_new(&sys, gsl_odeiv2_step_msbdf, min_step_size, epsabs, epsrel);
-//	for(int i=0; i<len; i++) {
-//		jint status = gsl_odeiv2_driver_apply(d, &x0, x[i], y) ;
-//		if(status != GSL_SUCCESS) {
-//			printf ("error, return value=%d\n", status);
-//		}
-//		result[i] = y[0] ;
-//	}
-//	gsl_odeiv2_driver_free(d);
-//	delete[] x ;
-//	jdoubleArray jresult = env -> NewDoubleArray(len) ;
-//	env -> SetDoubleArrayRegion(jresult, 0, len, result) ;
-//	return jresult ;
 }
 
 
