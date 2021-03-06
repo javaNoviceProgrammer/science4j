@@ -1,7 +1,7 @@
 package polynom4j;
 
-import org.gsl4j.complex.Complex;
-import static org.gsl4j.complex.Complex.* ;
+import util4j.complex.Complex;
+import static util4j.complex.Complex.* ;
 
 
 public class ComplexPolynomial {

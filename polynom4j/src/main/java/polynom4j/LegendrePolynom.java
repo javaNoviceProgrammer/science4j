@@ -1,6 +1,6 @@
 package polynom4j;
 
-import org.gsl4j.util.NativeLibraryLoader;
+import polynom4j.natives.NativeLibraryLoader;
 
 public class LegendrePolynom {
 

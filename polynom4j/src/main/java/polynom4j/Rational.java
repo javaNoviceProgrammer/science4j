@@ -1,8 +1,8 @@
 package polynom4j;
 
 import java.util.ArrayList;
-import org.gsl4j.complex.Complex;
-import static org.gsl4j.polynom.Polynomial.* ;
+import util4j.complex.Complex;
+import static polynom4j.Polynomial.* ;
 
 
 public class Rational {
