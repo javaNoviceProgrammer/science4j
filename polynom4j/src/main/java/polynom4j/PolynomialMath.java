@@ -5,7 +5,7 @@ import polynom4j.natives.NativeLibraryLoader;
 public class PolynomialMath {
 
 	static {
-		NativeLibraryLoader.loadLibraries();
+		NativeLibraryLoader.loadLibraries("/polynom4j_c");
 	}
 
 	private PolynomialMath() {

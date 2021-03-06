@@ -14,7 +14,7 @@ import static polynom4j.PolynomialMath.* ;
 public class Polynomial implements Serializable {
 
 	static {
-		NativeLibraryLoader.loadLibraries();
+		NativeLibraryLoader.loadLibraries("/polynom4j_c");
 	}
 
 	private static final long serialVersionUID = 1L;

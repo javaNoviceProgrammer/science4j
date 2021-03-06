@@ -5,7 +5,7 @@ import polynom4j.natives.NativeLibraryLoader;
 public class HermitePolynom {
 
 	static {
-		NativeLibraryLoader.loadLibraries();
+		NativeLibraryLoader.loadLibraries("/polynom4j_c");
 	}
 
 	private HermitePolynom() {
