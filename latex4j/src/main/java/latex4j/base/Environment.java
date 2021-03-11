@@ -58,9 +58,5 @@ public class Environment {
 		environment.append("\\end{"+name+"}\n") ;
 		return environment.toString() ;
 	}
-	
-	
-	
-	
 
 }
