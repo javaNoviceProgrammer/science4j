@@ -12,6 +12,8 @@ public class Command {
 	List<String> args ;
 	StringBuilder command ;
 	
+	protected boolean addEmptyOptions = true ;
+	
 	public Command(String name, String... args) {
 		this.name = name ;
 		this.options = new ArrayList<>() ;
@@ -43,8 +45,10 @@ public class Command {
 			// add options
 			if(name.equals("begin") || name.equals("end"))
 				command.append("") ;
-			else if(options.isEmpty())
-				command.append("[]") ;
+			else if(options.isEmpty()) {
+				if(addEmptyOptions)
+					command.append("[]") ;
+			}
 			else {
 				// [a, b, c] --> "[a, b, c]"
 				command.append("[" + String.join(", ", options) + "]") ;

@@ -17,6 +17,8 @@ public class Environment {
 	String name ;
 	List<String> options ;
 	List<String> text ;
+	Label label ; // \label{label_name}
+	Ref ref ; // \ref{label_name}
 	
 	public Environment(String name) {
 		this.name = name ;
@@ -36,12 +38,28 @@ public class Environment {
 		return this ;
 	}
 	
+	// low-level API
+	public Environment addText(Object text) {
+		this.text.add(text.toString()) ;
+		return this ;
+	}
+	
+	public Ref setLabel(String label) {
+		this.label = new Label(label) ;
+		this.ref = new Ref(label) ;
+		return this.ref ;
+	}
+	
 	@Override
 	public String toString() {
 		// initialize environment
 		StringBuilder environment = new StringBuilder() ;
 		// step 1: begin
 		environment.append("\\begin{"+name+"}") ;
+		// check for label
+		if(label!=null) {
+			environment.append("\n"+label+"\n") ;
+		}
 		// step 2: add options
 		if(!options.isEmpty()) {
 			environment.append("[" + String.join(", ", options) + "]") ;
