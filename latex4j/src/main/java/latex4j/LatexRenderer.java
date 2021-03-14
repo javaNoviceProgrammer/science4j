@@ -49,7 +49,6 @@ public class LatexRenderer {
 	}
 	
 	private void setLatexHome() {
-		// latex home
 		if(System.getenv("LATEX_HOME") != null) { // LATEX_HOME environment variable
 			this.latexHome = System.getenv("LATEX_HOME") ;
 		}
@@ -57,7 +56,7 @@ public class LatexRenderer {
 			this.latexHome = System.getProperty("latex.home") ;
 		}
 		else {
-			this.latexHome = "" ; // current working directory
+			this.latexHome = "" ;
 		}
 	}
 	
