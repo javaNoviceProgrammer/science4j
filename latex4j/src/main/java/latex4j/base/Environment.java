@@ -16,7 +16,7 @@ public class Environment {
 	
 	String name ;
 	List<String> options ;
-	List<String> text ;
+	protected List<String> text ;
 	Label label ; // \label{label_name}
 	Ref ref ; // \ref{label_name}
 	

@@ -7,9 +7,10 @@ import java.util.Scanner;
 
 import latex4j.base.Command;
 import latex4j.base.Environment;
-import latex4j.base.EquationEnv;
 import latex4j.base.Package;
 import latex4j.base.Ref;
+import latex4j.document.DocumentClass;
+import latex4j.math.EquationEnv;
 
 public class LatexRenderer {
 	
@@ -25,7 +26,7 @@ public class LatexRenderer {
 	boolean printWarnings = true ; // latex warnings
 	
 	// structure of latex file
-	
+	DocumentClass documentClass ;
 	
 	// latex system properties --> professional software development (command-line applications)
 	/*
@@ -88,9 +89,20 @@ public class LatexRenderer {
 		this.printWarnings = flag ;
 	}
 	
-	public void setDocument(String documentClass) {
-		
+	//*************** Latex Elements ****************//
+	
+	public DocumentClass setDocumentClass(String name) {
+		documentClass = new DocumentClass(name) ;
+		return documentClass ;
 	}
+	
+	public DocumentClass setDocumentClass(DocumentClass documentClass) {
+		this.documentClass = documentClass ;
+		return this.documentClass ;
+	}
+	
+	
+	//*************** End of Latex Elements ****************//
 	
 	private void runLatex(File texDir, File texFile) {
 		// run command line (latex)
@@ -130,9 +142,7 @@ public class LatexRenderer {
 		StringBuilder texBuilder = new StringBuilder() ; // builds the contents of entire .tex file
 		
 		// create document class
-		var docClass = new Command("documentclass", "article") ;
-		docClass.addOption("12pt") ;
-		texBuilder.append(docClass) ;
+		texBuilder.append(documentClass) ;
 		
 		// add packages
 		var amsmath = new Package("amsmath") ;
@@ -143,19 +153,20 @@ public class LatexRenderer {
 		// add main text
 		
 		var docEnv = new Environment("document") ;
-		docEnv.addText("""
-				This is a simple test of LatexRenderer in java!!
-				""") ;
+//		docEnv.addText("""
+//				This is a simple test of LatexRenderer in java!!
+//				""") ;
 		
 		EquationEnv eq1env = new EquationEnv() ;
-		Ref eq1 = eq1env.setLabel("eq1") ; // \label{eq1} --> equation environment: \ref{eq1}
+		eq1env.inline(true);
+//		Ref eq1 = eq1env.setLabel("eq1") ; // \label{eq1} --> equation environment: \ref{eq1}
 		eq1env.addText("\\beta = f(\\zeta)") ;
 		docEnv.addText(eq1env) ;
 		
 		
-		docEnv.addText(String.format("""
-				Now, we're citing Eq. (%s) which is placed right above this line of text...
-				""", eq1)) ; // creates ref command: \ref{label}
+//		docEnv.addText(String.format("""
+//				Now, we're citing Eq. (%s) which is placed right above this line of text...
+//				""", eq1)) ; // creates ref command: \ref{label}
 		
 		// add main document contents
 		texBuilder.append(docEnv) ;

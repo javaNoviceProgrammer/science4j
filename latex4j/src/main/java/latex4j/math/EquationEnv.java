@@ -1,4 +1,6 @@
-package latex4j.base;
+package latex4j.math;
+
+import latex4j.base.Environment;
 
 public class EquationEnv extends Environment {
 	
