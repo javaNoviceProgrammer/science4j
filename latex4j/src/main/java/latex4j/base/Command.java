@@ -13,6 +13,7 @@ public class Command {
 	StringBuilder command ;
 	
 	protected boolean addEmptyOptions = true ;
+	protected boolean addNewLine = true ;
 	
 	public Command(String name, String... args) {
 		this.name = name ;
@@ -57,7 +58,8 @@ public class Command {
 			for(String arg : args)
 				command.append("{" + arg + "}") ; 
 			// add a new line
-			command.append("\n") ;
+			if(addNewLine)
+				command.append("\n") ;
 		}
 		return command.toString() ;
 	}

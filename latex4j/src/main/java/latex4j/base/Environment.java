@@ -56,15 +56,15 @@ public class Environment {
 		StringBuilder environment = new StringBuilder() ;
 		// step 1: begin
 		environment.append("\\begin{"+name+"}") ;
-		// check for label
-		if(label!=null) {
-			environment.append("\n"+label+"\n") ;
-		}
 		// step 2: add options
 		if(!options.isEmpty()) {
 			environment.append("[" + String.join(", ", options) + "]") ;
 		}
 		environment.append("\n") ;
+		// check for label
+		if(label!=null) {
+			environment.append(label) ;
+		}
 		// step 3: add text
 		if(!text.isEmpty()) {
 			for(String s : text) {

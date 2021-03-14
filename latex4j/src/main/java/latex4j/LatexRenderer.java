@@ -7,11 +7,15 @@ import java.util.Scanner;
 
 import latex4j.base.Command;
 import latex4j.base.Environment;
+import latex4j.base.EquationEnv;
+import latex4j.base.Package;
+import latex4j.base.Ref;
 
 public class LatexRenderer {
 	
 	// typesetter (default = pdflatex)
 	String typesetter ;
+	String latexHome ; // where the bin directory is: convention --> LATEX_HOME
 	int numberOfRuns ;
 	
 	// output directory and file name
@@ -22,14 +26,51 @@ public class LatexRenderer {
 	
 	// structure of latex file
 	
+	
+	// latex system properties --> professional software development (command-line applications)
+	/*
+	 * set system properties:
+	 * 	latex.home --> path to the bin directory
+	 *  latex.typesetter --> latex typesetter
+	 */
+	
 	public LatexRenderer(String typesetter, int numberOfRuns) {
-		this.typesetter = typesetter ;
+		setLatexHome() ;
+		setLatexTypesetter(typesetter) ;
 		this.numberOfRuns = numberOfRuns ;
 	}
 	
+	public LatexRenderer(int numberOfRuns) {
+		this(null, numberOfRuns) ;
+	}
+	
 	public LatexRenderer() {
-		this.typesetter = "pdflatex" ;
-		this.numberOfRuns = 1 ;
+		this(null, 1) ;
+	}
+	
+	private void setLatexHome() {
+		// latex home
+		if(System.getenv("LATEX_HOME") != null) { // LATEX_HOME environment variable
+			this.latexHome = System.getenv("LATEX_HOME") ;
+		}
+		else if(System.getProperty("latex.home") != null) { // latex.home system property
+			this.latexHome = System.getProperty("latex.home") ;
+		}
+		else {
+			this.latexHome = "" ; // current working directory
+		}
+	}
+	
+	private void setLatexTypesetter(String typesetter) {
+		if(typesetter != null) { // explicit from constructor
+			this.typesetter = typesetter ;
+		}
+		else if(System.getProperty("latex.typesetter") != null) { // latex.typesetter system property
+			this.typesetter = System.getProperty("latex.typesetter") ;
+		}
+		else {
+			this.typesetter = "pdflatex" ; // default typesetter
+		}
 	}
 	
 	public void setOutputPath(String path) {
@@ -42,6 +83,10 @@ public class LatexRenderer {
 	
 	public void debug(boolean flag) {
 		this.debug = flag ;
+	}
+	
+	public void printWarnings(boolean flag) {
+		this.printWarnings = flag ;
 	}
 	
 	public void setDocument(String documentClass) {
@@ -82,15 +127,17 @@ public class LatexRenderer {
 		}
 	}
 	
-	public void render() {
+	private StringBuilder build() {
 		StringBuilder texBuilder = new StringBuilder() ; // builds the contents of entire .tex file
-		// create document class
 		
+		// create document class
 		var docClass = new Command("documentclass", "article") ;
 		docClass.addOption("12pt") ;
 		texBuilder.append(docClass) ;
 		
 		// add packages
+		var amsmath = new Package("amsmath") ;
+		texBuilder.append(amsmath) ;
 		
 		// add extra preamble
 		
@@ -101,7 +148,24 @@ public class LatexRenderer {
 				This is a simple test of LatexRenderer in java!!
 				""") ;
 		
+		EquationEnv eq1env = new EquationEnv() ;
+		Ref eq1 = eq1env.setLabel("eq1") ; // \label{eq1} --> equation environment: \ref{eq1}
+		eq1env.addText("\\beta = f(\\zeta)") ;
+		docEnv.addText(eq1env) ;
+		
+		
+		docEnv.addText(String.format("""
+				Now, we're citing Eq. (%s) which is placed right above this line of text...
+				""", eq1)) ; // creates ref command: \ref{label}
+		
+		// add main document contents
 		texBuilder.append(docEnv) ;
+		return texBuilder ;
+	}
+	
+	public void render() {
+		// build the content of .tex file
+		StringBuilder texBuilder = build() ;
 		
 		// create .tex file
 		File texDir = new File(outputPath) ;
