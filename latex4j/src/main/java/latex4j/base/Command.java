@@ -24,15 +24,18 @@ public class Command {
 		}
 	}
 	
-	public Command addOption(String option) {
+	@SuppressWarnings("unchecked")
+	public <T extends Command> T addOption(String option) {
 		options.add(option) ;
-		return this ;
+		return (T) this ;
 	}
 	
-	public void options(String... options) {
+	@SuppressWarnings("unchecked")
+	public <T extends Command> T options(String... options) {
 		for(String option : options) {
 			this.options.add(option) ;
 		}
+		return (T) this ;
 	}
 
 	@Override

@@ -5,13 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import latex4j.base.Command;
-import latex4j.base.Environment;
-import latex4j.base.Package;
-import latex4j.base.Ref;
-import latex4j.document.DocumentClass;
-import latex4j.math.EquationEnv;
-
 public class LatexRenderer {
 	
 	// typesetter (default = pdflatex)
@@ -25,8 +18,8 @@ public class LatexRenderer {
 	boolean debug = false ;
 	boolean printWarnings = true ; // latex warnings
 	
-	// structure of latex file
-	DocumentClass documentClass ;
+	// Latex Document
+	LatexDocument latexDoc ;
 	
 	// latex system properties --> professional software development (command-line applications)
 	/*
@@ -53,7 +46,7 @@ public class LatexRenderer {
 		if(System.getenv("LATEX_HOME") != null) { // LATEX_HOME environment variable
 			this.latexHome = System.getenv("LATEX_HOME") ;
 		}
-		else if(System.getProperty("latex.home") != null) { // latex.home system property
+		else if(System.getProperty("latex.home") != null) { // latex.home system property: -Dkey=value
 			this.latexHome = System.getProperty("latex.home") ;
 		}
 		else {
@@ -89,20 +82,7 @@ public class LatexRenderer {
 		this.printWarnings = flag ;
 	}
 	
-	//*************** Latex Elements ****************//
 	
-	public DocumentClass setDocumentClass(String name) {
-		documentClass = new DocumentClass(name) ;
-		return documentClass ;
-	}
-	
-	public DocumentClass setDocumentClass(DocumentClass documentClass) {
-		this.documentClass = documentClass ;
-		return this.documentClass ;
-	}
-	
-	
-	//*************** End of Latex Elements ****************//
 	
 	private void runLatex(File texDir, File texFile) {
 		// run command line (latex)
@@ -138,39 +118,48 @@ public class LatexRenderer {
 		}
 	}
 	
+//	private StringBuilder build() {
+//		StringBuilder texBuilder = new StringBuilder() ; // builds the contents of entire .tex file
+//		
+//		// create document class
+//		texBuilder.append(documentClass) ;
+//		
+//		// add packages
+//		var amsmath = new Package("amsmath") ;
+//		texBuilder.append(amsmath) ;
+//		
+//		// add extra preamble
+//		
+//		// add main text
+//		
+//		var docEnv = new Environment("document") ;
+////		docEnv.addText("""
+////				This is a simple test of LatexRenderer in java!!
+////				""") ;
+//		
+//		EquationEnv eq1env = new EquationEnv() ;
+//		eq1env.inline(true);
+////		Ref eq1 = eq1env.setLabel("eq1") ; // \label{eq1} --> equation environment: \ref{eq1}
+//		eq1env.addText("\\beta = f(\\zeta)") ;
+//		docEnv.addText(eq1env) ;
+//		
+//		
+////		docEnv.addText(String.format("""
+////				Now, we're citing Eq. (%s) which is placed right above this line of text...
+////				""", eq1)) ; // creates ref command: \ref{label}
+//		
+//		// add main document contents
+//		texBuilder.append(docEnv) ;
+//		return texBuilder ;
+//	}
+	
+	public LatexDocument createEmptyDocument() {
+		latexDoc = new LatexDocument() ;
+		return latexDoc ;
+	}
+	
 	private StringBuilder build() {
-		StringBuilder texBuilder = new StringBuilder() ; // builds the contents of entire .tex file
-		
-		// create document class
-		texBuilder.append(documentClass) ;
-		
-		// add packages
-		var amsmath = new Package("amsmath") ;
-		texBuilder.append(amsmath) ;
-		
-		// add extra preamble
-		
-		// add main text
-		
-		var docEnv = new Environment("document") ;
-//		docEnv.addText("""
-//				This is a simple test of LatexRenderer in java!!
-//				""") ;
-		
-		EquationEnv eq1env = new EquationEnv() ;
-		eq1env.inline(true);
-//		Ref eq1 = eq1env.setLabel("eq1") ; // \label{eq1} --> equation environment: \ref{eq1}
-		eq1env.addText("\\beta = f(\\zeta)") ;
-		docEnv.addText(eq1env) ;
-		
-		
-//		docEnv.addText(String.format("""
-//				Now, we're citing Eq. (%s) which is placed right above this line of text...
-//				""", eq1)) ; // creates ref command: \ref{label}
-		
-		// add main document contents
-		texBuilder.append(docEnv) ;
-		return texBuilder ;
+		return latexDoc.build() ;
 	}
 	
 	public void render() {
