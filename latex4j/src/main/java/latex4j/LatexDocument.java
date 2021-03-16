@@ -6,7 +6,6 @@ import latex4j.document.DocumentClass;
  * Represents the contents of the .tex file --> Builder class
  * 
  * 
- * @author meisam
  *
  */
 public class LatexDocument { // another candidate: LatexBuilder
