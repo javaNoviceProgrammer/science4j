@@ -7,9 +7,15 @@ public class EquationEnv extends Environment {
 	/*
 	 * inline equatoins: $\beta = f(\zeta)$
 	 * 
+	 * display:
+	 * 			\begin{equation}
+	 * 
+	 * 			\end{equation}
+	 * 
 	 */
 	
 	boolean isInline = false ;
+	boolean isNumbered = false ;
 
 	public EquationEnv() {
 		super("equation");
@@ -17,6 +23,8 @@ public class EquationEnv extends Environment {
 	
 	public void inline(boolean flag) {
 		this.isInline = flag ;
+		this.isFloating = false ;
+		this.isNumbered = false ;
 	}
 
 	@Override

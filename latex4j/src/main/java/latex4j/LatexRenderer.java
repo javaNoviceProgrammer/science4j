@@ -104,6 +104,10 @@ public class LatexRenderer {
 					if(line.toLowerCase().contains("warning")) {
 						System.out.println(line);
 					}
+					else if(line.toLowerCase().contains("error")) {
+						System.err.println(line);
+						System.exit(-1) ;
+					}
 				}
 			}
 			else {

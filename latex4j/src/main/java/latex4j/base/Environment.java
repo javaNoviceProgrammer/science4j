@@ -20,6 +20,8 @@ import java.util.List;
 	Label label ; // \label{label_name}
 	Ref ref ; // \ref{label_name}
 	
+	protected boolean isFloating = false ;
+	
 	public Environment(String name) {
 		this.name = name ;
 		options = new ArrayList<>() ;
@@ -27,6 +29,16 @@ import java.util.List;
 	
 	}
 	
+	@SuppressWarnings("unchecked")
+	public <T extends Environment> T floating(boolean flag) {
+		this.isFloating = flag ;
+		return (T) this ;
+	}
+	
+	public boolean isFloating() {
+		return isFloating ;
+	}
+ 	
 	public Environment addOption(String option) {
 		options.add(option) ;
 		return this ;
@@ -44,6 +56,11 @@ import java.util.List;
 		return this ;
 	}
 	
+	public Environment add(Object text) {
+		this.text.add(text.toString()) ;
+		return this ;
+	}
+	
 	public Ref setLabel(String label) {
 		this.label = new Label(label) ;
 		this.ref = new Ref(label) ;
@@ -55,7 +72,10 @@ import java.util.List;
 		// initialize environment
 		StringBuilder environment = new StringBuilder() ;
 		// step 1: begin
-		environment.append("\\begin{"+name+"}") ;
+		if(isFloating)
+			environment.append("\\begin{"+name+"*}") ;
+		else
+			environment.append("\\begin{"+name+"}") ;
 		// step 2: add options
 		if(!options.isEmpty()) {
 			environment.append("[" + String.join(", ", options) + "]") ;
@@ -73,8 +93,11 @@ import java.util.List;
 		}
 		environment.append("\n") ;
 		// step 4: end
-		environment.append("\\end{"+name+"}\n") ;
+		if(isFloating)
+			environment.append("\\end{"+name+"*}\n") ;
+		else
+			environment.append("\\end{"+name+"}\n") ;
 		return environment.toString() ;
 	}
-
+	
 }

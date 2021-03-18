@@ -1,7 +1,9 @@
 package latex4j;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import latex4j.base.Environment;
 import latex4j.base.Package;
@@ -17,7 +19,7 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	// structure of latex file
 	DocumentClass documentClass ;
-	List<Package> packages ;
+	Set<Package> packages ;
 	List<Object> preamble ; // anything after package configuration
 	
 	// main text
@@ -26,7 +28,7 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	public LatexDocument() {
 		documentClass = new ArticleClass() ;
-		packages = new ArrayList<>() ;
+		packages = new HashSet<>() ;
 		preamble = new ArrayList<>() ;
 		docEnv = new Environment("document") ;
 	}
@@ -86,10 +88,21 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	// equation
 	
-	public EquationEnv addEquation(String text) {
+	public void addEquation(String text) {
 		EquationEnv eqn = new EquationEnv() ;
 		eqn.addText(text) ;
-		return eqn ;
+		docEnv.addText(eqn) ;
+	}
+	
+	public void addEquation(EquationEnv eqn) {
+		if(eqn.isFloating()) {
+			Package amsmath = new Package("amsmath") ;
+			// check if amsmath package is already included
+			if(!packages.contains(amsmath)) {
+				packages.add(amsmath) ;
+			}
+		}
+		docEnv.add(eqn) ;
 	}
 	
 	// subequations
