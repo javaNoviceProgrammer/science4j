@@ -3,9 +3,9 @@ package latex4j.base;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Environment {
-	
-	/*
+	public class Environment {
+		
+		/*
 	 * \begin{name}[options]
 	 * 
 	 * \end{name}
@@ -24,7 +24,7 @@ public class Environment {
 		this.name = name ;
 		options = new ArrayList<>() ;
 		text = new ArrayList<>() ;
-
+	
 	}
 	
 	public Environment addOption(String option) {
