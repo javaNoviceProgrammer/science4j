@@ -10,6 +10,7 @@ import latex4j.base.Package;
 import latex4j.document.ArticleClass;
 import latex4j.document.DocumentClass;
 import latex4j.math.EquationEnv;
+import latex4j.math.SubEquationsEnv;
 
 /**
  * Represents the contents of the .tex file --> Builder class
@@ -106,6 +107,15 @@ public class LatexDocument { // another candidate: LatexBuilder
 	}
 	
 	// subequations
+	
+	public void addEquation(SubEquationsEnv eqns) {
+		Package amsmath = new Package("amsmath") ;
+		// check if amsmath package is already included
+		if(!packages.contains(amsmath)) {
+			packages.add(amsmath) ;
+		}
+		docEnv.add(eqns) ;
+	}
 	
 	
 	//*************** Adding Figures ****************//
