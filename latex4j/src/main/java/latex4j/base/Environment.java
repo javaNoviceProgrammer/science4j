@@ -45,15 +45,17 @@ import java.util.List;
 	}
 	
 	// low-level API
-	public Environment addText(String text) {
+	@SuppressWarnings("unchecked")
+	public <T extends Environment> T addText(String text) {
 		this.text.add(text) ;
-		return this ;
+		return (T) this ;
 	}
 	
 	// low-level API
-	public Environment addText(Object text) {
+	@SuppressWarnings("unchecked")
+	public <T extends Environment> T addText(Object text) {
 		this.text.add(text.toString()) ;
-		return this ;
+		return (T) this ;
 	}
 	
 	public Environment add(Object text) {

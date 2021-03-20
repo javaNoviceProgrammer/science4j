@@ -16,15 +16,49 @@ public class EquationEnv extends Environment {
 	
 	boolean isInline = false ;
 	boolean isNumbered = false ;
+	boolean isBoxed = false ;
 
 	public EquationEnv() {
 		super("equation");
 	}
 	
-	public void inline(boolean flag) {
-		this.isInline = flag ;
-		this.isFloating = false ;
-		this.isNumbered = false ;
+	public EquationEnv inline(boolean flag) {
+		isInline = flag ;
+		isFloating = false ;
+		isNumbered = false ;
+		isBoxed = false ;
+		return this ;
+	}
+	
+	public EquationEnv boxed(boolean flag) {
+		isBoxed = true ;
+		isInline = false ;
+		return this ;
+	}
+	
+	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public EquationEnv addText(String text) {
+		if(isBoxed) {
+			// add extra text: \boxed{text}
+			this.text.add("\\boxed{" + text + "}") ;
+			return this ;
+		}
+		else
+			return super.addText(text);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public EquationEnv addText(Object text) {
+		if(isBoxed) {
+			this.text.add("\\boxed{" + text + "}") ;
+			return this ;
+		}
+		else
+			return super.addText(text);
 	}
 
 	@Override
