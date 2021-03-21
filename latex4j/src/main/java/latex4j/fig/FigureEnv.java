@@ -13,6 +13,7 @@ public class FigureEnv extends Environment {
 	 * \begin{figure}[options]
 	 * 		\includegraphics[options]{filename1}
 	 * 		\includegraphics[options]{filename2}
+	 * 	\caption{text}
 	 * \end{figure}
 	 * 
 	 * useful options:
@@ -22,6 +23,8 @@ public class FigureEnv extends Environment {
 	 */
 	
 	List<Command> includes ;
+	Command caption ;
+	boolean centering ;
 	
 	public FigureEnv() {
 		super("figure") ;
@@ -35,13 +38,28 @@ public class FigureEnv extends Environment {
 		includes.add(cmd) ;
 		return cmd ;
 	}
+	
+	public Command caption(String text) {
+		caption = new Command("caption", text) ;
+		return caption ;
+	}
+	
+	public void centering(boolean flag) {
+		centering = flag ;
+	}
 
 	@Override
 	public String toString() {
 		if(!includes.isEmpty()) {
+			if(centering) {
+				this.addText("\\centering\n") ;
+			}
 			for(Command cmd : includes) {
 				this.add("\t" + cmd) ;
 			}
+		}
+		if(caption!=null) {
+			this.add(caption) ;
 		}
 		return super.toString();
 	}

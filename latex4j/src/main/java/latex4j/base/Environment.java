@@ -83,10 +83,10 @@ import java.util.List;
 			environment.append("[" + String.join(", ", options) + "]") ;
 		}
 		environment.append("\n") ;
-		// check for label
-		if(label!=null) {
-			environment.append(label) ;
-		}
+//		// check for label
+//		if(label!=null) {
+//			environment.append(label) ;
+//		}
 		// step 3: add text
 		if(!text.isEmpty()) {
 			for(String s : text) {
@@ -94,6 +94,10 @@ import java.util.List;
 			}
 		}
 //		environment.append("\n") ;
+		// check for label
+		if(label!=null) {
+			environment.append(label) ;
+		}
 		// step 4: end
 		if(isFloating)
 			environment.append("\\end{"+name+"*}\n") ;
