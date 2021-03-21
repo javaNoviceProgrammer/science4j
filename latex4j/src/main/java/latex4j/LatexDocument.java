@@ -11,6 +11,7 @@ import latex4j.document.ArticleClass;
 import latex4j.document.DocumentClass;
 import latex4j.math.EquationEnv;
 import latex4j.math.SubEquationsEnv;
+import latex4j.text.FormattedText;
 
 /**
  * Represents the contents of the .tex file --> Builder class
@@ -83,6 +84,10 @@ public class LatexDocument { // another candidate: LatexBuilder
 	}
 	
 	// formatted text
+	
+	public void addText(FormattedText text) {
+		docEnv.addText(text) ;
+	}
 	
 
 	//*************** Adding Equations ****************//

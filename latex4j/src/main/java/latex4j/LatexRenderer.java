@@ -121,42 +121,7 @@ public class LatexRenderer {
 			e.printStackTrace();
 		}
 	}
-	
-//	private StringBuilder build() {
-//		StringBuilder texBuilder = new StringBuilder() ; // builds the contents of entire .tex file
-//		
-//		// create document class
-//		texBuilder.append(documentClass) ;
-//		
-//		// add packages
-//		var amsmath = new Package("amsmath") ;
-//		texBuilder.append(amsmath) ;
-//		
-//		// add extra preamble
-//		
-//		// add main text
-//		
-//		var docEnv = new Environment("document") ;
-////		docEnv.addText("""
-////				This is a simple test of LatexRenderer in java!!
-////				""") ;
-//		
-//		EquationEnv eq1env = new EquationEnv() ;
-//		eq1env.inline(true);
-////		Ref eq1 = eq1env.setLabel("eq1") ; // \label{eq1} --> equation environment: \ref{eq1}
-//		eq1env.addText("\\beta = f(\\zeta)") ;
-//		docEnv.addText(eq1env) ;
-//		
-//		
-////		docEnv.addText(String.format("""
-////				Now, we're citing Eq. (%s) which is placed right above this line of text...
-////				""", eq1)) ; // creates ref command: \ref{label}
-//		
-//		// add main document contents
-//		texBuilder.append(docEnv) ;
-//		return texBuilder ;
-//	}
-	
+		
 	public LatexDocument createEmptyDocument() {
 		latexDoc = new LatexDocument() ;
 		return latexDoc ;
