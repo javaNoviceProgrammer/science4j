@@ -68,6 +68,14 @@ public class LatexDocument { // another candidate: LatexBuilder
 		preamble.add(obj) ;
 	}
 	
+	public void defineColor(String name, float r, float g, float b) {
+		if(r<0f || r>1f || g<0f || g>1f || b<0f || b>1f) 
+			throw new IllegalArgumentException("r,g,b components must be in the range of [0f,1f]") ;
+		// create \definecolor command
+		String command = String.format("\\definecolor{%s}{rgb}{%f,%f,%f}\n", name, r, g, b) ;
+		addPreamble(command) ; // important --> global definition before document environment
+	}
+	
 	//*************** Main Document (Text) ****************//
 	
 	public Environment mainText() {

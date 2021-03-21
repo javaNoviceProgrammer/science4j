@@ -1,6 +1,5 @@
 package latex4j.text;
 
-import java.awt.Color;
 import static java.lang.String.format;
 
 public class FormattedText {
@@ -9,9 +8,6 @@ public class FormattedText {
 	StringBuilder sb ;
 	StringBuilder coloredText ;
 	String color ;
-	boolean isBold = false ;
-	boolean isItalic = false ;
-	boolean hasUnderline = false ;
 
 	public FormattedText() {
 		sb = new StringBuilder() ;
@@ -60,15 +56,19 @@ public class FormattedText {
 		return this ;
 	}
 	
-	public FormattedText color(Color color) { // color: rgb int 0-255, latex --> float 0-1
-		
+	// bold font
+	public FormattedText bold(String text) {
+		addText(format("\\textbf{%s}", text)) ;
 		return this ;
 	}
 	
+	public FormattedText italic(String text) {
+		addText(format("\\textit{%s}", text)) ;
+		return this ;
+	}
 	
-	// bold font
-	public FormattedText bold() {
-		isBold = true ;
+	public FormattedText underline(String text) {
+		addText(format("\\underline{%s}", text)) ;
 		return this ;
 	}
 	
@@ -80,8 +80,6 @@ public class FormattedText {
 		return this ;
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		if(color!=null && !coloredText.isEmpty())
@@ -89,5 +87,4 @@ public class FormattedText {
 		return sb.toString() ;
 	}	
 	
-
 }
