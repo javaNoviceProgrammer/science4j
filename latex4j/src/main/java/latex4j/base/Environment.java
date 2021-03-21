@@ -93,7 +93,7 @@ import java.util.List;
 				environment.append(s) ;
 			}
 		}
-		environment.append("\n") ;
+//		environment.append("\n") ;
 		// step 4: end
 		if(isFloating)
 			environment.append("\\end{"+name+"*}\n") ;

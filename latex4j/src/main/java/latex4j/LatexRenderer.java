@@ -94,7 +94,14 @@ public class LatexRenderer {
 			if(debug) {
 				Scanner debugScanner = new Scanner(p.getInputStream()) ;
 				while(debugScanner.hasNextLine()) {
-					System.out.println(debugScanner.nextLine());
+					String line = debugScanner.nextLine() ;
+					if(line.contains("!") || line.toLowerCase().contains("undefined") 
+							|| line.toLowerCase().contains("error")) {
+						System.err.println(line);
+					}
+					else {
+						System.out.println(line);
+					}
 				}
 			}
 			else if(printWarnings) {
