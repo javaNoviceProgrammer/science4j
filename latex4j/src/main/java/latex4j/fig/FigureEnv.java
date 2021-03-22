@@ -32,8 +32,6 @@ public class FigureEnv extends Environment {
 	}
 	
 	public Command includeGraphics(String filename) {
-//		Command cmd = new Command("includegraphics", filename) ;
-		// one solution
 		Command cmd = new Command("includegraphics", new File(filename).getAbsolutePath()) ;
 		includes.add(cmd) ;
 		return cmd ;
