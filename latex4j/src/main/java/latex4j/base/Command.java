@@ -9,7 +9,7 @@ public class Command {
 	
 	String name ;
 	List<String> options ;
-	List<String> args ;
+	protected List<String> args ;
 	StringBuilder command ;
 	
 	protected boolean addEmptyOptions = true ;

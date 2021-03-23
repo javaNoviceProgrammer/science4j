@@ -23,7 +23,7 @@ public class FigureEnv extends Environment {
 	 */
 	
 	List<Command> includes ;
-	Command caption ;
+	Caption caption ;
 	boolean centering ;
 	
 	public FigureEnv() {
@@ -31,14 +31,25 @@ public class FigureEnv extends Environment {
 		includes = new ArrayList<>() ;
 	}
 	
-	public Command includeGraphics(String filename) {
-		Command cmd = new Command("includegraphics", new File(filename).getAbsolutePath()) ;
+	public Graphic includeGraphics(String filename) {
+		Graphic cmd = new Graphic("includegraphics", new File(filename)) ;
 		includes.add(cmd) ;
 		return cmd ;
 	}
 	
-	public Command caption(String text) {
-		caption = new Command("caption", text) ;
+	public Graphic includeGraphics(File image) {
+		Graphic cmd = new Graphic("includegraphics", image) ;
+		includes.add(cmd) ;
+		return cmd ;
+	}
+	
+	public Caption caption(String text) {
+		caption = new Caption("caption", text) ;
+		return caption ;
+	}
+	
+	public Caption caption(Caption caption) {
+		caption = this.caption ;
 		return caption ;
 	}
 	
