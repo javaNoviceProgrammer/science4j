@@ -9,7 +9,7 @@ public class SubEquationsEnv extends Environment {
 	}
 	
 	public SubEquationsEnv addEquation(EquationEnv eqn) {
-		text.add(eqn.toString()) ;
+		text.add(eqn) ;
 		return this ;
 	}
 

@@ -16,7 +16,8 @@ import java.util.List;
 	
 	String name ;
 	List<String> options ;
-	protected List<String> text ;
+//	protected List<String> text ;
+	protected List<Object> text ;
 	Label label ; // \label{label_name}
 	Ref ref ; // \ref{label_name}
 	
@@ -54,12 +55,14 @@ import java.util.List;
 	// low-level API
 	@SuppressWarnings("unchecked")
 	public <T extends Environment> T addText(Object text) {
-		this.text.add(text.toString()) ;
+//		this.text.add(text.toString()) ;
+		this.text.add(text) ;
 		return (T) this ;
 	}
 	
 	public Environment add(Object text) {
-		this.text.add(text.toString()) ;
+//		this.text.add(text.toString()) ;
+		this.text.add(text) ;
 		return this ;
 	}
 	
@@ -85,7 +88,7 @@ import java.util.List;
 		environment.append("\n") ;
 		// step 3: add text
 		if(!text.isEmpty()) {
-			for(String s : text) {
+			for(Object s : text) {
 				environment.append(s) ;
 			}
 		}

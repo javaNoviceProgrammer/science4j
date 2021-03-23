@@ -66,7 +66,7 @@ public class EquationEnv extends Environment {
 		if(isInline) {
 			StringBuilder env = new StringBuilder() ;
 			env.append("$") ;
-			for(String s : text) {
+			for(Object s : text) {
 				env.append(s) ;
 			}
 			env.append("$") ;

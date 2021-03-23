@@ -95,8 +95,9 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	// formatted text
 	
-	public void addText(FormattedText text) {
+	public FormattedText addText(FormattedText text) {
 		docEnv.addText(text) ;
+		return text ;
 	}
 	
 
@@ -104,13 +105,14 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	// equation
 	
-	public void addEquation(String text) {
+	public EquationEnv addEquation(String text) {
 		EquationEnv eqn = new EquationEnv() ;
 		eqn.addText(text) ;
 		docEnv.addText(eqn) ;
+		return eqn ;
 	}
 	
-	public void addEquation(EquationEnv eqn) {
+	public EquationEnv addEquation(EquationEnv eqn) {
 		if(eqn.isFloating()) {
 			Package amsmath = new Package("amsmath") ;
 			// check if amsmath package is already included
@@ -119,6 +121,7 @@ public class LatexDocument { // another candidate: LatexBuilder
 			}
 		}
 		docEnv.add(eqn) ;
+		return eqn ;
 	}
 	
 	// subequations
