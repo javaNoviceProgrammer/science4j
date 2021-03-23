@@ -1,6 +1,7 @@
 package latex4j.fig;
 
 import java.io.File;
+import java.io.IOException;
 
 import latex4j.base.Command;
 
@@ -8,8 +9,8 @@ public class Graphic extends Command {
 	
 	File image ;
 
-	public Graphic(String name, File image) {
-		super("includegraphics", image.getAbsolutePath());
+	public Graphic(File image) throws IOException {
+		super("includegraphics", image.getCanonicalPath());
 		this.image = image ;
 	}
 	

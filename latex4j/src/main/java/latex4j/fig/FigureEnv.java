@@ -1,6 +1,7 @@
 package latex4j.fig;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,15 +33,27 @@ public class FigureEnv extends Environment {
 	}
 	
 	public Graphic includeGraphics(String filename) {
-		Graphic cmd = new Graphic("includegraphics", new File(filename)) ;
-		includes.add(cmd) ;
-		return cmd ;
+		Graphic cmd;
+		try {
+			cmd = new Graphic(new File(filename));
+			includes.add(cmd) ;
+			return cmd ;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null ;
+		}
 	}
 	
 	public Graphic includeGraphics(File image) {
-		Graphic cmd = new Graphic("includegraphics", image) ;
-		includes.add(cmd) ;
-		return cmd ;
+		Graphic cmd;
+		try {
+			cmd = new Graphic(image);
+			includes.add(cmd) ;
+			return cmd ;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null ;
+		}
 	}
 	
 	public Caption caption(String text) {

@@ -10,6 +10,7 @@ import latex4j.base.Package;
 import latex4j.document.ArticleClass;
 import latex4j.document.DocumentClass;
 import latex4j.fig.FigureEnv;
+import latex4j.fig.Graphic;
 import latex4j.math.EquationEnv;
 import latex4j.math.SubEquationsEnv;
 import latex4j.text.FormattedText;
@@ -136,6 +137,10 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	public void addFigure(FigureEnv fig) {
 		docEnv.add(fig) ;
+	}
+	
+	public void addGraphic(Graphic image) {
+		docEnv.add(image) ;
 	}
 	
 	
