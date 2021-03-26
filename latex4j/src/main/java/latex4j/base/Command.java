@@ -25,6 +25,18 @@ public class Command {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public <T extends Command> T addEmptyOptions(boolean flag) {
+		addEmptyOptions = flag ;
+		return (T) this ;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends Command> T addNewLine(boolean flag) {
+		addNewLine = flag ;
+		return (T) this ;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public <T extends Command> T addOption(String option) {
 		options.add(option) ;
 		return (T) this ;
