@@ -12,7 +12,7 @@ public class Command {
 	protected List<String> args ;
 	StringBuilder command ;
 	
-	protected boolean addEmptyOptions = true ;
+	protected boolean addEmptyOptions = false ;
 	protected boolean addNewLine = true ;
 	
 	public Command(String name, String... args) {

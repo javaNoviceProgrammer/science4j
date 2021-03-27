@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import latex4j.base.Command;
 import latex4j.base.Environment;
 import latex4j.base.Package;
 import latex4j.document.ArticleClass;
@@ -84,6 +85,21 @@ public class LatexDocument { // another candidate: LatexBuilder
 		return docEnv ;
 	}
 	
+	//*************** Elements (toc, ...) ****************//
+	
+	public void addToc() {
+		docEnv.add(new Command("tableofcontents")) ;
+		docEnv.add(new Command("break")) ;
+	}
+	
+	public void addListOfFigures() {
+		docEnv.add(new Command("listoffigures")) ;
+		docEnv.add(new Command("break")) ;
+	}
+	
+	public void addBreak() {
+		docEnv.add(new Command("break")) ;
+	}
 	
 	//*************** Adding Text ****************//
 	
@@ -107,7 +123,7 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	public EquationEnv addEquation(String text) {
 		EquationEnv eqn = new EquationEnv() ;
-		eqn.addText(text) ;
+		eqn.addText(text + "\n") ;
 		docEnv.addText(eqn) ;
 		return eqn ;
 	}
