@@ -86,7 +86,8 @@ public class LatexRenderer {
 	
 	private void runLatex(File texDir, File texFile) {
 		// run command line (latex)
-		String command = typesetter + " " + texFile.getAbsolutePath() ;
+//		String command = typesetter + " " + texFile.getAbsolutePath() ;
+		String command = typesetter + " -halt-on-error " + texFile.getAbsolutePath() ;
 		Runtime runtime = Runtime.getRuntime() ;
 		
 		try {
@@ -96,7 +97,7 @@ public class LatexRenderer {
 				while(debugScanner.hasNextLine()) {
 					String line = debugScanner.nextLine() ;
 					if(line.contains("!") || line.toLowerCase().contains("undefined") 
-							|| line.toLowerCase().contains("error")) {
+							|| line.toLowerCase().contains("error") || line.toLowerCase().contains("not")) {
 						System.err.println(line);
 					}
 					else {
