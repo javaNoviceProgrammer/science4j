@@ -15,6 +15,7 @@ import latex4j.fig.Graphic;
 import latex4j.math.EquationEnv;
 import latex4j.math.SubEquationsEnv;
 import latex4j.text.FormattedText;
+import latex4j.text.Title;
 
 /**
  * Represents the contents of the .tex file --> Builder class
@@ -101,12 +102,29 @@ public class LatexDocument { // another candidate: LatexBuilder
 		docEnv.add(new Command("break")) ;
 	}
 	
+	//*************** Adding Title ****************//
+	
+	public Title addTitle(String title) {
+		Title titleObj = new Title(title) ;
+		preamble.add(titleObj) ;
+		docEnv.add(0, new Command("maketitle")) ;
+		return titleObj ;
+	}
+	
+	public Title addTitle() {
+		Title titleObj = new Title() ;
+		preamble.add(titleObj) ;
+		docEnv.add(0, new Command("maketitle")) ;
+		return titleObj ;
+	}
+	
 	//*************** Adding Text ****************//
 	
 	// plain text
 	
-	public void addText(String text) {
+	public LatexDocument addText(String text) {
 		docEnv.addText(text) ;
+		return this ;
 	}
 	
 	// formatted text
@@ -200,7 +218,4 @@ public class LatexDocument { // another candidate: LatexBuilder
 		return build().toString() ;
 	}
 	
-	
-	
-
 }

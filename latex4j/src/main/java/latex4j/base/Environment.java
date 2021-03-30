@@ -5,7 +5,7 @@ import java.util.List;
 
 	public class Environment {
 		
-		/*
+	/*
 	 * \begin{name}[options]
 	 * 
 	 * \end{name}
@@ -16,7 +16,6 @@ import java.util.List;
 	
 	String name ;
 	List<String> options ;
-//	protected List<String> text ;
 	protected List<Object> text ;
 	Label label ; // \label{label_name}
 	Ref ref ; // \ref{label_name}
@@ -55,15 +54,20 @@ import java.util.List;
 	// low-level API
 	@SuppressWarnings("unchecked")
 	public <T extends Environment> T addText(Object text) {
-//		this.text.add(text.toString()) ;
 		this.text.add(text) ;
 		return (T) this ;
 	}
 	
-	public Environment add(Object text) {
-//		this.text.add(text.toString()) ;
+	@SuppressWarnings("unchecked")
+	public <T extends Environment> T add(Object text) {
 		this.text.add(text) ;
-		return this ;
+		return (T) this ;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends Environment> T add(int index, Object text) {
+		this.text.add(index, text);
+		return (T) this ;
 	}
 	
 	public Ref setLabel(String label) {
@@ -92,7 +96,6 @@ import java.util.List;
 				environment.append(s) ;
 			}
 		}
-//		environment.append("\n") ;
 		// check for label
 		if(label!=null) {
 			environment.append(label) ;
