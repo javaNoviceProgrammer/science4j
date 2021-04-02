@@ -15,6 +15,7 @@ import latex4j.fig.Graphic;
 import latex4j.math.EquationEnv;
 import latex4j.math.SubEquationsEnv;
 import latex4j.text.FormattedText;
+import latex4j.text.HyperSetup;
 import latex4j.text.Title;
 
 /**
@@ -65,6 +66,19 @@ public class LatexDocument { // another candidate: LatexBuilder
 		return pkg ;
 	}
 	
+	//*************** Hyper Links ****************//
+	
+	public HyperSetup hyperref(boolean flag) {
+		HyperSetup hSetup = new HyperSetup(flag) ;
+		if(flag) {
+			packages.add(new Package("hyperref")) ; // with empty options
+			preamble.add(hSetup) ;
+		}
+		else {
+			packages.remove(new Package("hyperref")) ;
+		}
+		return hSetup ;
+	}
 	
 	//*************** Adding Preambles ****************//
 	
@@ -100,6 +114,10 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	public void addBreak() {
 		docEnv.add(new Command("break")) ;
+	}
+	
+	public void addPageBreak() {
+		docEnv.add("\n\\pagebreak\n") ;
 	}
 	
 	//*************** Adding Title ****************//
