@@ -82,7 +82,9 @@ public class LatexRenderer {
 		this.printWarnings = flag ;
 	}
 	
-	
+	private void runBibtex(File texDir, File... bibFile) {
+		
+	}
 	
 	private void runLatex(File texDir, File texFile) {
 		// run command line (latex)

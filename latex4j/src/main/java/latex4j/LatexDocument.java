@@ -8,6 +8,7 @@ import java.util.Set;
 import latex4j.base.Command;
 import latex4j.base.Environment;
 import latex4j.base.Package;
+import latex4j.bib.Bibliography;
 import latex4j.document.ArticleClass;
 import latex4j.document.DocumentClass;
 import latex4j.fig.FigureEnv;
@@ -31,6 +32,7 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	// main text
 	Environment docEnv ;
+	boolean hasBibliography ;
 
 	
 	public LatexDocument() {
@@ -201,7 +203,18 @@ public class LatexDocument { // another candidate: LatexBuilder
 	
 	//*************** Adding Tables ****************//
 	
+	//*************** Adding Bibliography ****************//
 	
+	public void addBibliography(Bibliography bib) {
+		// some stuff --> 
+		// \bibliographystyle{}
+		// \bibliography{fiel1, file2, ...}
+		hasBibliography = true ;
+	}
+	
+	public boolean hasBibliography() {
+		return hasBibliography ;
+	}
 	
 	//*************** Build contents of .tex file ****************//
 	
