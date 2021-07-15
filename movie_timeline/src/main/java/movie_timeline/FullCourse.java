@@ -21,8 +21,14 @@ public class FullCourse {
 		this.lectures = new ArrayList<>() ;
 	}
 	
-	public void setName(String courseName) {
+	public FullCourse setName(String courseName) {
 		this.courseName = courseName ;
+		return this ;
+	}
+	
+	public FullCourse setTimeStampSpecifier(TimeStampSpecifier specifier) {
+		this.specifier = specifier ;
+		return this ;
 	}
 	
 	public FullCourse addLecture(Lecture lecture) {
@@ -70,6 +76,22 @@ public class FullCourse {
 			while(scanner.hasNextLine()) {
 				line = scanner.nextLine() ;
 				Lecture lecture = Lecture.parseString(line, inputFormat) ;
+				course.addLecture(lecture) ;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return course ;
+	}
+	
+	public static FullCourse parseTextFile(String fileName, TimeStampSpecifier specifier) {
+		FullCourse course = new FullCourse("course", specifier) ;
+		String line ;
+		try {
+			Scanner scanner = new Scanner(new File(fileName)) ;
+			while(scanner.hasNextLine()) {
+				line = scanner.nextLine() ;
+				Lecture lecture = Lecture.parseString(line, specifier) ;
 				course.addLecture(lecture) ;
 			}
 		} catch (FileNotFoundException e) {

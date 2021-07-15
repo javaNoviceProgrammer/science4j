@@ -26,9 +26,11 @@ public class Lecture {
 	
 	// format: "hh:mm:ss name"
 	public static Lecture parseString(String str, TimeStampSpecifier specifier) {
-		String[] args = str.strip().split(" ") ;
-		String[] stamp = args[0].split(":") ;
-		Lecture lecture = new Lecture(args[1], Integer.parseInt(stamp[0]), Integer.parseInt(stamp[1]), Integer.parseInt(stamp[2])) ;
+		String temp = str.strip() ;
+		int index = temp.indexOf(' ') ;
+		String name = temp.substring(index).strip() ;
+		String[] stamp = temp.substring(0, index).split(":") ;
+		Lecture lecture = new Lecture(name, Integer.parseInt(stamp[0]), Integer.parseInt(stamp[1]), Integer.parseInt(stamp[2])) ;
 		return lecture ;
 	}
 	
@@ -94,7 +96,7 @@ public class Lecture {
 		lecture1.setOffset(100).setFormatSpecifier(TimeStampSpecifier.START_TIME) ;
 		System.out.println(lecture1);
 		
-		Lecture lecture2 = Lecture.parseString("00:30:2 Introduction", TimeStampSpecifier.DURATION) ;
+		Lecture lecture2 = Lecture.parseString("00:30:2 Introduction to java", TimeStampSpecifier.DURATION) ;
 		System.out.println(lecture2);
 	}
 	
