@@ -27,6 +27,17 @@ public class Lecture {
 	// format: "hh:mm:ss name"
 	public static Lecture parseString(String str, TimeStampSpecifier specifier) {
 		String temp = str.strip() ;
+		// do nothing if first char is not number
+		boolean isNumber = false ;
+		char[] numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'} ;
+		for (char c : numbers) {
+			if (temp.charAt(0) == c) {
+				isNumber = true ;
+				break ;
+			}
+		}
+		if (!isNumber) return null ;
+		// continue if first char is a number
 		int index = temp.indexOf(' ') ;
 		String name = temp.substring(index).strip() ;
 		String[] stamp = temp.substring(0, index).split(":") ;

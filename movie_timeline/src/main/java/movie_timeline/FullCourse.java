@@ -68,6 +68,22 @@ public class FullCourse {
 		}
 	}
 	
+	public void readTextFile(String fileName, TimeStampSpecifier inputFormat, TimeStampSpecifier outputFormat) {
+		this.setTimeStampSpecifier(outputFormat) ;
+		String line ;
+		try {
+			Scanner scanner = new Scanner(new File(fileName)) ;
+			while(scanner.hasNextLine()) {
+				line = scanner.nextLine() ;
+				Lecture lecture = Lecture.parseString(line, inputFormat) ;
+				if(lecture != null)
+					this.addLecture(lecture) ;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static FullCourse parseTextFile(String fileName, TimeStampSpecifier inputFormat, TimeStampSpecifier outputFormat) {
 		FullCourse course = new FullCourse("course", outputFormat) ;
 		String line ;
@@ -76,23 +92,8 @@ public class FullCourse {
 			while(scanner.hasNextLine()) {
 				line = scanner.nextLine() ;
 				Lecture lecture = Lecture.parseString(line, inputFormat) ;
-				course.addLecture(lecture) ;
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return course ;
-	}
-	
-	public static FullCourse parseTextFile(String fileName, TimeStampSpecifier specifier) {
-		FullCourse course = new FullCourse("course", specifier) ;
-		String line ;
-		try {
-			Scanner scanner = new Scanner(new File(fileName)) ;
-			while(scanner.hasNextLine()) {
-				line = scanner.nextLine() ;
-				Lecture lecture = Lecture.parseString(line, specifier) ;
-				course.addLecture(lecture) ;
+				if(lecture != null)
+					course.addLecture(lecture) ;
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
