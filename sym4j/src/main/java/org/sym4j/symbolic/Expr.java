@@ -5,7 +5,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
 import org.sym4j.logic.And;
 import org.sym4j.logic.Not;
 import org.sym4j.logic.Or;
@@ -24,11 +30,11 @@ import org.sym4j.symbolic.symbols.SymReal;
 import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
 
 
 abstract public class Expr implements Cloneable {
@@ -190,12 +196,17 @@ abstract public class Expr implements Cloneable {
 			FileWriter fwriter = new FileWriter(texFile) ;
 			fwriter.write(sb.toString());
 			fwriter.close() ;
-			Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
-//			Process proc = Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
-//			proc.waitFor() ;
+//			Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
+			Process proc = Runtime.getRuntime().exec(new String[] {"pdflatex", "-output-directory", filePath, latexFile}) ;
+			try {
+				proc.waitFor() ;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 //			Scanner scanner = new Scanner(proc.getInputStream()) ;
 //			while(scanner.hasNextLine()) {
-//				System.out.println(scanner.nextLine());
+//				// just wait!
 //			}
 //			scanner.close();
 		} catch (IOException e) {

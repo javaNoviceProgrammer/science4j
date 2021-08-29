@@ -2,19 +2,27 @@ package org.sym4j.symbolic.symbols;
 
 import java.util.Map;
 
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.PUSH;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.special.Infinity;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.generic.ALOAD;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.PUSH;
+//import com.sun.org.apache.bcel.internal.generic.ALOAD;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.PUSH;
 
 /**
  * An object of Symbol has a string name which is its unique id,
@@ -164,7 +172,7 @@ public class Symbol extends Expr {
 			// Load from an array (argument or local array)
 			il.append(new ALOAD(argsStartPos));
 			il.append(new PUSH(cp, argsMap.get(this.label)));
-			return il.append(InstructionConstants.DALOAD);
+			return il.append(InstructionConst.DALOAD);
 //		}
 	}
 

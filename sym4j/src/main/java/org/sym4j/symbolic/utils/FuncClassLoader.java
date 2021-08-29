@@ -1,8 +1,9 @@
 package org.sym4j.symbolic.utils;
 
 
+import org.apache.bcel.generic.ClassGen;
 import org.sym4j.bytecode.BytecodeFunc;
-import com.sun.org.apache.bcel.internal.generic.ClassGen;
+//import com.sun.org.apache.bcel.internal.generic.ClassGen;
 
 
 public class FuncClassLoader<T> extends ClassLoader {

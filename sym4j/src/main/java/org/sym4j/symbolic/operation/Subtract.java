@@ -3,6 +3,15 @@ package org.sym4j.symbolic.operation;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.ObjectType;
+import org.apache.bcel.generic.Type;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.symbols.SymDouble;
@@ -13,15 +22,15 @@ import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.ObjectType;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import com.sun.org.apache.bcel.internal.Constants;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.ObjectType;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
 public class Subtract extends BinaryOp {
 
@@ -100,13 +109,13 @@ public class Subtract extends BinaryOp {
 			arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 			il.append(factory.createInvoke("Jama.Matrix", "minus",
 					new ObjectType("Jama.Matrix"), new Type[] { new ObjectType("Jama.Matrix") },
-					Constants.INVOKEVIRTUAL));
+					Const.INVOKEVIRTUAL));
 			return startPos;
 		} else if(arg1.getType() == TYPE.VECTOR && arg2.getType() == TYPE.VECTOR) {
 			arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 			il.append(factory.createInvoke("Jama.Matrix", "minus",
 					new ObjectType("Jama.Matrix"), new Type[] { new ObjectType("Jama.Matrix") },
-					Constants.INVOKEVIRTUAL));
+					Const.INVOKEVIRTUAL));
 			return startPos;
 		}
 
@@ -115,15 +124,15 @@ public class Subtract extends BinaryOp {
 		arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		BytecodeUtils.typeCast(il, arg2.getType(), ty);
 		if(ty == TYPE.DOUBLE)
-			il.append(InstructionConstants.DSUB);
+			il.append(InstructionConst.DSUB);
 		else if(ty == TYPE.INT)
-			il.append(InstructionConstants.ISUB);
+			il.append(InstructionConst.ISUB);
 		else if(ty == TYPE.LONG)
-			il.append(InstructionConstants.LSUB);
+			il.append(InstructionConst.LSUB);
 		else if(ty == TYPE.FLOAT)
-			il.append(InstructionConstants.FSUB);
+			il.append(InstructionConst.FSUB);
 		else
-			il.append(InstructionConstants.ISUB);
+			il.append(InstructionConst.ISUB);
 		return startPos;
 	}
 

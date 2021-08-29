@@ -2,16 +2,23 @@ package org.sym4j.symbolic.symbols;
 
 import java.util.Map;
 
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.Type;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.TypeInfo;
 
-import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import com.sun.org.apache.bcel.internal.Constants;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
 /**
  * Represents a random number in the range [0.0, 1.0]
@@ -53,7 +60,7 @@ public class SymRandom extends Expr {
 			InstructionList il, Map<String, Integer> argsMap, int argsStartPos,
 			Map<Expr, Integer> funcRefsMap) {
 		return il.append(factory.createInvoke("java.lang.Math", "random",
-				Type.DOUBLE, new Type[] { }, Constants.INVOKESTATIC));
+				Type.DOUBLE, new Type[] { }, Const.INVOKESTATIC));
 	}
 
 	@Override

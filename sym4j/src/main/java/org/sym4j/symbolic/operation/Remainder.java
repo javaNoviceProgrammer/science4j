@@ -1,22 +1,28 @@
 package org.sym4j.symbolic.operation;
 
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.DREM;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.FREM;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.IREM;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.LREM;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.DREM;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.FREM;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.IREM;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.LREM;
 
 import java.util.Map;
 
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
 
 /**
  * a % b
@@ -56,15 +62,15 @@ public class Remainder extends BinaryOp {
 		arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		BytecodeUtils.typeCast(il, arg2.getType(), ty);
 		if(ty == TYPE.DOUBLE)
-			il.append(DREM);
+			il.append(InstructionConst.DREM);
 		else if(ty == TYPE.INT)
-			il.append(IREM);
+			il.append(InstructionConst.IREM);
 		else if(ty == TYPE.LONG)
-			il.append(LREM);
+			il.append(InstructionConst.LREM);
 		else if(ty == TYPE.FLOAT)
-			il.append(FREM);
+			il.append(InstructionConst.FREM);
 		else
-			il.append(IREM);
+			il.append(InstructionConst.IREM);
 		return startPos;
 	}
 

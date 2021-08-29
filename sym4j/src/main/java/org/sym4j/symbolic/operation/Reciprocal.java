@@ -2,6 +2,12 @@ package org.sym4j.symbolic.operation;
 
 import java.util.Map;
 
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.arity.UnaryOp;
 import org.sym4j.symbolic.funcs.Pow;
@@ -12,12 +18,12 @@ import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
 
 public class Reciprocal extends UnaryOp {
 
@@ -80,10 +86,10 @@ public class Reciprocal extends UnaryOp {
 			ConstantPoolGen cp, InstructionFactory factory,
 			InstructionList il, Map<String, Integer> argsMap, int argsStartPos,
 			Map<Expr, Integer> funcRefsMap) {
-		InstructionHandle startPos = il.append(InstructionConstants.DCONST_1);
+		InstructionHandle startPos = il.append(InstructionConst.DCONST_1);
 		arg.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		BytecodeUtils.typeCast(il, arg.getType(), TYPE.DOUBLE);
-		il.append(InstructionConstants.DDIV);
+		il.append(InstructionConst.DDIV);
 		return startPos;
 	}
 

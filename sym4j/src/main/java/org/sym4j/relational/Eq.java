@@ -4,22 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.DCMPL;
+import org.apache.bcel.generic.GOTO;
+import org.apache.bcel.generic.IFNE;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.NOP;
+import org.apache.bcel.generic.PUSH;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.BinaryOp;
 import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.DCMPL;
-import com.sun.org.apache.bcel.internal.generic.GOTO;
-import com.sun.org.apache.bcel.internal.generic.IFNE;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.NOP;
-import com.sun.org.apache.bcel.internal.generic.PUSH;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.DCMPL;
+//import com.sun.org.apache.bcel.internal.generic.GOTO;
+//import com.sun.org.apache.bcel.internal.generic.IFNE;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.NOP;
+//import com.sun.org.apache.bcel.internal.generic.PUSH;
 
 /**
  * This class has two meanings:

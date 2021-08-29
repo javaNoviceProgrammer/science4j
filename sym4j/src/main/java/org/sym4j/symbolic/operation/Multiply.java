@@ -4,6 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.ObjectType;
+import org.apache.bcel.generic.Type;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.BinaryOp;
@@ -17,15 +26,15 @@ import org.sym4j.symbolic.symbols.Symbol;
 import org.sym4j.symbolic.utils.BytecodeUtils;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.ObjectType;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import com.sun.org.apache.bcel.internal.Constants;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.ObjectType;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
 
 
@@ -196,7 +205,7 @@ public class Multiply extends BinaryOp {
 				il.append(factory.createInvoke("Jama.Matrix", "times",
 						new ObjectType("Jama.Matrix"), new Type[] { new ObjectType("Jama.Matrix") },
 						//Type.getType(Jama.Matrix.class), new Type[] { Type.getType(Jama.Matrix.class) },
-						Constants.INVOKEVIRTUAL));
+						Const.INVOKEVIRTUAL));
 /* Move the return part out of here to class CompileUtil
 				//Copy results to outAry
 				il.append(factory.createInvoke("Jama.Matrix", "getColumnPackedCopy",
@@ -229,15 +238,15 @@ public class Multiply extends BinaryOp {
 		arg2.bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 		BytecodeUtils.typeCast(il, arg2.getType(), ty);
 		if(ty == TYPE.DOUBLE)
-			il.append(InstructionConstants.DMUL);
+			il.append(InstructionConst.DMUL);
 		else if(ty == TYPE.INT)
-			il.append(InstructionConstants.IMUL);
+			il.append(InstructionConst.IMUL);
 		else if(ty == TYPE.LONG)
-			il.append(InstructionConstants.LMUL);
+			il.append(InstructionConst.LMUL);
 		else if(ty == TYPE.FLOAT)
-			il.append(InstructionConstants.FMUL);
+			il.append(InstructionConst.FMUL);
 		else
-			il.append(InstructionConstants.IMUL);
+			il.append(InstructionConst.IMUL);
 		return startPos;
 	}
 

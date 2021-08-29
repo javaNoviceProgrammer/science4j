@@ -2,24 +2,37 @@ package org.sym4j.symbolic.operation;
 
 import java.util.Map;
 
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.AASTORE;
+import org.apache.bcel.generic.ANEWARRAY;
+import org.apache.bcel.generic.ArrayType;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.ObjectType;
+import org.apache.bcel.generic.PUSH;
+import org.apache.bcel.generic.Type;
 import org.sym4j.symbolic.Expr;
 import org.sym4j.symbolic.TypeInfo;
 import org.sym4j.symbolic.arity.NaryOp;
 import org.sym4j.symbolic.utils.Utils;
 
-import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.generic.AASTORE;
-import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
-import com.sun.org.apache.bcel.internal.generic.ArrayType;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.ObjectType;
-import com.sun.org.apache.bcel.internal.generic.PUSH;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import com.sun.org.apache.bcel.internal.Constants;
+//import com.sun.org.apache.bcel.internal.generic.AASTORE;
+//import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
+//import com.sun.org.apache.bcel.internal.generic.ArrayType;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.ObjectType;
+//import com.sun.org.apache.bcel.internal.generic.PUSH;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
 /**
  * Concatenate symbol matrices or vectors with the same dimension(s)
@@ -64,7 +77,7 @@ public class Concat extends NaryOp {
 		il.append(new PUSH(cp, args.length));
 		il.append(new ANEWARRAY(cp.addClass("Jama.Matrix")));
 		for(int i=0; i<args.length; i++) {
-			il.append(InstructionConstants.DUP);
+			il.append(InstructionConst.DUP);
 			il.append(new PUSH(cp, i));
 			InstructionHandle tmp = args[i].bytecodeGen(clsName, mg, cp, factory, il, argsMap, argsStartPos, funcRefsMap);
 			if(startPos == null) startPos = tmp;
@@ -72,7 +85,7 @@ public class Concat extends NaryOp {
 		}
 		il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeOpSupport", "concat",
 				new ObjectType("Jama.Matrix"), new Type[] { new ArrayType(new ObjectType("Jama.Matrix"),1) },
-				Constants.INVOKESTATIC));
+				Const.INVOKESTATIC));
 		return startPos;
 	}
 

@@ -1,32 +1,57 @@
 package org.sym4j.bytecode.bcel;
 
-import static com.sun.org.apache.bcel.internal.Constants.ACC_PUBLIC;
-import static com.sun.org.apache.bcel.internal.Constants.ACC_SUPER;
-
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ArrayType;
+import org.apache.bcel.generic.ClassGen;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.DADD;
+import org.apache.bcel.generic.DALOAD;
+import org.apache.bcel.generic.DLOAD;
+import org.apache.bcel.generic.DSTORE;
+import org.apache.bcel.generic.GOTO;
+import org.apache.bcel.generic.IF_ICMPLT;
+import org.apache.bcel.generic.IINC;
+import org.apache.bcel.generic.ILOAD;
+import org.apache.bcel.generic.ISTORE;
+import org.apache.bcel.generic.InstructionConstants;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.LocalVariableGen;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.PUSH;
+import org.apache.bcel.generic.Type;
 import org.sym4j.bytecode.BytecodeFunc;
 import org.sym4j.symbolic.utils.FuncClassLoader;
 
-import com.sun.org.apache.bcel.internal.generic.ALOAD;
-import com.sun.org.apache.bcel.internal.generic.ArrayType;
-import com.sun.org.apache.bcel.internal.generic.ClassGen;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.DADD;
-import com.sun.org.apache.bcel.internal.generic.DALOAD;
-import com.sun.org.apache.bcel.internal.generic.DLOAD;
-import com.sun.org.apache.bcel.internal.generic.DSTORE;
-import com.sun.org.apache.bcel.internal.generic.GOTO;
-import com.sun.org.apache.bcel.internal.generic.IF_ICMPLT;
-import com.sun.org.apache.bcel.internal.generic.IINC;
-import com.sun.org.apache.bcel.internal.generic.ILOAD;
-import com.sun.org.apache.bcel.internal.generic.ISTORE;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.PUSH;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import static com.sun.org.apache.bcel.internal.Constants.ACC_PUBLIC;
+//import static com.sun.org.apache.bcel.internal.Constants.ACC_SUPER;
+//
+//import org.sym4j.bytecode.BytecodeFunc;
+//import org.sym4j.symbolic.utils.FuncClassLoader;
+//
+//import com.sun.org.apache.bcel.internal.generic.ALOAD;
+//import com.sun.org.apache.bcel.internal.generic.ArrayType;
+//import com.sun.org.apache.bcel.internal.generic.ClassGen;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.DADD;
+//import com.sun.org.apache.bcel.internal.generic.DALOAD;
+//import com.sun.org.apache.bcel.internal.generic.DLOAD;
+//import com.sun.org.apache.bcel.internal.generic.DSTORE;
+//import com.sun.org.apache.bcel.internal.generic.GOTO;
+//import com.sun.org.apache.bcel.internal.generic.IF_ICMPLT;
+//import com.sun.org.apache.bcel.internal.generic.IINC;
+//import com.sun.org.apache.bcel.internal.generic.ILOAD;
+//import com.sun.org.apache.bcel.internal.generic.ISTORE;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.PUSH;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
+@SuppressWarnings("deprecation")
 public class ForLoop {
 
 	public static void main(String[] args) {
@@ -34,12 +59,12 @@ public class ForLoop {
 		String clsName = "TestForLoop";
 		String fullClsName = packageName+"."+clsName;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
+				"<generated>", Const.ACC_PUBLIC | Const.ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 //		InstructionFactory factory = new InstructionFactory(cg);
 
-		short acc_flags = ACC_PUBLIC;
+		short acc_flags = Const.ACC_PUBLIC;
 		MethodGen mg = new MethodGen(acc_flags, // access flags
 				Type.DOUBLE, // return type
 				new Type[] { // argument types
@@ -95,7 +120,7 @@ public class ForLoop {
 		cg.addMethod(mg.getMethod());
 		il.dispose(); // Allow instruction handles to be reused
 
-		cg.addEmptyConstructor(ACC_PUBLIC);
+		cg.addEmptyConstructor(Const.ACC_PUBLIC);
 		FuncClassLoader<BytecodeFunc> fcl = new FuncClassLoader<BytecodeFunc>();
 		BytecodeFunc fun = fcl.newInstance(cg);
 		double[] params = new double[10];

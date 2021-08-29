@@ -39,6 +39,7 @@ public class Test1 {
 	public static void test2() {
 		Expr e1 = sin(x*x)*x+2.0 ;
 		System.out.println(e1);
+		System.out.println(e1.toLatex());
 		Func f1 = new Func("f1", e1) ;
 		System.out.println(f1);
 		System.out.println(f1.toLatex());
@@ -48,6 +49,7 @@ public class Test1 {
 
 		Expr e2 = e1.diff(x) ;
 		System.out.println(e2);
+		System.out.println(e2.toLatex());
 		System.out.println(JIT.compile(e2).apply(1.1));
 	}
 
@@ -62,7 +64,7 @@ public class Test1 {
 	}
 
 	public static void test4() {
-		String folder = "/Users/meisam/Desktop/test1" ;
+		String folder = "/Users/meisam/Desktop" ;
 		Expr e2 = 3.1 * β + 5.1 - α*α + γ + 2.1 * ξ * θ + sin(δ);
 		System.out.println(e2.toLatex());
 		System.out.println(e2);
@@ -159,10 +161,10 @@ public class Test1 {
 
 
 	public static void main(String[] args) {
-		test1() ;
+//		test1() ;
 //		test2() ;
 //		test3() ;
-//		test4() ;
+		test4() ;
 //		test5() ;
 //		test6() ;
 //		test7() ;

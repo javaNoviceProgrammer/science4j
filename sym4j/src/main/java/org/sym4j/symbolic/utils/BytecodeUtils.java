@@ -1,23 +1,23 @@
 package org.sym4j.symbolic.utils;
 
-import static com.sun.org.apache.bcel.internal.Constants.ACC_PUBLIC;
-import static com.sun.org.apache.bcel.internal.Constants.ACC_STATIC;
-import static com.sun.org.apache.bcel.internal.Constants.ACC_SUPER;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.D2F;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.D2I;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.D2L;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.F2D;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.F2I;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.F2L;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2B;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2C;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2D;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2F;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2L;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2S;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.L2D;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.L2F;
-import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.L2I;
+//import static com.sun.org.apache.bcel.internal.Constants.ACC_PUBLIC;
+//import static com.sun.org.apache.bcel.internal.Constants.ACC_STATIC;
+//import static com.sun.org.apache.bcel.internal.Constants.ACC_SUPER;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.D2F;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.D2I;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.D2L;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.F2D;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.F2I;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.F2L;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2B;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2C;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2D;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2F;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2L;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.I2S;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.L2D;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.L2F;
+//import static com.sun.org.apache.bcel.internal.generic.InstructionConstants.L2I;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +26,52 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static org.apache.bcel.generic.InstructionConst.* ;
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.AALOAD;
+import org.apache.bcel.generic.AASTORE;
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ANEWARRAY;
+import org.apache.bcel.generic.ARRAYLENGTH;
+import org.apache.bcel.generic.ASTORE;
+import org.apache.bcel.generic.ArrayType;
+import org.apache.bcel.generic.ClassGen;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.DADD;
+import org.apache.bcel.generic.DALOAD;
+import org.apache.bcel.generic.DASTORE;
+import org.apache.bcel.generic.DCMPL;
+import org.apache.bcel.generic.DDIV;
+import org.apache.bcel.generic.DMUL;
+import org.apache.bcel.generic.DSUB;
+import org.apache.bcel.generic.GOTO;
+import org.apache.bcel.generic.I2D;
+import org.apache.bcel.generic.IAND;
+import org.apache.bcel.generic.ICONST;
+import org.apache.bcel.generic.IFEQ;
+import org.apache.bcel.generic.IFGE;
+import org.apache.bcel.generic.IFGT;
+import org.apache.bcel.generic.IFLE;
+import org.apache.bcel.generic.IFLT;
+import org.apache.bcel.generic.IFNE;
+import org.apache.bcel.generic.IF_ICMPLT;
+import org.apache.bcel.generic.IINC;
+import org.apache.bcel.generic.ILOAD;
+import org.apache.bcel.generic.IOR;
+import org.apache.bcel.generic.ISTORE;
+import org.apache.bcel.generic.IXOR;
+import org.apache.bcel.generic.InstructionConstants;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.LocalVariableGen;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.NOP;
+import org.apache.bcel.generic.POP2;
+import org.apache.bcel.generic.PUSH;
+import org.apache.bcel.generic.Type;
+
 
 import org.sym4j.domains.Domain2D;
 import org.sym4j.domains.Interval;
@@ -77,50 +123,51 @@ import org.sym4j.symbolic.symbols.SymRandom;
 import org.sym4j.symbolic.symbols.SymReal;
 import org.sym4j.symbolic.symbols.Symbol;
 
-import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
-import com.sun.org.apache.bcel.internal.generic.AASTORE;
-import com.sun.org.apache.bcel.internal.generic.ALOAD;
-import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
-import com.sun.org.apache.bcel.internal.generic.ASTORE;
-import com.sun.org.apache.bcel.internal.generic.ArrayType;
-import com.sun.org.apache.bcel.internal.generic.ClassGen;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.DADD;
-import com.sun.org.apache.bcel.internal.generic.DALOAD;
-import com.sun.org.apache.bcel.internal.generic.DASTORE;
-import com.sun.org.apache.bcel.internal.generic.DCMPL;
-import com.sun.org.apache.bcel.internal.generic.DDIV;
-import com.sun.org.apache.bcel.internal.generic.DMUL;
-import com.sun.org.apache.bcel.internal.generic.DSUB;
-import com.sun.org.apache.bcel.internal.generic.GOTO;
-import com.sun.org.apache.bcel.internal.generic.I2D;
-import com.sun.org.apache.bcel.internal.generic.IAND;
-import com.sun.org.apache.bcel.internal.generic.ICONST;
-import com.sun.org.apache.bcel.internal.generic.IFEQ;
-import com.sun.org.apache.bcel.internal.generic.IFGE;
-import com.sun.org.apache.bcel.internal.generic.IFGT;
-import com.sun.org.apache.bcel.internal.generic.IFLE;
-import com.sun.org.apache.bcel.internal.generic.IFLT;
-import com.sun.org.apache.bcel.internal.generic.IFNE;
-import com.sun.org.apache.bcel.internal.generic.IF_ICMPLT;
-import com.sun.org.apache.bcel.internal.generic.IINC;
-import com.sun.org.apache.bcel.internal.generic.ILOAD;
-import com.sun.org.apache.bcel.internal.generic.IOR;
-import com.sun.org.apache.bcel.internal.generic.ISTORE;
-import com.sun.org.apache.bcel.internal.generic.IXOR;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.NOP;
-import com.sun.org.apache.bcel.internal.generic.POP2;
-import com.sun.org.apache.bcel.internal.generic.PUSH;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import com.sun.org.apache.bcel.internal.Constants;
+//import com.sun.org.apache.bcel.internal.generic.AALOAD;
+//import com.sun.org.apache.bcel.internal.generic.AASTORE;
+//import com.sun.org.apache.bcel.internal.generic.ALOAD;
+//import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
+//import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
+//import com.sun.org.apache.bcel.internal.generic.ASTORE;
+//import com.sun.org.apache.bcel.internal.generic.ArrayType;
+//import com.sun.org.apache.bcel.internal.generic.ClassGen;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.DADD;
+//import com.sun.org.apache.bcel.internal.generic.DALOAD;
+//import com.sun.org.apache.bcel.internal.generic.DASTORE;
+//import com.sun.org.apache.bcel.internal.generic.DCMPL;
+//import com.sun.org.apache.bcel.internal.generic.DDIV;
+//import com.sun.org.apache.bcel.internal.generic.DMUL;
+//import com.sun.org.apache.bcel.internal.generic.DSUB;
+//import com.sun.org.apache.bcel.internal.generic.GOTO;
+//import com.sun.org.apache.bcel.internal.generic.I2D;
+//import com.sun.org.apache.bcel.internal.generic.IAND;
+//import com.sun.org.apache.bcel.internal.generic.ICONST;
+//import com.sun.org.apache.bcel.internal.generic.IFEQ;
+//import com.sun.org.apache.bcel.internal.generic.IFGE;
+//import com.sun.org.apache.bcel.internal.generic.IFGT;
+//import com.sun.org.apache.bcel.internal.generic.IFLE;
+//import com.sun.org.apache.bcel.internal.generic.IFLT;
+//import com.sun.org.apache.bcel.internal.generic.IFNE;
+//import com.sun.org.apache.bcel.internal.generic.IF_ICMPLT;
+//import com.sun.org.apache.bcel.internal.generic.IINC;
+//import com.sun.org.apache.bcel.internal.generic.ILOAD;
+//import com.sun.org.apache.bcel.internal.generic.IOR;
+//import com.sun.org.apache.bcel.internal.generic.ISTORE;
+//import com.sun.org.apache.bcel.internal.generic.IXOR;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.NOP;
+//import com.sun.org.apache.bcel.internal.generic.POP2;
+//import com.sun.org.apache.bcel.internal.generic.PUSH;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
+@SuppressWarnings("deprecation")
 public class BytecodeUtils {
 
 	public static void post_order(Expr e, List<Expr> outList) {
@@ -219,14 +266,14 @@ public class BytecodeUtils {
 		String clsName = fun.getName();
 		String fullClsName = packageName+"."+clsName;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
+				"<generated>", Const.ACC_PUBLIC | Const.ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
 
-		short acc_flags = ACC_PUBLIC;
+		short acc_flags = Const.ACC_PUBLIC;
 		if(staticMethod)
-			acc_flags |= ACC_STATIC;
+			acc_flags |= Const.ACC_STATIC;
 		MethodGen mg = new MethodGen(acc_flags, // access flags
 				Type.DOUBLE, // return type
 				new Type[] { // argument types
@@ -274,7 +321,7 @@ public class BytecodeUtils {
 		cg.addMethod(mg.getMethod());
 		il.dispose(); // Allow instruction handles to be reused
 
-		cg.addEmptyConstructor(ACC_PUBLIC);
+		cg.addEmptyConstructor(Const.ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
 				cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+clsName+".class");
@@ -290,14 +337,14 @@ public class BytecodeUtils {
 		String packageName = "org.sym4j.bytecode";
 		String fullClsName = packageName+"."+className;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeBatchFunc"});
+				"<generated>", Const.ACC_PUBLIC | Const.ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeBatchFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
 
-		short acc_flags = ACC_PUBLIC;
+		short acc_flags = Const.ACC_PUBLIC;
 		if(staticMethod)
-			acc_flags |= ACC_STATIC;
+			acc_flags |= Const.ACC_STATIC;
 		MethodGen mg = new MethodGen(acc_flags, // access flags
 				Type.VOID, // return type
 				new Type[] { // argument types
@@ -341,7 +388,7 @@ public class BytecodeUtils {
 		cg.addMethod(mg.getMethod());
 		il.dispose(); // Allow instruction handles to be reused
 
-		cg.addEmptyConstructor(ACC_PUBLIC);
+		cg.addEmptyConstructor(Const.ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
 				cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+className+".class");
@@ -371,13 +418,13 @@ public class BytecodeUtils {
 		String packageName = "org.sym4j.bytecode";
 		String fullClsName = packageName+"."+className;
 		ClassGen cg = new ClassGen(fullClsName, "java.lang.Object",
-				"<generated>", ACC_PUBLIC | ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeVecFunc"});
+				"<generated>", Const.ACC_PUBLIC | Const.ACC_SUPER, new String[]{"org.sym4j.bytecode.BytecodeVecFunc"});
 		ConstantPoolGen cp = cg.getConstantPool(); // cg creates constant pool
 		InstructionList il = new InstructionList();
 		InstructionFactory factory = new InstructionFactory(cg);
 		LocalVariableGen lg;
 
-		short acc_flags = ACC_PUBLIC;
+		short acc_flags = Const.ACC_PUBLIC;
 		MethodGen mg = new MethodGen(acc_flags, // access flags
 				Type.VOID, // return type
 				new Type[] { // argument types
@@ -461,7 +508,7 @@ public class BytecodeUtils {
 		mg.setMaxStack();
 		cg.addMethod(mg.getMethod());
 		il.dispose(); // Allow instruction handles to be reused
-		cg.addEmptyConstructor(ACC_PUBLIC);
+		cg.addEmptyConstructor(Const.ACC_PUBLIC);
 		if(writeClassFile) {
 			try {
 				cg.getJavaClass().dump("bin/org/sym4j/bytecode/"+className+".class");
@@ -532,12 +579,12 @@ public class BytecodeUtils {
 					il.append(new POP2()); //Replace double value to integer
 					il.append(new PUSH(cp, realExp.getIntValue()));
 					il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "powi",
-							Type.DOUBLE, new Type[] { Type.DOUBLE, Type.INT }, Constants.INVOKESTATIC));
+							Type.DOUBLE, new Type[] { Type.DOUBLE, Type.INT }, Const.INVOKESTATIC));
 					return;
 				}
 			}
 			il.append(factory.createInvoke("java.lang.Math", "pow",
-					Type.DOUBLE, new Type[] { Type.DOUBLE, Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE, Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Sqrt) {
 			Sqrt p = (Sqrt)ins;
 			if(p.arg2 instanceof SymReal<?>) {
@@ -545,51 +592,51 @@ public class BytecodeUtils {
 				if(realRoot.getIntValue() == 2) {
 					il.append(new POP2());
 					il.append(factory.createInvoke("java.lang.Math", "sqrt",
-							Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+							Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 					return;
 				}
 			}
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "sqrt",
-					Type.DOUBLE, new Type[] { Type.DOUBLE, Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE, Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Sin) {
 			il.append(factory.createInvoke("java.lang.Math", "sin",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Cos) {
 			il.append(factory.createInvoke("java.lang.Math", "cos",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Tan) {
 			il.append(factory.createInvoke("java.lang.Math", "tan",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Sinh) {
 			il.append(factory.createInvoke("java.lang.Math", "sinh",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Cosh) {
 			il.append(factory.createInvoke("java.lang.Math", "cosh",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Tanh) {
 			il.append(factory.createInvoke("java.lang.Math", "tanh",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Coth) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "coth",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Cot) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "cot",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Sec) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "sec",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Csc) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "csc",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Arcsin) {
 			il.append(factory.createInvoke("java.lang.Math", "asin",
-					Type.DOUBLE, new Type[] { Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof Log) {
 			il.append(factory.createInvoke("org.sym4j.symbolic.utils.BytecodeSupport", "log",
-					Type.DOUBLE, new Type[] { Type.DOUBLE,  Type.DOUBLE }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { Type.DOUBLE,  Type.DOUBLE }, Const.INVOKESTATIC));
 		} else if(ins instanceof SymRandom) {
 			il.append(factory.createInvoke("java.lang.Math", "random",
-					Type.DOUBLE, new Type[] { }, Constants.INVOKESTATIC));
+					Type.DOUBLE, new Type[] { }, Const.INVOKESTATIC));
 		} else if(ins instanceof Reciprocal) {
 			il.append(new DDIV());
 		} else if(ins instanceof Negate) {
@@ -625,7 +672,7 @@ public class BytecodeUtils {
 						Type.DOUBLE, Type.DOUBLE, Type.DOUBLE,
 						Type.STRING,
 						new ArrayType(Type.DOUBLE, 1)
-						}, Constants.INVOKESTATIC));
+						}, Const.INVOKESTATIC));
 			} else if(INT.domain instanceof Domain2D && INT.isMultipleIntegral()) {
 				Expr[] coord = INT.domain.getCoordVars();
 				Expr x = coord[0];
@@ -665,7 +712,7 @@ public class BytecodeUtils {
 						Type.STRING, Type.STRING, Type.DOUBLE,
 						Type.STRING,
 						new ArrayType(Type.DOUBLE, 1)
-				}, Constants.INVOKESTATIC));
+				}, Const.INVOKESTATIC));
 			} else if(!INT.isMultipleIntegral()) {
 				Expr[] coords = INT.domain.getCoordVars();
 				LocalVariableGen lg;
@@ -726,7 +773,7 @@ public class BytecodeUtils {
 						new ArrayType(Type.STRING,1),new ArrayType(Type.STRING,1),
 						Type.STRING,Type.STRING,
 						new ArrayType(Type.DOUBLE, 1)
-				}, Constants.INVOKESTATIC));
+				}, Const.INVOKESTATIC));
 			} else {
 				//TODO
 				throw new RuntimeException("Unsupported Integrate: "+INT);

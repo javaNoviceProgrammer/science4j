@@ -2,23 +2,38 @@ package org.sym4j.symbolic;
 
 import java.util.Map;
 
+import org.apache.bcel.Const;
+import org.apache.bcel.generic.ALOAD;
+import org.apache.bcel.generic.ASTORE;
+import org.apache.bcel.generic.ArrayType;
+import org.apache.bcel.generic.ConstantPoolGen;
+import org.apache.bcel.generic.InstructionConst;
+import org.apache.bcel.generic.InstructionFactory;
+import org.apache.bcel.generic.InstructionHandle;
+import org.apache.bcel.generic.InstructionList;
+import org.apache.bcel.generic.LocalVariableGen;
+import org.apache.bcel.generic.MethodGen;
+import org.apache.bcel.generic.NEW;
+import org.apache.bcel.generic.ObjectType;
+import org.apache.bcel.generic.PUSH;
+import org.apache.bcel.generic.Type;
 import org.sym4j.matrix.ExprMatrix;
 
-import com.sun.org.apache.bcel.internal.Constants;
-import com.sun.org.apache.bcel.internal.generic.ALOAD;
-import com.sun.org.apache.bcel.internal.generic.ASTORE;
-import com.sun.org.apache.bcel.internal.generic.ArrayType;
-import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
-import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
-import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
-import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
-import com.sun.org.apache.bcel.internal.generic.InstructionList;
-import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
-import com.sun.org.apache.bcel.internal.generic.MethodGen;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.org.apache.bcel.internal.generic.ObjectType;
-import com.sun.org.apache.bcel.internal.generic.PUSH;
-import com.sun.org.apache.bcel.internal.generic.Type;
+//import com.sun.org.apache.bcel.internal.Constants;
+//import com.sun.org.apache.bcel.internal.generic.ALOAD;
+//import com.sun.org.apache.bcel.internal.generic.ASTORE;
+//import com.sun.org.apache.bcel.internal.generic.ArrayType;
+//import com.sun.org.apache.bcel.internal.generic.ConstantPoolGen;
+//import com.sun.org.apache.bcel.internal.generic.InstructionConstants;
+//import com.sun.org.apache.bcel.internal.generic.InstructionFactory;
+//import com.sun.org.apache.bcel.internal.generic.InstructionHandle;
+//import com.sun.org.apache.bcel.internal.generic.InstructionList;
+//import com.sun.org.apache.bcel.internal.generic.LocalVariableGen;
+//import com.sun.org.apache.bcel.internal.generic.MethodGen;
+//import com.sun.org.apache.bcel.internal.generic.NEW;
+//import com.sun.org.apache.bcel.internal.generic.ObjectType;
+//import com.sun.org.apache.bcel.internal.generic.PUSH;
+//import com.sun.org.apache.bcel.internal.generic.Type;
 
 
 
@@ -102,7 +117,7 @@ public class Matrix extends Tensor {
 
 			// First time touch the matrix, declare a local reference of Java.Matrix
 			il.append(new NEW(cp.addClass("Jama.Matrix")));
-		    il.append(InstructionConstants.DUP);
+		    il.append(InstructionConst.DUP);
 
 		    //prepare argument: double[] vals
 			//il.append(new ALOAD(argsStartPos));
@@ -113,13 +128,13 @@ public class Matrix extends Tensor {
 
 			il.append(new ALOAD(argsStartPos));
 			il.append(new PUSH(cp, argsMap.get(this.label)));
-			il.append(InstructionConstants.AALOAD); //Load double from array
+			il.append(InstructionConst.AALOAD); //Load double from array
 
 			//prepare argument: double m - number of rows
     		il.append(new PUSH(cp, nRow));
 			il.append(factory.createInvoke("Jama.Matrix", "<init>",
 				Type.VOID, new Type[] { new ArrayType(Type.DOUBLE, 1), Type.INT },
-				Constants.INVOKESPECIAL));
+				Const.INVOKESPECIAL));
 
 			//jama.Matrix l_m = new jama.Matrix(args[], nRow);
 			lg.setStart(il.append(new ASTORE(indexLVT)));
