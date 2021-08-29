@@ -161,7 +161,7 @@ public class Test2 {
 		Expr e3 = LatexBinary.partialDiff(x+x*x+x*x*x, a1+a2) ;
 		System.out.println(e3);
 		System.out.println(e3.toLatex());
-		String folder = "/Users/meisam/Desktop/test1" ;
+		String folder = "/Users/meisam/Desktop" ;
 		e3.latexRender(folder, "test4");
 	}
 
