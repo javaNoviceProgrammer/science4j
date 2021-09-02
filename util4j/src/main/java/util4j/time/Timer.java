@@ -54,7 +54,7 @@ public class Timer {
 
 	@Override
 	public String toString() {
-		return "Timer duration = " + elapseTime + " ms";
+		return "Timer duration = " + (elapseTime/1e6) + " ms" ;
 	}
 
 }
