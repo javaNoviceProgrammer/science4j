@@ -3,7 +3,7 @@
   
   <groupId>org.science4j</groupId>
   <artifactId>util4j</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <description>This project includes utility classes for the science4j projects. </description>
 
   <properties>
