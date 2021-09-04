@@ -152,5 +152,31 @@ public class ArrayMath {
 	public static NdArray cot(NdArray x) {
 		return new NdArray(cot(x.data), x.shape) ;
 	}
+	
+	public static Pair<double[], double[]> cot(double[] xRe, double[] xIm) {
+		int len = xRe.length ;
+		double[] yRe = new double[len] ;
+		double[] yIm = new double[len] ;
+		for(int i=0; i<len; i++) {
+			double[] a = ComplexMath.cot(xRe[i], xIm[i]) ;
+			yRe[i] = a[0] ;
+			yIm[i] = a[1] ;
+		}
+		return Tuples.makePair(yRe, yIm) ;
+	}
+	
+	public static ComplexNumber[] cot(ComplexNumber[] x) {
+		int len = x.length ;
+		ComplexNumber[] y = new ComplexNumber[len] ;
+		for(int i=0; i<len; i++) {
+			y[i] = ComplexMath.cot(x[i]) ;
+		}
+		return y ;
+	}
+	
+	public static ComplexNdArray cot(ComplexNdArray x) {
+		Pair<double[], double[]> result = cot(x.dataRe, x.dataIm);
+		return new ComplexNdArray(result.first, result.second, x.shape) ;
+	}
 
 }
