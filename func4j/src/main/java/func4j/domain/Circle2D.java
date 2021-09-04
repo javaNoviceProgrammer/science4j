@@ -38,5 +38,5 @@ public class Circle2D implements IntegralDomain2D {
 	public double var2Max(double var1) {
 		return ycenter + Math.sqrt(radius*radius - (var1-xcenter)*(var1-xcenter)) ;
 	}
-
+	
 }

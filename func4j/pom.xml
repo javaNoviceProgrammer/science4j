@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.science4j</groupId>
 	<artifactId>func4j</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<description>Functions for science4j project</description>
 	
 	<properties>
