@@ -117,6 +117,49 @@ public class NativeUtils {
             }
         }
     }
+    
+    static void loadWindowsSystemLibraryFromJar(String path) throws IOException {
+
+        if (null == path || !path.startsWith("/")) {
+            throw new IllegalArgumentException("The path has to be absolute (start with '/').");
+        }
+
+        // Obtain filename from path
+        String[] parts = path.split("/");
+        String filename = (parts.length > 1) ? parts[parts.length - 1] : null;
+
+        // Check if the filename is okay
+        if (filename == null || filename.length() < MIN_PREFIX_LENGTH) {
+            throw new IllegalArgumentException("The filename has to be at least 3 characters long.");
+        }
+
+        // Prepare temporary file
+        if (temporaryDir == null) {
+            temporaryDir = createTempDirectory(NATIVE_FOLDER_PATH_PREFIX);
+            temporaryDir.deleteOnExit();
+        }
+
+        File temp = new File(temporaryDir, filename);
+        
+        try (InputStream is = NativeUtils.class.getResourceAsStream(path)) {
+            Files.copy(is, temp.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException e) {
+            temp.delete();
+            throw e;
+        } catch (NullPointerException e) {
+            temp.delete();
+            throw new FileNotFoundException("File " + path + " was not found inside JAR.");
+        }
+        finally {
+            if (isPosixCompliant()) {
+                // Assume POSIX compliant file system, can be deleted after loading
+                temp.delete();
+            } else {
+                // Assume non-POSIX, and don't delete until last file descriptor closed
+                temp.deleteOnExit();
+            }
+        }
+    }
 
     private static boolean isPosixCompliant() {
         try {
