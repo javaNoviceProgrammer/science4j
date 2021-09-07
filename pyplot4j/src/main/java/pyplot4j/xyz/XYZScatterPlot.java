@@ -23,12 +23,12 @@ import util4j.os.TerminalExecutor;
  * Axes3D.scatter(xs, ys, zs=0, zdir='z', s=20, c=None, depthshade=True, *args, **kwargs)
  * <p>
  * Argument		Description <p>
- * 	xs, ys ----> Positions of data points.<p>
- *  zs	---->		Either an array of the same length as xs and ys or a single value to place all points in the same plane. Default is 0.<p>
- *  zdir	---->	Which direction to use as z (‘x’, ‘y’ or ‘z’) when plotting a 2D set.<p>
- *  s	---->		Size in points^2. It is a scalar or an array of the same length as x and y.<p>
- *  c	---->		A color. c can be a single color format string, or a sequence of color specifications of length N, or a sequence of N numbers to be mapped to colors using the cmap and norm specified via kwargs (see below). Note that c should not be a single numeric RGB or RGBA sequence because that is indistinguishable from an array of values to be colormapped. c can be a 2-D array in which the rows are RGB or RGBA, however, including the case of a single row to specify the same color for all points.<p>
- *	depthshade	----> Whether or not to shade the scatter markers to give the appearance of depth. Default is True.<p>
+ * 	xs, ys ---- Positions of data points.<p>
+ *  zs	----		Either an array of the same length as xs and ys or a single value to place all points in the same plane. Default is 0.<p>
+ *  zdir	----	Which direction to use as z (‘x’, ‘y’ or ‘z’) when plotting a 2D set.<p>
+ *  s	----		Size in points^2. It is a scalar or an array of the same length as x and y.<p>
+ *  c	----		A color. c can be a single color format string, or a sequence of color specifications of length N, or a sequence of N numbers to be mapped to colors using the cmap and norm specified via kwargs (see below). Note that c should not be a single numeric RGB or RGBA sequence because that is indistinguishable from an array of values to be colormapped. c can be a 2-D array in which the rows are RGB or RGBA, however, including the case of a single row to specify the same color for all points.<p>
+ *	depthshade	---- Whether or not to shade the scatter markers to give the appearance of depth. Default is True.<p>
  * 
  * @author Meisam
  *

@@ -3,12 +3,15 @@ package pyplot4j.xy;
 import static java.lang.String.format;
 
 import java.awt.Desktop;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import javax.imageio.ImageIO;
 
 import pyplot4j.style.LegendLocation;
 import util4j.io.FileOutput;
@@ -215,7 +218,7 @@ public class XYPlot {
 		return this ;
 	}
 
-	public void savefig(String fileName) {
+	public Object savefig(String fileName) {
 		if(xySeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
@@ -235,6 +238,7 @@ public class XYPlot {
 			TerminalExecutor.execute("python", fo.getFilename());
 		}) ;
 		thread.start();
+		return thread ;
 	}
 
 	public void show(String fileName) {
@@ -277,6 +281,22 @@ public class XYPlot {
 			TerminalExecutor.execute("python", fo.getFilename());
 		}) ;
 		thread.start();
+	}
+	
+	public BufferedImage getImage() {
+		// first save the figure
+		String fileName = String.format("temp%d", (int) (1000*Math.random())) ;
+		Thread thread = (Thread) savefig(fileName+".jpg");
+		BufferedImage image = null;
+		try {
+			thread.join() ;
+			image = ImageIO.read(new File(fileName+".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return image ;
 	}
 
 	void pythonCode(FileOutput fo) {
