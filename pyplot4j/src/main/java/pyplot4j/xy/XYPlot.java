@@ -238,11 +238,6 @@ public class XYPlot {
 			TerminalExecutor.execute("python", fo.getFilename());
 		}) ;
 		thread.start();
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		return new File(fileName) ;
 	}
 
