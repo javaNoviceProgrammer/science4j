@@ -217,8 +217,8 @@ public class XYPlot {
 		this.useTkAgg = useTkAgg ;
 		return this ;
 	}
-
-	public File savefig(String fileName) {
+	
+	public File savefig(String fileName, boolean waitToFinish) {
 		if(xySeriesCollection.isEmpty())
 			throw new IllegalStateException("XYPlot data is empty") ;
 		// open the output stream
@@ -238,7 +238,18 @@ public class XYPlot {
 			TerminalExecutor.execute("python", fo.getFilename());
 		}) ;
 		thread.start();
+		if(waitToFinish) {
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 		return new File(fileName) ;
+	}
+
+	public File savefig(String fileName) {
+		return savefig(fileName, false) ;
 	}
 
 	public void show(String fileName) {
@@ -286,7 +297,7 @@ public class XYPlot {
 	public BufferedImage getImage() {
 		// first save the figure
 		String fileName = String.format("temp%d", (int) (1000*Math.random())) ;
-		File imageFile = savefig(fileName+".jpg");
+		File imageFile = savefig(fileName+".jpg", true);
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(imageFile);
